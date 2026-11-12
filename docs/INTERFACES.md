@@ -134,3 +134,7 @@ Registry 无跨线程同步，约定单 asyncio 事件循环。新 DOM 能力继
 首次 0.1.0 / Protocol 1 基于 Pydantic，本轮批准的方案 A 是破坏性 Python API 调整，包提升到 0.2.0、公共信封版本到 2。移除 model_validate/model_dump 系列方法，改用原生构造器或显式 codec；移除 RGB8/RGBA8 Frame 格式；构造器不再自动转换字符串。旧 JSON 不自动迁移，尤其裸像素需图像层先编码；调用方需按已知类型显式迁移并重新验证，不能仅修改版本号。
 
 兼容内部修复采用补丁版本；破坏性字段、类型、坐标、生命周期和编码边界变更需递增基线与协议版本并同步所有使用模块。codec 当前拒绝未知字段，新增可交换字段也不能假定旧读者兼容。插件 version、schema_version 和公共协议版本独立维护。没有加载器版本协商实现，不承诺跨版本运行。
+
+## BCA-01.1 ??????
+
+?? Protocol 2 API ??????? `bca.core.browser` ? CDPConnection?TargetManager?BrowserSession?BrowserTarget?CDPEvent?SessionState ???????????generation ?????? [BROWSER.md](BROWSER.md)?Capture/Input ?? Provider ?? BCA-01.2/01.3?

@@ -3,9 +3,9 @@
 > **文件角色：** 项目级共享背景文件（Project Context）。供 ChatGPT 项目中的全部子会话读取，并作为每份子系统开发任务 MD 的共同前置上下文。
 >
 > **项目名称：** Browser CLI Agent（BCA）  
-> **版本：** v0.1（架构规划基线）  
+> **版本：** v0.2（Protocol 2 接入基线）  
 > **更新日期：** 2026-11-12  
-> **当前状态：** 架构与任务规划已完成初步讨论；`BCA-00` 已形成开发任务文档，尚未在本总纲中确认实现与验收结果。
+> **当前状态：** BCA-00 已基于 Codex 交接报告完成阶段验收；公共接口基线为 `browser-cli-agent 0.2.0` / `PROTOCOL_VERSION=2`；BCA-01 已获准启动。仓库代码与测试尚未经架构主会话独立复核。
 
 ## 1. 项目背景
 
@@ -43,7 +43,7 @@ BCA 是一个面向**指定浏览器页面**的轻量级感知与输入控制框
 
 | 项目 | 当前方案 |
 | --- | --- |
-| 主要语言 | Python 3.12+ |
+| 主要语言 | Python 3.12+（BCA-00 已在 Python 3.14.7 / Windows 测试；3.12/3.13 待验证） |
 | 运行平台 | 优先 Windows 开发与使用 |
 | 浏览器 | 优先 Chromium / Microsoft Edge |
 | 浏览器连接 | 优先 Chrome DevTools Protocol（CDP） |
@@ -138,6 +138,23 @@ bca/
 
 ## 5. 公共接口与协作契约
 
+### 5.0 当前已交付基线（BCA-00）
+
+- **工程版本：** `browser-cli-agent 0.2.0`；**公共协议版本：** `PROTOCOL_VERSION=2`。
+- **类型体系：** 标准库 `dataclass`（冻结且关键字初始化）、`StrEnum`、`Protocol`；Python 内部传递类型化对象，跨外部边界使用显式 JSON codec。
+- **公共模型：** `bca.core.protocol` 包含 `Viewport`、`Frame`、`PageState`、`Command`、`Action`、`ActionResult`、`ErrorDetail`、`Event` 等；codec 为 `to_dict`、`to_json`、`from_dict`、`from_json`。
+- **截图：** `Frame` 持有 PNG/JPEG 编码 `bytes`，按不可变共享使用；默认 JSON 输出元数据，图像 Base64 需显式启用。
+- **坐标：** Frame 截图坐标通过携带的视口/采集元数据映射至 **CSS viewport** 输入坐标；DPR、滚动和裁剪偏移的实际处理以仓库 `docs/INTERFACES.md` 为准。
+- **异步契约：** `bca.core.providers` 的 `Provider.start/close`、`CaptureProvider.capture(page_id) -> Frame`、`InputProvider.execute(action) -> ActionResult` 为 async；包含 `ProviderLookup`、`ProviderRegistry`。`bca.core.runtime` 提供 async `StateSink.publish(PageState)`、`EventSink.emit(Event)` 背压接口。
+- **插件契约：** `bca.core.plugins` 提供 `PluginMetadata`、`PluginConfig`、`PluginContext`、`Plugin` Protocol；生命周期与观察/命令处理异步，文本解析与格式化同步。
+- **时间：** 带 UTC 时区的 `datetime`，JSON 保留微秒；耗时与超时使用单调时钟。
+- **状态责任：** Runtime 调用 `observe()` 后执行一次 `publish()`，按顺序 await 动作执行；错误与取消需有明确处理。
+- **测试证据：** Codex 报告 Windows / Python 3.14.7 下 pytest `82 passed / 0 failed`，mypy strict、Ruff、打包、离线安装 smoke test 通过；主会话未独立复测。
+- **后续核对：** Git 仓库尚未初始化；Python 3.12/3.13 运行矩阵和真实浏览器集成测试待完成。
+
+完整字段、校验条件、异常类型及代码位置，以实际仓库 `docs/INTERFACES.md`、`docs/PLUGIN_SPEC.md` 和源码为准。
+
+
 ### 5.1 关键数据对象
 
 | 对象 | 语义 | 典型流向 |
@@ -171,14 +188,14 @@ bca/
 - **`docs/ARCHITECTURE.md`、`PLUGIN_SPEC.md`、`DEVELOPMENT_PLAN.md`：** 已确认的架构细节、插件规范和阶段计划。
 - **各 `BCA-XX_*.md`：** 单次或单个子系统的任务范围、验收条件和交付物。
 
-任务文档须注明依赖的公共协议版本或基线。共享源文件的内容发生实质变化时，更新本文件的状态和关联任务索引，必要时重新同步到 ChatGPT Project 的共享来源。
+任务文档须注明依赖的公共协议版本或基线。**Protocol 1→2 为破坏性变更**，后续模块使用 Protocol 2，按仓库实有导出名称和参数调用。共享源文件的内容发生实质变化时，更新本文件的状态和关联任务索引，必要时重新同步到 ChatGPT Project 的共享来源。
 
 ## 6. 子会话任务地图
 
 | 编号 / 会话建议名 | 子系统 | 交付目标 | 主要前置依赖 | 状态 |
 | --- | --- | --- | --- | --- |
-| `BCA-00 / Protocol` | 项目初始化与公共协议 | 仓库骨架、公共模型、Provider/Plugin 接口、基础测试与文档 | 本项目总纲 | **任务文档已生成，开发待确认** |
-| `BCA-01 / Browser` | 浏览器与底层能力 | CDP 连接、页面绑定、截图、输入、坐标转换 | BCA-00 | 规划中 |
+| `BCA-00 / Protocol` | 项目初始化与公共协议 | 仓库骨架、公共模型、Provider/Plugin 接口、基础测试与文档 | 本项目总纲 | **阶段验收完成（依据 Codex 报告，Protocol 2）** |
+| `BCA-01 / Browser` | 浏览器与底层能力 | CDP 连接、页面绑定、截图、输入、坐标转换 | BCA-00 / Protocol 2 | **任务文件 v0.2 已生成，可启动子会话** |
 | `BCA-02 / Runtime` | 调度、事件与状态 | Scheduler、Event Bus、State Store、任务运行管理 | BCA-00，按需使用 BCA-01 | 规划中 |
 | `BCA-03 / Plugin System` | 插件管理 | 插件发现、加载、上下文与生命周期 | BCA-00、Runtime 接口 | 规划中 |
 | `BCA-04 / Vision & Assets` | 视觉工具与资源管理 | Manifest/Profile、素材加载、识别辅助库、样本测试 | BCA-00 | 规划中 |
@@ -213,10 +230,19 @@ bca/
 
 截至 **2026-11-12**：
 
-- 已确定项目定位、三层架构、视觉优先的首个应用场景与开放 Provider 思路。
-- 已确定单仓库主目录方案，并拟定阶段 0 的开发范围。
-- 已生成 `BCA-00_项目初始化与公共接口设计.md`，作为首项 Codex 任务文档。
-- 下一步：启动 `BCA-00`，获取实际接口设计与测试结果；验收后将结果回填共享文档，随后安排 Browser、Runtime、Plugin SDK 等子会话。
+1. `BCA-00_Protocol.md` 已执行阶段性交接；同步依据为 `BCA-00_MAIN_SYNC.md`（根据 Codex `BCA-00_HANDOFF.md` 整理）。公共协议采用 `browser-cli-agent 0.2.0 / PROTOCOL_VERSION=2`。
+2. Codex 报告 82 项 pytest 测试通过，mypy strict、Ruff、打包和离线安装检查通过；主会话未独立验证实际仓库。
+3. 已创建 `BCA-01_Browser.md`（v0.2），可以启动 Browser 子会话，首先核对仓库实际协议，再讨论 CDP 接入和 Provider 实现。
+4. 后续安排 Git 初始化、Python 3.12/3.13 运行矩阵及端到端浏览器测试；每阶段同步完成情况、接口变化和实测数据。
+5. 若后续需调整公共协议，由架构主会话协调版本、仓库规范和各子会话任务文件。
+
+### 8.1 文件索引
+
+- `BCA_PROJECT_CONTEXT.md` — 全局总纲（本文件，v0.2）。
+- `BCA-00_Protocol.md` — BCA-00 原始任务定义。
+- `BCA-00_MAIN_SYNC.md` — BCA-00 阶段性交接摘要（证据范围见文件说明）。
+- `BCA-01_Browser.md` — BCA-01 任务定义（v0.2）。
+- 仓库 `docs/INTERFACES.md`、`docs/PLUGIN_SPEC.md` 和 `src/bca/core/` — 实际接口及具体实现。
 
 ---
 

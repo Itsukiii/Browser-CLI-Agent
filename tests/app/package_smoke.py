@@ -29,7 +29,9 @@ def main() -> None:
     assert location.is_relative_to(Path(sys.prefix).resolve()), location
     assert importlib.util.find_spec("pydantic") is None
     requirements = importlib.metadata.requires("browser-cli-agent") or []
-    assert all("extra ==" in item for item in requirements), requirements
+    runtime = [item for item in requirements if "extra ==" not in item]
+    assert len(runtime) == 1 and runtime[0].startswith("websockets"), requirements
+    assert importlib.metadata.version("websockets").startswith("15.")
     modules = list(pkgutil.walk_packages(bca.__path__, "bca."))
     for module in modules:
         imported = importlib.import_module(module.name)
@@ -49,7 +51,7 @@ def main() -> None:
     action = Action(page_id="smoke", type=ActionType.TEXT_INPUT, text="test")
     assert from_json(Action, to_json(action)) == action
     print(
-        f"Clean wheel acceptance passed: {len(modules)} modules; no runtime dependencies; "
+        f"Clean wheel acceptance passed: {len(modules)} modules; websockets runtime dependency; "
         "typed marker; metadata boundary; binary and action round trips"
     )
 

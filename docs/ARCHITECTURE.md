@@ -35,7 +35,7 @@ flowchart TD
     SDK[Plugin SDK] --> Plugins
     Concrete[Concrete Plugins] --> SDK
     Concrete --> Providers
-    Browser[Browser Implementations - future] --> Providers
+    Browser[Browser Session and CDP] --> Protocol
 ```
 
 Protocol 只依赖标准库及无其他依赖的 `core.errors`。Core 不导入 SDK、Application 或具体插件。SDK 公开复用 Core 契约；插件发现、加载和运行编排由未来 Core 管理器负责。ProviderLookup、StateSink、EventSink 为可注入的 Protocol，PluginContext 不绑定 Registry 或队列实现。
