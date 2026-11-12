@@ -1,0 +1,12 @@
+# BCA-00 configuration example; wiring is implemented in the application stage.
+[logging]
+level = "INFO"
+
+[browser]
+provider = "unconfigured"
+
+[plugin]
+id = "example"
+
+[plugin.config]
+page_id = "demo"
