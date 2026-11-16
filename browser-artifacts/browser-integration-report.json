@@ -1,0 +1,1095 @@
+{
+  "status": "passed",
+  "stage": "complete",
+  "observations": [
+    {
+      "frame": {
+        "protocol_version": 2,
+        "width": 624,
+        "height": 464,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 624.0,
+          "height": 464.0,
+          "capture_width": 624.0,
+          "capture_height": 464.0,
+          "device_scale_factor": 1.0000000298023224,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "F4BCC416A370DB9AAA40BFEE62E5E919",
+        "frame_id": "49ee7ca0-b0de-4b35-88d9-f760b5029754",
+        "captured_at": "2026-11-16T12:45:36.131069+00:00",
+        "session_id": "B51B567E41CF75231CB355435ACB9BB0"
+      },
+      "generation": 2,
+      "region": false,
+      "pixel": [
+        79.5,
+        79.5
+      ],
+      "css": [
+        79.5,
+        79.5
+      ],
+      "action_result": {
+        "protocol_version": 2,
+        "action_id": "1ae00d42-f28f-40f8-ab72-876b74da9ef2",
+        "status": "succeeded",
+        "started_at": "2026-11-16T12:45:36.157032+00:00",
+        "finished_at": "2026-11-16T12:45:36.165922+00:00",
+        "error": null
+      },
+      "capture_ms": 59.027100000093924,
+      "input_ms": 21.423300000606105,
+      "dom": {
+        "hit": {
+          "target": "mark",
+          "x": 79,
+          "y": 79
+        },
+        "count": 1
+      },
+      "error_css": [
+        -0.5,
+        -0.5
+      ],
+      "file": "dpr1-full.png"
+    },
+    {
+      "frame": {
+        "protocol_version": 2,
+        "width": 624,
+        "height": 464,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 624.0,
+          "height": 464.0,
+          "capture_width": 624.0,
+          "capture_height": 464.0,
+          "device_scale_factor": 1.0000000298023224,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "F4BCC416A370DB9AAA40BFEE62E5E919",
+        "frame_id": "75634e77-c4ca-4e84-a784-219b273895c0",
+        "captured_at": "2026-11-16T12:45:36.221223+00:00",
+        "session_id": "B51B567E41CF75231CB355435ACB9BB0"
+      },
+      "generation": 2,
+      "region": false,
+      "pixel": [
+        79.5,
+        79.5
+      ],
+      "css": [
+        79.5,
+        79.5
+      ],
+      "action_result": {
+        "protocol_version": 2,
+        "action_id": "820d51d5-f592-4c6a-a140-cce6281f1f61",
+        "status": "succeeded",
+        "started_at": "2026-11-16T12:45:36.240762+00:00",
+        "finished_at": "2026-11-16T12:45:36.245949+00:00",
+        "error": null
+      },
+      "capture_ms": 58.044100002007326,
+      "input_ms": 13.417300000583054,
+      "dom": {
+        "hit": {
+          "target": "mark",
+          "x": 79,
+          "y": 79
+        },
+        "count": 2
+      },
+      "error_css": [
+        -0.5,
+        -0.5
+      ]
+    },
+    {
+      "frame": {
+        "protocol_version": 2,
+        "width": 624,
+        "height": 464,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 624.0,
+          "height": 464.0,
+          "capture_width": 624.0,
+          "capture_height": 464.0,
+          "device_scale_factor": 1.0000000298023224,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "F4BCC416A370DB9AAA40BFEE62E5E919",
+        "frame_id": "8987870e-0231-48b7-afcb-0a634e5fb344",
+        "captured_at": "2026-11-16T12:45:36.313944+00:00",
+        "session_id": "B51B567E41CF75231CB355435ACB9BB0"
+      },
+      "generation": 2,
+      "region": false,
+      "pixel": [
+        79.5,
+        79.5
+      ],
+      "css": [
+        79.5,
+        79.5
+      ],
+      "action_result": {
+        "protocol_version": 2,
+        "action_id": "c67e2372-7bd9-4158-abdc-d0af04dd50ac",
+        "status": "succeeded",
+        "started_at": "2026-11-16T12:45:36.329942+00:00",
+        "finished_at": "2026-11-16T12:45:36.333781+00:00",
+        "error": null
+      },
+      "capture_ms": 70.33469999805675,
+      "input_ms": 9.524900000542402,
+      "dom": {
+        "hit": {
+          "target": "mark",
+          "x": 79,
+          "y": 79
+        },
+        "count": 3
+      },
+      "error_css": [
+        -0.5,
+        -0.5
+      ]
+    },
+    {
+      "frame": {
+        "protocol_version": 2,
+        "width": 80,
+        "height": 80,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 624.0,
+          "height": 464.0,
+          "capture_width": 80.0,
+          "capture_height": 80.0,
+          "device_scale_factor": 1.0000000298023224,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 40.0,
+          "capture_y": 40.0
+        },
+        "page_id": "F4BCC416A370DB9AAA40BFEE62E5E919",
+        "frame_id": "a5dd1215-2521-4525-9ef6-9783c05c77ef",
+        "captured_at": "2026-11-16T12:45:36.370522+00:00",
+        "session_id": "B51B567E41CF75231CB355435ACB9BB0"
+      },
+      "generation": 2,
+      "region": true,
+      "pixel": [
+        39.5,
+        39.5
+      ],
+      "css": [
+        79.5,
+        79.5
+      ],
+      "action_result": {
+        "protocol_version": 2,
+        "action_id": "5e679827-d3de-4b44-b282-996c13989122",
+        "status": "succeeded",
+        "started_at": "2026-11-16T12:45:36.380826+00:00",
+        "finished_at": "2026-11-16T12:45:36.383478+00:00",
+        "error": null
+      },
+      "capture_ms": 37.45809999963967,
+      "input_ms": 6.340600000839913,
+      "dom": {
+        "hit": {
+          "target": "mark",
+          "x": 79,
+          "y": 79
+        },
+        "count": 4
+      },
+      "error_css": [
+        -0.5,
+        -0.5
+      ],
+      "file": "dpr1-region.png"
+    },
+    {
+      "frame": {
+        "protocol_version": 2,
+        "width": 80,
+        "height": 80,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 624.0,
+          "height": 464.0,
+          "capture_width": 80.0,
+          "capture_height": 80.0,
+          "device_scale_factor": 1.0000000298023224,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 40.0,
+          "capture_y": 40.0
+        },
+        "page_id": "F4BCC416A370DB9AAA40BFEE62E5E919",
+        "frame_id": "197a4b59-3d14-4145-a0e6-046c0acdf1ae",
+        "captured_at": "2026-11-16T12:45:36.419390+00:00",
+        "session_id": "B51B567E41CF75231CB355435ACB9BB0"
+      },
+      "generation": 2,
+      "region": true,
+      "pixel": [
+        39.5,
+        39.5
+      ],
+      "css": [
+        79.5,
+        79.5
+      ],
+      "action_result": {
+        "protocol_version": 2,
+        "action_id": "381d694f-848f-4c7d-acfa-beadec389b12",
+        "status": "succeeded",
+        "started_at": "2026-11-16T12:45:36.426361+00:00",
+        "finished_at": "2026-11-16T12:45:36.429533+00:00",
+        "error": null
+      },
+      "capture_ms": 39.226199998665834,
+      "input_ms": 4.682999999204185,
+      "dom": {
+        "hit": {
+          "target": "mark",
+          "x": 79,
+          "y": 79
+        },
+        "count": 5
+      },
+      "error_css": [
+        -0.5,
+        -0.5
+      ]
+    },
+    {
+      "frame": {
+        "protocol_version": 2,
+        "width": 80,
+        "height": 80,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 624.0,
+          "height": 464.0,
+          "capture_width": 80.0,
+          "capture_height": 80.0,
+          "device_scale_factor": 1.0000000298023224,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 40.0,
+          "capture_y": 40.0
+        },
+        "page_id": "F4BCC416A370DB9AAA40BFEE62E5E919",
+        "frame_id": "468718dc-209c-4d01-9ac7-80704287fd32",
+        "captured_at": "2026-11-16T12:45:36.486454+00:00",
+        "session_id": "B51B567E41CF75231CB355435ACB9BB0"
+      },
+      "generation": 2,
+      "region": true,
+      "pixel": [
+        39.5,
+        39.5
+      ],
+      "css": [
+        79.5,
+        79.5
+      ],
+      "action_result": {
+        "protocol_version": 2,
+        "action_id": "2a33c038-fd8d-4d7a-a77d-ff9116211cdf",
+        "status": "succeeded",
+        "started_at": "2026-11-16T12:45:36.492964+00:00",
+        "finished_at": "2026-11-16T12:45:36.496638+00:00",
+        "error": null
+      },
+      "capture_ms": 60.59409999943455,
+      "input_ms": 5.2164000007906,
+      "dom": {
+        "hit": {
+          "target": "mark",
+          "x": 79,
+          "y": 79
+        },
+        "count": 6
+      },
+      "error_css": [
+        -0.5,
+        -0.5
+      ]
+    },
+    {
+      "frame": {
+        "protocol_version": 2,
+        "width": 1056,
+        "height": 786,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 704.0,
+          "height": 524.0,
+          "capture_width": 704.0,
+          "capture_height": 524.0,
+          "device_scale_factor": 1.5,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "F4BCC416A370DB9AAA40BFEE62E5E919",
+        "frame_id": "9776f217-5abc-469e-b2a0-8006c0df4bb3",
+        "captured_at": "2026-11-16T12:45:36.593120+00:00",
+        "session_id": "B51B567E41CF75231CB355435ACB9BB0"
+      },
+      "generation": 2,
+      "region": false,
+      "pixel": [
+        119.5,
+        119.5
+      ],
+      "css": [
+        79.66666666666667,
+        79.66666666666667
+      ],
+      "action_result": {
+        "protocol_version": 2,
+        "action_id": "58af9036-aecd-4572-8aea-25545393788b",
+        "status": "succeeded",
+        "started_at": "2026-11-16T12:45:36.634734+00:00",
+        "finished_at": "2026-11-16T12:45:36.638037+00:00",
+        "error": null
+      },
+      "capture_ms": 72.47690000076545,
+      "input_ms": 20.602399999916088,
+      "dom": {
+        "hit": {
+          "target": "mark",
+          "x": 79,
+          "y": 79
+        },
+        "count": 7
+      },
+      "error_css": [
+        -0.6666666666666714,
+        -0.6666666666666714
+      ],
+      "file": "dpr1.5-full.png"
+    },
+    {
+      "frame": {
+        "protocol_version": 2,
+        "width": 1056,
+        "height": 786,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 704.0,
+          "height": 524.0,
+          "capture_width": 704.0,
+          "capture_height": 524.0,
+          "device_scale_factor": 1.5,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "F4BCC416A370DB9AAA40BFEE62E5E919",
+        "frame_id": "84264dbe-867f-490b-91f3-764de8fa3a50",
+        "captured_at": "2026-11-16T12:45:36.710190+00:00",
+        "session_id": "B51B567E41CF75231CB355435ACB9BB0"
+      },
+      "generation": 2,
+      "region": false,
+      "pixel": [
+        119.5,
+        119.5
+      ],
+      "css": [
+        79.66666666666667,
+        79.66666666666667
+      ],
+      "action_result": {
+        "protocol_version": 2,
+        "action_id": "82aa3cc8-0b1c-48da-868d-dd7a5df46522",
+        "status": "succeeded",
+        "started_at": "2026-11-16T12:45:36.751892+00:00",
+        "finished_at": "2026-11-16T12:45:36.755479+00:00",
+        "error": null
+      },
+      "capture_ms": 57.61509999865666,
+      "input_ms": 20.921899998938898,
+      "dom": {
+        "hit": {
+          "target": "mark",
+          "x": 79,
+          "y": 79
+        },
+        "count": 8
+      },
+      "error_css": [
+        -0.6666666666666714,
+        -0.6666666666666714
+      ]
+    },
+    {
+      "frame": {
+        "protocol_version": 2,
+        "width": 1056,
+        "height": 786,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 704.0,
+          "height": 524.0,
+          "capture_width": 704.0,
+          "capture_height": 524.0,
+          "device_scale_factor": 1.5,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "F4BCC416A370DB9AAA40BFEE62E5E919",
+        "frame_id": "1e413f65-9fad-46c0-9013-2d00df865b51",
+        "captured_at": "2026-11-16T12:45:36.793288+00:00",
+        "session_id": "B51B567E41CF75231CB355435ACB9BB0"
+      },
+      "generation": 2,
+      "region": false,
+      "pixel": [
+        119.5,
+        119.5
+      ],
+      "css": [
+        79.66666666666667,
+        79.66666666666667
+      ],
+      "action_result": {
+        "protocol_version": 2,
+        "action_id": "49a3fd0b-cbce-429d-86a8-c13313277423",
+        "status": "succeeded",
+        "started_at": "2026-11-16T12:45:36.831610+00:00",
+        "finished_at": "2026-11-16T12:45:36.836005+00:00",
+        "error": null
+      },
+      "capture_ms": 45.5666999987443,
+      "input_ms": 21.27660000041942,
+      "dom": {
+        "hit": {
+          "target": "mark",
+          "x": 79,
+          "y": 79
+        },
+        "count": 9
+      },
+      "error_css": [
+        -0.6666666666666714,
+        -0.6666666666666714
+      ]
+    },
+    {
+      "frame": {
+        "protocol_version": 2,
+        "width": 120,
+        "height": 120,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 704.0,
+          "height": 524.0,
+          "capture_width": 80.0,
+          "capture_height": 80.0,
+          "device_scale_factor": 1.5,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 40.0,
+          "capture_y": 40.0
+        },
+        "page_id": "F4BCC416A370DB9AAA40BFEE62E5E919",
+        "frame_id": "26c1739c-0a8b-4c57-b478-5dd759d6529a",
+        "captured_at": "2026-11-16T12:45:36.878975+00:00",
+        "session_id": "B51B567E41CF75231CB355435ACB9BB0"
+      },
+      "generation": 2,
+      "region": true,
+      "pixel": [
+        59.5,
+        59.5
+      ],
+      "css": [
+        79.66666666666666,
+        79.66666666666666
+      ],
+      "action_result": {
+        "protocol_version": 2,
+        "action_id": "c6798829-f201-4c41-b01e-f62bd1f57079",
+        "status": "succeeded",
+        "started_at": "2026-11-16T12:45:36.887987+00:00",
+        "finished_at": "2026-11-16T12:45:36.891121+00:00",
+        "error": null
+      },
+      "capture_ms": 33.29519999897457,
+      "input_ms": 5.020700002205558,
+      "dom": {
+        "hit": {
+          "target": "mark",
+          "x": 79,
+          "y": 79
+        },
+        "count": 10
+      },
+      "error_css": [
+        -0.6666666666666572,
+        -0.6666666666666572
+      ],
+      "file": "dpr1.5-region.png"
+    },
+    {
+      "frame": {
+        "protocol_version": 2,
+        "width": 120,
+        "height": 120,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 704.0,
+          "height": 524.0,
+          "capture_width": 80.0,
+          "capture_height": 80.0,
+          "device_scale_factor": 1.5,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 40.0,
+          "capture_y": 40.0
+        },
+        "page_id": "F4BCC416A370DB9AAA40BFEE62E5E919",
+        "frame_id": "c307e527-3128-4440-ad48-f8f62d66e9f3",
+        "captured_at": "2026-11-16T12:45:36.945869+00:00",
+        "session_id": "B51B567E41CF75231CB355435ACB9BB0"
+      },
+      "generation": 2,
+      "region": true,
+      "pixel": [
+        59.5,
+        59.5
+      ],
+      "css": [
+        79.66666666666666,
+        79.66666666666666
+      ],
+      "action_result": {
+        "protocol_version": 2,
+        "action_id": "d29551b9-b34a-4eb1-bf49-0c45336455e1",
+        "status": "succeeded",
+        "started_at": "2026-11-16T12:45:36.957149+00:00",
+        "finished_at": "2026-11-16T12:45:36.960959+00:00",
+        "error": null
+      },
+      "capture_ms": 62.08120000155759,
+      "input_ms": 5.486300000484334,
+      "dom": {
+        "hit": {
+          "target": "mark",
+          "x": 79,
+          "y": 79
+        },
+        "count": 11
+      },
+      "error_css": [
+        -0.6666666666666572,
+        -0.6666666666666572
+      ]
+    },
+    {
+      "frame": {
+        "protocol_version": 2,
+        "width": 120,
+        "height": 120,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 704.0,
+          "height": 524.0,
+          "capture_width": 80.0,
+          "capture_height": 80.0,
+          "device_scale_factor": 1.5,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 40.0,
+          "capture_y": 40.0
+        },
+        "page_id": "F4BCC416A370DB9AAA40BFEE62E5E919",
+        "frame_id": "6735e92f-5179-46f9-a496-9b0ebc6fcb72",
+        "captured_at": "2026-11-16T12:45:37.014545+00:00",
+        "session_id": "B51B567E41CF75231CB355435ACB9BB0"
+      },
+      "generation": 2,
+      "region": true,
+      "pixel": [
+        59.5,
+        59.5
+      ],
+      "css": [
+        79.66666666666666,
+        79.66666666666666
+      ],
+      "action_result": {
+        "protocol_version": 2,
+        "action_id": "0775c076-098c-44a6-a98a-fb743545d641",
+        "status": "succeeded",
+        "started_at": "2026-11-16T12:45:37.028149+00:00",
+        "finished_at": "2026-11-16T12:45:37.030991+00:00",
+        "error": null
+      },
+      "capture_ms": 63.130000002274755,
+      "input_ms": 5.158100000699051,
+      "dom": {
+        "hit": {
+          "target": "mark",
+          "x": 79,
+          "y": 79
+        },
+        "count": 12
+      },
+      "error_css": [
+        -0.6666666666666572,
+        -0.6666666666666572
+      ]
+    },
+    {
+      "frame": {
+        "protocol_version": 2,
+        "width": 1568,
+        "height": 1168,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 784.0,
+          "height": 584.0,
+          "capture_width": 784.0,
+          "capture_height": 584.0,
+          "device_scale_factor": 2.0000000596046448,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "F4BCC416A370DB9AAA40BFEE62E5E919",
+        "frame_id": "3c3d1773-6e11-4a04-84d1-09615ca95074",
+        "captured_at": "2026-11-16T12:45:37.143630+00:00",
+        "session_id": "B51B567E41CF75231CB355435ACB9BB0"
+      },
+      "generation": 2,
+      "region": false,
+      "pixel": [
+        159.5,
+        159.5
+      ],
+      "css": [
+        79.75,
+        79.75
+      ],
+      "action_result": {
+        "protocol_version": 2,
+        "action_id": "c9f98917-471d-4c36-b947-2ce35ea38cc6",
+        "status": "succeeded",
+        "started_at": "2026-11-16T12:45:37.228982+00:00",
+        "finished_at": "2026-11-16T12:45:37.233403+00:00",
+        "error": null
+      },
+      "capture_ms": 132.04249999762396,
+      "input_ms": 39.34510000181035,
+      "dom": {
+        "hit": {
+          "target": "mark",
+          "x": 79,
+          "y": 79
+        },
+        "count": 13
+      },
+      "error_css": [
+        -0.75,
+        -0.75
+      ],
+      "file": "dpr2-full.png"
+    },
+    {
+      "frame": {
+        "protocol_version": 2,
+        "width": 1568,
+        "height": 1168,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 784.0,
+          "height": 584.0,
+          "capture_width": 784.0,
+          "capture_height": 584.0,
+          "device_scale_factor": 2.0000000596046448,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "F4BCC416A370DB9AAA40BFEE62E5E919",
+        "frame_id": "4aef94c5-06b8-4a59-b746-8f28b7c2a23c",
+        "captured_at": "2026-11-16T12:45:37.333862+00:00",
+        "session_id": "B51B567E41CF75231CB355435ACB9BB0"
+      },
+      "generation": 2,
+      "region": false,
+      "pixel": [
+        159.5,
+        159.5
+      ],
+      "css": [
+        79.75,
+        79.75
+      ],
+      "action_result": {
+        "protocol_version": 2,
+        "action_id": "d9486e53-6d50-4cfd-8d96-ad51948fad22",
+        "status": "succeeded",
+        "started_at": "2026-11-16T12:45:37.404318+00:00",
+        "finished_at": "2026-11-16T12:45:37.407652+00:00",
+        "error": null
+      },
+      "capture_ms": 101.4818000003288,
+      "input_ms": 38.05439999996452,
+      "dom": {
+        "hit": {
+          "target": "mark",
+          "x": 79,
+          "y": 79
+        },
+        "count": 14
+      },
+      "error_css": [
+        -0.75,
+        -0.75
+      ]
+    },
+    {
+      "frame": {
+        "protocol_version": 2,
+        "width": 1568,
+        "height": 1168,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 784.0,
+          "height": 584.0,
+          "capture_width": 784.0,
+          "capture_height": 584.0,
+          "device_scale_factor": 2.0000000596046448,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "F4BCC416A370DB9AAA40BFEE62E5E919",
+        "frame_id": "f32171fd-3ae9-4db2-9e06-afd2d251f067",
+        "captured_at": "2026-11-16T12:45:37.492874+00:00",
+        "session_id": "B51B567E41CF75231CB355435ACB9BB0"
+      },
+      "generation": 2,
+      "region": false,
+      "pixel": [
+        159.5,
+        159.5
+      ],
+      "css": [
+        79.75,
+        79.75
+      ],
+      "action_result": {
+        "protocol_version": 2,
+        "action_id": "03d461b6-ddf1-450a-93a5-aafc9a7b3d7d",
+        "status": "succeeded",
+        "started_at": "2026-11-16T12:45:37.563601+00:00",
+        "finished_at": "2026-11-16T12:45:37.567251+00:00",
+        "error": null
+      },
+      "capture_ms": 98.02689999924041,
+      "input_ms": 29.883999999583466,
+      "dom": {
+        "hit": {
+          "target": "mark",
+          "x": 79,
+          "y": 79
+        },
+        "count": 15
+      },
+      "error_css": [
+        -0.75,
+        -0.75
+      ]
+    },
+    {
+      "frame": {
+        "protocol_version": 2,
+        "width": 159,
+        "height": 159,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 784.0,
+          "height": 584.0,
+          "capture_width": 79.5,
+          "capture_height": 79.5,
+          "device_scale_factor": 2.0000000596046448,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 40.0,
+          "capture_y": 40.0
+        },
+        "page_id": "F4BCC416A370DB9AAA40BFEE62E5E919",
+        "frame_id": "58e7a1b9-211d-412e-9277-63e12b587e9f",
+        "captured_at": "2026-11-16T12:45:37.682930+00:00",
+        "session_id": "B51B567E41CF75231CB355435ACB9BB0"
+      },
+      "generation": 2,
+      "region": true,
+      "pixel": [
+        79.0,
+        79.0
+      ],
+      "css": [
+        79.5,
+        79.5
+      ],
+      "action_result": {
+        "protocol_version": 2,
+        "action_id": "6fa7b960-9472-41a4-929a-82a731be5c15",
+        "status": "succeeded",
+        "started_at": "2026-11-16T12:45:37.699082+00:00",
+        "finished_at": "2026-11-16T12:45:37.701629+00:00",
+        "error": null
+      },
+      "capture_ms": 90.23750000051223,
+      "input_ms": 4.384899999422487,
+      "dom": {
+        "hit": {
+          "target": "mark",
+          "x": 79,
+          "y": 79
+        },
+        "count": 16
+      },
+      "error_css": [
+        -0.5,
+        -0.5
+      ],
+      "file": "dpr2-region.png"
+    },
+    {
+      "frame": {
+        "protocol_version": 2,
+        "width": 159,
+        "height": 159,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 784.0,
+          "height": 584.0,
+          "capture_width": 79.5,
+          "capture_height": 79.5,
+          "device_scale_factor": 2.0000000596046448,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 40.0,
+          "capture_y": 40.0
+        },
+        "page_id": "F4BCC416A370DB9AAA40BFEE62E5E919",
+        "frame_id": "1eb4fd0d-befc-4493-9598-bde01a708eec",
+        "captured_at": "2026-11-16T12:45:37.761511+00:00",
+        "session_id": "B51B567E41CF75231CB355435ACB9BB0"
+      },
+      "generation": 2,
+      "region": true,
+      "pixel": [
+        79.0,
+        79.0
+      ],
+      "css": [
+        79.5,
+        79.5
+      ],
+      "action_result": {
+        "protocol_version": 2,
+        "action_id": "03544a8f-279f-4fb3-b766-37d4a4b3e801",
+        "status": "succeeded",
+        "started_at": "2026-11-16T12:45:37.779063+00:00",
+        "finished_at": "2026-11-16T12:45:37.782595+00:00",
+        "error": null
+      },
+      "capture_ms": 72.22309999997378,
+      "input_ms": 6.073299999115989,
+      "dom": {
+        "hit": {
+          "target": "mark",
+          "x": 79,
+          "y": 79
+        },
+        "count": 17
+      },
+      "error_css": [
+        -0.5,
+        -0.5
+      ]
+    },
+    {
+      "frame": {
+        "protocol_version": 2,
+        "width": 159,
+        "height": 159,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 784.0,
+          "height": 584.0,
+          "capture_width": 79.5,
+          "capture_height": 79.5,
+          "device_scale_factor": 2.0000000596046448,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 40.0,
+          "capture_y": 40.0
+        },
+        "page_id": "F4BCC416A370DB9AAA40BFEE62E5E919",
+        "frame_id": "53269c22-78b9-44f8-ab48-088629ad46e9",
+        "captured_at": "2026-11-16T12:45:37.840799+00:00",
+        "session_id": "B51B567E41CF75231CB355435ACB9BB0"
+      },
+      "generation": 2,
+      "region": true,
+      "pixel": [
+        79.0,
+        79.0
+      ],
+      "css": [
+        79.5,
+        79.5
+      ],
+      "action_result": {
+        "protocol_version": 2,
+        "action_id": "d663b99a-a92e-4801-bd58-2ea7d8f89647",
+        "status": "succeeded",
+        "started_at": "2026-11-16T12:45:37.856508+00:00",
+        "finished_at": "2026-11-16T12:45:37.859197+00:00",
+        "error": null
+      },
+      "capture_ms": 70.82330000048387,
+      "input_ms": 4.511799997999333,
+      "dom": {
+        "hit": {
+          "target": "mark",
+          "x": 79,
+          "y": 79
+        },
+        "count": 18
+      },
+      "error_css": [
+        -0.5,
+        -0.5
+      ]
+    }
+  ],
+  "measurement": "perf_counter around observe and click_observation; includes freshness checks and PNG localization; excludes DOM verification and disk IO",
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Edg/157.0.4341.60",
+    "revision": "@fbcb2989a6c61b72a4919fe1028e58e70131cd46",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36 Edg/157.0.0.0",
+    "jsVersion": "15.7.11.7"
+  },
+  "existing_target_ids": [
+    "4996D48674A6A344A5F6C7B5B9AD359B"
+  ],
+  "created_target_id": "F4BCC416A370DB9AAA40BFEE62E5E919",
+  "capabilities": [
+    "capture",
+    "input"
+  ],
+  "timings": {
+    "capture_ms": {
+      "count": 18,
+      "median": 62.60560000191617,
+      "samples": [
+        59.027100000093924,
+        58.044100002007326,
+        70.33469999805675,
+        37.45809999963967,
+        39.226199998665834,
+        60.59409999943455,
+        72.47690000076545,
+        57.61509999865666,
+        45.5666999987443,
+        33.29519999897457,
+        62.08120000155759,
+        63.130000002274755,
+        132.04249999762396,
+        101.4818000003288,
+        98.02689999924041,
+        90.23750000051223,
+        72.22309999997378,
+        70.82330000048387
+      ]
+    },
+    "input_ms": {
+      "count": 18,
+      "median": 7.932750000691158,
+      "samples": [
+        21.423300000606105,
+        13.417300000583054,
+        9.524900000542402,
+        6.340600000839913,
+        4.682999999204185,
+        5.2164000007906,
+        20.602399999916088,
+        20.921899998938898,
+        21.27660000041942,
+        5.020700002205558,
+        5.486300000484334,
+        5.158100000699051,
+        39.34510000181035,
+        38.05439999996452,
+        29.883999999583466,
+        4.384899999422487,
+        6.073299999115989,
+        4.511799997999333
+      ]
+    }
+  },
+  "session_ready_after_providers_close": true,
+  "owned_targets_remaining": [],
+  "preexisting_targets_preserved": true,
+  "cleanup": {
+    "pending_count": 0,
+    "reader_running": false,
+    "connected": false,
+    "errors": []
+  }
+}

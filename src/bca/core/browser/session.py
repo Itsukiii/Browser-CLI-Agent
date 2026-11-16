@@ -37,6 +37,8 @@ class BrowserSession:
         self._connection = self._new_connection()
         self._targets = TargetManager(self._connection)
         self._lock = asyncio.Lock()
+        self._refresh_lock = asyncio.Lock()
+        self._metadata_revision = 0
         self._close_task: asyncio.Task[None] | None = None
         self._state = SessionState.DISCONNECTED
         self._target: BrowserTarget | None = None
@@ -76,6 +78,7 @@ class BrowserSession:
 
     @property
     def bound_target(self) -> BrowserTarget | None:
+        """Cached snapshot; use refresh_target for an explicit authoritative query."""
         return self._target
 
     @property
@@ -152,6 +155,7 @@ class BrowserSession:
                 if target.type != "page":
                     self._invalidate_target(TargetLostError("bound target is no longer a page"))
                 else:
+                    self._metadata_revision += 1
                     self._target = target  # Ordinary navigation does not replace the attachment.
             return
         target_id, sid = params.get("targetId"), params.get("sessionId")
@@ -272,6 +276,53 @@ class BrowserSession:
         ):
             raise TargetLostError("page operation belongs to an obsolete generation")
         return result
+
+    async def refresh_target(self) -> BrowserTarget:
+        """Read current metadata without changing the binding or waiting for page load.
+
+        Concurrent refreshes serialize. An event during a query causes a fresh read;
+        the entire operation (including lock wait) uses the request timeout budget.
+        """
+        self._check_open()
+        connection, target_id = self._connection, self.page_id
+        sid, generation = self._session_id, self._generation
+
+        def check_identity() -> None:
+            if (
+                not self.is_ready
+                or self._close_task is not None
+                or connection is not self._connection
+                or target_id != self.page_id
+                or sid != self._session_id
+                or generation != self._generation
+            ):
+                raise TargetLostError("metadata query belongs to an obsolete binding")
+
+        check_identity()
+        try:
+            async with asyncio.timeout(self._request_timeout):
+                async with self._refresh_lock:
+                    while True:
+                        check_identity()
+                        revision = self._metadata_revision
+                        result = await connection.send(
+                            "Target.getTargetInfo", {"targetId": target_id}
+                        )
+                        check_identity()
+                        info = result.get("targetInfo")
+                        if not isinstance(info, dict):
+                            raise CDPMessageError("getTargetInfo returned invalid targetInfo")
+                        target = BrowserTarget.from_cdp(info)
+                        if target.target_id != target_id or target.type != "page":
+                            raise CDPMessageError(
+                                "getTargetInfo returned a different target or type"
+                            )
+                        if revision != self._metadata_revision:
+                            continue
+                        self._target = target
+                        return target
+        except TimeoutError as exc:
+            raise CDPTimeoutError("target metadata refresh timed out") from exc
 
     async def close(self) -> None:
         if self._close_task is None:

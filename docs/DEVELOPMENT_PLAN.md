@@ -5,7 +5,7 @@
 | 阶段 | 主要依赖 | 接入约定与验收点 |
 | --- | --- | --- |
 | BCA-00 Protocol | 总纲与原始、增量需求 | 六模型、Provider/Plugin 契约、显式 codec、无运行时依赖、单测/类型/安装验收；本轮结论见 HANDOFF |
-| BCA-01 Browser | BCA-00 | Chromium/Edge + CDP 优先；实现 Capture/Input；返回编码 PNG/JPEG 与准确 CSS 截图范围；验证缩放/裁剪/DPR、页绑定、断线、输入失败、取消和输入释放 |
+| BCA-01 Browser | BCA-00 | 01.1～01.4 已开发并完成本轮验收测试，待阶段审查；实际采集仅 PNG；连接、绑定、Capture/Input、坐标闭环、取消与资源清理见 BCA-01_MAIN_SYNC.md |
 | BCA-02 Runtime | BCA-00，按需 BCA-01 | Scheduler、Event Bus、State Store；实现 Sink 背压；observe 返回后单次发布；同页动作串行、首错停止；验证单调计时、状态序号、取消及关闭顺序 |
 | BCA-03 Plugin System | BCA-00、BCA-02 端口 | 发现/加载、能力检查、ProviderLookup 和 Context 注入；初始化失败清理、stop/start/close；明确基线版本兼容及插件实例会话 |
 | BCA-04 Vision & Assets | BCA-00 | 按需引入 OpenCV/NumPy；按需解码 Frame；JSON Manifest/INI Profile；模板与稳定语义 ID；验证图像完整性、非等比转换、资源缓存和样本回归 |
@@ -17,10 +17,11 @@ Browser、Runtime、SDK 可依照契约分别开发；集成前先通过 fake Pr
 
 后续需协调的具体决策：浏览器连接与权限、插件发现和版本协商、事件队列容量/丢弃策略、动作超时/焦点/截图新鲜度、资源格式细节、跨进程图像和插件隔离。当前标准状态路径为拉取；若引入推送模式，须先在 BCA-02/03 定义互斥调度策略，防止双重发布。
 
-## BCA-01 ?????
+## BCA-01 交付状态（2026-11-16）
 
-- 01.1?CDP Transport?Target Discovery/Binding?BrowserSession ??????????????????????????
-- 01.2??? Capture Provider??? Session??????? CSS capture ????
-- 01.3?Input Provider??? Session???????????????????????
+- 01.1：本机 CDP、页面发现、显式绑定及元数据刷新。
+- 01.2：PNG 完整/区域采集、内容视口测量及像素坐标转换。
+- 01.3：七类 Action、ActionResult、按住状态与有界释放、不确定输入处理。
+- 01.4：示例及跨模块验收，本轮 285 passed / 0 skipped，含四个真实 Edge 入口；正式交接为 [BCA-01_MAIN_SYNC.md](BCA-01_MAIN_SYNC.md)。
 
-???????? `BrowserSession.send()` ? generation???????? CDP sessionId?01.1 ?????????????????????????? 01.2 ???
+当前无已确认的阻塞性集成缺陷。下一步由本子会话审查 BCA-01，主会话归档正式交接；本轮不实现 Runtime。BCA-02 需负责旧帧上下文、动作队列、首错停止、取消任务后等待结束、输入先关闭和显式恢复。`BrowserSession.generation` 表示绑定身份，不表示 DOM 版本；单凭 page_id 或 generation 不能保证截图内容新鲜。

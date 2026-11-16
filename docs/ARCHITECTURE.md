@@ -11,7 +11,7 @@ BCA 将浏览器信息采集、页面业务解析和用户交互分离。Core �
 | `src/bca/core/providers` | 已实现 Provider 抽象、能力注册与查询 |
 | `src/bca/core/runtime` | 已定义状态和事件提交端口，调度器待实现 |
 | `src/bca/core/plugins` | 已定义插件元信息、配置、上下文和接口 |
-| `src/bca/core/browser` | 预留浏览器会话与连接实现 |
+| `src/bca/core/browser` | CDP 会话、显式元数据刷新、PNG Capture 与 Input Provider；共享只读视口几何测量 |
 | `src/bca/plugin_sdk/interfaces` | 复用 Core 插件接口，不创建另一套协议 |
 | `src/bca/plugin_sdk/assets`、`vision` | 预留资源和识别辅助功能 |
 | `src/bca/app`、`app/cli` | 显式日志配置函数；CLI 和配置加载待实现 |
@@ -50,6 +50,8 @@ Frame 持有编码后的 PNG/JPEG 不可变 bytes，进程内传递同一对象�
 
 当前唯一标准状态路径是 Runtime 拉取 `observe()` 返回值并 await `context.states.publish(state)`；插件不得在 observe 中再发布相同状态。未来自有推送任务模式需在 BCA-02/03 明确调度协议后扩展。
 
-总体技术方向依据 `docs/md/BCA_PROJECT_CONTEXT.md`：Windows 优先、Chromium/Edge + CDP 优先、视觉优先的雀魂首个插件。上述后端和业务实现均属于后续阶段，本轮不引入其依赖。
+总体技术方向依据 `docs/md/BCA_PROJECT_CONTEXT.md`：Windows 优先、Chromium/Edge + CDP 优先、视觉优先的雀魂首个插件。目前已实现 CDP 会话及 PNG 采集；业务插件和视觉识别仍属后续阶段。
 
-本阶段不包含浏览器驱动、事件总线、周期调度、自动恢复和真实页面验证。模拟集成测试证明契约能够连通，不能替代浏览器集成验收。
+Browser 已提供按需截图和输入能力，具体实现依赖 Provider 抽象及 Protocol 2；ProviderRegistry 不负责其启动或关闭。01.4 使用现有对象组合，无新增 Browser 状态机或跨 Provider 全局锁。examples/browser_end_to_end.py 提供显式连接/绑定、注册、截图识别、输入、DOM 核验和有序清理的完整示例。观察上下文由调用方维护，不修改 Frame 协议。
+
+事件总线、周期调度和自动恢复仍待后续阶段。01.4 本轮全量 285 passed（含 01.1～01.4 的真实 Edge 入口），正式接入契约见 [BCA-01_MAIN_SYNC.md](BCA-01_MAIN_SYNC.md)。开发完成、待阶段审查，不代表 BCA-02 或业务插件已实现。

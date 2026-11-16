@@ -135,6 +135,6 @@ Registry 无跨线程同步，约定单 asyncio 事件循环。新 DOM 能力继
 
 兼容内部修复采用补丁版本；破坏性字段、类型、坐标、生命周期和编码边界变更需递增基线与协议版本并同步所有使用模块。codec 当前拒绝未知字段，新增可交换字段也不能假定旧读者兼容。插件 version、schema_version 和公共协议版本独立维护。没有加载器版本协商实现，不承诺跨版本运行。
 
-## BCA-01.1 ??????
+## BCA-01 Browser 实现入口
 
-?? Protocol 2 API ??????? `bca.core.browser` ? CDPConnection?TargetManager?BrowserSession?BrowserTarget?CDPEvent?SessionState ???????????generation ?????? [BROWSER.md](BROWSER.md)?Capture/Input ?? Provider ?? BCA-01.2/01.3?
+Protocol 2 保持上述契约不变。`bca.core.browser` 已提供 CDPConnection、TargetManager、BrowserSession、BrowserTarget、CDPEvent、SessionState、BrowserCaptureProvider 和 BrowserInputProvider。实际签名、generation/目标身份、PNG 坐标及输入不确定状态见 [BROWSER.md](BROWSER.md)；正式跨模块接入及本轮 01.4 验收见 [BCA-01_MAIN_SYNC.md](BCA-01_MAIN_SYNC.md)。Registry 注册不启动 Provider，Session 连接由上层拥有，Input/Capture 只借用会话。

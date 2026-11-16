@@ -13,4 +13,7 @@ dist/
 .env
 .idea/
 .vscode/
+/.edge-capture*/
+/.pytest-*/
 
+/.test-artifacts/

@@ -7,7 +7,7 @@ from urllib.parse import quote
 
 import pytest
 
-from bca.core.browser import BrowserError, BrowserSession
+from bca.core.browser import BrowserError, BrowserSession, CDPCommandError
 
 from .mock_cdp import eventually
 
@@ -53,22 +53,59 @@ def test_real_discovery_bind_navigation_close():
             sid, generation = session.session_id, session.generation
             assert sid and session.page_id == created[0]
             print(f"Bound session: {sid} generation={generation}")
+            initial = await session.refresh_target()
+            assert initial.target_id == created[0] and initial.title == "BCA-01.1-A"
             result = await session.send("Runtime.evaluate", {"expression": "document.title"})
             assert result["result"]["value"] == "BCA-01.1-A"
             await session.send("Page.enable")
-            await session.send(
+            destination = "data:text/html," + quote("<title>BCA-01.1-Navigated</title>")
+            navigation = await session.send(
                 "Page.navigate",
-                {
-                    "url": "data:text/html," + quote("<title>BCA-01.1-Navigated</title>"),
-                },
+                {"url": destination},
             )
-            await eventually(
-                lambda: (
-                    session.bound_target is not None
-                    and session.bound_target.title == "BCA-01.1-Navigated"
-                ),
-                timeout=10,
-            )
+            print(f"Page.navigate result: {navigation}")
+            assert "errorText" not in navigation, f"Navigation failed: {navigation}"
+            assert navigation.get("frameId") and not navigation.get("isDownload")
+            document, info = None, None
+            try:
+                async with asyncio.timeout(10):
+                    while True:
+                        try:
+                            runtime = await session.send(
+                                "Runtime.evaluate",
+                                {
+                                    "expression": (
+                                        "({title:document.title,href:location.href,"
+                                        "readyState:document.readyState})"
+                                    ),
+                                    "returnByValue": True,
+                                },
+                            )
+                            document = runtime.get("result", {}).get("value")
+                        except CDPCommandError as exc:
+                            document = {"transient_error": str(exc)}
+                        response = await session.connection.send(
+                            "Target.getTargetInfo", {"targetId": created[0]}
+                        )
+                        info = response.get("targetInfo", {})
+                        if (
+                            isinstance(document, dict)
+                            and document.get("title") == "BCA-01.1-Navigated"
+                            and document.get("href") == destination
+                            and document.get("readyState") == "complete"
+                            and info.get("targetId") == created[0]
+                            and info.get("title") == "BCA-01.1-Navigated"
+                            and info.get("url") == destination
+                        ):
+                            break
+                        await asyncio.sleep(0.05)
+            except TimeoutError:
+                pytest.fail(f"Page/TargetInfo loading timeout: document={document}; info={info}")
+            print(f"Loaded document={document}; TargetInfo={info}; cache={session.bound_target}")
+            refreshed = await session.refresh_target()
+            assert refreshed == session.bound_target, "Refresh did not synchronize cache"
+            assert (refreshed.title, refreshed.url) == ("BCA-01.1-Navigated", destination)
+            assert session.page_id == created[0] == refreshed.target_id
             assert session.is_ready and session.session_id == sid
             assert session.generation == generation
             await session.connection.send("Target.closeTarget", {"targetId": created[0]})

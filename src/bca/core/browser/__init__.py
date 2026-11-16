@@ -1,5 +1,6 @@
 """Local CDP transport and explicitly bound browser sessions."""
 
+from .capture import BrowserCaptureProvider, CaptureError
 from .connection import CDPConnection, DisconnectHandler, EventHandler
 from .errors import (
     BrowserError,
@@ -13,11 +14,15 @@ from .errors import (
     TargetLostError,
     TargetNotFoundError,
 )
+from .input import BrowserInputProvider
 from .models import BrowserTarget, CDPEvent, SessionState
 from .session import BrowserSession
 from .targets import TargetManager
 
 __all__ = [
+    "BrowserCaptureProvider",
+    "BrowserInputProvider",
+    "CaptureError",
     "BrowserError",
     "BrowserSession",
     "BrowserTarget",
