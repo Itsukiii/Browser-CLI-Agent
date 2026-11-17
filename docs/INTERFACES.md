@@ -86,6 +86,10 @@ assert from_json(Action, to_json(action)) == action
 
 ## Provider 与 Runtime 端口
 
+02.4 未改变本节公共签名或 Protocol 2。Runtime 正式跨模块约束见 [BCA-02_MAIN_SYNC.md](BCA-02_MAIN_SYNC.md)：观察/输入回调不得 await 自身 Controller 的 submit/recover/pause/resume/stop，此类调用明确抛 LifecycleError；BrowserFreshness 仅记录已验证帧 ID，弱引用 Provider 来源，不拥有完整帧或 Provider 生命周期。真实区域截图通过组合层适配 BrowserCaptureProvider.capture_region，未扩展 CaptureProvider ABC。
+
+02.3 新增 Runtime 本地类型 `ActionBatch`、`ActionObservationRef`、`BatchResult`、`BatchStatus`、`ActionStats`、`ActionChannelState`、`ActionContextPolicy`、`ActionPipeline`、`BrowserFreshness`、`RuntimeContext`、`RuntimeController`、`RuntimeSnapshot`，均从 `bca.core.runtime` 导出。这些类型不进入 Protocol 2 codec。Provider/Plugin 公共签名、包版本和协议版本不变。ObservationPipeline 兼容增加仅关键字同步 `on_commit(token, snapshot)`：仅在成功 publish 且核对快照后调用，不在提交与钩子间 await。精确构造及恢复调用见 [RUNTIME.md](RUNTIME.md) 和 [02.3 交接](BCA-02.3_HANDOFF.md)。
+
 入口 `bca.core.providers`：
 
 - `Provider` ABC：`capability: ClassVar[str]`、只读 `available: bool`；`async start() -> None`、`async close() -> None`。start 就绪时幂等；close 在未开始、部分初始化失败及已关闭时幂等。Core 创建并拥有实例；重连可创建新实例。
@@ -96,7 +100,30 @@ assert from_json(Action, to_json(action)) == action
 
 Registry 无跨线程同步，约定单 asyncio 事件循环。新 DOM 能力继承 Provider 并使用独立名称，不修改 Registry 分支。抽象类型用于查询 token，不实例化；mypy 的 type-abstract 提示可在这类查找处局部注明忽略。
 
-入口 `bca.core.runtime`：`StateSink(Protocol).publish(state: PageState) -> None` 和 `EventSink(Protocol).emit(event: Event) -> None` 均 async；await 返回表示已接收并提供背压，异常原样传播，不保证持久化。实现队列/订阅/状态存储属于 BCA-02。
+入口 `bca.core.runtime`：`StateSink(Protocol).publish(state: PageState) -> None` 和 `EventSink(Protocol).emit(event: Event) -> None` 均 async；await 返回表示已接收并提供背压，异常原样传播，不保证持久化。BCA-02.1 已实现以下兼容这两个端口的结构化类型，无需改动 PluginContext：
+
+| 入口 | 签名与语义 |
+| --- | --- |
+| `StateSnapshot` | `@dataclass(frozen=True, kw_only=True)`，`version: int` 正整数、`state: PageState`；内部快照封装，不是新增 Protocol 2 Model/codec 类型 |
+| `StateStore()` | `async publish(state: PageState) -> None`；`snapshot() -> StateSnapshot | None`；`async wait_for_update(after_version: int) -> StateSnapshot | None`；`async close() -> None`；只读 version、closed |
+| `EventBus()` | `subscribe(*, max_queue_size: int = 64) -> EventSubscription`；`async emit(event: Event) -> None`；`async close() -> None`；只读 closed |
+| `EventSubscription` | 通过 bus.subscribe 创建；`async get() -> Event | None`、`async close() -> None`；只读 pending |
+| `StateStoreClosedError` | LifecycleError 子类，code=`runtime.state_store_closed`；关闭后 publish |
+| `EventBusClosedError` | LifecycleError 子类，code=`runtime.event_bus_closed`；关闭后 subscribe/emit，及关闭唤醒的待提交 emit |
+
+组件仅供单 asyncio 事件循环使用，不支持跨线程共享。非法 PageState/Event、游标和容量抛 ValidationError；游标要求非负 int，容量要求正 int，拒绝 bool。先校验参数，再检查生命周期。没有 start/reopen；close 幂等，不创建后台任务。
+
+StateStore 初始 version=0、snapshot=None，每次接纳状态版本加一（包括相同对象/内容），只保留最新快照；不修改 PageState.sequence 或 schema_version。wait_for_update 返回严格大于游标的最新快照，未来游标也可等待；关闭后若已有符合条件快照仍返回，否则 None。取消只影响该等待者。
+
+EventBus 每订阅者一个有界 FIFO，满时等待。并发发布通过单独发布锁确定顺序；**提交时仍活跃的全部订阅者**都具备容量后，在无 await 临界区同时加入同一 Event 对象。等待期间新订阅者参与该次提交，退订者排除；不回放已提交历史事件。无订阅者也成功。提交前取消/外部 asyncio.timeout 不产生部分广播，提交完成后不撤销消息。
+
+Subscription.close 注销并丢弃未读事件，解除背压、唤醒 get 返回 None；Bus.close 阻止新工作、唤醒待提交 emit 抛关闭异常，但允许订阅者排空已提交事件再返回 None。get 释放容量和退订会通知等待发布者；发布等待不阻塞消费/关闭。
+
+快照和事件只冻结外壳，嵌套 dict/list 按只读共享，发布方提交后及读取方均不得修改，不进行深复制。StateStore 是最新状态权威来源，EventBus 只是通知；两者不构成事务，通知失败不回滚状态。关键运行控制应先直接执行再通知，不能等待事件队列腾空后才停用动作。后续观察管线需串行协调 publish 和本次版本关联，不可在并发 publish 后误把全局最新版本当作自己的提交版本。详见 [RUNTIME.md](RUNTIME.md)。
+
+02.2 从 `bca.core.runtime` 增量导出 `Scheduler`、`SchedulerState`、`SchedulerStats`、`ObservationPipeline`、`ObservationStats`、`FreshnessPolicy`。Scheduler 接受无参 async operation，默认 interval=0.1，提供 start/request_immediate/pause/resume/stop/snapshot/state；固定周期跳过错过 tick，立即请求合并，暂停等待自然完成，stop 取消并等待。Pipeline 接受 observe、StateStore、可选 EventSink 及仅关键字 freshness/observation_timeout/event_timeout，提供 run_once/snapshot；同通道独占发布、至多一次状态提交和一次有界通知。完整签名、统计口径与错误边界见 [RUNTIME.md](RUNTIME.md#scheduler022)。
+
+FreshnessPolicy.begin()->object、validate(token, state)->bool 均 async；None 不提供 Browser 新鲜度保证。公开 StateSink/EventSink 签名和导入路径不变，仅将定义移至内部 runtime/ports.py 后由包重导出以避免循环依赖。StateSnapshot 与新增统计不是 Protocol 2 Model；不改变 Plugin.observe、PluginContext 或既有 codec。
 
 ## Plugin 与上下文
 

@@ -3,9 +3,9 @@
 > **文件角色：** 项目级共享背景文件（Project Context）。供 ChatGPT 项目中的全部子会话读取，并作为每份子系统开发任务 MD 的共同前置上下文。
 >
 > **项目名称：** Browser CLI Agent（BCA）  
-> **版本：** v0.2（Protocol 2 接入基线）  
-> **更新日期：** 2026-11-12  
-> **当前状态：** BCA-00 已基于 Codex 交接报告完成阶段验收；公共接口基线为 `browser-cli-agent 0.2.0` / `PROTOCOL_VERSION=2`；BCA-01 已获准启动。仓库代码与测试尚未经架构主会话独立复核。
+> **版本：** v0.3（BCA-01 Browser 正式交接基线）  
+> **更新日期：** 2026-11-16  
+> **当前状态：** BCA-00 / Protocol 阶段验收完成；BCA-01 / Browser 正式验收通过并归档。代码已上传 GitHub，公共接口基线仍为 `browser-cli-agent 0.2.0` / `PROTOCOL_VERSION=2`。BCA-02 处于规划阶段，尚未启动。
 
 ## 1. 项目背景
 
@@ -43,17 +43,17 @@ BCA 是一个面向**指定浏览器页面**的轻量级感知与输入控制框
 
 | 项目 | 当前方案 |
 | --- | --- |
-| 主要语言 | Python 3.12+（BCA-00 已在 Python 3.14.7 / Windows 测试；3.12/3.13 待验证） |
+| 主要语言 | Python 3.12+（已在 Windows / Python 3.14.7 测试；3.12/3.13 实机矩阵待验证） |
 | 运行平台 | 优先 Windows 开发与使用 |
 | 浏览器 | 优先 Chromium / Microsoft Edge |
-| 浏览器连接 | 优先 Chrome DevTools Protocol（CDP） |
+| 浏览器连接 | 已交付本机回环 Chromium / Edge CDP 适配；BCA-01 实测 Edge 157 / CDP 1.3 |
 | 图像处理 | 优先 OpenCV 与 NumPy；具体依赖在视觉模块阶段落实 |
 | CLI | 选择支持异步输入与稳定刷新输出的终端组件，具体框架待 CLI 子系统确定 |
 | 配置文件 | 项目级配置 TOML；资源 Manifest 使用 JSON；资源 Profile 使用 INI（初步方案） |
 | 并发 | 以异步调度为基础；计算密集型识别任务按需要隔离 |
 | 测试 | pytest，公共协议单元测试 + 截图样本回归 + 集成测试 |
 
-实际截图帧率、资源占用和端到端延迟需通过原型测量确定。浏览器缩放、页面视口和截图图像之间的坐标转换应有统一约定。
+BCA-01 已完成受控页面的截图、坐标与输入闭环验证；实际游戏 WebGL 页面、后台行为、长时间运行及全系统端到端性能留待相应集成阶段评估。
 
 ## 3. 系统分层与职责
 
@@ -150,10 +150,25 @@ bca/
 - **时间：** 带 UTC 时区的 `datetime`，JSON 保留微秒；耗时与超时使用单调时钟。
 - **状态责任：** Runtime 调用 `observe()` 后执行一次 `publish()`，按顺序 await 动作执行；错误与取消需有明确处理。
 - **测试证据：** Codex 报告 Windows / Python 3.14.7 下 pytest `82 passed / 0 failed`，mypy strict、Ruff、打包、离线安装 smoke test 通过；主会话未独立复测。
-- **后续核对：** Git 仓库尚未初始化；Python 3.12/3.13 运行矩阵和真实浏览器集成测试待完成。
+- **后续核对：** GitHub 仓库已建立；BCA-01 已完成受控 Edge 页面真实集成测试；Python 3.12/3.13 实机矩阵及真实雀魂 WebGL 场景留待后续验证。
 
 完整字段、校验条件、异常类型及代码位置，以实际仓库 `docs/INTERFACES.md`、`docs/PLUGIN_SPEC.md` 和源码为准。
 
+
+### 5.0.1 已交付 Browser 实现（BCA-01）
+
+- **GitHub：** https://github.com/Itsukiii/Browser-CLI-Agent （默认分支 `main`；2026-11-16 交接审查记录的提交 `19df477547c26a4131d96191a8bb8bdb8362a4ea`）。子会话接入时应核对当前仓库版本，必要时以该已验收提交作为参考。
+- **公开入口：** `bca.core.browser.BrowserSession`，异步 `connect/list_targets/bind/refresh_target/unbind/send/close`；明确页面绑定、`session_id`、`generation` 和连接状态。低层 `CDPConnection`、`TargetManager` 供 Browser 内部使用。
+- **截图能力：** `BrowserCaptureProvider(session, *, timeout=10.0)`，实现 `capture(page_id)`，并提供 Browser 专属 `capture_region(page_id, *, x, y, width, height)`；实际交付 PNG；Frame 持有不可变编码字节，`width/height` 为 PNG 实际像素尺寸。
+- **输入能力：** `BrowserInputProvider(session, *, timeout=10.0)`，实现 `execute(Action)`，支持协议定义的七类动作；报告输入状态、失败诊断及 `input_state_uncertain`。
+- **坐标规则：** 统一使用 `Frame.pixel_to_css(px, py)` 转换为 CSS viewport 坐标，再传给 Action；输入端无需再次应用 DPR、滚动偏移或采集缩放。
+- **所有权：** 上层拥有 `BrowserSession`，Session 拥有 CDPConnection；Capture/Input Provider 借用 Session，ProviderRegistry 只负责注册与发现。连接、绑定和 Provider 启停由上层显式编排。
+- **并发与取消：** 同一 Provider 内调用串行，Capture 与 Input 之间的全局顺序由 Runtime 管理；取消后需等待在途任务结束，按 Input.close → Capture.close → Session.close 收尾。
+- **观察新鲜度：** Frame 没有 generation；上层在观察时额外记录连接、会话、generation 与几何上下文，输入前确认仍适用。导航、重绑定、滚动、resize 等变化可触发重新观察。
+- **结果语义：** `ActionResult.SUCCEEDED` 表示输入已被确认，不等同于网页状态达到预期。执行结果不确定时由上层处理显式恢复，按已知状态重新建立操作上下文。
+- **文档权威来源：** 仓库 `docs/BROWSER.md`、`docs/BCA-01_MAIN_SYNC.md`、`docs/INTERFACES.md` 及 `src/bca/core/browser/` 的实际导出和源代码。
+
+**验收证据（2026-11-16）：** BCA-01.1～01.4 正式验收 Accepted；Codex 报告 Windows / Python 3.14.7 / Edge 157.0.4341.60 下 pytest **285 passed / 0 skipped**，mypy strict、Ruff、wheel/sdist 通过；真实受控浏览器完成 **18/18** 次 PNG → Frame.pixel_to_css → Action → DOM 闭环（DPR 1/1.5/2、全图及区域截图），最大整数坐标误差 **0.75 CSS px**。含新鲜度/几何检测的观察和点击调用中位数分别为 **62.606 ms / 7.933 ms**，不等于裸 Provider 性能。正式验收已核对 GitHub 源码和交接证据，但架构主会话没有在用户 Windows 机器独立复测。
 
 ### 5.1 关键数据对象
 
@@ -195,8 +210,8 @@ bca/
 | 编号 / 会话建议名 | 子系统 | 交付目标 | 主要前置依赖 | 状态 |
 | --- | --- | --- | --- | --- |
 | `BCA-00 / Protocol` | 项目初始化与公共协议 | 仓库骨架、公共模型、Provider/Plugin 接口、基础测试与文档 | 本项目总纲 | **阶段验收完成（依据 Codex 报告，Protocol 2）** |
-| `BCA-01 / Browser` | 浏览器与底层能力 | CDP 连接、页面绑定、截图、输入、坐标转换 | BCA-00 / Protocol 2 | **任务文件 v0.2 已生成，可启动子会话** |
-| `BCA-02 / Runtime` | 调度、事件与状态 | Scheduler、Event Bus、State Store、任务运行管理 | BCA-00，按需使用 BCA-01 | 规划中 |
+| `BCA-01 / Browser` | 浏览器与底层能力 | CDP 连接、页面绑定、截图、输入、坐标转换 | BCA-00 / Protocol 2 | **正式验收通过（2026-11-16），已归档** |
+| `BCA-02 / Runtime` | 调度、事件与状态 | Scheduler、Event Bus、State Store、任务运行管理 | BCA-00 / Protocol 2；BCA-01 Browser 交接接口 | **规划中，尚未启动** |
 | `BCA-03 / Plugin System` | 插件管理 | 插件发现、加载、上下文与生命周期 | BCA-00、Runtime 接口 | 规划中 |
 | `BCA-04 / Vision & Assets` | 视觉工具与资源管理 | Manifest/Profile、素材加载、识别辅助库、样本测试 | BCA-00 | 规划中 |
 | `BCA-05 / CLI` | 终端应用 | 命令输入、状态展示、运行控制与诊断 | BCA-00、Runtime 与 Plugin 接口 | 规划中 |
@@ -228,21 +243,36 @@ bca/
 
 ## 8. 当前进度与接续事项
 
-截至 **2026-11-12**：
+截至 **2026-11-16**：
 
-1. `BCA-00_Protocol.md` 已执行阶段性交接；同步依据为 `BCA-00_MAIN_SYNC.md`（根据 Codex `BCA-00_HANDOFF.md` 整理）。公共协议采用 `browser-cli-agent 0.2.0 / PROTOCOL_VERSION=2`。
-2. Codex 报告 82 项 pytest 测试通过，mypy strict、Ruff、打包和离线安装检查通过；主会话未独立验证实际仓库。
-3. 已创建 `BCA-01_Browser.md`（v0.2），可以启动 Browser 子会话，首先核对仓库实际协议，再讨论 CDP 接入和 Provider 实现。
-4. 后续安排 Git 初始化、Python 3.12/3.13 运行矩阵及端到端浏览器测试；每阶段同步完成情况、接口变化和实测数据。
-5. 若后续需调整公共协议，由架构主会话协调版本、仓库规范和各子会话任务文件。
+1. **BCA-00 / Protocol 已完成阶段验收。** 公共协议为 `browser-cli-agent 0.2.0 / PROTOCOL_VERSION=2`，内部标准库类型契约与外部显式 JSON codec 保持有效。
+2. **BCA-01 / Browser 已正式验收并归档。** 完成连接/会话、截图/坐标、输入/动作和真实浏览器集成四个部分；协议版本继续为 2，暂无公共协议变更提案。
+3. **GitHub 代码仓库已建立：** https://github.com/Itsukiii/Browser-CLI-Agent 。后续子会话优先核对该仓库当前默认分支的源码及文档；以已验收的 BCA-01 基线为直接依赖。
+4. **下一阶段规划：** BCA-02 Runtime 的职责范围已有总体规划，但截至本次同步尚未启动子会话或编写正式任务提示词。
+5. **后续验证关注点：** 真实雀魂 WebGL 页面、后台运行、长时间稳定性、跨 Python 版本与实际部署环境，以及跨模块调度性能。安排在相关子系统接入和集成测试时验证。
 
-### 8.1 文件索引
+### 8.1 已验收 Browser 对后续模块的交接重点
 
-- `BCA_PROJECT_CONTEXT.md` — 全局总纲（本文件，v0.2）。
+| 下游模块 | 接入要点 |
+| --- | --- |
+| BCA-02 / Runtime | 负责观察新鲜度上下文、Capture/Input 调度顺序、背压和取消后的 await、首错停止、失败恢复及资源收尾次序 |
+| BCA-03 / Plugin System | 通过 `ProviderLookup` 注入借用能力，依据插件能力声明管理生命周期 |
+| BCA-04 / Vision & Assets | 解码不可变 PNG Frame，按真实像素识别；调用 `Frame.pixel_to_css()` 映射点击坐标 |
+| BCA-05 / CLI | 显式选择 CDP endpoint 与目标页面，呈现错误和不确定执行结果，编排连接及关闭操作 |
+| BCA-06 / Majsoul | 管理具体页面的识别内容、布局新鲜度、按钮与牌面定位以及指令动作映射 |
+| BCA-07 / Integration | 扩展真实页面、后台行为、长时负载、资源占用和多版本环境测试 |
+
+### 8.2 文件与仓库索引
+
+- `BCA_PROJECT_CONTEXT.md` — 全局总纲（本文件，v0.3）。
 - `BCA-00_Protocol.md` — BCA-00 原始任务定义。
-- `BCA-00_MAIN_SYNC.md` — BCA-00 阶段性交接摘要（证据范围见文件说明）。
-- `BCA-01_Browser.md` — BCA-01 任务定义（v0.2）。
-- 仓库 `docs/INTERFACES.md`、`docs/PLUGIN_SPEC.md` 和 `src/bca/core/` — 实际接口及具体实现。
+- `BCA-00_MAIN_SYNC.md` — BCA-00 阶段交接摘要。
+- `BCA-01_Browser.md` — BCA-01 原始任务定义（已完成）。
+- `BCA-01_MAIN_SYNC.md` — BCA-01 正式跨模块交接说明。
+- `BCA-01_FINAL_REVIEW.md` — BCA-01 正式验收结论与证据说明。
+- GitHub `docs/BROWSER.md` — Browser 模块实际接口、键名表和实现细节。
+- GitHub `docs/INTERFACES.md`、`docs/PLUGIN_SPEC.md`、`src/bca/core/` — 当前公共契约及实现。
+- GitHub `docs/BCA-01.4_HANDOFF.md`、`browser-artifacts/browser-integration-report.json` — BCA-01 交付与真实浏览器测试证据。
 
 ---
 

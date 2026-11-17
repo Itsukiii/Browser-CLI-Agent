@@ -25,3 +25,25 @@ Browser、Runtime、SDK 可依照契约分别开发；集成前先通过 fake Pr
 - 01.4：示例及跨模块验收，本轮 285 passed / 0 skipped，含四个真实 Edge 入口；正式交接为 [BCA-01_MAIN_SYNC.md](BCA-01_MAIN_SYNC.md)。
 
 当前无已确认的阻塞性集成缺陷。下一步由本子会话审查 BCA-01，主会话归档正式交接；本轮不实现 Runtime。BCA-02 需负责旧帧上下文、动作队列、首错停止、取消任务后等待结束、输入先关闭和显式恢复。`BrowserSession.generation` 表示绑定身份，不表示 DOM 版本；单凭 page_id 或 generation 不能保证截图内容新鲜。
+
+## BCA-02.1 交付状态（2026-11-17）
+
+已在 Browser 归档提交 19df477 上实现 StateStore 和 EventBus，保留 StateSink/EventSink 签名。状态只保留最新快照，事件使用有界 FIFO、等待型背压与提交时成员资格的原子广播；30 项专项测试通过，全量 311 passed / 4 skipped（本阶段未配置浏览器）。详见 [02.1 交接](BCA-02.1_HANDOFF.md)。
+
+02.2 的 Scheduler/Observation、02.3 的 Action/Controller 及 02.4 集成尚未实现。下一阶段应串行协调 observe→publish 与版本关联，关键控制先执行再通知，不将事件背压当作控制前置条件。
+
+## BCA-02.2 交付状态（2026-11-17）
+
+Scheduler/ObservationPipeline 已开发，保留全部 02.1 API。固定周期跳过 tick、立即请求合并、自然暂停、优先停机、独占状态发布、有界事件通知及新鲜度策略接口已验证；未接入真实 Browser 策略。Runtime 专项 92 passed，全量 373 passed / 4 skipped（真实 Browser opt-in），见 [02.2 交接](BCA-02.2_HANDOFF.md)。
+
+以上为 02.2 历史交付时点，上节“尚未实现”描述的是 02.1 历史交付时点。
+
+## BCA-02.3 交付状态（2026-11-17）
+
+ActionPipeline、BrowserFreshness 和 RuntimeController 已实现：有界 FIFO、取消等待清理、统一观察/动作协调门、已提交来源帧引用、逐动作新鲜度检查、输入阻断及显式新目标恢复。02.3 历史交付及最小真实测试见 [02.3 交接](BCA-02.3_HANDOFF.md)。03 插件须通过受控 capture 获取并引用来源帧；05 CLI 使用调用方总超时和显式恢复，不重放 STALE/不确定批次。
+
+## BCA-02.4 / Runtime 正式交付状态（2026-11-17）
+
+按原样基线→审计修改→同条件回归顺序完成。DPR 1/1.5/2、全图/区域的真实像素识别点击再观察、旧上下文失效、六种真实传输故障注入、资源残留检查通过；Runtime 165 passed，全量 450 passed（专用 CDP，无 skipped）。无 CDP 时 Runtime 157 passed / 8 skipped。性能与资源以实测记录为准，不承诺 100ms 内完成截图识别；没有因重构删除最终输入安全检查。
+
+正式归档入口：[BCA-02_MAIN_SYNC.md](BCA-02_MAIN_SYNC.md)，审计与量化结果见 [02.4 交接](BCA-02.4_HANDOFF.md)。停留 02.4 交付审查，未开展 03/05/06。后续补足 Python 3.12/3.13、长期/native 内存压力和真实业务插件验收；同目标恢复及 DOM-only 动作授权需单独架构设计。

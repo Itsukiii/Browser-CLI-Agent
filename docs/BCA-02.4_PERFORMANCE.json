@@ -1,0 +1,616 @@
+{
+  "stage": "BCA-02.4",
+  "evidence": "real-browser",
+  "configuration": {
+    "endpoint": "http://127.0.0.1:9341",
+    "dpr": [
+      1,
+      1.5,
+      2
+    ],
+    "css_initial": [
+      640,
+      480
+    ],
+    "samples_per_dpr_and_capture_mode": 5,
+    "sustained_seconds": 10,
+    "python": "3.14.7",
+    "note": "tracemalloc enabled; memory is Python allocations including report samples, not native or Edge RSS; non-CDP capture remainder is not isolated decoder timing"
+  },
+  "before": {
+    "status": "passed",
+    "timing": {
+      "capture_full": {
+        "n": 85,
+        "median_ms": 68.0562000052305,
+        "p95_ms": 114.0023000043584,
+        "max_ms": 258.57900000119116
+      },
+      "capture_full_non_cdp": {
+        "n": 85,
+        "median_ms": 17.574299970874563,
+        "p95_ms": 50.85430000326596,
+        "max_ms": 80.74489998398349
+      },
+      "capture_region": {
+        "n": 26,
+        "median_ms": 55.8401500020409,
+        "p95_ms": 81.2722999980906,
+        "max_ms": 87.41079999890644
+      },
+      "capture_region_non_cdp": {
+        "n": 26,
+        "median_ms": 3.339949995279312,
+        "p95_ms": 4.629600021871738,
+        "max_ms": 4.678299999795854
+      },
+      "cdp/capture_full/Page.captureScreenshot": {
+        "n": 85,
+        "median_ms": 45.40770000312477,
+        "p95_ms": 71.68949999322649,
+        "max_ms": 160.04490001068916
+      },
+      "cdp/capture_full/Page.getLayoutMetrics": {
+        "n": 170,
+        "median_ms": 0.946300002397038,
+        "p95_ms": 2.3456000053556636,
+        "max_ms": 6.42130000051111
+      },
+      "cdp/capture_full/Runtime.evaluate": {
+        "n": 170,
+        "median_ms": 0.8016999927349389,
+        "p95_ms": 1.8675999890547246,
+        "max_ms": 4.306799994083121
+      },
+      "cdp/capture_region/Page.captureScreenshot": {
+        "n": 26,
+        "median_ms": 49.73125000105938,
+        "p95_ms": 73.48279999860097,
+        "max_ms": 80.20099998975638
+      },
+      "cdp/capture_region/Page.getLayoutMetrics": {
+        "n": 52,
+        "median_ms": 0.8315000013681129,
+        "p95_ms": 1.501299993833527,
+        "max_ms": 1.6380000015487894
+      },
+      "cdp/capture_region/Runtime.evaluate": {
+        "n": 52,
+        "median_ms": 0.7526000044890679,
+        "p95_ms": 1.387799988151528,
+        "max_ms": 1.728000002913177
+      },
+      "cdp/freshness_action/Page.getLayoutMetrics": {
+        "n": 38,
+        "median_ms": 0.6796000016038306,
+        "p95_ms": 1.7019999941112474,
+        "max_ms": 9.920299999066629
+      },
+      "cdp/freshness_action/Runtime.evaluate": {
+        "n": 38,
+        "median_ms": 0.6274500046856701,
+        "p95_ms": 1.0584999981801957,
+        "max_ms": 1.2647999974433333
+      },
+      "cdp/freshness_begin/Page.getLayoutMetrics": {
+        "n": 111,
+        "median_ms": 1.0639999964041635,
+        "p95_ms": 3.1694000062998384,
+        "max_ms": 8.00349999917671
+      },
+      "cdp/freshness_begin/Runtime.evaluate": {
+        "n": 111,
+        "median_ms": 0.9378999966429546,
+        "p95_ms": 2.070099988486618,
+        "max_ms": 5.312200009939261
+      },
+      "cdp/freshness_validate/Page.getLayoutMetrics": {
+        "n": 111,
+        "median_ms": 0.9903000027406961,
+        "p95_ms": 2.0175999961793423,
+        "max_ms": 7.589799992274493
+      },
+      "cdp/freshness_validate/Runtime.evaluate": {
+        "n": 111,
+        "median_ms": 0.7715999963693321,
+        "p95_ms": 1.4765000087209046,
+        "max_ms": 2.8821000014431775
+      },
+      "cdp/input/Input.dispatchMouseEvent": {
+        "n": 68,
+        "median_ms": 0.7759500003885478,
+        "p95_ms": 1.5550999960396439,
+        "max_ms": 19.103699989500456
+      },
+      "cdp/input/Page.getLayoutMetrics": {
+        "n": 34,
+        "median_ms": 0.6368499962263741,
+        "p95_ms": 0.9835000091698021,
+        "max_ms": 1.2989999959245324
+      },
+      "cdp/input/Runtime.evaluate": {
+        "n": 34,
+        "median_ms": 0.6284499977482483,
+        "p95_ms": 0.8772000001044944,
+        "max_ms": 1.014299996313639
+      },
+      "cdp/setup/Emulation.setDeviceMetricsOverride": {
+        "n": 4,
+        "median_ms": 1.3672000059159473,
+        "p95_ms": 2.3739000025670975,
+        "max_ms": 2.3739000025670975
+      },
+      "cdp/setup/Page.bringToFront": {
+        "n": 1,
+        "median_ms": 0.7323999889194965,
+        "p95_ms": 0.7323999889194965,
+        "max_ms": 0.7323999889194965
+      },
+      "cdp/setup/Page.navigate": {
+        "n": 2,
+        "median_ms": 10.624349997669924,
+        "p95_ms": 13.020599988522008,
+        "max_ms": 13.020599988522008
+      },
+      "cdp/setup/Runtime.evaluate": {
+        "n": 66,
+        "median_ms": 0.6359000035445206,
+        "p95_ms": 18.119000000297092,
+        "max_ms": 34.464500000467524
+      },
+      "emit": {
+        "n": 150,
+        "median_ms": 0.01944999530678615,
+        "p95_ms": 0.03619999915827066,
+        "max_ms": 60.89649999921676
+      },
+      "freshness_action": {
+        "n": 38,
+        "median_ms": 1.4221500023268163,
+        "p95_ms": 2.597399987280369,
+        "max_ms": 11.313199996948242
+      },
+      "freshness_begin": {
+        "n": 111,
+        "median_ms": 2.068900008453056,
+        "p95_ms": 5.495600009453483,
+        "max_ms": 12.91069999570027
+      },
+      "freshness_validate": {
+        "n": 111,
+        "median_ms": 1.8989999953191727,
+        "p95_ms": 3.5059000074397773,
+        "max_ms": 9.497300008661114
+      },
+      "input": {
+        "n": 34,
+        "median_ms": 3.057100002479274,
+        "p95_ms": 13.196100000641309,
+        "max_ms": 22.607400009292178
+      },
+      "observation_interval": {
+        "n": 62,
+        "median_ms": 194.95150000147987,
+        "p95_ms": 208.28549998987,
+        "max_ms": 395.2805000008084
+      },
+      "observe": {
+        "n": 111,
+        "median_ms": 79.93830001214519,
+        "p95_ms": 154.95660000306088,
+        "max_ms": 310.0006999884499
+      },
+      "publish": {
+        "n": 111,
+        "median_ms": 0.016000005416572094,
+        "p95_ms": 0.027400004910305142,
+        "max_ms": 0.041799998143687844
+      },
+      "queue_wait": {
+        "n": 30,
+        "median_ms": 0.06930000381544232,
+        "p95_ms": 0.11919999087695032,
+        "max_ms": 0.12180001067463309
+      },
+      "recognize": {
+        "n": 111,
+        "median_ms": 16.62519999081269,
+        "p95_ms": 44.08710000279825,
+        "max_ms": 50.77950000122655
+      },
+      "submit_to_new_state": {
+        "n": 30,
+        "median_ms": 66.77959999797167,
+        "p95_ms": 109.2180000123335,
+        "max_ms": 109.73340000782628
+      }
+    },
+    "cdp_requests": {
+      "setup/Page.bringToFront": 1,
+      "setup/Page.navigate": 2,
+      "setup/Runtime.evaluate": 66,
+      "freshness_begin/Page.getLayoutMetrics": 111,
+      "freshness_begin/Runtime.evaluate": 111,
+      "capture_full/Page.getLayoutMetrics": 170,
+      "capture_full/Runtime.evaluate": 170,
+      "capture_full/Page.captureScreenshot": 85,
+      "freshness_validate/Page.getLayoutMetrics": 111,
+      "freshness_validate/Runtime.evaluate": 111,
+      "setup/Emulation.setDeviceMetricsOverride": 4,
+      "freshness_action/Page.getLayoutMetrics": 38,
+      "freshness_action/Runtime.evaluate": 38,
+      "input/Page.getLayoutMetrics": 34,
+      "input/Runtime.evaluate": 34,
+      "input/Input.dispatchMouseEvent": 68,
+      "capture_region/Page.getLayoutMetrics": 52,
+      "capture_region/Runtime.evaluate": 52,
+      "capture_region/Page.captureScreenshot": 26
+    },
+    "runtime": {
+      "state": "stopped",
+      "action_state": "stopped",
+      "scheduler": {
+        "started": 111,
+        "completed": 111,
+        "periodic_runs": 111,
+        "immediate_runs": 0,
+        "skipped_ticks": 45,
+        "coalesced_requests": 57,
+        "failed": 0,
+        "cancelled": 0,
+        "last_run_duration_ms": 203.83270000456832,
+        "last_error": null
+      },
+      "observation": {
+        "attempts": 111,
+        "published": 111,
+        "stale": 0,
+        "failed": 0,
+        "timed_out": 0,
+        "cancelled": 0,
+        "event_emit_failed": 1,
+        "last_observe_duration_ms": 142.38740000291727,
+        "last_publish_duration_ms": 0.12270000297576189,
+        "last_error": "TimeoutError"
+      },
+      "actions": {
+        "accepted": 39,
+        "executed": 39,
+        "completed": 34,
+        "failed": 0,
+        "stale": 4,
+        "cancelled": 0,
+        "blocked": 1,
+        "pending": 0,
+        "full_waits": 0,
+        "first_error_stops": 0,
+        "uncertain": 0,
+        "event_emit_failed": 0,
+        "last_capacity_wait_ms": 0.04389999958220869,
+        "last_queue_wait_ms": 0.21260000357870013,
+        "last_execution_ms": 0.17389999993611127,
+        "last_error": "InputUnavailable"
+      }
+    },
+    "cleanup": {
+      "pending_count": 0,
+      "reader_running": false,
+      "connected": false,
+      "input_state_uncertain": false,
+      "errors": [],
+      "new_unfinished_tasks": 0
+    },
+    "observe_peak": 1,
+    "original_targets_preserved": true,
+    "owned_targets_remaining": 0,
+    "resource_summary": {
+      "samples": 130,
+      "duration_seconds": 13.876758599988534,
+      "python_first_bytes": 2144546,
+      "python_last_bytes": 2666003,
+      "python_peak_bytes": 2826601,
+      "tasks_min": 7,
+      "tasks_max": 8,
+      "pending_max": 1,
+      "queue_max": 0
+    }
+  },
+  "after": {
+    "status": "passed",
+    "timing": {
+      "capture_full": {
+        "n": 76,
+        "median_ms": 71.53659999312367,
+        "p95_ms": 143.84760000393726,
+        "max_ms": 216.52089999406599
+      },
+      "capture_full_non_cdp": {
+        "n": 76,
+        "median_ms": 16.967000003205612,
+        "p95_ms": 74.49810001708101,
+        "max_ms": 81.51910002925433
+      },
+      "capture_region": {
+        "n": 26,
+        "median_ms": 51.932800000940915,
+        "p95_ms": 80.39089999510907,
+        "max_ms": 80.70020000741351
+      },
+      "capture_region_non_cdp": {
+        "n": 26,
+        "median_ms": 2.993350019096397,
+        "p95_ms": 6.857400003354996,
+        "max_ms": 7.904299985966645
+      },
+      "cdp/capture_full/Page.captureScreenshot": {
+        "n": 76,
+        "median_ms": 46.2912500006496,
+        "p95_ms": 75.94770001014695,
+        "max_ms": 122.77519999770448
+      },
+      "cdp/capture_full/Page.getLayoutMetrics": {
+        "n": 152,
+        "median_ms": 1.1437499997555278,
+        "p95_ms": 2.822599999490194,
+        "max_ms": 11.969699990004301
+      },
+      "cdp/capture_full/Runtime.evaluate": {
+        "n": 152,
+        "median_ms": 1.0351500022807159,
+        "p95_ms": 2.928999994765036,
+        "max_ms": 5.4173999960767105
+      },
+      "cdp/capture_region/Page.captureScreenshot": {
+        "n": 26,
+        "median_ms": 44.179450000228826,
+        "p95_ms": 67.83429998904467,
+        "max_ms": 71.08029999653809
+      },
+      "cdp/capture_region/Page.getLayoutMetrics": {
+        "n": 52,
+        "median_ms": 0.9000499994726852,
+        "p95_ms": 2.2711999918101355,
+        "max_ms": 2.7534999971976504
+      },
+      "cdp/capture_region/Runtime.evaluate": {
+        "n": 52,
+        "median_ms": 0.7794500052114017,
+        "p95_ms": 2.282600005855784,
+        "max_ms": 2.812999999150634
+      },
+      "cdp/freshness_action/Page.getLayoutMetrics": {
+        "n": 38,
+        "median_ms": 0.6451500012190081,
+        "p95_ms": 2.4631000123918056,
+        "max_ms": 3.532599992468022
+      },
+      "cdp/freshness_action/Runtime.evaluate": {
+        "n": 38,
+        "median_ms": 0.6335999933071434,
+        "p95_ms": 3.3722000080160797,
+        "max_ms": 4.340200001024641
+      },
+      "cdp/freshness_begin/Page.getLayoutMetrics": {
+        "n": 102,
+        "median_ms": 1.3501500070560724,
+        "p95_ms": 3.8142999983392656,
+        "max_ms": 12.484200007747859
+      },
+      "cdp/freshness_begin/Runtime.evaluate": {
+        "n": 102,
+        "median_ms": 1.0938000050373375,
+        "p95_ms": 2.3861999943619594,
+        "max_ms": 5.75820000085514
+      },
+      "cdp/freshness_validate/Page.getLayoutMetrics": {
+        "n": 102,
+        "median_ms": 1.033099993946962,
+        "p95_ms": 3.3801999961724505,
+        "max_ms": 21.509500002139248
+      },
+      "cdp/freshness_validate/Runtime.evaluate": {
+        "n": 102,
+        "median_ms": 0.8932000055210665,
+        "p95_ms": 2.584800007753074,
+        "max_ms": 3.632000007200986
+      },
+      "cdp/input/Input.dispatchMouseEvent": {
+        "n": 68,
+        "median_ms": 0.7736999978078529,
+        "p95_ms": 1.7539999971631914,
+        "max_ms": 17.203600000357255
+      },
+      "cdp/input/Page.getLayoutMetrics": {
+        "n": 34,
+        "median_ms": 0.6543000054080039,
+        "p95_ms": 1.4059999957680702,
+        "max_ms": 1.470200004405342
+      },
+      "cdp/input/Runtime.evaluate": {
+        "n": 34,
+        "median_ms": 0.6594000005861744,
+        "p95_ms": 1.2380000116536394,
+        "max_ms": 2.140299999155104
+      },
+      "cdp/setup/Emulation.setDeviceMetricsOverride": {
+        "n": 4,
+        "median_ms": 1.9378500073798932,
+        "p95_ms": 2.852999998140149,
+        "max_ms": 2.852999998140149
+      },
+      "cdp/setup/Page.bringToFront": {
+        "n": 1,
+        "median_ms": 0.8607000054325908,
+        "p95_ms": 0.8607000054325908,
+        "max_ms": 0.8607000054325908
+      },
+      "cdp/setup/Page.navigate": {
+        "n": 2,
+        "median_ms": 10.52864999655867,
+        "p95_ms": 13.062099998933263,
+        "max_ms": 13.062099998933263
+      },
+      "cdp/setup/Runtime.evaluate": {
+        "n": 66,
+        "median_ms": 0.6066500063752756,
+        "p95_ms": 17.90669999900274,
+        "max_ms": 32.939000011538155
+      },
+      "emit": {
+        "n": 141,
+        "median_ms": 0.021100000594742596,
+        "p95_ms": 0.06130000110715628,
+        "max_ms": 52.6428000011947
+      },
+      "freshness_action": {
+        "n": 38,
+        "median_ms": 1.3760500005446374,
+        "p95_ms": 5.146099996636622,
+        "max_ms": 6.197199996677227
+      },
+      "freshness_begin": {
+        "n": 102,
+        "median_ms": 2.6413000086904503,
+        "p95_ms": 6.931299998541363,
+        "max_ms": 16.75979999708943
+      },
+      "freshness_validate": {
+        "n": 102,
+        "median_ms": 2.041699997789692,
+        "p95_ms": 6.1812000058125705,
+        "max_ms": 24.23909999197349
+      },
+      "input": {
+        "n": 34,
+        "median_ms": 3.241849990445189,
+        "p95_ms": 12.459899997338653,
+        "max_ms": 21.76040000631474
+      },
+      "observation_interval": {
+        "n": 53,
+        "median_ms": 196.53959998686332,
+        "p95_ms": 305.24610000429675,
+        "max_ms": 395.1560999994399
+      },
+      "observe": {
+        "n": 102,
+        "median_ms": 78.68920000328217,
+        "p95_ms": 191.19480000517797,
+        "max_ms": 304.07820000255015
+      },
+      "publish": {
+        "n": 102,
+        "median_ms": 0.019249993783887476,
+        "p95_ms": 0.05059999239165336,
+        "max_ms": 0.12760001118294895
+      },
+      "queue_wait": {
+        "n": 30,
+        "median_ms": 0.06689999281661585,
+        "p95_ms": 0.13329999637790024,
+        "max_ms": 0.17080000543501228
+      },
+      "recognize": {
+        "n": 102,
+        "median_ms": 13.55150000017602,
+        "p95_ms": 58.267100001103245,
+        "max_ms": 86.38970000902191
+      },
+      "submit_to_new_state": {
+        "n": 30,
+        "median_ms": 62.00800000078743,
+        "p95_ms": 90.35719999519642,
+        "max_ms": 91.11490000213962
+      }
+    },
+    "cdp_requests": {
+      "setup/Page.bringToFront": 1,
+      "setup/Page.navigate": 2,
+      "setup/Runtime.evaluate": 66,
+      "freshness_begin/Page.getLayoutMetrics": 102,
+      "freshness_begin/Runtime.evaluate": 102,
+      "capture_full/Page.getLayoutMetrics": 152,
+      "capture_full/Runtime.evaluate": 152,
+      "capture_full/Page.captureScreenshot": 76,
+      "freshness_validate/Page.getLayoutMetrics": 102,
+      "freshness_validate/Runtime.evaluate": 102,
+      "setup/Emulation.setDeviceMetricsOverride": 4,
+      "freshness_action/Page.getLayoutMetrics": 38,
+      "freshness_action/Runtime.evaluate": 38,
+      "input/Page.getLayoutMetrics": 34,
+      "input/Runtime.evaluate": 34,
+      "input/Input.dispatchMouseEvent": 68,
+      "capture_region/Page.getLayoutMetrics": 52,
+      "capture_region/Runtime.evaluate": 52,
+      "capture_region/Page.captureScreenshot": 26
+    },
+    "runtime": {
+      "state": "stopped",
+      "action_state": "stopped",
+      "scheduler": {
+        "started": 102,
+        "completed": 102,
+        "periodic_runs": 102,
+        "immediate_runs": 0,
+        "skipped_ticks": 52,
+        "coalesced_requests": 57,
+        "failed": 0,
+        "cancelled": 0,
+        "last_run_duration_ms": 217.2714000043925,
+        "last_error": null
+      },
+      "observation": {
+        "attempts": 102,
+        "published": 102,
+        "stale": 0,
+        "failed": 0,
+        "timed_out": 0,
+        "cancelled": 0,
+        "event_emit_failed": 1,
+        "last_observe_duration_ms": 163.93490000336897,
+        "last_publish_duration_ms": 0.16959999629762024,
+        "last_error": "TimeoutError"
+      },
+      "actions": {
+        "accepted": 39,
+        "executed": 39,
+        "completed": 34,
+        "failed": 0,
+        "stale": 4,
+        "cancelled": 0,
+        "blocked": 1,
+        "pending": 0,
+        "full_waits": 0,
+        "first_error_stops": 0,
+        "uncertain": 0,
+        "event_emit_failed": 0,
+        "last_capacity_wait_ms": 0.027999994927085936,
+        "last_queue_wait_ms": 0.1390999968862161,
+        "last_execution_ms": 0.13729999773204327,
+        "last_error": "InputUnavailable"
+      }
+    },
+    "cleanup": {
+      "pending_count": 0,
+      "reader_running": false,
+      "connected": false,
+      "input_state_uncertain": false,
+      "errors": [],
+      "new_unfinished_tasks": 0
+    },
+    "observe_peak": 1,
+    "original_targets_preserved": true,
+    "owned_targets_remaining": 0,
+    "resource_summary": {
+      "samples": 128,
+      "duration_seconds": 13.780302600003779,
+      "python_first_bytes": 2145284,
+      "python_last_bytes": 2471718,
+      "python_peak_bytes": 2829212,
+      "tasks_min": 7,
+      "tasks_max": 8,
+      "pending_max": 1,
+      "queue_max": 0
+    }
+  }
+}

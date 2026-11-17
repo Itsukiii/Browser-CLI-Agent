@@ -9,7 +9,7 @@ BCA 将浏览器信息采集、页面业务解析和用户交互分离。Core �
 | `src/bca/core/protocol` | 标准库冻结 dataclass、字段校验、显式 codec；包 0.2.0 / 协议 2 |
 | `src/bca/core/errors.py` | 已实现统一操作异常层次 |
 | `src/bca/core/providers` | 已实现 Provider 抽象、能力注册与查询 |
-| `src/bca/core/runtime` | 已定义状态和事件提交端口，调度器待实现 |
+| `src/bca/core/runtime` | StateSink/EventSink 端口、StateStore/EventBus、Scheduler 固定周期及 ObservationPipeline；Action/Controller 待实现 |
 | `src/bca/core/plugins` | 已定义插件元信息、配置、上下文和接口 |
 | `src/bca/core/browser` | CDP 会话、显式元数据刷新、PNG Capture 与 Input Provider；共享只读视口几何测量 |
 | `src/bca/plugin_sdk/interfaces` | 复用 Core 插件接口，不创建另一套协议 |
@@ -54,4 +54,8 @@ Frame 持有编码后的 PNG/JPEG 不可变 bytes，进程内传递同一对象�
 
 Browser 已提供按需截图和输入能力，具体实现依赖 Provider 抽象及 Protocol 2；ProviderRegistry 不负责其启动或关闭。01.4 使用现有对象组合，无新增 Browser 状态机或跨 Provider 全局锁。examples/browser_end_to_end.py 提供显式连接/绑定、注册、截图识别、输入、DOM 核验和有序清理的完整示例。观察上下文由调用方维护，不修改 Frame 协议。
 
-事件总线、周期调度和自动恢复仍待后续阶段。01.4 本轮全量 285 passed（含 01.1～01.4 的真实 Edge 入口），正式接入契约见 [BCA-01_MAIN_SYNC.md](BCA-01_MAIN_SYNC.md)。开发完成、待阶段审查，不代表 BCA-02 或业务插件已实现。
+Browser 01.4 历史全量 285 passed（含四阶段真实 Edge），正式接入契约见 [BCA-01_MAIN_SYNC.md](BCA-01_MAIN_SYNC.md)。02.1 已实现 StateStore/EventBus，02.2 已实现 Scheduler/ObservationPipeline，见 [RUNTIME.md](RUNTIME.md)。Scheduler 内联执行单个观察回调；Pipeline 独占通道的 Store 发布责任，先提交后有界通知。关键运行控制直接执行，事件只通知；状态提交与事件发布不是跨组件事务。
+
+02.3 RuntimeController 创建并拥有 Scheduler、ObservationPipeline、ActionPipeline 和统一协调门，借用插件 observe、Provider、Store/Bus。观察从 begin 到提交后关联引用均在门内；动作整批在同一门内，每条输入前重新校验已提交版本及 Browser 指纹。BrowserFreshness 通过公开 Session.send 测量，验证实际 capture 返回帧并记录来源 ID；未记录来源的观察不授权动作。坐标转换仍仅由 Frame.pixel_to_css 完成。输入不确定时仅阻断动作，观察可继续；恢复为外部显式创建新目标、重绑定、更换 Provider 和新观察，不自动重放。
+
+02.4 已验证真实闭环和短时持续负载，增加确定作用点的真实 CDP 传输故障注入；审计移除策略对完整 Frame/退役 Provider 的多余持有，并统一回调自锁防护，保留不同生命周期的 Browser/Runtime 最终检查。正式跨模块说明见 [BCA-02_MAIN_SYNC.md](BCA-02_MAIN_SYNC.md)。长期压力、Python 3.12/3.13 和真实业务页面仍是验证边界，不把短时基准解释为长期无泄漏或恒定 10Hz。

@@ -4,6 +4,14 @@
 
 ## 开发环境
 
+BCA-02.1 已新增 StateStore 和 EventBus：最新状态游标、有界 FIFO、满时等待和原子广播。参见 [Runtime 使用说明](docs/RUNTIME.md) 与 [02.1 交接](docs/BCA-02.1_HANDOFF.md)。可运行 `python examples/runtime_basics.py`，不需要浏览器。
+
+BCA-02.2 已实现固定周期 Scheduler 与 ObservationPipeline：立即请求合并、自然暂停、取消收尾、单次状态提交及有界通知。运行 `python examples/runtime_observation.py` 体验模拟观察链；见 [02.2 交接](docs/BCA-02.2_HANDOFF.md)。
+
+BCA-02.3 已实现 32 个等待批次的 FIFO 动作队列、取消清理屏障、首错停止、Browser 新鲜度和 RuntimeController。运行 `python examples/runtime_actions.py` 查看无浏览器示例；`examples/runtime_browser.py` 接受显式本机 `BCA_CDP_ENDPOINT`，只操作并清理自己创建的目标。历史结果见 [02.3 交接](docs/BCA-02.3_HANDOFF.md)。
+
+BCA-02.4 已完成真实截图→识别→点击→再观察闭环、DPR 1/1.5/2 全图/区域验证、CDP 响应丢失等故障注入、定向审计与性能对照。正式入口见 [Runtime 跨模块交接](docs/BCA-02_MAIN_SYNC.md)，测试与限制见 [02.4 交接](docs/BCA-02.4_HANDOFF.md)。可用 `python examples/runtime_integration.py --endpoint http://127.0.0.1:<专用端口> --output .test-artifacts/runtime-integration --samples 5 --duration 10` 复现。当前停在 02.4 交付审查，未进入插件管理或 CLI 开发。
+
 需要 Python 3.12+。在项目根目录执行：
 
 ```powershell
