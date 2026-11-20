@@ -98,6 +98,10 @@ Manager config 可省略，每个 Manager 新建独立默认 PluginConfig。get 
 
 新增错误均继承 PluginError：PluginManifestError（plugin.manifest）、PluginDuplicateIdError（plugin.duplicate_id，同时继承 ManifestError）、PluginLoadError（plugin.load）、PluginCompatibilityError（plugin.compatibility）、PluginContractError（plugin.contract）。非法生命周期使用 LifecycleError；调用插件抛出的普通异常原样传播，诊断仅保存类名。Manifest 逐项问题保留安全类别，不将原始 TOML/异常文本写入诊断。Loader import/factory 包装错误保留 cause。能力验证在 initialize 前对 capture/input 使用 ABC 类型查询，其他能力按名称查询；保留 CapabilityNotFoundError/TypeError/UnavailableError 原类别，并附 plugin_id。
 
+## 插件自有资产（04.1）
+
+插件可在 initialize 创建 `bca.plugin_sdk.assets.AssetStore`，按语义 ID 和场景获取只读 LoadedTemplate，在 close 关闭 Store。AssetStore 只管理自己的模板缓存，不发布状态或关闭共享 Provider；同步文件 I/O 和解码应在初始化预热或由上层明确安排线程。公开规则与 04.2 输入契约见 [ASSETS.md](ASSETS.md)，实际验证见 [04.1 交接](BCA-04.1_HANDOFF.md)。
+
 ## Manager 状态与取消
 
 | 当前状态/操作 | 成功结果 | 失败/取消 |

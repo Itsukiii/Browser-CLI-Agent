@@ -3,9 +3,9 @@
 > **文件角色：** 项目级共享背景文件（Project Context）。供 ChatGPT 项目中的全部子会话读取，并作为每份子系统开发任务 MD 的共同前置上下文。
 >
 > **项目名称：** Browser CLI Agent（BCA）  
-> **版本：** v0.4（BCA-02 Runtime 正式验收基线）  
-> **更新日期：** 2026-11-17  
-> **当前状态：** BCA-00 / Protocol、BCA-01 / Browser 已验收；BCA-02 / Runtime 已完成 02.1～02.4 并通过交接及 GitHub 最新提交的静态快速审查，归档为正式依赖基线。GitHub `main` 包含 BCA-02 提交 `550cdfa0b042e4cee95f0d7f53e88a7d84d62c43`。公共接口基线仍为 `browser-cli-agent 0.2.0` / `PROTOCOL_VERSION=2`；BCA-03 待规划。
+> **版本：** v0.5（BCA-03 Plugin System 正式验收基线）  
+> **更新日期：** 2026-11-20  
+> **当前状态：** BCA-00 / Protocol、BCA-01 / Browser、BCA-02 / Runtime、BCA-03 / Plugin System 均完成阶段验收。BCA-03 交付提交为 GitHub `main` 的 `477c443e0adfd726a9cb77b1093616ed30529ec0`，架构主会话已核对实际源码与交接材料。公共接口基线为 `browser-cli-agent 0.2.0` / `PROTOCOL_VERSION=2`；后续进入 BCA-04 / Vision & Assets 规划。
 
 ## 1. 项目背景
 
@@ -186,6 +186,20 @@ bca/
 - **性能依据：** 同条件前后测试的“提交至新状态”中位/p95 **66.78/109.22 ms → 62.01/90.36 ms**，但观察 p95 与持续吞吐变差，**不认定总体加速**。观察默认周期 100 ms 不等于实际稳定 10 Hz。结果参见 `docs/BCA-02.4_PERFORMANCE.json`。
 - **权威文档：** GitHub `docs/RUNTIME.md`、`docs/BCA-02_MAIN_SYNC.md`、`docs/BCA-02.4_HANDOFF.md`、`docs/INTERFACES.md` 和 `src/bca/core/runtime/`。交接报告产生时提及的未提交工作区状态已由后续 GitHub `550cdfa` 推送取代。
 
+### 5.0.3 已交付 Plugin System 实现（BCA-03）
+
+- **验收与来源：** BCA-03.1/03.2 完成，GitHub `main` 提交 `477c443e0adfd726a9cb77b1093616ed30529ec0`（`BCA-03`），2026-11-20 架构主会话审查最新源码和交接文档，结论 **Accepted**。审查为静态核对，报告中的测试数未在主会话运行环境复测。此前“未提交、中文损坏”的审查快照已过时，GitHub 正式交接 MD 经核对为可读中文。
+- **公共入口：** `bca.core.plugins` 原有 `Plugin`、`PluginMetadata`、`PluginConfig`、`PluginContext` 继续沿用；新增 `PluginCatalog`、`PluginLoader`、`PluginManager`、`ProviderLookupView`、`FreshnessCaptureAdapter`、`PluginRuntimeHost`，以及 `PluginDescriptor`、`PluginDiscoveryIssue`、`CatalogSnapshot`、`PluginLifecycleState`、`PluginSnapshot` 和插件加载/契约异常类型。准确 API 以 `src/bca/core/plugins/`、`docs/PLUGIN_SPEC.md` 为准。
+- **发现与加载：** `PluginCatalog(roots)` 扫描显式可信根目录的直属子目录，静态读取 `plugin.toml`，按唯一 `plugin_id` 选择；重复 ID 的候选一并拒选。Manifest 包含 ID、版本、Protocol 2、能力声明、同步无参工厂。`PluginLoader` 按路径摘要隔离包模块，支持相对导入和失败回滚；装载插件意味着执行可信本机 Python 代码。
+- **能力与上下文：** `PluginManager` 验证 Manifest 与实例 metadata 一致及必需 Provider 就绪，注入 `PluginContext(ProviderLookup, StateSink, EventSink, Logger, PluginConfig)`；`ProviderLookupView` 可覆盖特定能力的只读查询，但不拥有 Provider 生命周期。
+- **观察来源适配：** `FreshnessCaptureAdapter` 通过 `BrowserFreshness.capture(raw_capture)` 取得真实 Frame，确保 `source_frame_id` 与观察上下文关联；插件只调用标准 CaptureProvider 并返回 PageState，Runtime 独占状态提交。截图像素坐标使用 `Frame.pixel_to_css` 转换。
+- **生命周期：** Manager 管理 `load → initialize → start → stop → close`，对并发、取消与部分失败提供安全清理屏障；`PluginSnapshot` 记录状态、last_error、cleanup_status/error。Manager 的 CLOSED 不证明第三方资源一定已释放，Application 仍需核对诊断与插件自建任务。
+- **命令与组合：** `PluginRuntimeHost(manager, controller, states)` 提供 `start/close/execute_text/snapshot/format_current_state`，在观察暂停屏障后配对 Store 快照及原始动作引用，通过 Plugin parse/handle 生成 `ActionBatch`，统一交由 RuntimeController 执行。`STALE` 与 `BLOCKED` 保留原有语义；输入确认不等于业务状态成功。
+- **资源所有权：** Application 创建/关闭 Session、Capture/Input、Store/Bus、自己拥有的 Target；Host 管理 Controller 与 Manager；Adapter 借用 Capture。正常顺序为 `Host.close → adapter.close → Input.close → Capture.close → 自建 Target 清理 → Session.close → StateStore/EventBus.close`。显式恢复可由 Application 使用新 Target 和全新组合重新观察并提交新命令；旧动作不重放。
+- **测试与性能：** Codex 报告 Windows / Python 3.14.7 / Edge 157 下全量 **533 passed / 0 skipped**（36 项显式真机）、无真机 **497 passed / 36 skipped**，mypy strict（66 源码文件）、Ruff 与 wheel/sdist 通过；受控页面三轮共 54 次像素识别点击全部成功，DPR 1/1.5/2、全图/区域及故障注入验证。`execute_text` median/p95 **6.34/18.90 ms**，命令到下一状态 **67.16/96.09 ms**；上述边界不等于原始截图或跨阶段可比基准。
+- **仍待验证：** Windows 真实 symlink 权限环境、Python 3.12/3.13、长期压力/native RSS、实际雀魂 WebGL 页面及硬件/系统状态恢复。BrowserFreshness 指纹不能证明局部 DOM 始终不变，也不能消除 TOCTOU。
+- **交接权威：** GitHub `docs/BCA-03_MAIN_SYNC.md`、`docs/BCA-03.2_HANDOFF.md`、`docs/BCA-03.1_HANDOFF.md`、`docs/PLUGIN_SPEC.md` 及当前 `src/bca/core/plugins/`。
+
 ### 5.1 关键数据对象
 
 | 对象 | 语义 | 典型流向 |
@@ -228,7 +242,7 @@ bca/
 | `BCA-00 / Protocol` | 项目初始化与公共协议 | 仓库骨架、公共模型、Provider/Plugin 接口、基础测试与文档 | 本项目总纲 | **阶段验收完成（依据 Codex 报告，Protocol 2）** |
 | `BCA-01 / Browser` | 浏览器与底层能力 | CDP 连接、页面绑定、截图、输入、坐标转换 | BCA-00 / Protocol 2 | **正式验收通过（2026-11-16），已归档** |
 | `BCA-02 / Runtime` | 调度、事件与状态 | Scheduler、Event Bus、State Store、观察与动作管线、RuntimeController | BCA-00 / Protocol 2；BCA-01 Browser | **正式验收通过（2026-11-17），已归档；静态快速审查通过** |
-| `BCA-03 / Plugin System` | 插件管理 | 插件发现、加载、上下文与生命周期 | BCA-00、Runtime 接口 | 规划中 |
+| `BCA-03 / Plugin System` | 插件管理 | 插件发现、加载、上下文与生命周期及 Runtime 组合 | BCA-00、BCA-01、BCA-02 | **正式验收通过（2026-11-20），已归档** |
 | `BCA-04 / Vision & Assets` | 视觉工具与资源管理 | Manifest/Profile、素材加载、识别辅助库、样本测试 | BCA-00 | 规划中 |
 | `BCA-05 / CLI` | 终端应用 | 命令输入、状态展示、运行控制与诊断 | BCA-00、Runtime 与 Plugin 接口 | 规划中 |
 | `BCA-06 / Majsoul` | 雀魂适配插件 | 游戏素材接入、画面信息识别与输入映射 | Browser、Plugin System、Vision、CLI | 规划中 |
@@ -259,29 +273,29 @@ bca/
 
 ## 8. 当前进度与接续事项
 
-截至 **2026-11-17**：
+截至 **2026-11-20**：
 
-1. **BCA-00 / Protocol 已完成阶段验收。** 继续采用 `browser-cli-agent 0.2.0 / PROTOCOL_VERSION=2`，内部标准库类型契约与显式 JSON codec 不变。
-2. **BCA-01 / Browser 已正式验收归档。** CDP Session、截图/坐标、输入和受控 Edge 测试闭环可用。
-3. **BCA-02 / Runtime 已正式验收归档。** StateStore、EventBus、Scheduler、ObservationPipeline、ActionPipeline、BrowserFreshness、RuntimeController 已交付；报告记录 165 项 Runtime 测试、450 项全量测试通过，含真实闭环与六类故障注入。
-4. **GitHub 已同步 BCA-02 源码。** 仓库 https://github.com/Itsukiii/Browser-CLI-Agent ，默认分支 `main`，交付提交 `550cdfa0b042e4cee95f0d7f53e88a7d84d62c43`。主会话已对关键源码及测试进行静态快速审查，无需修改 `BCA-02_MAIN_SYNC.md`。
-5. **下一步：BCA-03 / Plugin System。** 以 Protocol 2、Browser 和 Runtime 的已验收公开接口为开发基线；先进行任务规划和接口核对。
-6. **后续验证关注点：** Python 3.12/3.13 实测、长期压力与 native/Edge RSS、真实雀魂 WebGL 页面、后台输入、跨模块性能和特定页面的观察有效性。
+1. **BCA-00 / Protocol 已验收。** 公共基线为 `browser-cli-agent 0.2.0 / PROTOCOL_VERSION=2`。
+2. **BCA-01 / Browser 已验收。** CDP Session、PNG 全图/区域截图、七类输入与坐标映射已交付，参考提交 `19df477`。
+3. **BCA-02 / Runtime 已验收。** StateStore、EventBus、Scheduler、ObservationPipeline、ActionPipeline、BrowserFreshness、RuntimeController 已交付，参考提交 `550cdfa`；交接报告记录 Runtime 165 项与全量 450 项测试通过。
+4. **BCA-03 / Plugin System 已正式验收。** Catalog/Loader/Manager/ProviderLookupView/FreshnessCaptureAdapter/PluginRuntimeHost 可供下游依赖；交付提交 `477c443e0adfd726a9cb77b1093616ed30529ec0`，报告记录全量 533 项通过、24 项新增插件真机专项及 54 次矩阵点击成功。正式跨模块说明为 `docs/BCA-03_MAIN_SYNC.md`。
+5. **下一步：BCA-04 / Vision & Assets。** 依据已验收的插件与 Runtime 公共接口，规划视觉解码、Manifest/Profile、模板与素材组织；BCA-05 CLI 随后可基于 PluginRuntimeHost 接入。
+6. **后续验证关注点：** Python 3.12/3.13、长期压力和 native/Edge RSS、真实雀魂 WebGL 页面、后台操作以及跨模块真实性能测量。阶段测试报告仅对应其实际环境和测量边界。
 
-### 8.1 已验收 Browser / Runtime 对后续模块的交接重点
+### 8.1 已验收 Browser / Runtime / Plugin 对后续模块的交接重点
 
 | 下游模块 | 接入要点 |
 | --- | --- |
 | BCA-02 / Runtime | 已完成并归档；为下游提供状态版本、事件背压、观察/动作编排、新鲜度授权与显式恢复接口 |
-| BCA-03 / Plugin System | 通过 `ProviderLookup` 注入借用能力；遵循 Provider ready → Plugin.initialize/start → Controller.start。Plugin.observe 返回 PageState，Runtime 负责唯一发布；Plugin.handle_command 返回动作，由 Runtime 执行。组合器按需包装 `policy.capture(raw_capture)`，避免包装器递归并明确资源 owner |
+| BCA-03 / Plugin System | 已完成并归档；通过 Catalog/Loader 选择插件、Manager 注入 Context 并管理生命周期、Adapter 包装可信截图、Host 协调观察引用与命令提交。依赖契约见 `BCA-03_MAIN_SYNC.md` |
 | BCA-04 / Vision & Assets | 解码不可变 PNG Frame，按真实像素识别；调用 `Frame.pixel_to_css()` 映射点击坐标 |
-| BCA-05 / CLI | 显式选择 CDP endpoint/Target，按顺序处理命令；需要从当前状态生成动作时协调 Controller.pause、快照/引用、插件命令处理及 ActionBatch.submit，保留原观察引用；以 BatchResult 和后续观察判断执行，不重放 STALE/UNKNOWN 动作 |
+| BCA-05 / CLI | 显式选择 CDP endpoint/Target，配置插件可信目录和激活对象；通过 PluginRuntimeHost.execute_text 提交命令、读取 BatchResult 与后续状态；保留 Manager 清理诊断和 Application 资源 owner，STALE/BLOCKED 不自动重放 |
 | BCA-06 / Majsoul | 插件负责识别、置信度、业务状态及动作映射；帧来源用 source_frame_id，坐标通过 Frame.pixel_to_css；须另做真实游戏场景验证 |
 | BCA-07 / Integration | 扩展真实页面、后台行为、长时负载、native RSS/Edge 资源占用、多 Python 版本和跨模块性能测试 |
 
 ### 8.2 文件与仓库索引
 
-- `BCA_PROJECT_CONTEXT.md` — 全局总纲（本文件，v0.4）。
+- `BCA_PROJECT_CONTEXT.md` — 全局总纲（本文件，v0.5）。
 - `BCA-00_Protocol.md` — BCA-00 原始任务定义。
 - `BCA-00_MAIN_SYNC.md` — BCA-00 阶段交接摘要。
 - `BCA-01_Browser.md` — BCA-01 原始任务定义（已完成）。
@@ -294,6 +308,10 @@ bca/
 - `BCA-02_MAIN_SYNC.md` — Runtime 正式跨模块交接契约。
 - GitHub `docs/RUNTIME.md`、`src/bca/core/runtime/` — Runtime 实际导出和源码。
 - GitHub `docs/BCA-02.4_HANDOFF.md`、`docs/BCA-02.4_CODE_AUDIT.md`、`docs/BCA-02.4_PERFORMANCE.json` — 交付、审计及性能证据（GitHub 提交 `550cdfa`）。
+- `BCA-03_Plugin_System.md` — BCA-03 两阶段任务定义（已完成）。
+- `BCA-03_MAIN_SYNC.md` — BCA-03 正式跨模块交接契约。
+- GitHub `docs/PLUGIN_SPEC.md`、`src/bca/core/plugins/` — Plugin System 当前实现与接口。
+- GitHub `docs/BCA-03.1_HANDOFF.md`、`docs/BCA-03.2_HANDOFF.md`、`docs/BCA-03.2_PERFORMANCE.json` — 插件阶段交接、测试与性能资料（提交 `477c443`）。
 
 ---
 

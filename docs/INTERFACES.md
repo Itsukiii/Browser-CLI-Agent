@@ -125,6 +125,10 @@ Subscription.close 注销并丢弃未读事件，解除背压、唤醒 get 返�
 
 FreshnessPolicy.begin()->object、validate(token, state)->bool 均 async；None 不提供 Browser 新鲜度保证。公开 StateSink/EventSink 签名和导入路径不变，仅将定义移至内部 runtime/ports.py 后由包重导出以避免循环依赖。StateSnapshot 与新增统计不是 Protocol 2 Model；不改变 Plugin.observe、PluginContext 或既有 codec。
 
+## SDK 资产本地入口（04.1）
+
+`bca.plugin_sdk.assets` 提供 AssetStore、AssetProfile、AssetSelection、LoadedTemplate、CacheInfo 与 asset.* 错误层次，安装需要 `assets` extra。这些类型是 SDK 本地接口，不加入 Protocol 2 codec，也不修改 Core/Plugin 的公共契约。模板为只读 RGB uint8 数组及可选灰度权重；Manifest/Profile、选择规则、64 MiB LRU、路径边界和生命周期见 [ASSETS.md](ASSETS.md)。
+
 ## Plugin 与上下文
 
 入口 `bca.core.plugins`，也从 `bca.plugin_sdk.interfaces` 重导出：
