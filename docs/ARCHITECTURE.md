@@ -10,7 +10,7 @@ BCA 将浏览器信息采集、页面业务解析和用户交互分离。Core �
 | `src/bca/core/errors.py` | 已实现统一操作异常层次 |
 | `src/bca/core/providers` | 已实现 Provider 抽象、能力注册与查询 |
 | `src/bca/core/runtime` | StateSink/EventSink 端口、StateStore/EventBus、Scheduler 固定周期及 ObservationPipeline；Action/Controller 待实现 |
-| `src/bca/core/plugins` | 已定义插件元信息、配置、上下文和接口 |
+| `src/bca/core/plugins` | 插件契约、静态 Catalog、Loader、Manager、Provider View/截图适配器与 Runtime Host |
 | `src/bca/core/browser` | CDP 会话、显式元数据刷新、PNG Capture 与 Input Provider；共享只读视口几何测量 |
 | `src/bca/plugin_sdk/interfaces` | 复用 Core 插件接口，不创建另一套协议 |
 | `src/bca/plugin_sdk/assets`、`vision` | 预留资源和识别辅助功能 |
@@ -38,13 +38,13 @@ flowchart TD
     Browser[Browser Session and CDP] --> Protocol
 ```
 
-Protocol 只依赖标准库及无其他依赖的 `core.errors`。Core 不导入 SDK、Application 或具体插件。SDK 公开复用 Core 契约；插件发现、加载和运行编排由未来 Core 管理器负责。ProviderLookup、StateSink、EventSink 为可注入的 Protocol，PluginContext 不绑定 Registry 或队列实现。
+Protocol 只依赖标准库及无其他依赖的 `core.errors`。Core 不静态导入 SDK、Application 或具体插件。SDK 公开复用 Core 契约；03.1 的 Catalog 仅读 Manifest，Loader 仅动态导入选中的可信本机插件，Manager 管理实例，Host 组合既有 Runtime。ProviderLookup、StateSink、EventSink 为可注入的 Protocol，PluginContext 不绑定 Registry 或队列实现。
 
 ## 执行与所有权
 
 采用单个 asyncio 事件循环；有 I/O 的 Provider 和插件方法均异步。注册与查询为无 I/O 同步操作。注册器不自动启动或释放 Provider，Core 持有所有权。同步 CPU 密集识别应由后续 SDK 移到线程/进程，避免堵塞事件循环。
 
-正常调用链：Application 读取命令 → 插件解析 Command → 插件返回有序 Action 元组 → Core 逐个 await InputProvider → Application 展示 ActionResult。观察链：Core 调用插件 observe → 插件选择 Provider → 返回 PageState → Core await StateSink.publish → Application 展示插件格式化结果。
+正常命令链：Application → PluginRuntimeHost.execute_text → 暂停观察并保存原引用 → Manager parse/handle → ActionBatch → RuntimeController/ActionPipeline → InputProvider → BatchResult。观察链：Controller → Manager.observe → 插件借用 CaptureProvider 适配器 → BrowserFreshness.capture(raw) → PageState → ObservationPipeline 单次 publish/commit → Application 展示。Manager 不直接发布状态或执行输入。
 
 Frame 持有编码后的 PNG/JPEG 不可变 bytes，进程内传递同一对象，不复制图像缓冲。codec 默认仅输出帧元数据，完整 Base64 输出需显式开启。模型外壳冻结；嵌套 JSON 容器按引用持有，提交后不得修改，调用方若需要独立状态应在构造前复制。Core 不解释插件 data 的业务含义。
 
@@ -59,3 +59,6 @@ Browser 01.4 历史全量 285 passed（含四阶段真实 Edge），正式接入
 02.3 RuntimeController 创建并拥有 Scheduler、ObservationPipeline、ActionPipeline 和统一协调门，借用插件 observe、Provider、Store/Bus。观察从 begin 到提交后关联引用均在门内；动作整批在同一门内，每条输入前重新校验已提交版本及 Browser 指纹。BrowserFreshness 通过公开 Session.send 测量，验证实际 capture 返回帧并记录来源 ID；未记录来源的观察不授权动作。坐标转换仍仅由 Frame.pixel_to_css 完成。输入不确定时仅阻断动作，观察可继续；恢复为外部显式创建新目标、重绑定、更换 Provider 和新观察，不自动重放。
 
 02.4 已验证真实闭环和短时持续负载，增加确定作用点的真实 CDP 传输故障注入；审计移除策略对完整 Frame/退役 Provider 的多余持有，并统一回调自锁防护，保留不同生命周期的 Browser/Runtime 最终检查。正式跨模块说明见 [BCA-02_MAIN_SYNC.md](BCA-02_MAIN_SYNC.md)。长期压力、Python 3.12/3.13 和真实业务页面仍是验证边界，不把短时基准解释为长期无泄漏或恒定 10Hz。
+
+
+03.2 ???? Edge ????? Catalog/Loader/Manager/Host ??????????????????? `examples/plugin_integration.py` ?? Manager/Controller ?????Application ???? `cleanup_status`?CLOSED ??????????????????????????? BLOCKED ????????????? View/Manager/Host??????? Host ?? Provider??????????? [BCA-03_MAIN_SYNC.md](BCA-03_MAIN_SYNC.md)?

@@ -101,3 +101,7 @@ class ExamplePlugin(Plugin):
         await self.stop()
         self._context = None
         self._closed = True
+
+
+def create_plugin() -> Plugin:
+    return ExamplePlugin()

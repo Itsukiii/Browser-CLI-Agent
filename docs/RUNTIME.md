@@ -2,6 +2,8 @@
 
 正式跨模块入口、资源所有权和后续接入规则见 [BCA-02_MAIN_SYNC.md](BCA-02_MAIN_SYNC.md)。02.4 实际集成、故障注入与性能结果见 [交接报告](BCA-02.4_HANDOFF.md)；历史小节保留各阶段背景，以当前源码及正式交接为准。
 
+03.1 已提供正式插件组合入口 PluginRuntimeHost：以 manager.observe 构造 Controller，通过 execute_text 串行生成命令、保存原观察引用并提交 ActionBatch；不改变 Runtime 公共行为。FreshnessCaptureAdapter 将插件 CaptureProvider 查询接到 policy.capture(raw_capture)。具体装配见 [PLUGIN_SPEC.md](PLUGIN_SPEC.md) 和 examples/plugin_browser.py；本阶段以模拟 CDP 验证，真实插件集成待 03.2。
+
 当前实现 StateStore、EventBus、Scheduler 和 ObservationPipeline。StateSink/EventSink、Plugin.observe 及 Protocol 2 签名不变；Action Pipeline 和 Controller 尚未实现。包 0.2.0 / Protocol 2 保持不变，公开入口和签名见 [INTERFACES.md](INTERFACES.md#provider-与-runtime-端口)。
 
 ## State Store
@@ -183,3 +185,8 @@ await controller.resume()
 ### 统计口径
 
 ActionStats 的 accepted 为成功接纳数；executed 为出队数（含在协调门前取消）；completed 仅统计 SUCCEEDED；failed/stale/cancelled/blocked 为互斥终态数，因此其和等于已归档接纳数。pending 只统计等待队列。full_waits 为取得 admission Lock 时确实发现队列满的次数；尚在 admission Lock 外等待者不重复计数。first_error_stops 统计实际非成功 ActionResult 导致的首错停止；uncertain 统计进入不确定输入处理的批次。event_emit_failed 为有界通知失败次数。last_capacity_wait_ms 包含 admission Lock 等待，last_queue_wait_ms 截止出队，last_execution_ms 包含协调门和逐条检查/输入等待。耗时均为 loop.time，UTC 时间仅用于结果归档。last_error 只保存安全类别，不保存异常消息。观察/Scheduler 统计保持 02.2 原义。
+
+
+## 03.2 ??????
+
+`examples/plugin_integration.py` ? `tests/core/plugins/test_real_*` ????? Edge ???Plugin ? adapter ? policy.capture(raw) ? PageState ? ObservationPipeline ?? publish/commit ? Host ????? ? Input ? ???????????? Runtime API?Manager ????? Application ?? PluginSnapshot?Host.snapshot ???? StateSnapshot??????????????????? [BCA-03_MAIN_SYNC.md](BCA-03_MAIN_SYNC.md)???????????????? Host ???? BatchResult??????????????????

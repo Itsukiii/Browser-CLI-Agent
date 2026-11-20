@@ -1,0 +1,6 @@
+[plugin]
+plugin_id = "example"
+version = "0.2.0"
+protocol_version = 2
+required_capabilities = ["capture", "input"]
+factory = "create_plugin"

@@ -10,7 +10,9 @@ BCA-02.2 已实现固定周期 Scheduler 与 ObservationPipeline：立即请求�
 
 BCA-02.3 已实现 32 个等待批次的 FIFO 动作队列、取消清理屏障、首错停止、Browser 新鲜度和 RuntimeController。运行 `python examples/runtime_actions.py` 查看无浏览器示例；`examples/runtime_browser.py` 接受显式本机 `BCA_CDP_ENDPOINT`，只操作并清理自己创建的目标。历史结果见 [02.3 交接](docs/BCA-02.3_HANDOFF.md)。
 
-BCA-02.4 已完成真实截图→识别→点击→再观察闭环、DPR 1/1.5/2 全图/区域验证、CDP 响应丢失等故障注入、定向审计与性能对照。正式入口见 [Runtime 跨模块交接](docs/BCA-02_MAIN_SYNC.md)，测试与限制见 [02.4 交接](docs/BCA-02.4_HANDOFF.md)。可用 `python examples/runtime_integration.py --endpoint http://127.0.0.1:<专用端口> --output .test-artifacts/runtime-integration --samples 5 --duration 10` 复现。当前停在 02.4 交付审查，未进入插件管理或 CLI 开发。
+BCA-02.4 已完成真实截图→识别→点击→再观察闭环、DPR 1/1.5/2 全图/区域验证、CDP 响应丢失等故障注入、定向审计与性能对照。正式入口见 [Runtime 跨模块交接](docs/BCA-02_MAIN_SYNC.md)，测试与限制见 [02.4 交接](docs/BCA-02.4_HANDOFF.md)。可用 `python examples/runtime_integration.py --endpoint http://127.0.0.1:<专用端口> --output .test-artifacts/runtime-integration --samples 5 --duration 10` 复现。
+
+BCA-03.1 已实现静态 plugin.toml 发现、选中后加载、插件生命周期、借用 Provider 适配和 PluginRuntimeHost。运行 `python examples/plugin_runtime.py` 验证无浏览器完整链路；实际 Browser 装配配方在 examples/plugin_browser.py。接口与边界见 [插件规范](docs/PLUGIN_SPEC.md)、[03.1 交接](docs/BCA-03.1_HANDOFF.md)。当前停在 03.1 审查，真实插件浏览器验收留待 03.2。
 
 需要 Python 3.12+。在项目根目录执行：
 

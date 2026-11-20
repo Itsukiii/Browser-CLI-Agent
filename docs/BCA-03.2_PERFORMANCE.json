@@ -1,0 +1,2513 @@
+{
+  "version": "0.2.0",
+  "protocol_version": 2,
+  "branch": "main",
+  "head": "550cdfa0b042e4cee95f0d7f53e88a7d84d62c43",
+  "evidence": "real-browser + explicitly labeled local regressions",
+  "baseline": {
+    "plugin_passed": 58,
+    "full_passed": 495,
+    "full_skipped": 12
+  },
+  "final": {
+    "full_edge_passed": 533,
+    "full_edge_skipped": 0,
+    "local_passed": 497,
+    "local_skipped": 36,
+    "real_plugin_tests": 24,
+    "real_total_tests": 36,
+    "non_real_tests": 497,
+    "failed": 0
+  },
+  "limitations": [
+    "Windows symlink creation denied: winerror 1314",
+    "Python 3.12/3.13 not available; py launcher cannot execute",
+    "No native or Edge RSS measurement; CDP JS heap/process CPU only",
+    "Short controlled-page run; no long-run/business-page claim"
+  ],
+  "performance": {
+    "start_to_first_commit": {
+      "n": 3,
+      "median_ms": 203.84650002233684,
+      "p95_ms": 204.85169999301434,
+      "max_ms": 204.85169999301434
+    },
+    "execute_text": {
+      "n": 54,
+      "median_ms": 6.337600003462285,
+      "p95_ms": 18.904500000644475,
+      "max_ms": 22.699199995258823
+    },
+    "command_to_verified_commit": {
+      "n": 54,
+      "median_ms": 67.15760000224691,
+      "p95_ms": 96.0919999924954,
+      "max_ms": 99.81729998253286
+    },
+    "observation_through_publish": {
+      "n": 54,
+      "median_ms": 59.365449982578866,
+      "p95_ms": 86.50679999846034,
+      "max_ms": 91.84310000273399
+    },
+    "queue": {
+      "n": 54,
+      "median_ms": 0.06474999827332795,
+      "p95_ms": 0.14269998064264655,
+      "max_ms": 0.20379998022690415
+    },
+    "input_and_authorization": {
+      "n": 54,
+      "median_ms": 5.702850001398474,
+      "p95_ms": 18.19569998770021,
+      "max_ms": 21.346299996366724
+    }
+  },
+  "resource_runs": [
+    {
+      "sustained": {
+        "seconds": 3.086595500004478,
+        "observations": 15,
+        "clicks": 0
+      },
+      "runtime": {
+        "state": "stopped",
+        "action_state": "stopped",
+        "scheduler": {
+          "started": 51,
+          "completed": 51,
+          "periodic_runs": 51,
+          "immediate_runs": 0,
+          "skipped_ticks": 20,
+          "coalesced_requests": 28,
+          "failed": 0,
+          "cancelled": 0,
+          "last_run_duration_ms": 174.36430000816472,
+          "last_error": null
+        },
+        "observation": {
+          "attempts": 51,
+          "published": 51,
+          "stale": 0,
+          "failed": 0,
+          "timed_out": 0,
+          "cancelled": 0,
+          "event_emit_failed": 0,
+          "last_observe_duration_ms": 173.93180000362918,
+          "last_publish_duration_ms": 0.06990000838413835,
+          "last_error": null
+        },
+        "actions": {
+          "accepted": 29,
+          "executed": 29,
+          "completed": 23,
+          "failed": 0,
+          "stale": 5,
+          "cancelled": 0,
+          "blocked": 1,
+          "pending": 0,
+          "full_waits": 0,
+          "first_error_stops": 0,
+          "uncertain": 0,
+          "event_emit_failed": 0,
+          "last_capacity_wait_ms": 0.0261999957729131,
+          "last_queue_wait_ms": 0.13479997869580984,
+          "last_execution_ms": 0.1385000068694353,
+          "last_error": "InputUnavailable"
+        }
+      },
+      "resource_samples": [
+        {
+          "stage": "before_start",
+          "python_bytes": 240476,
+          "python_peak_bytes": 351924,
+          "tasks": 3,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1333639,
+          "python_peak_bytes": 1466246,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1370515,
+          "python_peak_bytes": 1466246,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1292937,
+          "python_peak_bytes": 1490189,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1338580,
+          "python_peak_bytes": 1490189,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1369912,
+          "python_peak_bytes": 1490189,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1402200,
+          "python_peak_bytes": 1490189,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1464955,
+          "python_peak_bytes": 1597568,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1499465,
+          "python_peak_bytes": 1597568,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1534121,
+          "python_peak_bytes": 1624149,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1344126,
+          "python_peak_bytes": 1650533,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1375934,
+          "python_peak_bytes": 1650533,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1407934,
+          "python_peak_bytes": 1650533,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1470192,
+          "python_peak_bytes": 1650533,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1502335,
+          "python_peak_bytes": 1650533,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1534311,
+          "python_peak_bytes": 1650533,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1573798,
+          "python_peak_bytes": 1706402,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1354721,
+          "python_peak_bytes": 1706402,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1386976,
+          "python_peak_bytes": 1706402,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1449425,
+          "python_peak_bytes": 1706402,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1519977,
+          "python_peak_bytes": 1706402,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1469718,
+          "python_peak_bytes": 1706402,
+          "tasks": 5,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1606803,
+          "python_peak_bytes": 1706402,
+          "tasks": 6,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1499350,
+          "python_peak_bytes": 1706402,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1502244,
+          "python_peak_bytes": 1706402,
+          "tasks": 5,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1558464,
+          "python_peak_bytes": 1706402,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1519196,
+          "python_peak_bytes": 1706402,
+          "tasks": 5,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1658101,
+          "python_peak_bytes": 1706402,
+          "tasks": 6,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1536116,
+          "python_peak_bytes": 1706402,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1612747,
+          "python_peak_bytes": 1706402,
+          "tasks": 6,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1553021,
+          "python_peak_bytes": 1706402,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1692111,
+          "python_peak_bytes": 1706402,
+          "tasks": 6,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1568626,
+          "python_peak_bytes": 1706402,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1709151,
+          "python_peak_bytes": 1709623,
+          "tasks": 6,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1588454,
+          "python_peak_bytes": 1710631,
+          "tasks": 5,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1725696,
+          "python_peak_bytes": 1726168,
+          "tasks": 6,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1617603,
+          "python_peak_bytes": 1727176,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1668613,
+          "python_peak_bytes": 1743036,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1634608,
+          "python_peak_bytes": 1743036,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1380645,
+          "python_peak_bytes": 1743036,
+          "tasks": 5,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1438112,
+          "python_peak_bytes": 1743036,
+          "tasks": 6,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1397413,
+          "python_peak_bytes": 1743036,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1411472,
+          "python_peak_bytes": 1743036,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1466763,
+          "python_peak_bytes": 1743036,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1413312,
+          "python_peak_bytes": 1743036,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1553700,
+          "python_peak_bytes": 1743036,
+          "tasks": 6,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1433250,
+          "python_peak_bytes": 1743036,
+          "tasks": 5,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "after_close",
+          "python_bytes": 1458928,
+          "python_peak_bytes": 1743036,
+          "tasks": 1,
+          "pending": 0,
+          "queue": 0
+        }
+      ],
+      "edge_processes_before": {
+        "processInfo": [
+          {
+            "type": "browser",
+            "id": 27076,
+            "cpuTime": 80.673445
+          },
+          {
+            "type": "renderer",
+            "id": 24364,
+            "cpuTime": 0.147712
+          },
+          {
+            "type": "renderer",
+            "id": 23808,
+            "cpuTime": 0.398221
+          },
+          {
+            "type": "network.mojom.NetworkService",
+            "id": 36968,
+            "cpuTime": 3.879359
+          },
+          {
+            "type": "storage.mojom.StorageService",
+            "id": 20976,
+            "cpuTime": 0.087746
+          },
+          {
+            "type": "edge_search_indexer.mojom.SearchIndexerInterfaceBroker",
+            "id": 24644,
+            "cpuTime": 0.083779
+          }
+        ]
+      },
+      "edge_processes_after": {
+        "processInfo": [
+          {
+            "type": "browser",
+            "id": 27076,
+            "cpuTime": 83.437298
+          },
+          {
+            "type": "renderer",
+            "id": 35864,
+            "cpuTime": 0.104256
+          },
+          {
+            "type": "renderer",
+            "id": 26528,
+            "cpuTime": 0.226673
+          },
+          {
+            "type": "renderer",
+            "id": 23808,
+            "cpuTime": 0.398969
+          },
+          {
+            "type": "network.mojom.NetworkService",
+            "id": 36968,
+            "cpuTime": 3.911486
+          },
+          {
+            "type": "storage.mojom.StorageService",
+            "id": 20976,
+            "cpuTime": 0.087802
+          },
+          {
+            "type": "edge_search_indexer.mojom.SearchIndexerInterfaceBroker",
+            "id": 24644,
+            "cpuTime": 0.083792
+          }
+        ]
+      },
+      "renderer_metrics_before": {
+        "metrics": [
+          {
+            "name": "Timestamp",
+            "value": 175819.078971
+          },
+          {
+            "name": "AudioHandlers",
+            "value": 0
+          },
+          {
+            "name": "AudioWorkletProcessors",
+            "value": 0
+          },
+          {
+            "name": "Documents",
+            "value": 4
+          },
+          {
+            "name": "Frames",
+            "value": 4
+          },
+          {
+            "name": "JSEventListeners",
+            "value": 3
+          },
+          {
+            "name": "LayoutObjects",
+            "value": 11
+          },
+          {
+            "name": "MediaKeySessions",
+            "value": 0
+          },
+          {
+            "name": "MediaKeys",
+            "value": 0
+          },
+          {
+            "name": "Nodes",
+            "value": 30
+          },
+          {
+            "name": "Resources",
+            "value": 0
+          },
+          {
+            "name": "ContextLifecycleStateObservers",
+            "value": 4
+          },
+          {
+            "name": "V8PerContextDatas",
+            "value": 2
+          },
+          {
+            "name": "WorkerGlobalScopes",
+            "value": 0
+          },
+          {
+            "name": "UACSSResources",
+            "value": 0
+          },
+          {
+            "name": "RTCPeerConnections",
+            "value": 0
+          },
+          {
+            "name": "ResourceFetchers",
+            "value": 4
+          },
+          {
+            "name": "AdSubframes",
+            "value": 0
+          },
+          {
+            "name": "DetachedScriptStates",
+            "value": 1
+          },
+          {
+            "name": "ArrayBufferContents",
+            "value": 0
+          },
+          {
+            "name": "LayoutCount",
+            "value": 0
+          },
+          {
+            "name": "RecalcStyleCount",
+            "value": 0
+          },
+          {
+            "name": "LayoutDuration",
+            "value": 0
+          },
+          {
+            "name": "RecalcStyleDuration",
+            "value": 0
+          },
+          {
+            "name": "DevToolsCommandDuration",
+            "value": 1.6e-05
+          },
+          {
+            "name": "ScriptDuration",
+            "value": 0
+          },
+          {
+            "name": "V8CompileDuration",
+            "value": 0
+          },
+          {
+            "name": "TaskDuration",
+            "value": 1.9e-05
+          },
+          {
+            "name": "TaskOtherDuration",
+            "value": 3e-06
+          },
+          {
+            "name": "ThreadTime",
+            "value": 0.000109
+          },
+          {
+            "name": "ProcessTime",
+            "value": 0.20169
+          },
+          {
+            "name": "JSHeapUsedSize",
+            "value": 737672
+          },
+          {
+            "name": "JSHeapTotalSize",
+            "value": 1310720
+          },
+          {
+            "name": "FirstMeaningfulPaint",
+            "value": 0
+          },
+          {
+            "name": "DomContentLoaded",
+            "value": 175819.026413
+          },
+          {
+            "name": "NavigationStart",
+            "value": 175819.012386
+          }
+        ]
+      },
+      "renderer_metrics_after": {
+        "metrics": [
+          {
+            "name": "Timestamp",
+            "value": 175825.265022
+          },
+          {
+            "name": "AudioHandlers",
+            "value": 0
+          },
+          {
+            "name": "AudioWorkletProcessors",
+            "value": 0
+          },
+          {
+            "name": "Documents",
+            "value": 4
+          },
+          {
+            "name": "Frames",
+            "value": 5
+          },
+          {
+            "name": "JSEventListeners",
+            "value": 6
+          },
+          {
+            "name": "LayoutObjects",
+            "value": 14
+          },
+          {
+            "name": "MediaKeySessions",
+            "value": 0
+          },
+          {
+            "name": "MediaKeys",
+            "value": 0
+          },
+          {
+            "name": "Nodes",
+            "value": 44
+          },
+          {
+            "name": "Resources",
+            "value": 0
+          },
+          {
+            "name": "ContextLifecycleStateObservers",
+            "value": 4
+          },
+          {
+            "name": "V8PerContextDatas",
+            "value": 2
+          },
+          {
+            "name": "WorkerGlobalScopes",
+            "value": 0
+          },
+          {
+            "name": "UACSSResources",
+            "value": 0
+          },
+          {
+            "name": "RTCPeerConnections",
+            "value": 0
+          },
+          {
+            "name": "ResourceFetchers",
+            "value": 4
+          },
+          {
+            "name": "AdSubframes",
+            "value": 0
+          },
+          {
+            "name": "DetachedScriptStates",
+            "value": 1
+          },
+          {
+            "name": "ArrayBufferContents",
+            "value": 0
+          },
+          {
+            "name": "LayoutCount",
+            "value": 0
+          },
+          {
+            "name": "RecalcStyleCount",
+            "value": 1
+          },
+          {
+            "name": "LayoutDuration",
+            "value": 0
+          },
+          {
+            "name": "RecalcStyleDuration",
+            "value": 2.8e-05
+          },
+          {
+            "name": "DevToolsCommandDuration",
+            "value": 0.013876
+          },
+          {
+            "name": "ScriptDuration",
+            "value": 7.1e-05
+          },
+          {
+            "name": "V8CompileDuration",
+            "value": 0
+          },
+          {
+            "name": "TaskDuration",
+            "value": 0.022744
+          },
+          {
+            "name": "TaskOtherDuration",
+            "value": 0.008769
+          },
+          {
+            "name": "ThreadTime",
+            "value": 0.026449
+          },
+          {
+            "name": "ProcessTime",
+            "value": 0.226578
+          },
+          {
+            "name": "JSHeapUsedSize",
+            "value": 897140
+          },
+          {
+            "name": "JSHeapTotalSize",
+            "value": 1310720
+          },
+          {
+            "name": "FirstMeaningfulPaint",
+            "value": 0
+          },
+          {
+            "name": "DomContentLoaded",
+            "value": 175821.596025
+          },
+          {
+            "name": "NavigationStart",
+            "value": 175821.586032
+          }
+        ]
+      },
+      "cleanup": {
+        "errors": [],
+        "pending_count": 0,
+        "reader_running": false,
+        "connected": false,
+        "new_unfinished_tasks": 0
+      }
+    },
+    {
+      "sustained": {
+        "seconds": 3.1534347999840975,
+        "observations": 16,
+        "clicks": 0
+      },
+      "runtime": {
+        "state": "stopped",
+        "action_state": "stopped",
+        "scheduler": {
+          "started": 52,
+          "completed": 52,
+          "periodic_runs": 52,
+          "immediate_runs": 0,
+          "skipped_ticks": 22,
+          "coalesced_requests": 28,
+          "failed": 0,
+          "cancelled": 0,
+          "last_run_duration_ms": 150.18960001179948,
+          "last_error": null
+        },
+        "observation": {
+          "attempts": 52,
+          "published": 52,
+          "stale": 0,
+          "failed": 0,
+          "timed_out": 0,
+          "cancelled": 0,
+          "event_emit_failed": 0,
+          "last_observe_duration_ms": 149.41949999774806,
+          "last_publish_duration_ms": 0.06839999696239829,
+          "last_error": null
+        },
+        "actions": {
+          "accepted": 29,
+          "executed": 29,
+          "completed": 23,
+          "failed": 0,
+          "stale": 5,
+          "cancelled": 0,
+          "blocked": 1,
+          "pending": 0,
+          "full_waits": 0,
+          "first_error_stops": 0,
+          "uncertain": 0,
+          "event_emit_failed": 0,
+          "last_capacity_wait_ms": 0.02370000584051013,
+          "last_queue_wait_ms": 0.13949998538009822,
+          "last_execution_ms": 0.1345000055152923,
+          "last_error": "InputUnavailable"
+        }
+      },
+      "resource_samples": [
+        {
+          "stage": "before_start",
+          "python_bytes": 240595,
+          "python_peak_bytes": 352043,
+          "tasks": 3,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1334456,
+          "python_peak_bytes": 1467063,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1371450,
+          "python_peak_bytes": 1467063,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1292980,
+          "python_peak_bytes": 1490792,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1338697,
+          "python_peak_bytes": 1490792,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1370982,
+          "python_peak_bytes": 1490792,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1402739,
+          "python_peak_bytes": 1490792,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1466038,
+          "python_peak_bytes": 1598651,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1500675,
+          "python_peak_bytes": 1598651,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1535768,
+          "python_peak_bytes": 1625771,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1344809,
+          "python_peak_bytes": 1651889,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1376149,
+          "python_peak_bytes": 1651889,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1406975,
+          "python_peak_bytes": 1651889,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1469671,
+          "python_peak_bytes": 1651889,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1501616,
+          "python_peak_bytes": 1651889,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1533880,
+          "python_peak_bytes": 1651889,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1573314,
+          "python_peak_bytes": 1705918,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1355919,
+          "python_peak_bytes": 1705918,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1388042,
+          "python_peak_bytes": 1705918,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1449252,
+          "python_peak_bytes": 1705918,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1494121,
+          "python_peak_bytes": 1705918,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1469583,
+          "python_peak_bytes": 1705918,
+          "tasks": 5,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1510128,
+          "python_peak_bytes": 1705918,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1486150,
+          "python_peak_bytes": 1705918,
+          "tasks": 5,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1528003,
+          "python_peak_bytes": 1705918,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1516252,
+          "python_peak_bytes": 1705918,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1571456,
+          "python_peak_bytes": 1705918,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1532998,
+          "python_peak_bytes": 1705918,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1536123,
+          "python_peak_bytes": 1705918,
+          "tasks": 5,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1607802,
+          "python_peak_bytes": 1705918,
+          "tasks": 6,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1551410,
+          "python_peak_bytes": 1705918,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1691817,
+          "python_peak_bytes": 1705918,
+          "tasks": 6,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1569604,
+          "python_peak_bytes": 1705918,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1708642,
+          "python_peak_bytes": 1710402,
+          "tasks": 6,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1585381,
+          "python_peak_bytes": 1710402,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1603896,
+          "python_peak_bytes": 1726344,
+          "tasks": 5,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1617558,
+          "python_peak_bytes": 1726344,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1620647,
+          "python_peak_bytes": 1742994,
+          "tasks": 5,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1503954,
+          "python_peak_bytes": 1742994,
+          "tasks": 6,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1382023,
+          "python_peak_bytes": 1742994,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1520896,
+          "python_peak_bytes": 1742994,
+          "tasks": 6,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1397291,
+          "python_peak_bytes": 1742994,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1415650,
+          "python_peak_bytes": 1742994,
+          "tasks": 5,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1429068,
+          "python_peak_bytes": 1742994,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1432194,
+          "python_peak_bytes": 1742994,
+          "tasks": 5,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1571025,
+          "python_peak_bytes": 1742994,
+          "tasks": 6,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1448887,
+          "python_peak_bytes": 1742994,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "after_close",
+          "python_bytes": 1474390,
+          "python_peak_bytes": 1742994,
+          "tasks": 1,
+          "pending": 0,
+          "queue": 0
+        }
+      ],
+      "edge_processes_before": {
+        "processInfo": [
+          {
+            "type": "browser",
+            "id": 27076,
+            "cpuTime": 83.603192
+          },
+          {
+            "type": "renderer",
+            "id": 35864,
+            "cpuTime": 0.104256
+          },
+          {
+            "type": "renderer",
+            "id": 23808,
+            "cpuTime": 0.400031
+          },
+          {
+            "type": "network.mojom.NetworkService",
+            "id": 36968,
+            "cpuTime": 3.91208
+          },
+          {
+            "type": "storage.mojom.StorageService",
+            "id": 20976,
+            "cpuTime": 0.087929
+          },
+          {
+            "type": "edge_search_indexer.mojom.SearchIndexerInterfaceBroker",
+            "id": 24644,
+            "cpuTime": 0.083792
+          }
+        ]
+      },
+      "edge_processes_after": {
+        "processInfo": [
+          {
+            "type": "browser",
+            "id": 27076,
+            "cpuTime": 86.455466
+          },
+          {
+            "type": "renderer",
+            "id": 27532,
+            "cpuTime": 0.119502
+          },
+          {
+            "type": "renderer",
+            "id": 35748,
+            "cpuTime": 0.342179
+          },
+          {
+            "type": "renderer",
+            "id": 23808,
+            "cpuTime": 0.400827
+          },
+          {
+            "type": "network.mojom.NetworkService",
+            "id": 36968,
+            "cpuTime": 3.937169
+          },
+          {
+            "type": "storage.mojom.StorageService",
+            "id": 20976,
+            "cpuTime": 0.088112
+          },
+          {
+            "type": "edge_search_indexer.mojom.SearchIndexerInterfaceBroker",
+            "id": 24644,
+            "cpuTime": 0.083946
+          }
+        ]
+      },
+      "renderer_metrics_before": {
+        "metrics": [
+          {
+            "name": "Timestamp",
+            "value": 175825.741865
+          },
+          {
+            "name": "AudioHandlers",
+            "value": 0
+          },
+          {
+            "name": "AudioWorkletProcessors",
+            "value": 0
+          },
+          {
+            "name": "Documents",
+            "value": 4
+          },
+          {
+            "name": "Frames",
+            "value": 4
+          },
+          {
+            "name": "JSEventListeners",
+            "value": 3
+          },
+          {
+            "name": "LayoutObjects",
+            "value": 11
+          },
+          {
+            "name": "MediaKeySessions",
+            "value": 0
+          },
+          {
+            "name": "MediaKeys",
+            "value": 0
+          },
+          {
+            "name": "Nodes",
+            "value": 30
+          },
+          {
+            "name": "Resources",
+            "value": 0
+          },
+          {
+            "name": "ContextLifecycleStateObservers",
+            "value": 4
+          },
+          {
+            "name": "V8PerContextDatas",
+            "value": 2
+          },
+          {
+            "name": "WorkerGlobalScopes",
+            "value": 0
+          },
+          {
+            "name": "UACSSResources",
+            "value": 0
+          },
+          {
+            "name": "RTCPeerConnections",
+            "value": 0
+          },
+          {
+            "name": "ResourceFetchers",
+            "value": 4
+          },
+          {
+            "name": "AdSubframes",
+            "value": 0
+          },
+          {
+            "name": "DetachedScriptStates",
+            "value": 1
+          },
+          {
+            "name": "ArrayBufferContents",
+            "value": 0
+          },
+          {
+            "name": "LayoutCount",
+            "value": 0
+          },
+          {
+            "name": "RecalcStyleCount",
+            "value": 0
+          },
+          {
+            "name": "LayoutDuration",
+            "value": 0
+          },
+          {
+            "name": "RecalcStyleDuration",
+            "value": 0
+          },
+          {
+            "name": "DevToolsCommandDuration",
+            "value": 2.6e-05
+          },
+          {
+            "name": "ScriptDuration",
+            "value": 0
+          },
+          {
+            "name": "V8CompileDuration",
+            "value": 0
+          },
+          {
+            "name": "TaskDuration",
+            "value": 3.3e-05
+          },
+          {
+            "name": "TaskOtherDuration",
+            "value": 7e-06
+          },
+          {
+            "name": "ThreadTime",
+            "value": 0
+          },
+          {
+            "name": "ProcessTime",
+            "value": 0.15625
+          },
+          {
+            "name": "JSHeapUsedSize",
+            "value": 737672
+          },
+          {
+            "name": "JSHeapTotalSize",
+            "value": 1310720
+          },
+          {
+            "name": "FirstMeaningfulPaint",
+            "value": 0
+          },
+          {
+            "name": "DomContentLoaded",
+            "value": 175825.700015
+          },
+          {
+            "name": "NavigationStart",
+            "value": 175825.685529
+          }
+        ]
+      },
+      "renderer_metrics_after": {
+        "metrics": [
+          {
+            "name": "Timestamp",
+            "value": 175832.174305
+          },
+          {
+            "name": "AudioHandlers",
+            "value": 0
+          },
+          {
+            "name": "AudioWorkletProcessors",
+            "value": 0
+          },
+          {
+            "name": "Documents",
+            "value": 4
+          },
+          {
+            "name": "Frames",
+            "value": 5
+          },
+          {
+            "name": "JSEventListeners",
+            "value": 6
+          },
+          {
+            "name": "LayoutObjects",
+            "value": 14
+          },
+          {
+            "name": "MediaKeySessions",
+            "value": 0
+          },
+          {
+            "name": "MediaKeys",
+            "value": 0
+          },
+          {
+            "name": "Nodes",
+            "value": 44
+          },
+          {
+            "name": "Resources",
+            "value": 0
+          },
+          {
+            "name": "ContextLifecycleStateObservers",
+            "value": 4
+          },
+          {
+            "name": "V8PerContextDatas",
+            "value": 2
+          },
+          {
+            "name": "WorkerGlobalScopes",
+            "value": 0
+          },
+          {
+            "name": "UACSSResources",
+            "value": 0
+          },
+          {
+            "name": "RTCPeerConnections",
+            "value": 0
+          },
+          {
+            "name": "ResourceFetchers",
+            "value": 4
+          },
+          {
+            "name": "AdSubframes",
+            "value": 0
+          },
+          {
+            "name": "DetachedScriptStates",
+            "value": 1
+          },
+          {
+            "name": "ArrayBufferContents",
+            "value": 0
+          },
+          {
+            "name": "LayoutCount",
+            "value": 0
+          },
+          {
+            "name": "RecalcStyleCount",
+            "value": 1
+          },
+          {
+            "name": "LayoutDuration",
+            "value": 0
+          },
+          {
+            "name": "RecalcStyleDuration",
+            "value": 2.1e-05
+          },
+          {
+            "name": "DevToolsCommandDuration",
+            "value": 0.014563
+          },
+          {
+            "name": "ScriptDuration",
+            "value": 4.1e-05
+          },
+          {
+            "name": "V8CompileDuration",
+            "value": 0
+          },
+          {
+            "name": "TaskDuration",
+            "value": 0.023275
+          },
+          {
+            "name": "TaskOtherDuration",
+            "value": 0.00865
+          },
+          {
+            "name": "ThreadTime",
+            "value": 0.026886
+          },
+          {
+            "name": "ProcessTime",
+            "value": 0.342075
+          },
+          {
+            "name": "JSHeapUsedSize",
+            "value": 899596
+          },
+          {
+            "name": "JSHeapTotalSize",
+            "value": 1310720
+          },
+          {
+            "name": "FirstMeaningfulPaint",
+            "value": 0
+          },
+          {
+            "name": "DomContentLoaded",
+            "value": 175828.442845
+          },
+          {
+            "name": "NavigationStart",
+            "value": 175828.433752
+          }
+        ]
+      },
+      "cleanup": {
+        "errors": [],
+        "pending_count": 0,
+        "reader_running": false,
+        "connected": false,
+        "new_unfinished_tasks": 0
+      }
+    },
+    {
+      "sustained": {
+        "seconds": 3.0527099999890197,
+        "observations": 15,
+        "clicks": 0
+      },
+      "runtime": {
+        "state": "stopped",
+        "action_state": "stopped",
+        "scheduler": {
+          "started": 51,
+          "completed": 51,
+          "periodic_runs": 51,
+          "immediate_runs": 0,
+          "skipped_ticks": 20,
+          "coalesced_requests": 28,
+          "failed": 0,
+          "cancelled": 0,
+          "last_run_duration_ms": 137.42360001197085,
+          "last_error": null
+        },
+        "observation": {
+          "attempts": 51,
+          "published": 51,
+          "stale": 0,
+          "failed": 0,
+          "timed_out": 0,
+          "cancelled": 0,
+          "event_emit_failed": 0,
+          "last_observe_duration_ms": 136.9062000012491,
+          "last_publish_duration_ms": 0.07479998748749495,
+          "last_error": null
+        },
+        "actions": {
+          "accepted": 29,
+          "executed": 29,
+          "completed": 23,
+          "failed": 0,
+          "stale": 5,
+          "cancelled": 0,
+          "blocked": 1,
+          "pending": 0,
+          "full_waits": 0,
+          "first_error_stops": 0,
+          "uncertain": 0,
+          "event_emit_failed": 0,
+          "last_capacity_wait_ms": 0.02300000051036477,
+          "last_queue_wait_ms": 0.12350000906735659,
+          "last_execution_ms": 0.145800004247576,
+          "last_error": "InputUnavailable"
+        }
+      },
+      "resource_samples": [
+        {
+          "stage": "before_start",
+          "python_bytes": 240638,
+          "python_peak_bytes": 352041,
+          "tasks": 3,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1334049,
+          "python_peak_bytes": 1466656,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1371096,
+          "python_peak_bytes": 1466656,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1292637,
+          "python_peak_bytes": 1490707,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1338376,
+          "python_peak_bytes": 1490707,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1370383,
+          "python_peak_bytes": 1490707,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1402279,
+          "python_peak_bytes": 1490707,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1464690,
+          "python_peak_bytes": 1597354,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1499570,
+          "python_peak_bytes": 1597354,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1534956,
+          "python_peak_bytes": 1624834,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1343800,
+          "python_peak_bytes": 1650741,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1375229,
+          "python_peak_bytes": 1650741,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1407057,
+          "python_peak_bytes": 1650741,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1469641,
+          "python_peak_bytes": 1650741,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1501414,
+          "python_peak_bytes": 1650741,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1533353,
+          "python_peak_bytes": 1650741,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1573195,
+          "python_peak_bytes": 1705799,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1353914,
+          "python_peak_bytes": 1705799,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "click",
+          "python_bytes": 1385642,
+          "python_peak_bytes": 1705799,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1448332,
+          "python_peak_bytes": 1705799,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1466589,
+          "python_peak_bytes": 1705799,
+          "tasks": 5,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1481236,
+          "python_peak_bytes": 1705799,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1484008,
+          "python_peak_bytes": 1705799,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1498136,
+          "python_peak_bytes": 1705799,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1501187,
+          "python_peak_bytes": 1705799,
+          "tasks": 5,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1557407,
+          "python_peak_bytes": 1705799,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1518077,
+          "python_peak_bytes": 1705799,
+          "tasks": 5,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1657290,
+          "python_peak_bytes": 1705799,
+          "tasks": 6,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1535230,
+          "python_peak_bytes": 1705799,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1591719,
+          "python_peak_bytes": 1705799,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1552298,
+          "python_peak_bytes": 1705799,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1691332,
+          "python_peak_bytes": 1705799,
+          "tasks": 6,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1570952,
+          "python_peak_bytes": 1705799,
+          "tasks": 5,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1708522,
+          "python_peak_bytes": 1708994,
+          "tasks": 6,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1600440,
+          "python_peak_bytes": 1710002,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1603666,
+          "python_peak_bytes": 1725925,
+          "tasks": 5,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1617584,
+          "python_peak_bytes": 1725925,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1742721,
+          "python_peak_bytes": 1743193,
+          "tasks": 6,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1620783,
+          "python_peak_bytes": 1744201,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1635013,
+          "python_peak_bytes": 1744201,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1381936,
+          "python_peak_bytes": 1744201,
+          "tasks": 5,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1520963,
+          "python_peak_bytes": 1744201,
+          "tasks": 6,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1399032,
+          "python_peak_bytes": 1744201,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1538135,
+          "python_peak_bytes": 1744201,
+          "tasks": 6,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1414371,
+          "python_peak_bytes": 1744201,
+          "tasks": 5,
+          "pending": 0,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1484991,
+          "python_peak_bytes": 1744201,
+          "tasks": 6,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "sustained",
+          "python_bytes": 1434344,
+          "python_peak_bytes": 1744201,
+          "tasks": 5,
+          "pending": 1,
+          "queue": 0
+        },
+        {
+          "stage": "after_close",
+          "python_bytes": 1459449,
+          "python_peak_bytes": 1744201,
+          "tasks": 1,
+          "pending": 0,
+          "queue": 0
+        }
+      ],
+      "edge_processes_before": {
+        "processInfo": [
+          {
+            "type": "browser",
+            "id": 27076,
+            "cpuTime": 86.626571
+          },
+          {
+            "type": "renderer",
+            "id": 27532,
+            "cpuTime": 0.119502
+          },
+          {
+            "type": "renderer",
+            "id": 23808,
+            "cpuTime": 0.402027
+          },
+          {
+            "type": "network.mojom.NetworkService",
+            "id": 36968,
+            "cpuTime": 3.937905
+          },
+          {
+            "type": "storage.mojom.StorageService",
+            "id": 20976,
+            "cpuTime": 0.088273
+          },
+          {
+            "type": "edge_search_indexer.mojom.SearchIndexerInterfaceBroker",
+            "id": 24644,
+            "cpuTime": 0.083946
+          }
+        ]
+      },
+      "edge_processes_after": {
+        "processInfo": [
+          {
+            "type": "browser",
+            "id": 27076,
+            "cpuTime": 89.614292
+          },
+          {
+            "type": "renderer",
+            "id": 1764,
+            "cpuTime": 0.146681
+          },
+          {
+            "type": "renderer",
+            "id": 29096,
+            "cpuTime": 0.377381
+          },
+          {
+            "type": "renderer",
+            "id": 23808,
+            "cpuTime": 0.403645
+          },
+          {
+            "type": "network.mojom.NetworkService",
+            "id": 36968,
+            "cpuTime": 3.974402
+          },
+          {
+            "type": "storage.mojom.StorageService",
+            "id": 20976,
+            "cpuTime": 0.088333
+          },
+          {
+            "type": "edge_search_indexer.mojom.SearchIndexerInterfaceBroker",
+            "id": 24644,
+            "cpuTime": 0.084016
+          }
+        ]
+      },
+      "renderer_metrics_before": {
+        "metrics": [
+          {
+            "name": "Timestamp",
+            "value": 175832.642193
+          },
+          {
+            "name": "AudioHandlers",
+            "value": 0
+          },
+          {
+            "name": "AudioWorkletProcessors",
+            "value": 0
+          },
+          {
+            "name": "Documents",
+            "value": 4
+          },
+          {
+            "name": "Frames",
+            "value": 4
+          },
+          {
+            "name": "JSEventListeners",
+            "value": 3
+          },
+          {
+            "name": "LayoutObjects",
+            "value": 11
+          },
+          {
+            "name": "MediaKeySessions",
+            "value": 0
+          },
+          {
+            "name": "MediaKeys",
+            "value": 0
+          },
+          {
+            "name": "Nodes",
+            "value": 30
+          },
+          {
+            "name": "Resources",
+            "value": 0
+          },
+          {
+            "name": "ContextLifecycleStateObservers",
+            "value": 4
+          },
+          {
+            "name": "V8PerContextDatas",
+            "value": 2
+          },
+          {
+            "name": "WorkerGlobalScopes",
+            "value": 0
+          },
+          {
+            "name": "UACSSResources",
+            "value": 0
+          },
+          {
+            "name": "RTCPeerConnections",
+            "value": 0
+          },
+          {
+            "name": "ResourceFetchers",
+            "value": 4
+          },
+          {
+            "name": "AdSubframes",
+            "value": 0
+          },
+          {
+            "name": "DetachedScriptStates",
+            "value": 1
+          },
+          {
+            "name": "ArrayBufferContents",
+            "value": 0
+          },
+          {
+            "name": "LayoutCount",
+            "value": 0
+          },
+          {
+            "name": "RecalcStyleCount",
+            "value": 0
+          },
+          {
+            "name": "LayoutDuration",
+            "value": 0
+          },
+          {
+            "name": "RecalcStyleDuration",
+            "value": 0
+          },
+          {
+            "name": "DevToolsCommandDuration",
+            "value": 3.3e-05
+          },
+          {
+            "name": "ScriptDuration",
+            "value": 0
+          },
+          {
+            "name": "V8CompileDuration",
+            "value": 0
+          },
+          {
+            "name": "TaskDuration",
+            "value": 4.1e-05
+          },
+          {
+            "name": "TaskOtherDuration",
+            "value": 8e-06
+          },
+          {
+            "name": "ThreadTime",
+            "value": 0
+          },
+          {
+            "name": "ProcessTime",
+            "value": 0.203125
+          },
+          {
+            "name": "JSHeapUsedSize",
+            "value": 737672
+          },
+          {
+            "name": "JSHeapTotalSize",
+            "value": 1310720
+          },
+          {
+            "name": "FirstMeaningfulPaint",
+            "value": 0
+          },
+          {
+            "name": "DomContentLoaded",
+            "value": 175832.613556
+          },
+          {
+            "name": "NavigationStart",
+            "value": 175832.593554
+          }
+        ]
+      },
+      "renderer_metrics_after": {
+        "metrics": [
+          {
+            "name": "Timestamp",
+            "value": 175838.857149
+          },
+          {
+            "name": "AudioHandlers",
+            "value": 0
+          },
+          {
+            "name": "AudioWorkletProcessors",
+            "value": 0
+          },
+          {
+            "name": "Documents",
+            "value": 4
+          },
+          {
+            "name": "Frames",
+            "value": 5
+          },
+          {
+            "name": "JSEventListeners",
+            "value": 6
+          },
+          {
+            "name": "LayoutObjects",
+            "value": 14
+          },
+          {
+            "name": "MediaKeySessions",
+            "value": 0
+          },
+          {
+            "name": "MediaKeys",
+            "value": 0
+          },
+          {
+            "name": "Nodes",
+            "value": 44
+          },
+          {
+            "name": "Resources",
+            "value": 0
+          },
+          {
+            "name": "ContextLifecycleStateObservers",
+            "value": 4
+          },
+          {
+            "name": "V8PerContextDatas",
+            "value": 2
+          },
+          {
+            "name": "WorkerGlobalScopes",
+            "value": 0
+          },
+          {
+            "name": "UACSSResources",
+            "value": 0
+          },
+          {
+            "name": "RTCPeerConnections",
+            "value": 0
+          },
+          {
+            "name": "ResourceFetchers",
+            "value": 4
+          },
+          {
+            "name": "AdSubframes",
+            "value": 0
+          },
+          {
+            "name": "DetachedScriptStates",
+            "value": 1
+          },
+          {
+            "name": "ArrayBufferContents",
+            "value": 0
+          },
+          {
+            "name": "LayoutCount",
+            "value": 0
+          },
+          {
+            "name": "RecalcStyleCount",
+            "value": 1
+          },
+          {
+            "name": "LayoutDuration",
+            "value": 0
+          },
+          {
+            "name": "RecalcStyleDuration",
+            "value": 3.6e-05
+          },
+          {
+            "name": "DevToolsCommandDuration",
+            "value": 0.015798
+          },
+          {
+            "name": "ScriptDuration",
+            "value": 3.8e-05
+          },
+          {
+            "name": "V8CompileDuration",
+            "value": 0
+          },
+          {
+            "name": "TaskDuration",
+            "value": 0.02459
+          },
+          {
+            "name": "TaskOtherDuration",
+            "value": 0.008718
+          },
+          {
+            "name": "ThreadTime",
+            "value": 0.028713
+          },
+          {
+            "name": "ProcessTime",
+            "value": 0.377317
+          },
+          {
+            "name": "JSHeapUsedSize",
+            "value": 897140
+          },
+          {
+            "name": "JSHeapTotalSize",
+            "value": 1310720
+          },
+          {
+            "name": "FirstMeaningfulPaint",
+            "value": 0
+          },
+          {
+            "name": "DomContentLoaded",
+            "value": 175835.25807
+          },
+          {
+            "name": "NavigationStart",
+            "value": 175835.241167
+          }
+        ]
+      },
+      "cleanup": {
+        "errors": [],
+        "pending_count": 0,
+        "reader_running": false,
+        "connected": false,
+        "new_unfinished_tasks": 0
+      }
+    }
+  ]
+}

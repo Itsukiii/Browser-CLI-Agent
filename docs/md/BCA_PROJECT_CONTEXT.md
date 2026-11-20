@@ -3,9 +3,9 @@
 > **文件角色：** 项目级共享背景文件（Project Context）。供 ChatGPT 项目中的全部子会话读取，并作为每份子系统开发任务 MD 的共同前置上下文。
 >
 > **项目名称：** Browser CLI Agent（BCA）  
-> **版本：** v0.3（BCA-01 Browser 正式交接基线）  
-> **更新日期：** 2026-11-16  
-> **当前状态：** BCA-00 / Protocol 阶段验收完成；BCA-01 / Browser 正式验收通过并归档。代码已上传 GitHub，公共接口基线仍为 `browser-cli-agent 0.2.0` / `PROTOCOL_VERSION=2`。BCA-02 处于规划阶段，尚未启动。
+> **版本：** v0.4（BCA-02 Runtime 正式验收基线）  
+> **更新日期：** 2026-11-17  
+> **当前状态：** BCA-00 / Protocol、BCA-01 / Browser 已验收；BCA-02 / Runtime 已完成 02.1～02.4 并通过交接及 GitHub 最新提交的静态快速审查，归档为正式依赖基线。GitHub `main` 包含 BCA-02 提交 `550cdfa0b042e4cee95f0d7f53e88a7d84d62c43`。公共接口基线仍为 `browser-cli-agent 0.2.0` / `PROTOCOL_VERSION=2`；BCA-03 待规划。
 
 ## 1. 项目背景
 
@@ -53,7 +53,7 @@ BCA 是一个面向**指定浏览器页面**的轻量级感知与输入控制框
 | 并发 | 以异步调度为基础；计算密集型识别任务按需要隔离 |
 | 测试 | pytest，公共协议单元测试 + 截图样本回归 + 集成测试 |
 
-BCA-01 已完成受控页面的截图、坐标与输入闭环验证；实际游戏 WebGL 页面、后台行为、长时间运行及全系统端到端性能留待相应集成阶段评估。
+BCA-01 已完成截图、坐标与输入闭环；BCA-02 在受控 Edge 页面完成截图→识别→状态提交→点击→再观察的真实联调及六类传输故障注入。实际雀魂 WebGL 页面、后台行为、长时间运行及全系统端到端性能留待相应集成阶段评估。
 
 ## 3. 系统分层与职责
 
@@ -170,6 +170,22 @@ bca/
 
 **验收证据（2026-11-16）：** BCA-01.1～01.4 正式验收 Accepted；Codex 报告 Windows / Python 3.14.7 / Edge 157.0.4341.60 下 pytest **285 passed / 0 skipped**，mypy strict、Ruff、wheel/sdist 通过；真实受控浏览器完成 **18/18** 次 PNG → Frame.pixel_to_css → Action → DOM 闭环（DPR 1/1.5/2、全图及区域截图），最大整数坐标误差 **0.75 CSS px**。含新鲜度/几何检测的观察和点击调用中位数分别为 **62.606 ms / 7.933 ms**，不等于裸 Provider 性能。正式验收已核对 GitHub 源码和交接证据，但架构主会话没有在用户 Windows 机器独立复测。
 
+### 5.0.2 已交付 Runtime 实现（BCA-02）
+
+- **已验收版本与源码：** BCA-02.1～02.4 完成，GitHub `main` 的交付提交 `550cdfa0b042e4cee95f0d7f53e88a7d84d62c43`（提交标题 `BCA-02`）；2026-11-17 架构主会话读取了最新源码及关键回归测试并完成**静态快速审查**，未发现阻塞交接的明显问题。源代码检查不等于重新运行测试；测试数字来自 Codex 交接报告。
+- **公开入口：** 从 `bca.core.runtime` 导入 `StateStore`、`EventBus`、`Scheduler`、`ObservationPipeline`、`ActionPipeline`、`BrowserFreshness`、`RuntimeController` 及相关快照、策略、批次模型。精确参数和导出以仓库 `docs/RUNTIME.md`、`docs/INTERFACES.md` 与源码为准。
+- **状态存储：** `StateStore.publish(PageState)` 每次成功提交令独立 Runtime `version` 加一；`snapshot()` 获取最新 `StateSnapshot`；`wait_for_update(after_version)` 只保证返回更新后的最新快照，不保证逐版本历史回放。`PageState.sequence` 是插件业务序号，不等于 Runtime 版本。每个观察通道由一方独占发布责任。
+- **事件分发：** `EventBus` 按订阅者有界 FIFO 分发，缺少容量时对发布方施加背压；同一次提交对有效订阅者原子广播，订阅者关闭后退出背压集合。事件用于通知，不是业务执行成功证明；状态提交与事件发出并非跨组件事务。
+- **调度与观察：** Scheduler 默认 100 ms 周期、单次在途、跳过过期 tick、合并立即请求；支持 `start/pause/resume/stop`。ObservationPipeline 按 `begin → observe → validate → publish → on_commit → notify` 执行，单次有效观察仅提交一次。超时/取消/失败有独立状态与诊断。
+- **动作批次：** `ActionBatch`、`ActionObservationRef`、`BatchResult`；ActionPipeline 默认 **32 个等待批次 + 1 个执行批次**，FIFO、逐条 await、首错停止、按观察上下文判定 STALE，取消后等待在途执行和 Provider 清理完成。`SUCCEEDED` 表示输入被确认，后续页面变化仍须观察验证；未知结果不自动重放。
+- **观察新鲜度：** `BrowserFreshness` 使用真实 `policy.capture(provider)` 取得的 Frame 及 `source_frame_id` 建立来源关联，提交后生成当前进程有效的动作引用；执行前复核 Store 快照、Session/Target/generation、URL/timeOrigin、视口、DPR、滚动与缩放等上下文。统一通过 `Frame.pixel_to_css()` 转换坐标。指纹不能保证 DOM 完全不变，也不能消除检查与送达间的 TOCTOU。
+- **统一协调与生命周期：** `RuntimeController` 通过共享锁协调观察与动作整批执行；`pause` 仅暂停观察，动作通道可独立 READY/BLOCKED。观察或输入回调不得 await 自身 Controller 的生命周期/提交接口，以免形成自锁。Runtime 拥有自己的队列、锁和工作任务，但借用 Browser Session/Provider/Store/Bus，外部组合入口负责资源最终释放。
+- **恢复约束：** 未知输入状态保守 BLOCKED；现有 Browser 策略通过来源可证明的**新 Target** 与新 Provider、重新观察的引用进行显式恢复。旧动作队列不因恢复而重新执行；不得将过期令牌换成新令牌后重发旧坐标。
+- **建议组合关闭顺序：** Controller.stop 并等待在途清理 → Plugin.stop/close → Input.close → Capture.close → 清理自建目标并 Session.unbind/close → StateStore/EventBus.close 与订阅者收尾。资源由实际 owner 关闭，不通过 Registry 隐式释放。
+- **交付测试：** Codex 在 Windows / Python 3.14.7 / Edge 157 环境报告 Runtime **165 passed**、全量 **450 passed / 0 skipped**；mypy strict（51 个源码文件）、Ruff 与 wheel/sdist 构建通过。真实集成包括完整截图→像素识别→点击→再观察，以及 **6 类**传输故障注入；全部退出后无在途任务、新增目标或连接残留。Python 3.12/3.13 与长时压力测试仍待验证。
+- **性能依据：** 同条件前后测试的“提交至新状态”中位/p95 **66.78/109.22 ms → 62.01/90.36 ms**，但观察 p95 与持续吞吐变差，**不认定总体加速**。观察默认周期 100 ms 不等于实际稳定 10 Hz。结果参见 `docs/BCA-02.4_PERFORMANCE.json`。
+- **权威文档：** GitHub `docs/RUNTIME.md`、`docs/BCA-02_MAIN_SYNC.md`、`docs/BCA-02.4_HANDOFF.md`、`docs/INTERFACES.md` 和 `src/bca/core/runtime/`。交接报告产生时提及的未提交工作区状态已由后续 GitHub `550cdfa` 推送取代。
+
 ### 5.1 关键数据对象
 
 | 对象 | 语义 | 典型流向 |
@@ -211,7 +227,7 @@ bca/
 | --- | --- | --- | --- | --- |
 | `BCA-00 / Protocol` | 项目初始化与公共协议 | 仓库骨架、公共模型、Provider/Plugin 接口、基础测试与文档 | 本项目总纲 | **阶段验收完成（依据 Codex 报告，Protocol 2）** |
 | `BCA-01 / Browser` | 浏览器与底层能力 | CDP 连接、页面绑定、截图、输入、坐标转换 | BCA-00 / Protocol 2 | **正式验收通过（2026-11-16），已归档** |
-| `BCA-02 / Runtime` | 调度、事件与状态 | Scheduler、Event Bus、State Store、任务运行管理 | BCA-00 / Protocol 2；BCA-01 Browser 交接接口 | **规划中，尚未启动** |
+| `BCA-02 / Runtime` | 调度、事件与状态 | Scheduler、Event Bus、State Store、观察与动作管线、RuntimeController | BCA-00 / Protocol 2；BCA-01 Browser | **正式验收通过（2026-11-17），已归档；静态快速审查通过** |
 | `BCA-03 / Plugin System` | 插件管理 | 插件发现、加载、上下文与生命周期 | BCA-00、Runtime 接口 | 规划中 |
 | `BCA-04 / Vision & Assets` | 视觉工具与资源管理 | Manifest/Profile、素材加载、识别辅助库、样本测试 | BCA-00 | 规划中 |
 | `BCA-05 / CLI` | 终端应用 | 命令输入、状态展示、运行控制与诊断 | BCA-00、Runtime 与 Plugin 接口 | 规划中 |
@@ -243,28 +259,29 @@ bca/
 
 ## 8. 当前进度与接续事项
 
-截至 **2026-11-16**：
+截至 **2026-11-17**：
 
-1. **BCA-00 / Protocol 已完成阶段验收。** 公共协议为 `browser-cli-agent 0.2.0 / PROTOCOL_VERSION=2`，内部标准库类型契约与外部显式 JSON codec 保持有效。
-2. **BCA-01 / Browser 已正式验收并归档。** 完成连接/会话、截图/坐标、输入/动作和真实浏览器集成四个部分；协议版本继续为 2，暂无公共协议变更提案。
-3. **GitHub 代码仓库已建立：** https://github.com/Itsukiii/Browser-CLI-Agent 。后续子会话优先核对该仓库当前默认分支的源码及文档；以已验收的 BCA-01 基线为直接依赖。
-4. **下一阶段规划：** BCA-02 Runtime 的职责范围已有总体规划，但截至本次同步尚未启动子会话或编写正式任务提示词。
-5. **后续验证关注点：** 真实雀魂 WebGL 页面、后台运行、长时间稳定性、跨 Python 版本与实际部署环境，以及跨模块调度性能。安排在相关子系统接入和集成测试时验证。
+1. **BCA-00 / Protocol 已完成阶段验收。** 继续采用 `browser-cli-agent 0.2.0 / PROTOCOL_VERSION=2`，内部标准库类型契约与显式 JSON codec 不变。
+2. **BCA-01 / Browser 已正式验收归档。** CDP Session、截图/坐标、输入和受控 Edge 测试闭环可用。
+3. **BCA-02 / Runtime 已正式验收归档。** StateStore、EventBus、Scheduler、ObservationPipeline、ActionPipeline、BrowserFreshness、RuntimeController 已交付；报告记录 165 项 Runtime 测试、450 项全量测试通过，含真实闭环与六类故障注入。
+4. **GitHub 已同步 BCA-02 源码。** 仓库 https://github.com/Itsukiii/Browser-CLI-Agent ，默认分支 `main`，交付提交 `550cdfa0b042e4cee95f0d7f53e88a7d84d62c43`。主会话已对关键源码及测试进行静态快速审查，无需修改 `BCA-02_MAIN_SYNC.md`。
+5. **下一步：BCA-03 / Plugin System。** 以 Protocol 2、Browser 和 Runtime 的已验收公开接口为开发基线；先进行任务规划和接口核对。
+6. **后续验证关注点：** Python 3.12/3.13 实测、长期压力与 native/Edge RSS、真实雀魂 WebGL 页面、后台输入、跨模块性能和特定页面的观察有效性。
 
-### 8.1 已验收 Browser 对后续模块的交接重点
+### 8.1 已验收 Browser / Runtime 对后续模块的交接重点
 
 | 下游模块 | 接入要点 |
 | --- | --- |
-| BCA-02 / Runtime | 负责观察新鲜度上下文、Capture/Input 调度顺序、背压和取消后的 await、首错停止、失败恢复及资源收尾次序 |
-| BCA-03 / Plugin System | 通过 `ProviderLookup` 注入借用能力，依据插件能力声明管理生命周期 |
+| BCA-02 / Runtime | 已完成并归档；为下游提供状态版本、事件背压、观察/动作编排、新鲜度授权与显式恢复接口 |
+| BCA-03 / Plugin System | 通过 `ProviderLookup` 注入借用能力；遵循 Provider ready → Plugin.initialize/start → Controller.start。Plugin.observe 返回 PageState，Runtime 负责唯一发布；Plugin.handle_command 返回动作，由 Runtime 执行。组合器按需包装 `policy.capture(raw_capture)`，避免包装器递归并明确资源 owner |
 | BCA-04 / Vision & Assets | 解码不可变 PNG Frame，按真实像素识别；调用 `Frame.pixel_to_css()` 映射点击坐标 |
-| BCA-05 / CLI | 显式选择 CDP endpoint 与目标页面，呈现错误和不确定执行结果，编排连接及关闭操作 |
-| BCA-06 / Majsoul | 管理具体页面的识别内容、布局新鲜度、按钮与牌面定位以及指令动作映射 |
-| BCA-07 / Integration | 扩展真实页面、后台行为、长时负载、资源占用和多版本环境测试 |
+| BCA-05 / CLI | 显式选择 CDP endpoint/Target，按顺序处理命令；需要从当前状态生成动作时协调 Controller.pause、快照/引用、插件命令处理及 ActionBatch.submit，保留原观察引用；以 BatchResult 和后续观察判断执行，不重放 STALE/UNKNOWN 动作 |
+| BCA-06 / Majsoul | 插件负责识别、置信度、业务状态及动作映射；帧来源用 source_frame_id，坐标通过 Frame.pixel_to_css；须另做真实游戏场景验证 |
+| BCA-07 / Integration | 扩展真实页面、后台行为、长时负载、native RSS/Edge 资源占用、多 Python 版本和跨模块性能测试 |
 
 ### 8.2 文件与仓库索引
 
-- `BCA_PROJECT_CONTEXT.md` — 全局总纲（本文件，v0.3）。
+- `BCA_PROJECT_CONTEXT.md` — 全局总纲（本文件，v0.4）。
 - `BCA-00_Protocol.md` — BCA-00 原始任务定义。
 - `BCA-00_MAIN_SYNC.md` — BCA-00 阶段交接摘要。
 - `BCA-01_Browser.md` — BCA-01 原始任务定义（已完成）。
@@ -273,6 +290,10 @@ bca/
 - GitHub `docs/BROWSER.md` — Browser 模块实际接口、键名表和实现细节。
 - GitHub `docs/INTERFACES.md`、`docs/PLUGIN_SPEC.md`、`src/bca/core/` — 当前公共契约及实现。
 - GitHub `docs/BCA-01.4_HANDOFF.md`、`browser-artifacts/browser-integration-report.json` — BCA-01 交付与真实浏览器测试证据。
+- `BCA-02_Runtime.md` — BCA-02 原始任务文件（已完成）。
+- `BCA-02_MAIN_SYNC.md` — Runtime 正式跨模块交接契约。
+- GitHub `docs/RUNTIME.md`、`src/bca/core/runtime/` — Runtime 实际导出和源码。
+- GitHub `docs/BCA-02.4_HANDOFF.md`、`docs/BCA-02.4_CODE_AUDIT.md`、`docs/BCA-02.4_PERFORMANCE.json` — 交付、审计及性能证据（GitHub 提交 `550cdfa`）。
 
 ---
 

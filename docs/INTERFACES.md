@@ -160,8 +160,19 @@ FreshnessPolicy.begin()->object、validate(token, state)->bool 均 async；None 
 
 首次 0.1.0 / Protocol 1 基于 Pydantic，本轮批准的方案 A 是破坏性 Python API 调整，包提升到 0.2.0、公共信封版本到 2。移除 model_validate/model_dump 系列方法，改用原生构造器或显式 codec；移除 RGB8/RGBA8 Frame 格式；构造器不再自动转换字符串。旧 JSON 不自动迁移，尤其裸像素需图像层先编码；调用方需按已知类型显式迁移并重新验证，不能仅修改版本号。
 
-兼容内部修复采用补丁版本；破坏性字段、类型、坐标、生命周期和编码边界变更需递增基线与协议版本并同步所有使用模块。codec 当前拒绝未知字段，新增可交换字段也不能假定旧读者兼容。插件 version、schema_version 和公共协议版本独立维护。没有加载器版本协商实现，不承诺跨版本运行。
+兼容内部修复采用补丁版本；破坏性字段、类型、坐标、生命周期和编码边界变更需递增基线与协议版本并同步所有使用模块。codec 当前拒绝未知字段，新增可交换字段也不能假定旧读者兼容。插件 version、schema_version 和公共协议版本独立维护。03.1 Loader 精确要求 protocol_version=2，不做版本范围协商，不承诺跨版本运行。
+
+## BCA-03.1 管理扩展
+
+`bca.core.plugins` 新增 PluginCatalog、PluginLoader、PluginManager、ProviderLookupView、FreshnessCaptureAdapter、PluginRuntimeHost；静态/诊断模型为 PluginDescriptor、PluginDiscoveryIssue、CatalogSnapshot、PluginSnapshot、PluginLifecycleState。错误为 PluginManifestError、PluginDuplicateIdError、PluginLoadError、PluginCompatibilityError、PluginContractError，均属于 PluginError 层级。精确签名、状态表、取消与关闭规则见 [PLUGIN_SPEC.md](PLUGIN_SPEC.md)。
+
+原四项 Plugin/Metadata/Config/Context 仍从原模块导出，SDK 重导出保持对象身份；定义仅内部移至 contracts.py。新模型不扩展 Protocol codec，Provider ABC、RuntimeController/BrowserFreshness 公共 API 未修改。Manager 的 observe 仅返回本插件 PageState；Host 使用已提交原引用封装 ActionBatch；独占发布和实际输入仍由 Runtime 负责。插件不能绕过 Host 直接执行共享 InputProvider，也不得 await 自己的 Host/Manager 调度链。
 
 ## BCA-01 Browser 实现入口
 
 Protocol 2 保持上述契约不变。`bca.core.browser` 已提供 CDPConnection、TargetManager、BrowserSession、BrowserTarget、CDPEvent、SessionState、BrowserCaptureProvider 和 BrowserInputProvider。实际签名、generation/目标身份、PNG 坐标及输入不确定状态见 [BROWSER.md](BROWSER.md)；正式跨模块接入及本轮 01.4 验收见 [BCA-01_MAIN_SYNC.md](BCA-01_MAIN_SYNC.md)。Registry 注册不启动 Provider，Session 连接由上层拥有，Input/Capture 只借用会话。
+
+
+## BCA-03.2 ????
+
+03.2 ???????????Protocol 2 ? Browser/Runtime/Provider ????????? Core ??????????? `examples/plugin_integration.py`?`examples/plugin_browser.py:assemble` ????? example ????????????????? Manager ???Host.snapshot ????????? API?????? SDK/CLI ??? [BCA-03_MAIN_SYNC.md](BCA-03_MAIN_SYNC.md)?
