@@ -4,3 +4,7 @@ recursive-include configs *.toml
 recursive-include plugins *.py *.md
 recursive-include tests *.py
 recursive-include examples *.py
+recursive-include examples/plugins *.toml
+recursive-include tests/plugin_sdk/assets/fixtures *.png *.jpg *.json *.md
+recursive-include tests/plugin_sdk/vision/fixtures *.png *.jpg *.json *.ini *.md
+recursive-include docs/evidence/BCA-04.2 *.json *.txt

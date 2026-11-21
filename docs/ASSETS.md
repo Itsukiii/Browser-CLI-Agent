@@ -1,5 +1,7 @@
 # Asset Foundation（BCA-04.1）
 
+04.2 的 [Vision SDK](VISION.md) 直接消费 LoadedTemplate 的 RGB 数组和权重 Mask。安装 `[vision]` 即具备所需 NumPy/OpenCV，原 `[assets]` 仍可独立安装。资产加载、缓存和选择契约保持不变；跨模块入口见 [BCA-04_MAIN_SYNC.md](BCA-04_MAIN_SYNC.md)。
+
 资产系统位于 `bca.plugin_sdk.assets`，用于从可信本机资源根目录加载静态模板。它不解码 Frame、不匹配图像、不发布 PageState、不执行浏览器输入。包版本仍为 0.2.0，Protocol 2 不变；Manifest/Profile v1 是独立的本地资源格式。
 
 ## 安装与文件布局

@@ -1,0 +1,118 @@
+{
+  "date": "2026-11-21",
+  "base_head": "fe151645beaa7bfbaa4dcb19dc5499cbe48fdf01",
+  "worktree": "uncommitted implementation; user prompt and shortcut preserved",
+  "python": "3.14.7",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "cpu": "Intel(R) Core(TM) 5 220H",
+  "dependencies": {
+    "numpy": "2.5.5",
+    "opencv-python-headless": "4.14.0.94",
+    "Pillow": "12.3.0",
+    "pytest": "9.2.0",
+    "mypy": "2.4.1",
+    "ruff": "0.17.4"
+  },
+  "tests": {
+    "vision_without_cdp": {
+      "passed": 136,
+      "skipped": 9,
+      "seconds": 11.73
+    },
+    "full_without_cdp": {
+      "passed": 760,
+      "skipped": 45,
+      "seconds": 33.14
+    },
+    "full_with_cdp": {
+      "passed": 805,
+      "skipped": 0,
+      "seconds": 71.19,
+      "log": "full-with-cdp.txt"
+    }
+  },
+  "typing": {
+    "mypy": "passed",
+    "files": 88
+  },
+  "ruff": {
+    "check": "passed",
+    "format": "passed",
+    "files": 213
+  },
+  "build": "wheel and sdist passed",
+  "package_install": {
+    "base_without_numpy_cv2": "passed",
+    "assets_without_cv2": "passed",
+    "wheel_vision_different_cwd_isolated": "passed",
+    "sdist_rebuilt_wheel_vision": "passed"
+  },
+  "source_sha256": {
+    "src/bca/plugin_sdk/vision/decode.py": "d09990e6d96246e3938d1127791c22d12421a08e517c786531d9d138e04d3034",
+    "src/bca/plugin_sdk/vision/errors.py": "f52dbaef8336034c5a6939f6fadcfede8f8936469cfcb25044235673cb344e19",
+    "src/bca/plugin_sdk/vision/matching.py": "baa2f57f9b5be6ad1074c43273e56419d0830c9121702f63cf30dae30a5ca1f3",
+    "src/bca/plugin_sdk/vision/models.py": "ce379edf59b8e9f8a5ee92cd0f5b4cc3dda655f4fa5a1266531aeaccdc97b842",
+    "src/bca/plugin_sdk/vision/preprocess.py": "7ca36b21c0fbb6240b1febf35b059439767ce4f205f1b7c2137f16609d154879",
+    "src/bca/plugin_sdk/vision/__init__.py": "d5e9e8d524a43bae97196437abde605ebea55ea838c15176b4362a1379ced2b4",
+    "examples/plugins/vision_fixture/assets.py": "a0d93db4bcca2439fa9c6f36332c7f1d8a7ee8f529e7333a8ce00c3b4bd07e47",
+    "examples/plugins/vision_fixture/plugin.py": "6449f44df3e78e638e0436d60698f1b26b9c91544a6888830c71d412cf1c0170",
+    "examples/plugins/vision_fixture/__init__.py": "bac4c264d6a33a5de087c8952bfbec5f3117d656b899e0a5fe24a32882841d6a",
+    "examples/vision_benchmark.py": "e6f1c0cf71b53194992acb9ee85aa0babc3879a1990f1daf609374865bf9b93b",
+    "examples/vision_foundation.py": "33914a40d5521e20260a6674f98e31a45f5e6698b912259b6702db1142f0d5b2",
+    "examples/vision_integration.py": "738ea195055f590516e9d7f4e518492b1b3ed334a38a77415b7c3a52781678d5",
+    "pyproject.toml": "770c0ca5dcf9c718d06a9e25dc1e221f6ab4d71f4e7a092f768e010083c68aeb",
+    "MANIFEST.in": "f55a8b0aff055a98a0e80f8042ddc8278d923efd8f5eb1c47d87be005a2e305d"
+  },
+  "core_assets_interfaces_unchanged": true,
+  "encoding": {
+    "docs/VISION.md": {
+      "encoding": "utf-8",
+      "cjk_characters": 1701
+    },
+    "docs/BCA-04.2_HANDOFF.md": {
+      "encoding": "utf-8",
+      "cjk_characters": 2672
+    },
+    "docs/BCA-04_MAIN_SYNC.md": {
+      "encoding": "utf-8",
+      "cjk_characters": 1250
+    },
+    "tests/plugin_sdk/vision/fixtures/README.md": {
+      "encoding": "utf-8",
+      "cjk_characters": 302
+    }
+  },
+  "dataset": {
+    "labeled_cases": 76,
+    "positives": 32,
+    "positive_hits": 32,
+    "negatives": 32,
+    "false_positive_cases": 0,
+    "ambiguous_cases": 6,
+    "ambiguous_pass": 6,
+    "two_position_cases": 6,
+    "two_position_pass": 6,
+    "max_pixel_location_error": 0,
+    "threshold": 0.96
+  },
+  "performance": {
+    "offline": "offline.json",
+    "browser": "browser.json",
+    "samples_per_case": 30,
+    "browser_records": 360,
+    "max_requested_css_error": 0.5,
+    "max_dom_event_css_error": 1,
+    "browser_status": "passed"
+  },
+  "browser_process_cleanup": {
+    "method": "CDP Browser.close on owned isolated instance",
+    "pid": 26428,
+    "endpoint": "http://127.0.0.1:9341",
+    "listener_closed": true,
+    "owned_targets_remaining": 0,
+    "remaining_tasks": [],
+    "original_targets_preserved_before_browser_close": true,
+    "main_process_exited": true
+  },
+  "archive_contents": "Vision wheel bytes equal source; sdist includes original config, plugin manifests, fixed images/labels and evidence"
+}

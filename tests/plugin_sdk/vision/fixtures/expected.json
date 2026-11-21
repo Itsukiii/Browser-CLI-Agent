@@ -1,0 +1,1472 @@
+{
+  "threshold": 0.96,
+  "label_source": "known placement, never matcher output",
+  "mask_effective_first_row": [
+    0,
+    0,
+    0,
+    0,
+    64,
+    64,
+    64,
+    64,
+    128,
+    128,
+    128,
+    128,
+    255,
+    255,
+    255,
+    255
+  ],
+  "cases": [
+    {
+      "name": "rgb-positive-0",
+      "group": "rgb",
+      "image": "rgb-positive-0.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          20,
+          14,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "rgb-negative-0",
+      "group": "rgb",
+      "image": "rgb-negative-0.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "rgb-positive-1",
+      "group": "rgb",
+      "image": "rgb-positive-1.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          27,
+          20,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "rgb-negative-1",
+      "group": "rgb",
+      "image": "rgb-negative-1.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "rgb-positive-2",
+      "group": "rgb",
+      "image": "rgb-positive-2.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          34,
+          26,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "rgb-negative-2",
+      "group": "rgb",
+      "image": "rgb-negative-2.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "rgb-positive-3",
+      "group": "rgb",
+      "image": "rgb-positive-3.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          41,
+          32,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "rgb-negative-3",
+      "group": "rgb",
+      "image": "rgb-negative-3.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "gray-positive-0",
+      "group": "gray",
+      "image": "gray-positive-0.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          20,
+          14,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "gray",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "gray-negative-0",
+      "group": "gray",
+      "image": "gray-negative-0.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "gray",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "gray-positive-1",
+      "group": "gray",
+      "image": "gray-positive-1.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          27,
+          20,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "gray",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "gray-negative-1",
+      "group": "gray",
+      "image": "gray-negative-1.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "gray",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "gray-positive-2",
+      "group": "gray",
+      "image": "gray-positive-2.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          34,
+          26,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "gray",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "gray-negative-2",
+      "group": "gray",
+      "image": "gray-negative-2.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "gray",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "gray-positive-3",
+      "group": "gray",
+      "image": "gray-positive-3.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          41,
+          32,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "gray",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "gray-negative-3",
+      "group": "gray",
+      "image": "gray-negative-3.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "gray",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "mask-positive-0",
+      "group": "mask",
+      "image": "mask-positive-0.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          20,
+          14,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": "weighted.ini",
+      "roi": null
+    },
+    {
+      "name": "mask-negative-0",
+      "group": "mask",
+      "image": "mask-negative-0.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": "weighted.ini",
+      "roi": null
+    },
+    {
+      "name": "mask-positive-1",
+      "group": "mask",
+      "image": "mask-positive-1.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          27,
+          20,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": "weighted.ini",
+      "roi": null
+    },
+    {
+      "name": "mask-negative-1",
+      "group": "mask",
+      "image": "mask-negative-1.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": "weighted.ini",
+      "roi": null
+    },
+    {
+      "name": "mask-positive-2",
+      "group": "mask",
+      "image": "mask-positive-2.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          34,
+          26,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": "weighted.ini",
+      "roi": null
+    },
+    {
+      "name": "mask-negative-2",
+      "group": "mask",
+      "image": "mask-negative-2.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": "weighted.ini",
+      "roi": null
+    },
+    {
+      "name": "mask-positive-3",
+      "group": "mask",
+      "image": "mask-positive-3.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          41,
+          32,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": "weighted.ini",
+      "roi": null
+    },
+    {
+      "name": "mask-negative-3",
+      "group": "mask",
+      "image": "mask-negative-3.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": "weighted.ini",
+      "roi": null
+    },
+    {
+      "name": "enlarge-positive-0",
+      "group": "enlarge",
+      "image": "enlarge-positive-0.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          20,
+          14,
+          32,
+          24
+        ]
+      ],
+      "scale": [
+        2,
+        2
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "enlarge-negative-0",
+      "group": "enlarge",
+      "image": "enlarge-negative-0.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        2,
+        2
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "enlarge-positive-1",
+      "group": "enlarge",
+      "image": "enlarge-positive-1.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          27,
+          20,
+          32,
+          24
+        ]
+      ],
+      "scale": [
+        2,
+        2
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "enlarge-negative-1",
+      "group": "enlarge",
+      "image": "enlarge-negative-1.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        2,
+        2
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "enlarge-positive-2",
+      "group": "enlarge",
+      "image": "enlarge-positive-2.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          34,
+          26,
+          32,
+          24
+        ]
+      ],
+      "scale": [
+        2,
+        2
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "enlarge-negative-2",
+      "group": "enlarge",
+      "image": "enlarge-negative-2.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        2,
+        2
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "enlarge-positive-3",
+      "group": "enlarge",
+      "image": "enlarge-positive-3.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          41,
+          32,
+          32,
+          24
+        ]
+      ],
+      "scale": [
+        2,
+        2
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "enlarge-negative-3",
+      "group": "enlarge",
+      "image": "enlarge-negative-3.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        2,
+        2
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "shrink-positive-0",
+      "group": "shrink",
+      "image": "shrink-positive-0.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          20,
+          14,
+          8,
+          6
+        ]
+      ],
+      "scale": [
+        0.5,
+        0.5
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "shrink-negative-0",
+      "group": "shrink",
+      "image": "shrink-negative-0.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        0.5,
+        0.5
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "shrink-positive-1",
+      "group": "shrink",
+      "image": "shrink-positive-1.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          27,
+          20,
+          8,
+          6
+        ]
+      ],
+      "scale": [
+        0.5,
+        0.5
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "shrink-negative-1",
+      "group": "shrink",
+      "image": "shrink-negative-1.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        0.5,
+        0.5
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "shrink-positive-2",
+      "group": "shrink",
+      "image": "shrink-positive-2.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          34,
+          26,
+          8,
+          6
+        ]
+      ],
+      "scale": [
+        0.5,
+        0.5
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "shrink-negative-2",
+      "group": "shrink",
+      "image": "shrink-negative-2.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        0.5,
+        0.5
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "shrink-positive-3",
+      "group": "shrink",
+      "image": "shrink-positive-3.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          41,
+          32,
+          8,
+          6
+        ]
+      ],
+      "scale": [
+        0.5,
+        0.5
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "shrink-negative-3",
+      "group": "shrink",
+      "image": "shrink-negative-3.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        0.5,
+        0.5
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "anisotropic-positive-0",
+      "group": "anisotropic",
+      "image": "anisotropic-positive-0.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          20,
+          14,
+          24,
+          6
+        ]
+      ],
+      "scale": [
+        1.5,
+        0.5
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "anisotropic-negative-0",
+      "group": "anisotropic",
+      "image": "anisotropic-negative-0.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1.5,
+        0.5
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "anisotropic-positive-1",
+      "group": "anisotropic",
+      "image": "anisotropic-positive-1.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          27,
+          20,
+          24,
+          6
+        ]
+      ],
+      "scale": [
+        1.5,
+        0.5
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "anisotropic-negative-1",
+      "group": "anisotropic",
+      "image": "anisotropic-negative-1.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1.5,
+        0.5
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "anisotropic-positive-2",
+      "group": "anisotropic",
+      "image": "anisotropic-positive-2.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          34,
+          26,
+          24,
+          6
+        ]
+      ],
+      "scale": [
+        1.5,
+        0.5
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "anisotropic-negative-2",
+      "group": "anisotropic",
+      "image": "anisotropic-negative-2.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1.5,
+        0.5
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "anisotropic-positive-3",
+      "group": "anisotropic",
+      "image": "anisotropic-positive-3.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          41,
+          32,
+          24,
+          6
+        ]
+      ],
+      "scale": [
+        1.5,
+        0.5
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "anisotropic-negative-3",
+      "group": "anisotropic",
+      "image": "anisotropic-negative-3.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1.5,
+        0.5
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "jpeg-positive-0",
+      "group": "jpeg",
+      "image": "jpeg-positive-0.jpg",
+      "status": "matched",
+      "bboxes": [
+        [
+          20,
+          14,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "jpeg-negative-0",
+      "group": "jpeg",
+      "image": "jpeg-negative-0.jpg",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "jpeg-positive-1",
+      "group": "jpeg",
+      "image": "jpeg-positive-1.jpg",
+      "status": "matched",
+      "bboxes": [
+        [
+          27,
+          20,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "jpeg-negative-1",
+      "group": "jpeg",
+      "image": "jpeg-negative-1.jpg",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "jpeg-positive-2",
+      "group": "jpeg",
+      "image": "jpeg-positive-2.jpg",
+      "status": "matched",
+      "bboxes": [
+        [
+          34,
+          26,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "jpeg-negative-2",
+      "group": "jpeg",
+      "image": "jpeg-negative-2.jpg",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "jpeg-positive-3",
+      "group": "jpeg",
+      "image": "jpeg-positive-3.jpg",
+      "status": "matched",
+      "bboxes": [
+        [
+          41,
+          32,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "jpeg-negative-3",
+      "group": "jpeg",
+      "image": "jpeg-negative-3.jpg",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "roi-positive-0",
+      "group": "roi",
+      "image": "roi-positive-0.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          20,
+          14,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": [
+        12,
+        8,
+        96,
+        72
+      ]
+    },
+    {
+      "name": "roi-negative-0",
+      "group": "roi",
+      "image": "roi-negative-0.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": [
+        12,
+        8,
+        96,
+        72
+      ]
+    },
+    {
+      "name": "roi-positive-1",
+      "group": "roi",
+      "image": "roi-positive-1.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          27,
+          20,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": [
+        12,
+        8,
+        96,
+        72
+      ]
+    },
+    {
+      "name": "roi-negative-1",
+      "group": "roi",
+      "image": "roi-negative-1.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": [
+        12,
+        8,
+        96,
+        72
+      ]
+    },
+    {
+      "name": "roi-positive-2",
+      "group": "roi",
+      "image": "roi-positive-2.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          34,
+          26,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": [
+        12,
+        8,
+        96,
+        72
+      ]
+    },
+    {
+      "name": "roi-negative-2",
+      "group": "roi",
+      "image": "roi-negative-2.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": [
+        12,
+        8,
+        96,
+        72
+      ]
+    },
+    {
+      "name": "roi-positive-3",
+      "group": "roi",
+      "image": "roi-positive-3.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          41,
+          32,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": [
+        12,
+        8,
+        96,
+        72
+      ]
+    },
+    {
+      "name": "roi-negative-3",
+      "group": "roi",
+      "image": "roi-negative-3.png",
+      "status": "not_found",
+      "bboxes": [],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": [
+        12,
+        8,
+        96,
+        72
+      ]
+    },
+    {
+      "name": "ambiguous-0",
+      "group": "ambiguous",
+      "image": "ambiguous-0.png",
+      "status": "ambiguous",
+      "bboxes": [
+        [
+          10,
+          12,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "ambiguous-1",
+      "group": "ambiguous",
+      "image": "ambiguous-1.png",
+      "status": "ambiguous",
+      "bboxes": [
+        [
+          11,
+          12,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "ambiguous-2",
+      "group": "ambiguous",
+      "image": "ambiguous-2.png",
+      "status": "ambiguous",
+      "bboxes": [
+        [
+          12,
+          12,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "ambiguous-3",
+      "group": "ambiguous",
+      "image": "ambiguous-3.png",
+      "status": "ambiguous",
+      "bboxes": [
+        [
+          13,
+          12,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "ambiguous-4",
+      "group": "ambiguous",
+      "image": "ambiguous-4.png",
+      "status": "ambiguous",
+      "bboxes": [
+        [
+          14,
+          12,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "ambiguous-5",
+      "group": "ambiguous",
+      "image": "ambiguous-5.png",
+      "status": "ambiguous",
+      "bboxes": [
+        [
+          15,
+          12,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "repeated-0",
+      "group": "repeated",
+      "image": "repeated-0.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          10,
+          12,
+          16,
+          12
+        ],
+        [
+          80,
+          60,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "repeated-1",
+      "group": "repeated",
+      "image": "repeated-1.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          11,
+          12,
+          16,
+          12
+        ],
+        [
+          80,
+          61,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "repeated-2",
+      "group": "repeated",
+      "image": "repeated-2.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          12,
+          12,
+          16,
+          12
+        ],
+        [
+          80,
+          62,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "repeated-3",
+      "group": "repeated",
+      "image": "repeated-3.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          13,
+          12,
+          16,
+          12
+        ],
+        [
+          80,
+          63,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "repeated-4",
+      "group": "repeated",
+      "image": "repeated-4.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          14,
+          12,
+          16,
+          12
+        ],
+        [
+          80,
+          64,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    },
+    {
+      "name": "repeated-5",
+      "group": "repeated",
+      "image": "repeated-5.png",
+      "status": "matched",
+      "bboxes": [
+        [
+          15,
+          12,
+          16,
+          12
+        ],
+        [
+          80,
+          65,
+          16,
+          12
+        ]
+      ],
+      "scale": [
+        1,
+        1
+      ],
+      "mode": "rgb",
+      "profile": null,
+      "roi": null
+    }
+  ]
+}

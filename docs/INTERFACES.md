@@ -1,5 +1,7 @@
 # BCA 公共接口基线 0.2.0 / Protocol 2
 
+04.2 可选视觉接口位于 `bca.plugin_sdk.vision`，见 [VISION.md](VISION.md)；新增模型不进入 Protocol codec，Core 公共接口保持不变。阶段接入与证据见 [BCA-04_MAIN_SYNC.md](BCA-04_MAIN_SYNC.md)。
+
 方案 A：标准库 Python 类型契约优先。运行时依赖为空；进程内直接传递对象，外部表示通过显式 codec 转换。所有模型为 `@dataclass(frozen=True, kw_only=True)`，只接受关键字参数；不自动把字符串转换成枚举、时间或数字。包版本 `bca.__version__="0.2.0"`，协议常量 `bca.core.protocol.PROTOCOL_VERSION=2`。
 
 ## 导入入口与共同规则

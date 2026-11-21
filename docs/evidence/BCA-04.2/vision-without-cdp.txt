@@ -1,0 +1,11 @@
+sssssssss............................................................... [ 49%]
+........................................................................ [ 99%]
+.                                                                        [100%]
+=========================== short test summary info ===========================
+SKIPPED [1] tests\plugin_sdk\vision\test_browser.py:40: explicit CDP required
+SKIPPED [4] tests\plugin_sdk\vision\test_browser.py:46: explicit CDP required
+SKIPPED [1] tests\plugin_sdk\vision\test_browser.py:94: explicit CDP required
+SKIPPED [1] tests\plugin_sdk\vision\test_browser.py:116: explicit CDP required
+SKIPPED [1] tests\plugin_sdk\vision\test_browser.py:147: explicit CDP required
+SKIPPED [1] tests\plugin_sdk\vision\test_browser.py:181: explicit CDP required
+136 passed, 9 skipped in 11.73s

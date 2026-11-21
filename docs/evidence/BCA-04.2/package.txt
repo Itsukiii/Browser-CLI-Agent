@@ -1,0 +1,63 @@
+COMMAND [WindowsPath('D:/Project/BCA/.test-artifacts/04.2/package-delivery-venv/Scripts/python.exe'), '-m', 'pip', 'install', '--no-index', '--find-links', WindowsPath('D:/Project/BCA/.test-artifacts/04.1/wheelhouse'), '--find-links', WindowsPath('D:/Project/BCA/.test-artifacts/04.2/wheelhouse'), WindowsPath('D:/Project/BCA/dist/browser_cli_agent-0.2.0-py3-none-any.whl')]
+Looking in links: d:\Project\BCA\.test-artifacts\04.1\wheelhouse, d:\Project\BCA\.test-artifacts\04.2\wheelhouse
+Processing D:\Project\BCA\dist\browser_cli_agent-0.2.0-py3-none-any.whl
+Processing D:\Project\BCA\.test-artifacts\04.1\wheelhouse\websockets-15.0.1-py3-none-any.whl (from browser-cli-agent==0.2.0)
+Processing D:\Project\BCA\.test-artifacts\04.1\wheelhouse\pillow-12.3.0-cp314-cp314-win_amd64.whl (from browser-cli-agent==0.2.0)
+Installing collected packages: websockets, Pillow, browser-cli-agent
+
+Successfully installed Pillow-12.3.0 browser-cli-agent-0.2.0 websockets-15.0.1
+COMMAND [WindowsPath('D:/Project/BCA/.test-artifacts/04.2/package-delivery-venv/Scripts/python.exe'), '-I', '-c', "import importlib.util; import bca.core.protocol,bca.core.browser,bca.core.runtime,bca.core.plugins,bca.plugin_sdk.interfaces; assert importlib.util.find_spec('numpy') is None; assert importlib.util.find_spec('cv2') is None; print('base isolated PASS')"]
+base isolated PASS
+COMMAND [WindowsPath('D:/Project/BCA/.test-artifacts/04.2/package-delivery-venv/Scripts/python.exe'), '-m', 'pip', 'install', '--no-index', '--find-links', WindowsPath('D:/Project/BCA/.test-artifacts/04.1/wheelhouse'), '--find-links', WindowsPath('D:/Project/BCA/.test-artifacts/04.2/wheelhouse'), 'browser-cli-agent[assets]']
+Looking in links: d:\Project\BCA\.test-artifacts\04.1\wheelhouse, d:\Project\BCA\.test-artifacts\04.2\wheelhouse
+Requirement already satisfied: browser-cli-agent[assets] in .\package-delivery-venv\Lib\site-packages (0.2.0)
+Requirement already satisfied: websockets<16,>=15 in .\package-delivery-venv\Lib\site-packages (from browser-cli-agent[assets]) (15.0.1)
+Requirement already satisfied: Pillow<13,>=12 in .\package-delivery-venv\Lib\site-packages (from browser-cli-agent[assets]) (12.3.0)
+Processing D:\Project\BCA\.test-artifacts\04.1\wheelhouse\numpy-2.5.5-cp314-cp314-win_amd64.whl (from browser-cli-agent[assets])
+Installing collected packages: numpy
+Successfully installed numpy-2.5.5
+COMMAND [WindowsPath('D:/Project/BCA/.test-artifacts/04.2/package-delivery-venv/Scripts/python.exe'), '-I', '-c', "import importlib.util; import bca.plugin_sdk.assets; assert importlib.util.find_spec('cv2') is None; print('assets isolated PASS')"]
+assets isolated PASS
+COMMAND [WindowsPath('D:/Project/BCA/.test-artifacts/04.2/package-delivery-venv/Scripts/python.exe'), '-I', WindowsPath('D:/Project/BCA/examples/asset_foundation.py')]
+{"profile": "light", "ids": ["ui.confirm"], "variants": ["dialog.dark", "dialog.light"], "selected": "dialog.light", "rgb": [[[240, 240, 240], [240, 240, 240]]], "writeable": false, "cache": {"hits": 1, "misses": 1, "evictions": 0, "entries": 1, "current_bytes": 6, "limit_bytes": 67108864}}
+{"profile": "dark", "ids": ["ui.confirm"], "variants": ["dialog.dark", "dialog.light"], "selected": "dialog.dark", "rgb": [[[16, 24, 32], [16, 24, 32]]], "writeable": false, "cache": {"hits": 1, "misses": 1, "evictions": 0, "entries": 1, "current_bytes": 6, "limit_bytes": 67108864}}
+COMMAND [WindowsPath('D:/Project/BCA/.test-artifacts/04.2/package-delivery-venv/Scripts/python.exe'), '-m', 'pip', 'install', '--no-index', '--find-links', WindowsPath('D:/Project/BCA/.test-artifacts/04.1/wheelhouse'), '--find-links', WindowsPath('D:/Project/BCA/.test-artifacts/04.2/wheelhouse'), 'browser-cli-agent[vision]']
+Looking in links: d:\Project\BCA\.test-artifacts\04.1\wheelhouse, d:\Project\BCA\.test-artifacts\04.2\wheelhouse
+Requirement already satisfied: browser-cli-agent[vision] in .\package-delivery-venv\Lib\site-packages (0.2.0)
+Requirement already satisfied: websockets<16,>=15 in .\package-delivery-venv\Lib\site-packages (from browser-cli-agent[vision]) (15.0.1)
+Requirement already satisfied: Pillow<13,>=12 in .\package-delivery-venv\Lib\site-packages (from browser-cli-agent[vision]) (12.3.0)
+Requirement already satisfied: numpy<3,>=2.4 in .\package-delivery-venv\Lib\site-packages (from browser-cli-agent[vision]) (2.5.5)
+Processing .\wheelhouse\opencv_python_headless-4.14.0.94-cp37-abi3-win_amd64.whl (from browser-cli-agent[vision])
+Installing collected packages: opencv-python-headless
+Successfully installed opencv-python-headless-4.14.0.94
+COMMAND [WindowsPath('D:/Project/BCA/.test-artifacts/04.2/package-delivery-venv/Scripts/python.exe'), '-I', WindowsPath('D:/Project/BCA/examples/vision_foundation.py')]
+{"status": "matched", "asset_id": "ui.confirm", "variant_id": "light", "score": 1.0, "bbox": [23, 17, 8, 6], "center": [26.5, 19.5], "css": [49.75, 24.5], "action_allowed": true}
+{"status": "ambiguous", "asset_id": "ui.confirm", "variant_id": "light", "score": 1.0, "bbox": [23, 17, 8, 6], "center": [26.5, 19.5], "css": [49.75, 24.5], "action_allowed": false}
+COMMAND [WindowsPath('D:/Project/BCA/.test-artifacts/04.2/package-delivery-venv/Scripts/python.exe'), '-I', '-c', 'import bca.plugin_sdk.vision as v; print(v.__file__)']
+D:\Project\BCA\.test-artifacts\04.2\package-delivery-venv\Lib\site-packages\bca\plugin_sdk\vision\__init__.py
+COMMAND ['D:\\Project\\BCA\\.venv\\Scripts\\python.exe', '-m', 'pip', '--disable-pip-version-check', '--cache-dir', WindowsPath('D:/Project/BCA/.test-artifacts/04.2/pip-cache'), 'wheel', '--no-deps', '--wheel-dir', WindowsPath('D:/Project/BCA/.test-artifacts/04.2/sdist-wheel'), WindowsPath('D:/Project/BCA/dist/browser_cli_agent-0.2.0.tar.gz')]
+Processing D:\Project\BCA\dist\browser_cli_agent-0.2.0.tar.gz
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: browser-cli-agent
+  Building wheel for browser-cli-agent (pyproject.toml): started
+  Building wheel for browser-cli-agent (pyproject.toml): finished with status 'done'
+  Created wheel for browser-cli-agent: filename=browser_cli_agent-0.2.0-py3-none-any.whl size=87322 sha256=ebd446e9560b6decf81f56629b56075ec6c3f6adf81fc25c1e7d57b8b535eff1
+  Stored in directory: d:\project\bca\.test-artifacts\04.2\pip-cache\wheels\df\2a\5f\c91270de0d8c20fd168e679bb8b761b43ab58eb143af2d30a3
+Successfully built browser-cli-agent
+COMMAND [WindowsPath('D:/Project/BCA/.test-artifacts/04.2/package-delivery-venv/Scripts/python.exe'), '-m', 'pip', 'install', '--force-reinstall', '--no-deps', WindowsPath('D:/Project/BCA/.test-artifacts/04.2/sdist-wheel/browser_cli_agent-0.2.0-py3-none-any.whl')]
+WARNING: There was an error checking the latest version of pip.
+Processing .\sdist-wheel\browser_cli_agent-0.2.0-py3-none-any.whl
+Installing collected packages: browser-cli-agent
+  Attempting uninstall: browser-cli-agent
+    Found existing installation: browser-cli-agent 0.2.0
+    Uninstalling browser-cli-agent-0.2.0:
+      Successfully uninstalled browser-cli-agent-0.2.0
+Successfully installed browser-cli-agent-0.2.0
+COMMAND [WindowsPath('D:/Project/BCA/.test-artifacts/04.2/package-delivery-venv/Scripts/python.exe'), '-I', WindowsPath('D:/Project/BCA/examples/vision_foundation.py')]
+{"status": "matched", "asset_id": "ui.confirm", "variant_id": "light", "score": 1.0, "bbox": [23, 17, 8, 6], "center": [26.5, 19.5], "css": [49.75, 24.5], "action_allowed": true}
+{"status": "ambiguous", "asset_id": "ui.confirm", "variant_id": "light", "score": 1.0, "bbox": [23, 17, 8, 6], "center": [26.5, 19.5], "css": [49.75, 24.5], "action_allowed": false}

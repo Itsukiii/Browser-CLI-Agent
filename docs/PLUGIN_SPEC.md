@@ -1,5 +1,7 @@
 # 插件开发规范
 
+视觉插件示例为 `examples/plugins/vision_fixture`：initialize 预热 Assets，observe 经标准 CaptureProvider 获取 Frame 并在线程中匹配，handle_command 使用同一 Frame 映射 CSS。歧义不生成动作，输入仍由 Host/Runtime 授权。取消后等待在途原生计算，具体规则见 [VISION.md](VISION.md) 和 [BCA-04_MAIN_SYNC.md](BCA-04_MAIN_SYNC.md)。
+
 核心接口定义在 `bca.core.plugins`；SDK 的 `bca.plugin_sdk.interfaces` 是同一接口的重导出。Plugin 是结构化 typing.Protocol，无须继承某个具体实现。参考 `plugins/example/__init__.py` 和 `tests/plugin_sdk/test_example.py`。
 
 ## 元信息与目录
