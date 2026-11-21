@@ -4,7 +4,7 @@
 
 Browser CLI Agent（BCA）将浏览器连接、截图采集、页面状态解析和命令执行分离。Core 提供通用的 Browser、Provider、Runtime 和 Plugin 能力；具体页面的识别、状态格式和交互规则由插件提供。项目目标是在终端中读取指定页面的结构化信息，并通过命令与该页面交互。
 
-**当前进度：BCA-00～03 已完成阶段验收。** 核心协议、Chromium/Edge CDP 适配、异步 Runtime 和插件系统均已交付，并提供模拟与受控浏览器集成示例。下一阶段为 **BCA-04 / Vision & Assets**，之后是终端 CLI 与首个业务插件——雀魂（Mahjong Soul）。
+**当前进度：BCA-00～04 已完成阶段验收。** 核心协议、Chromium/Edge CDP 适配、异步 Runtime、插件系统以及 Vision & Assets SDK 均已交付，并提供受控浏览器集成示例。下一阶段为 **BCA-05 / CLI**，随后是首个业务插件——雀魂（Mahjong Soul）。
 
 > 当前仓库提供可运行的框架与集成示例。统一交互式产品 CLI 和雀魂业务插件将在后续阶段交付。
 
@@ -16,6 +16,7 @@ Browser CLI Agent（BCA）将浏览器连接、截图采集、页面状态解析
 | **Browser / BCA-01** | 本机 CDP 连接、目标发现与绑定、PNG 全图/区域截图、CSS 坐标映射、七类鼠标/键盘输入 | [Browser](docs/BROWSER.md) · [交接](docs/BCA-01_MAIN_SYNC.md) |
 | **Runtime / BCA-02** | Scheduler、StateStore、EventBus、观察管线、FIFO 动作批次、可信观察引用、取消与显式恢复 | [Runtime](docs/RUNTIME.md) · [交接](docs/BCA-02_MAIN_SYNC.md) |
 | **Plugin System / BCA-03** | 静态 Manifest 发现、可信本地模块加载、版本及能力校验、插件生命周期、Provider 视图和 Runtime Host | [Plugin Spec](docs/PLUGIN_SPEC.md) · [交接](docs/BCA-03_MAIN_SYNC.md) |
+| **Vision & Assets / BCA-04** | JSON Manifest、INI Profile、多变体模板、只读像素与 LRU 缓存、Frame 解码、ROI、缩放、加权模板匹配与歧义结果 | [Assets](docs/ASSETS.md) · [Vision](docs/VISION.md) · [交接](docs/BCA-04_MAIN_SYNC.md) |
 
 ### 工作链路
 
@@ -41,7 +42,7 @@ Browser CLI Agent（BCA）将浏览器连接、截图采集、页面状态解析
        Scheduler · StateStore · EventBus · ProviderLookup
 ~~~
 
-- **观察：** 截图 → 插件识别 → PageState → Runtime 单次提交 → 上层读取结构化状态。
+- **观察：** 截图 → 可选 Vision SDK 解码/模板匹配 → 插件业务识别 → PageState → Runtime 单次提交 → 上层读取结构化状态。
 - **操作：** 命令解析 → 插件映射 Action → ActionBatch → Runtime 验证来源和顺序 → 浏览器输入 → 再次观察。
 - **坐标：** 截图像素转换为 CSS viewport 坐标，使用 Frame.pixel_to_css()；不重复应用 DPR 或滚动偏移。
 - **执行语义：** 输入 SUCCEEDED 只表示输入已被确认，实际网页效果需要下一次观察验证。
@@ -52,7 +53,7 @@ Browser CLI Agent（BCA）将浏览器连接、截图采集、页面状态解析
 
 - Python **3.12+**；当前阶段实际验证环境为 Windows / Python 3.14.7 / Edge 157，Python 3.12/3.13 的实机矩阵仍待补齐。
 - 优先 Windows 与 Chromium / Microsoft Edge。
-- 运行依赖：websockets 15.x、Pillow 12.x；开发依赖见 pyproject.toml。
+- 基础运行依赖：websockets 15.x、Pillow 12.x；`[assets]` 增加 NumPy，`[vision]` 增加 NumPy 与 OpenCV headless；具体版本范围见 pyproject.toml。
 - 真实浏览器集成测试使用显式配置的本机回环 CDP 端点。
 
 在仓库根目录执行（Windows PowerShell）：
@@ -111,6 +112,29 @@ Browser 基础示例：
 
 组合与运行时参考实现见 [plugin_browser.py](examples/plugin_browser.py)、[runtime_integration.py](examples/runtime_integration.py)。该测试示例不代表已在雀魂生产业务页面验收。
 
+## 资源与视觉识别 SDK
+
+BCA-04 在 `bca.plugin_sdk.assets` 与 `bca.plugin_sdk.vision` 提供独立的资源及视觉工具。安装与演示：
+
+~~~powershell
+.\.venv\Scripts\python.exe -m pip install -e ".[dev,assets,vision]"
+.\.venv\Scripts\python.exe examples/asset_foundation.py
+.\.venv\Scripts\python.exe examples/vision_foundation.py
+~~~
+
+- **Assets：** JSON Manifest 定义稳定语义 ID 与多模板变体，INI Profile 选择主题/场景；`AssetStore` 支持解析、按需加载、缓存与显式失效，返回只读 RGB 像素及权重 Mask。
+- **Vision：** `decode_frame` 完整校验 PNG/JPEG；`match_frame` / `match_templates` 支持 RGB/GRAY、ROI、两轴缩放和加权 RMSE 模板匹配，输出 `MATCHED`、`NOT_FOUND` 或 `AMBIGUOUS`。默认 0.96 是像素相似度阈值，并非识别正确概率。
+- **坐标与安全：** `MatchCandidate` 使用来源 Frame 的像素坐标；插件用 `frame.pixel_to_css(*candidate.center)` 形成 CSS 视口动作。视觉结果不替代 Runtime 的来源授权；歧义需要由业务插件明确处置。
+- **异步与性能：** 同步计算可在插件中通过 `asyncio.to_thread` 卸载，并须等待取消时的原生工作完成。提前确定 ROI 与尺度通常能明显降低计算时间。
+
+真实 Edge 视觉插件集成入口：
+
+~~~powershell
+.\.venv\Scripts\python.exe examples/vision_integration.py --endpoint http://127.0.0.1:9341 --samples 3
+~~~
+
+该示例针对受控测试页面，验证主题、DPR、区域截图、来源引用和输入后的页面变化。公开 API 和示例详情见 [ASSETS.md](docs/ASSETS.md)、[VISION.md](docs/VISION.md) 与 [BCA-04 交接](docs/BCA-04_MAIN_SYNC.md)。
+
 ## 插件开发与装配
 
 插件存放在显式配置的可信目录下，例如：
@@ -163,7 +187,7 @@ $env:BCA_CDP_ENDPOINT = "http://127.0.0.1:9341"
 Remove-Item Env:BCA_CDP_ENDPOINT
 ~~~
 
-**BCA-03 阶段交接报告（Windows / Python 3.14.7 / Edge 157）：**
+**BCA-03 阶段历史交接报告（Windows / Python 3.14.7 / Edge 157）：**
 
 | 验证项目 | 报告结果 |
 | --- | --- |
@@ -175,7 +199,20 @@ Remove-Item Env:BCA_CDP_ENDPOINT
 
 交接性能样本：execute_text 到 BatchResult 的 median/p95 为 **6.34 / 18.90 ms**；命令至下一状态提交为 **67.16 / 96.09 ms**。这些包含上层协调及校验步骤，不是裸浏览器截图或通用网页的性能保证。详细测量边界参阅 [03.2 HANDOFF](docs/BCA-03.2_HANDOFF.md)、[性能 JSON](docs/BCA-03.2_PERFORMANCE.json)。
 
-上述结果取自阶段测试报告；仍需补充 Python 3.12/3.13 实机、长时间压力、native/Edge RSS 和真实业务页面测试。
+**BCA-04 正式交接报告（Windows 11 / Python 3.14.7 / Edge 157）：**
+
+| 验证项目 | 报告结果 |
+| --- | --- |
+| 全量测试（专用 CDP） | **805 passed / 0 skipped** |
+| 全量测试（无 CDP） | **760 passed / 45 skipped** |
+| 视觉固定标签集 | **76 场景**：32 正例、32 负例、6 歧义、6 双位置均符合预期 |
+| 真实 Edge 视觉闭环 | 两主题 × DPR 1/1.5/2 × 全图/区域：**360 次点击成功** |
+| 坐标验证 | Action 浮点请求最大偏差 0.5 CSS px；DOM 整数事件最大偏差 1 CSS px |
+| mypy strict / Ruff / wheel / sdist / 独立安装矩阵 | 报告全部通过 |
+
+Vision 耗时随 DPR、ROI、模板数量与尺度显著变化：交接样例中 light / DPR 2 的全图 Vision total 中位 **385.60 ms**，区域为 **65.36 ms**。区域视觉计算更快，但区域截图仍可能经历浏览器完整 surface 捕获，不能把算法耗时等同纯截图耗时。完整原始数据见 [04.2 交接](docs/BCA-04.2_HANDOFF.md) 与 [验证汇总](docs/evidence/BCA-04.2/verification.json)。
+
+上述数字来自各阶段测试报告，不代表本次 README 更新重新执行了测试；仍需补充 Python 3.12/3.13、长时间压力、native/Edge RSS 和真实游戏/WebGL 页面验证。
 
 ## 路线图
 
@@ -185,7 +222,7 @@ Remove-Item Env:BCA_CDP_ENDPOINT
 | BCA-01 | Browser / CDP、截图与输入 | 已验收 |
 | BCA-02 | Runtime / 状态、调度与动作 | 已验收 |
 | BCA-03 | Plugin System / 插件管理与 Host | 已验收 |
-| BCA-04 | Vision & Assets / 图像识别与资源管理 | 规划中 |
+| BCA-04 | Vision & Assets / 图像识别与资源管理 | 已验收 |
 | BCA-05 | CLI / 终端应用 | 规划中 |
 | BCA-06 | Majsoul / 雀魂适配 | 规划中 |
 | BCA-07 | Integration / 全系统验证 | 规划中 |
@@ -197,6 +234,7 @@ Remove-Item Env:BCA_CDP_ENDPOINT
 - **核心规范：** [ARCHITECTURE.md](docs/ARCHITECTURE.md) · [INTERFACES.md](docs/INTERFACES.md) · [BROWSER.md](docs/BROWSER.md) · [RUNTIME.md](docs/RUNTIME.md) · [PLUGIN_SPEC.md](docs/PLUGIN_SPEC.md)
 - **跨模块交接：** [BCA-01](docs/BCA-01_MAIN_SYNC.md) · [BCA-02](docs/BCA-02_MAIN_SYNC.md) · [BCA-03](docs/BCA-03_MAIN_SYNC.md)
 - **插件交付证据：** [BCA-03.1_HANDOFF.md](docs/BCA-03.1_HANDOFF.md) · [BCA-03.2_HANDOFF.md](docs/BCA-03.2_HANDOFF.md)
+- **视觉与资源：** [ASSETS.md](docs/ASSETS.md) · [VISION.md](docs/VISION.md) · [BCA-04_MAIN_SYNC.md](docs/BCA-04_MAIN_SYNC.md) · [BCA-04.1_HANDOFF.md](docs/BCA-04.1_HANDOFF.md) · [BCA-04.2_HANDOFF.md](docs/BCA-04.2_HANDOFF.md)
 - **项目路线：** [DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md)
 
 ---
