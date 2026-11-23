@@ -2,6 +2,11 @@
 
 > Branch: lite. MaaFramework baseline: v5.16.1. Initial integration commit, **not** full functional acceptance.
 
+> Historical experiment description. Current implementation, native/Edge evidence,
+> coordinate policy and remaining acceptance gaps are in
+> [LITE-01_HANDOFF](lite/LITE-01_HANDOFF.md). In particular, the bridge now uses
+> owner-loop serialization, explicit drain, and raw-size screenshots by default.
+
 ## Goal
 
 Use BCA-01's already implemented, explicitly bound Chromium/Edge CDP session as the screenshot/input backend of MaaFramework's Python CustomController. MaaFramework will later own most general-purpose recognition, resources and task execution. BCA-lite retains browser Target selection, observation provenance, and interactive CLI state.
