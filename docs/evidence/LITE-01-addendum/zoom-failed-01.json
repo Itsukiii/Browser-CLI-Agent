@@ -1,0 +1,96 @@
+{
+  "status": "running",
+  "mechanism": "Windows desktop Ctrl+0 / Ctrl+- / Ctrl+=",
+  "owner_thread": 20436,
+  "groups": [],
+  "shortcuts": [
+    {
+      "shortcut": "Ctrl+VK_30",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_30",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_BD",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_BD",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_30",
+      "foreground_owned": true
+    }
+  ],
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Edg/158.0.4370.33",
+    "revision": "@56b8f691820060b6e15f702165117f203442943f",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/158.0.0.0 Safari/537.36 Edg/158.0.0.0",
+    "jsVersion": "15.8.13.3"
+  },
+  "baseline_100": {
+    "runtime": {
+      "dpr": 1.5,
+      "width": 1396,
+      "height": 1607,
+      "scale": 1
+    },
+    "layout": {
+      "layoutViewport": {
+        "pageX": 0,
+        "pageY": 0,
+        "clientWidth": 2071,
+        "clientHeight": 2388
+      },
+      "visualViewport": {
+        "offsetX": 0,
+        "offsetY": 0,
+        "pageX": 0,
+        "pageY": 0,
+        "clientWidth": 2071,
+        "clientHeight": 2388,
+        "scale": 1,
+        "zoom": 1
+      },
+      "contentSize": {
+        "x": 0,
+        "y": 0,
+        "width": 4500,
+        "height": 4500
+      },
+      "cssLayoutViewport": {
+        "pageX": 0,
+        "pageY": 0,
+        "clientWidth": 1380,
+        "clientHeight": 1592
+      },
+      "cssVisualViewport": {
+        "offsetX": 0,
+        "offsetY": 0,
+        "pageX": 0,
+        "pageY": 0,
+        "clientWidth": 1380.666748046875,
+        "clientHeight": 1592,
+        "scale": 1,
+        "zoom": 1
+      },
+      "cssContentSize": {
+        "x": 0,
+        "y": 0,
+        "width": 3000,
+        "height": 3000
+      }
+    }
+  },
+  "owned_targets_remaining": [],
+  "preexisting_targets_preserved": true,
+  "cleanup": {
+    "pending": 0,
+    "reader": false,
+    "connected": false
+  }
+}

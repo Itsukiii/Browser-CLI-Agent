@@ -1,0 +1,210 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+_________________ test_desktop_zoom_authorized_native_clicks __________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/addendum-04/test_desktop_zoom_authorized_n0')
+
+    def test_desktop_zoom_authorized_native_clicks(tmp_path):
+        output = output_dir(tmp_path)
+
+        async def scenario():
+            session = BrowserSession(os.environ["BCA_CDP_ENDPOINT"])
+            capture, inputs = Capture(session), BrowserInputProvider(session)
+            report = {
+                "status": "running",
+                "mechanism": "Windows desktop Ctrl+0 / Ctrl+- / Ctrl+=",
+                "owner_thread": threading.get_ident(),
+                "groups": [],
+                "shortcuts": [],
+            }
+            target = None
+            try:
+                await session.connect()
+                report["browser"] = await session.connection.send("Browser.getVersion")
+                original = {t.target_id for t in await session.list_targets()}
+                target = await create_page(session, window=True)
+                await asyncio.to_thread(
+                    subprocess.run,
+                    [
+                        "powershell",
+                        "-NoProfile",
+                        "-Command",
+                        f"(New-Object -ComObject WScript.Shell).AppActivate('{TITLE}')",
+                    ],
+                    check=True,
+                )
+                await asyncio.to_thread(activate_fixture)
+                await asyncio.sleep(0.3)
+                report["shortcuts"].append(desktop_key(0x30))
+                await asyncio.sleep(0.3)
+                baseline = await metrics(session)
+                report["baseline_100"] = baseline
+                await capture.start()
+                await inputs.start()
+                for percent, keys in [(80, [0xBD, 0xBD]), (100, []), (125, [0xBB, 0xBB])]:
+                    report["shortcuts"].append(desktop_key(0x30))
+                    for key in keys:
+                        report["shortcuts"].append(desktop_key(key))
+                        await asyncio.sleep(0.2)
+                    await asyncio.sleep(0.3)
+                    measured = await metrics(session)
+                    ratio = measured["runtime"]["dpr"] / baseline["runtime"]["dpr"]
+                    assert abs(ratio - percent / 100) < 0.001
+                    assert measured["runtime"]["scale"] == 1
+                    await evaluate(session, "scrollTo(80,120)")
+                    report["before_capture"] = await metrics(session)
+                    from bca.core.browser.geometry import measure_geometry
+                    try:
+                        await measure_geometry(session)
+                    except Exception as exc:
+                        report["geometry_error"] = str(exc)
+                        raise
+                    for raw in (True, False):
+                        bridge = CDPBridge(
+                            loop=asyncio.get_running_loop(),
+                            session=session,
+                            capture=capture,
+                            input_provider=inputs,
+                            require_authorization=True,
+                        )
+                        ctrl = await asyncio.to_thread(TracedController, bridge, raw_size=raw)
+                        record = {"percent": percent, "ratio": ratio, "metrics": measured, "raw": raw}
+                        try:
+                            assert await run_native(
+                                bridge, lambda ctrl=ctrl: ctrl.post_connection().wait().succeeded
+                            )
+                            if not raw:
+                                assert await asyncio.to_thread(
+                                    ctrl.set_screenshot_target_short_side, 360
+                                )
+
+                            def screenshot(ctrl=ctrl, bridge=bridge):
+                                job = ctrl.post_screencap().wait()
+                                assert job.succeeded, bridge.last_error
+                                return job.get()
+
+                            image = await run_native(bridge, screenshot)
+                            ref = bridge.observation
+                            assert ref is not None
+                            ys, xs = np.where(
+                                (image[:, :, 2] > 240) & (image[:, :, 1] < 15) & (image[:, :, 0] < 15)
+                            )
+                            point = (
+                                round(float(xs.min() + xs.max()) / 2),
+                                round(float(ys.min() + ys.max()) / 2),
+                            )
+                            await bridge.authorize(ref)
+                            assert await run_native(
+                                bridge, lambda ctrl=ctrl, point=point: ctrl.post_click(*point).wait().succeeded
+                            )
+                            assert not await run_native(
+                                bridge, lambda ctrl=ctrl, point=point: ctrl.post_click(*point).wait().succeeded
+                            )
+                            callback = [c for c in ctrl.calls if c["callback"] == "click"][0]
+                            raw_point = [
+                                math.floor(
+                                    point[i]
+                                    * (ref.frame.width, ref.frame.height)[i]
+                                    / (image.shape[1], image.shape[0])[i]
+                                    + 0.5
+                                )
+                                for i in range(2)
+                            ]
+                            assert [callback["x"], callback["y"]] == raw_point
+                            css = ref.frame.pixel_to_css(*raw_point)
+                            hits = await evaluate(session, "hits.splice(0)")
+                            assert len(hits) == 1 and hits[0]["target"] == "mark"
+                            assert all(abs(hits[0][a] - css[i]) <= 1 for i, a in enumerate(("x", "y")))
+                            Image.fromarray(image[:, :, ::-1]).save(
+                                output / f"zoom-{percent}-raw-{raw}.png"
+                            )
+                            # New observation invalidated during a real desktop zoom change.
+                            await run_native(bridge, screenshot)
+                            await bridge.authorize(bridge.observation)
+                            report["shortcuts"].append(desktop_key(0xBB))
+                            await asyncio.sleep(0.2)
+                            assert not await run_native(
+                                bridge, lambda ctrl=ctrl, point=point: ctrl.post_click(*point).wait().succeeded
+                            )
+                            assert await evaluate(session, "hits.length") == 0
+                            record["stale_zoom_rejected"] = bridge.last_error
+                            report["shortcuts"].append(desktop_key(0xBD))
+                            await asyncio.sleep(0.2)
+                            record.update(
+                                frame=to_dict(ref.frame),
+                                maa_size=[image.shape[1], image.shape[0]],
+                                point=point,
+                                native_callback=callback,
+                                css=css,
+                                dom=hits[0],
+                                calls=ctrl.calls,
+                            )
+                            assert all(c["thread"] != report["owner_thread"] for c in ctrl.calls)
+                            report["groups"].append(record)
+                        finally:
+                            await asyncio.to_thread(ctrl.close)
+                            await bridge.aclose()
+                report["status"] = "passed"
+            finally:
+                if target and session.is_ready:
+                    try:
+                        report["shortcuts"].append(desktop_key(0x30))
+                        await asyncio.sleep(0.2)
+                    except RuntimeError:
+                        report["reset_skipped"] = "fixture lost foreground; owned target closed below"
+                await finish(session, capture, inputs, target, original, report)
+                (output / "zoom.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+
+>       asyncio.run(scenario())
+
+tests\lite\test_real_addendum.py:289:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_real_addendum.py:167: in scenario
+    await asyncio.to_thread(activate_fixture)
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\threads.py:26: in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def activate_fixture():
+        u = ctypes.windll.user32
+        u.GetForegroundWindow.restype = ctypes.c_void_p
+        windows = []
+        callback_type = ctypes.WINFUNCTYPE(ctypes.c_bool, ctypes.c_void_p, ctypes.c_void_p)
+
+        @callback_type
+        def visit(hwnd, unused):
+            title = ctypes.create_unicode_buffer(512)
+            u.GetWindowTextW(ctypes.c_void_p(hwnd), title, 512)
+            if title.value.startswith(TITLE + ' -'):
+                windows.append(hwnd)
+            return True
+
+        u.EnumWindows(visit, 0)
+>       assert len(windows) == 1, 'Expected one owned fixture window'
+E       AssertionError: Expected one owned fixture window
+E       assert 2 == 1
+E        +  where 2 = len([44044164, 55250412])
+
+tests\lite\test_real_addendum.py:96: AssertionError
+---------------------------- Captured stdout call -----------------------------
+True
+
+=========================== short test summary info ===========================
+FAILED tests/lite/test_real_addendum.py::test_desktop_zoom_authorized_native_clicks
+1 failed, 3 deselected in 1.00s

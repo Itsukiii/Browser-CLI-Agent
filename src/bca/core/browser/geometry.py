@@ -86,7 +86,12 @@ async def measure_geometry(session: BrowserSession) -> Geometry:
             f"layout/visual scroll origins disagree: layout=({layout_x},{layout_y}), "
             f"visual=({x},{y})"
         )
-    if not _same(x, _numeric(values, "x")) or not _same(y, _numeric(values, "y")):
+    # Edge desktop zoom can expose float32 rounding in window.scrollY while
+    # CDP pageY is exact (80%: 119.99999237060547 versus 120). This tolerance
+    # applies only to duplicate scroll measurements, not scale or offsets.
+    if not math.isclose(x, _numeric(values, "x"), rel_tol=0, abs_tol=1e-4) or not math.isclose(
+        y, _numeric(values, "y"), rel_tol=0, abs_tol=1e-4
+    ):
         raise GeometryError("scroll position changed during viewport measurement")
     href = values.get("href")
     if not isinstance(href, str):

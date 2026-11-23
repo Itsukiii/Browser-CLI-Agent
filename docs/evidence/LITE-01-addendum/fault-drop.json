@@ -1,0 +1,212 @@
+{
+  "status": "passed",
+  "mode": "drop",
+  "owner_thread": 9088,
+  "dom_events": [
+    {
+      "type": "mousedown",
+      "x": 79,
+      "y": 79,
+      "target": "mark"
+    },
+    {
+      "type": "mouseup",
+      "x": 79,
+      "y": 79,
+      "target": "mark"
+    }
+  ],
+  "input_diagnostic": {
+    "protocol_version": 2,
+    "code": "browser.timeout",
+    "message": "Input did not complete; inspect details before further actions",
+    "retryable": false,
+    "details": {
+      "stage": "mousePressed",
+      "completed_steps": 0,
+      "input_attempted": true,
+      "release_confirmed": true,
+      "outcome_uncertain": true,
+      "input_state_uncertain": true,
+      "held_button_count": 0,
+      "held_key_count": 0
+    }
+  },
+  "outcome": "unknown",
+  "last_error": "bridge stopped, blocked, or binding changed",
+  "calls": [
+    {
+      "callback": "screencap",
+      "thread": 11592
+    },
+    {
+      "callback": "click",
+      "thread": 11592,
+      "x": 120,
+      "y": 120
+    },
+    {
+      "callback": "click",
+      "thread": 11592,
+      "x": 120,
+      "y": 120
+    },
+    {
+      "callback": "screencap",
+      "thread": 11592
+    }
+  ],
+  "forwarded_mouse_pressed": 1,
+  "native_handle_released": true,
+  "cleanup": {
+    "pending": 0,
+    "reader": false,
+    "connected": false
+  },
+  "proxy_trace": [
+    {
+      "event": "forwarded",
+      "id": 1,
+      "method": "Target.setDiscoverTargets",
+      "params": {
+        "discover": true
+      },
+      "time": 195035.0043428
+    },
+    {
+      "event": "forwarded",
+      "id": 2,
+      "method": "Target.getTargets",
+      "params": {},
+      "time": 195035.0068396
+    },
+    {
+      "event": "forwarded",
+      "id": 3,
+      "method": "Target.getTargets",
+      "params": {},
+      "time": 195035.0079741
+    },
+    {
+      "event": "forwarded",
+      "id": 4,
+      "method": "Target.attachToTarget",
+      "params": {
+        "targetId": "AB3CC0844FDB878DF3BCA8280FB4AA31",
+        "flatten": true
+      },
+      "time": 195035.0090007
+    },
+    {
+      "event": "forwarded",
+      "id": 5,
+      "method": "Page.getLayoutMetrics",
+      "params": {},
+      "time": 195035.0155203
+    },
+    {
+      "event": "forwarded",
+      "id": 7,
+      "method": "Page.getLayoutMetrics",
+      "params": {},
+      "time": 195035.0189347
+    },
+    {
+      "event": "forwarded",
+      "id": 9,
+      "method": "Page.captureScreenshot",
+      "params": {
+        "format": "png",
+        "fromSurface": true,
+        "captureBeyondViewport": false
+      },
+      "time": 195035.0214946
+    },
+    {
+      "event": "forwarded",
+      "id": 10,
+      "method": "Page.getLayoutMetrics",
+      "params": {},
+      "time": 195035.2612
+    },
+    {
+      "event": "forwarded",
+      "id": 12,
+      "method": "Page.getLayoutMetrics",
+      "params": {},
+      "time": 195035.2642739
+    },
+    {
+      "event": "forwarded",
+      "id": 14,
+      "method": "Page.getLayoutMetrics",
+      "params": {},
+      "time": 195035.3646738
+    },
+    {
+      "event": "forwarded",
+      "id": 16,
+      "method": "Page.getLayoutMetrics",
+      "params": {},
+      "time": 195035.3698016
+    },
+    {
+      "event": "forwarded",
+      "id": 18,
+      "method": "Input.dispatchMouseEvent",
+      "params": {
+        "type": "mousePressed",
+        "x": 79.971119133574,
+        "y": 79.97439180537772,
+        "button": "left",
+        "buttons": 1,
+        "clickCount": 1,
+        "modifiers": 0
+      },
+      "time": 195035.3740438
+    },
+    {
+      "event": "edge_reply_intercepted",
+      "request": {
+        "id": 18,
+        "method": "Input.dispatchMouseEvent",
+        "params": {
+          "type": "mousePressed",
+          "x": 79.971119133574,
+          "y": 79.97439180537772,
+          "button": "left",
+          "buttons": 1,
+          "clickCount": 1,
+          "modifiers": 0
+        },
+        "sessionId": "27098495B38A2AE85ECF071150A11858"
+      },
+      "reply_id": 18,
+      "success": true,
+      "mode": "drop",
+      "time": 195035.3781058
+    },
+    {
+      "event": "ack_discarded",
+      "id": 18
+    },
+    {
+      "event": "forwarded",
+      "id": 19,
+      "method": "Input.dispatchMouseEvent",
+      "params": {
+        "type": "mouseReleased",
+        "x": 79.971119133574,
+        "y": 79.97439180537772,
+        "button": "left",
+        "buttons": 0,
+        "clickCount": 1,
+        "modifiers": 0
+      },
+      "time": 195035.6705048
+    }
+  ],
+  "proxy_sockets_remaining": 0,
+  "owned_targets_remaining": [],
+  "preexisting_targets_preserved": true
+}

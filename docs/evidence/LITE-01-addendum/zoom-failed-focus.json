@@ -1,0 +1,22 @@
+{
+  "status": "running",
+  "mechanism": "Windows desktop Ctrl+0 / Ctrl+- / Ctrl+=",
+  "owner_thread": 9088,
+  "groups": [],
+  "shortcuts": [],
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Edg/158.0.4370.33",
+    "revision": "@56b8f691820060b6e15f702165117f203442943f",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/158.0.0.0 Safari/537.36 Edg/158.0.0.0",
+    "jsVersion": "15.8.13.3"
+  },
+  "reset_skipped": "fixture lost foreground; owned target closed below",
+  "owned_targets_remaining": [],
+  "preexisting_targets_preserved": true,
+  "cleanup": {
+    "pending": 0,
+    "reader": false,
+    "connected": false
+  }
+}

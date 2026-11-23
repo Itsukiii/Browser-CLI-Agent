@@ -1,0 +1,486 @@
+F..F                                                                     [100%]
+================================== FAILURES ===================================
+_________________ test_desktop_zoom_authorized_native_clicks __________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/addendum-07/test_desktop_zoom_authorized_n0')
+
+    def test_desktop_zoom_authorized_native_clicks(tmp_path):
+        output = output_dir(tmp_path)
+
+        async def scenario():
+            session = BrowserSession(os.environ["BCA_CDP_ENDPOINT"])
+            capture, inputs = Capture(session), BrowserInputProvider(session)
+            report = {
+                "status": "running",
+                "mechanism": "Windows desktop Ctrl+0 / Ctrl+- / Ctrl+=",
+                "owner_thread": threading.get_ident(),
+                "groups": [],
+                "shortcuts": [],
+            }
+            target = None
+            try:
+                await session.connect()
+                report["browser"] = await session.connection.send("Browser.getVersion")
+                original = {t.target_id for t in await session.list_targets()}
+                target = await create_page(session, window=True)
+                await asyncio.to_thread(
+                    subprocess.run,
+                    [
+                        "powershell",
+                        "-NoProfile",
+                        "-Command",
+                        f"(New-Object -ComObject WScript.Shell).AppActivate('{TITLE}')",
+                    ],
+                    check=True,
+                )
+                await asyncio.to_thread(activate_fixture)
+                await asyncio.sleep(0.3)
+                report["shortcuts"].append(desktop_key(0x30))
+                await asyncio.sleep(0.3)
+                baseline = await metrics(session)
+                report["baseline_100"] = baseline
+                await capture.start()
+                await inputs.start()
+                for percent, keys in [(80, [0xBD, 0xBD]), (100, []), (125, [0xBB, 0xBB])]:
+                    report["shortcuts"].append(desktop_key(0x30))
+                    for key in keys:
+                        report["shortcuts"].append(desktop_key(key))
+                        await asyncio.sleep(0.2)
+                    await asyncio.sleep(0.3)
+                    measured = await metrics(session)
+                    ratio = measured["runtime"]["dpr"] / baseline["runtime"]["dpr"]
+                    assert abs(ratio - percent / 100) < 0.001
+                    assert measured["runtime"]["scale"] == 1
+                    await evaluate(session, "scrollTo(80,120)")
+                    report["before_capture"] = await metrics(session)
+                    from bca.core.browser.geometry import measure_geometry
+
+                    try:
+                        await measure_geometry(session)
+                    except Exception as exc:
+                        report["geometry_error"] = str(exc)
+                        raise
+                    for raw in (True, False):
+                        bridge = CDPBridge(
+                            loop=asyncio.get_running_loop(),
+                            session=session,
+                            capture=capture,
+                            input_provider=inputs,
+                            require_authorization=True,
+                        )
+                        ctrl = await asyncio.to_thread(TracedController, bridge, raw_size=raw)
+                        record = {"percent": percent, "ratio": ratio, "metrics": measured, "raw": raw}
+                        try:
+                            assert await run_native(
+                                bridge, lambda ctrl=ctrl: ctrl.post_connection().wait().succeeded
+                            )
+                            if not raw:
+                                assert await asyncio.to_thread(
+                                    ctrl.set_screenshot_target_short_side, 360
+                                )
+
+                            def screenshot(ctrl=ctrl, bridge=bridge):
+                                job = ctrl.post_screencap().wait()
+                                assert job.succeeded, bridge.last_error
+                                return job.get()
+
+                            image = await run_native(bridge, screenshot)
+                            ref = bridge.observation
+                            assert ref is not None
+                            ys, xs = np.where(
+                                (image[:, :, 2] > 240) & (image[:, :, 1] < 15) & (image[:, :, 0] < 15)
+                            )
+                            point = (
+                                round(float(xs.min() + xs.max()) / 2),
+                                round(float(ys.min() + ys.max()) / 2),
+                            )
+                            await bridge.authorize(ref)
+                            assert await run_native(
+                                bridge,
+                                lambda ctrl=ctrl, point=point: ctrl.post_click(*point).wait().succeeded,
+                            )
+                            assert not await run_native(
+                                bridge,
+                                lambda ctrl=ctrl, point=point: ctrl.post_click(*point).wait().succeeded,
+                            )
+                            callback = [c for c in ctrl.calls if c["callback"] == "click"][0]
+                            raw_point = [
+                                math.floor(
+                                    point[i]
+                                    * (ref.frame.width, ref.frame.height)[i]
+                                    / (image.shape[1], image.shape[0])[i]
+                                    + 0.5
+                                )
+                                for i in range(2)
+                            ]
+                            assert [callback["x"], callback["y"]] == raw_point
+                            css = ref.frame.pixel_to_css(*raw_point)
+                            hits = await evaluate(session, "hits.splice(0)")
+                            assert len(hits) == 1 and hits[0]["target"] == "mark"
+                            assert all(abs(hits[0][a] - css[i]) <= 1 for i, a in enumerate(("x", "y")))
+                            Image.fromarray(image[:, :, ::-1]).save(
+                                output / f"zoom-{percent}-raw-{raw}.png"
+                            )
+                            # New observation invalidated during a real desktop zoom change.
+                            await run_native(bridge, screenshot)
+                            await bridge.authorize(bridge.observation)
+                            report["shortcuts"].append(desktop_key(0xBB))
+                            await asyncio.sleep(0.2)
+                            assert not await run_native(
+                                bridge,
+                                lambda ctrl=ctrl, point=point: ctrl.post_click(*point).wait().succeeded,
+                            )
+                            assert await evaluate(session, "hits.length") == 0
+                            record["stale_zoom_rejected"] = bridge.last_error
+                            report["shortcuts"].append(desktop_key(0xBD))
+                            await asyncio.sleep(0.2)
+                            record.update(
+                                frame=to_dict(ref.frame),
+                                maa_size=[image.shape[1], image.shape[0]],
+                                point=point,
+                                native_callback=callback,
+                                css=css,
+                                dom=hits[0],
+                                calls=ctrl.calls,
+                            )
+                            assert all(c["thread"] != report["owner_thread"] for c in ctrl.calls)
+                            report["groups"].append(record)
+                        finally:
+                            await asyncio.to_thread(ctrl.close)
+                            await bridge.aclose()
+                report["status"] = "passed"
+            finally:
+                if target and session.is_ready:
+                    try:
+                        report["shortcuts"].append(desktop_key(0x30))
+                        await asyncio.sleep(0.2)
+                    except RuntimeError:
+                        report["reset_skipped"] = "fixture lost foreground; owned target closed below"
+                await finish(session, capture, inputs, target, original, report)
+                (output / "zoom.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+
+>       asyncio.run(scenario())
+
+tests\lite\test_real_addendum.py:294:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_real_addendum.py:170: in scenario
+    report["shortcuts"].append(desktop_key(0x30))
+                               ^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+key = 48
+
+    def desktop_key(key):
+        """Only send OS keys after checking exact owned fixture window title."""
+        activate_fixture()
+        u = ctypes.windll.user32
+        u.GetForegroundWindow.restype = ctypes.c_void_p
+        hwnd = u.GetForegroundWindow()
+        title = ctypes.create_unicode_buffer(512)
+        u.GetWindowTextW(ctypes.c_void_p(hwnd), title, 512)
+        if not title.value.startswith(TITLE + " -"):
+>           raise RuntimeError("Owned Edge fixture is not foreground; no keys sent")
+E           RuntimeError: Owned Edge fixture is not foreground; no keys sent
+
+tests\lite\test_real_addendum.py:72: RuntimeError
+---------------------------- Captured stdout call -----------------------------
+True
+
+______________________ test_real_transport_faults[close] ______________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/addendum-07/test_real_transport_faults_clo0')
+mode = 'close'
+
+    @pytest.mark.parametrize("mode", ["drop", "disconnect", "close"])
+    def test_real_transport_faults(tmp_path, mode):
+        output = output_dir(tmp_path)
+
+        async def scenario():
+            endpoint = os.environ["BCA_CDP_ENDPOINT"]
+            oracle = BrowserSession(endpoint)
+            await oracle.connect()
+            original = {t.target_id for t in await oracle.list_targets()}
+            target = await create_page(oracle)
+            report = {"status": "running", "mode": mode, "owner_thread": threading.get_ident()}
+            async with EvidenceProxy(endpoint, mode) as proxy:
+                session = BrowserSession(proxy.url)
+                capture = BrowserCaptureProvider(session)
+                inputs = BrowserInputProvider(session, timeout=0.3)
+                bridge = ctrl = None
+                try:
+                    await session.connect()
+                    await session.bind(target)
+                    await capture.start()
+                    await inputs.start()
+                    bridge = CDPBridge(
+                        loop=asyncio.get_running_loop(),
+                        session=session,
+                        capture=capture,
+                        input_provider=inputs,
+                        timeout=3,
+                        require_authorization=True,
+                    )
+                    ctrl = await asyncio.to_thread(TracedController, bridge)
+                    assert await run_native(
+                        bridge, lambda ctrl=ctrl: ctrl.post_connection().wait().succeeded
+                    )
+                    if mode != "close":
+                        assert await run_native(bridge, lambda: ctrl.post_screencap().wait().succeeded)
+                        ref = bridge.observation
+                        # Point chosen from actual captured red pixels.
+                        image = await asyncio.to_thread(lambda: ctrl.cached_image)
+                        ys, xs = np.where(
+                            (image[:, :, 2] > 240) & (image[:, :, 1] < 15) & (image[:, :, 0] < 15)
+                        )
+                        point = (
+                            round(float(xs.min() + xs.max()) / 2),
+                            round(float(ys.min() + ys.max()) / 2),
+                        )
+                        await bridge.authorize(ref)
+                        proxy.arm = True
+                        success = await run_native(
+                            bridge,
+                            lambda ctrl=ctrl, point=point: ctrl.post_click(*point).wait().succeeded,
+                        )
+                        assert not success and proxy.seen.is_set()
+                        assert bridge.input_outcome == "unknown"
+                        assert not await run_native(
+                            bridge,
+                            lambda ctrl=ctrl, point=point: ctrl.post_click(*point).wait().succeeded,
+                        )
+                        assert not await run_native(
+                            bridge, lambda: ctrl.post_screencap().wait().succeeded
+                        )
+                        events = await evaluate(oracle, "events")
+                        assert len([e for e in events if e["type"] == "mousedown"]) == 1
+                        report["dom_events"] = events
+                        report["input_diagnostic"] = to_dict(inputs.last_error)
+                        assert inputs.input_state_uncertain
+                    else:
+                        proxy.arm = True
+                        task = asyncio.create_task(
+                            run_native(bridge, lambda: ctrl.post_screencap().wait().succeeded)
+                        )
+                        await asyncio.wait_for(proxy.seen.wait(), 5)
+                        task.cancel()
+                        await asyncio.sleep(0.03)
+                        assert not task.done()
+                        closing = asyncio.create_task(bridge.aclose())
+                        await asyncio.sleep(0.03)
+                        assert not closing.done()
+                        report["close_waited_for_callback"] = True
+                        proxy.release.set()
+                        with pytest.raises(asyncio.CancelledError):
+                            await task
+                        await closing
+                        assert not await run_native(
+                            bridge, lambda: ctrl.post_click(10, 10).wait().succeeded
+                        )
+                        report["dom_events"] = await evaluate(oracle, "events")
+                        assert report["dom_events"] == []
+                    report["outcome"] = bridge.input_outcome
+                    report["last_error"] = bridge.last_error
+                    report["calls"] = ctrl.calls
+                    assert all(c["thread"] != report["owner_thread"] for c in ctrl.calls)
+                    presses = [
+                        r for r in proxy.requests if r.get("params", {}).get("type") == "mousePressed"
+                    ]
+                    assert len(presses) == (0 if mode == "close" else 1)
+                    assert len(proxy.dropped) == 1
+                    report["forwarded_mouse_pressed"] = len(presses)
+                    report["status"] = "passed"
+                finally:
+                    proxy.release.set()
+                    if ctrl:
+                        await asyncio.to_thread(ctrl.close)
+                        report["native_handle_released"] = ctrl._handle is None
+                    if bridge:
+                        await bridge.aclose()
+                    await inputs.close()
+                    await capture.close()
+                    await session.close()
+                    report["cleanup"] = {
+                        "pending": session.connection.pending_count,
+                        "reader": session.connection.reader_running,
+                        "connected": session.connected,
+                    }
+                    # Save only test-owned target command data; no user target metadata.
+                    report["proxy_trace"] = [
+                        r
+                        for r in proxy.trace
+                        if r.get("method") not in ("Runtime.evaluate", "Target.createTarget")
+                    ]
+            report["proxy_sockets_remaining"] = len(proxy.sockets)
+            await oracle.connection.send("Target.closeTarget", {"targetId": target})
+            remaining = {t.target_id for t in await oracle.list_targets()}
+            report["owned_targets_remaining"] = sorted(remaining & {target})
+            report["preexisting_targets_preserved"] = original.issubset(remaining)
+            await oracle.close()
+            (output / f"fault-{mode}.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+            assert report["cleanup"] == {"pending": 0, "reader": False, "connected": False}
+            assert report["proxy_sockets_remaining"] == 0 and report["native_handle_released"]
+            assert not report["owned_targets_remaining"] and report["preexisting_targets_preserved"]
+
+>       asyncio.run(scenario())
+
+tests\lite\test_real_addendum.py:504:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def scenario():
+        endpoint = os.environ["BCA_CDP_ENDPOINT"]
+        oracle = BrowserSession(endpoint)
+        await oracle.connect()
+        original = {t.target_id for t in await oracle.list_targets()}
+        target = await create_page(oracle)
+        report = {"status": "running", "mode": mode, "owner_thread": threading.get_ident()}
+        async with EvidenceProxy(endpoint, mode) as proxy:
+            session = BrowserSession(proxy.url)
+            capture = BrowserCaptureProvider(session)
+            inputs = BrowserInputProvider(session, timeout=0.3)
+            bridge = ctrl = None
+            try:
+                await session.connect()
+                await session.bind(target)
+                await capture.start()
+                await inputs.start()
+                bridge = CDPBridge(
+                    loop=asyncio.get_running_loop(),
+                    session=session,
+                    capture=capture,
+                    input_provider=inputs,
+                    timeout=3,
+                    require_authorization=True,
+                )
+                ctrl = await asyncio.to_thread(TracedController, bridge)
+                assert await run_native(
+                    bridge, lambda ctrl=ctrl: ctrl.post_connection().wait().succeeded
+                )
+                if mode != "close":
+                    assert await run_native(bridge, lambda: ctrl.post_screencap().wait().succeeded)
+                    ref = bridge.observation
+                    # Point chosen from actual captured red pixels.
+                    image = await asyncio.to_thread(lambda: ctrl.cached_image)
+                    ys, xs = np.where(
+                        (image[:, :, 2] > 240) & (image[:, :, 1] < 15) & (image[:, :, 0] < 15)
+                    )
+                    point = (
+                        round(float(xs.min() + xs.max()) / 2),
+                        round(float(ys.min() + ys.max()) / 2),
+                    )
+                    await bridge.authorize(ref)
+                    proxy.arm = True
+                    success = await run_native(
+                        bridge,
+                        lambda ctrl=ctrl, point=point: ctrl.post_click(*point).wait().succeeded,
+                    )
+                    assert not success and proxy.seen.is_set()
+                    assert bridge.input_outcome == "unknown"
+                    assert not await run_native(
+                        bridge,
+                        lambda ctrl=ctrl, point=point: ctrl.post_click(*point).wait().succeeded,
+                    )
+                    assert not await run_native(
+                        bridge, lambda: ctrl.post_screencap().wait().succeeded
+                    )
+                    events = await evaluate(oracle, "events")
+                    assert len([e for e in events if e["type"] == "mousedown"]) == 1
+                    report["dom_events"] = events
+                    report["input_diagnostic"] = to_dict(inputs.last_error)
+                    assert inputs.input_state_uncertain
+                else:
+                    proxy.arm = True
+                    task = asyncio.create_task(
+                        run_native(bridge, lambda: ctrl.post_screencap().wait().succeeded)
+                    )
+                    await asyncio.wait_for(proxy.seen.wait(), 5)
+                    task.cancel()
+                    await asyncio.sleep(0.03)
+                    assert not task.done()
+                    closing = asyncio.create_task(bridge.aclose())
+                    await asyncio.sleep(0.03)
+                    assert not closing.done()
+                    report["close_waited_for_callback"] = True
+                    proxy.release.set()
+                    with pytest.raises(asyncio.CancelledError):
+                        await task
+                    await closing
+                    assert not await run_native(
+                        bridge, lambda: ctrl.post_click(10, 10).wait().succeeded
+                    )
+                    report["dom_events"] = await evaluate(oracle, "events")
+                    assert report["dom_events"] == []
+                report["outcome"] = bridge.input_outcome
+                report["last_error"] = bridge.last_error
+                report["calls"] = ctrl.calls
+                assert all(c["thread"] != report["owner_thread"] for c in ctrl.calls)
+                presses = [
+                    r for r in proxy.requests if r.get("params", {}).get("type") == "mousePressed"
+                ]
+                assert len(presses) == (0 if mode == "close" else 1)
+                assert len(proxy.dropped) == 1
+                report["forwarded_mouse_pressed"] = len(presses)
+                report["status"] = "passed"
+            finally:
+                proxy.release.set()
+                if ctrl:
+                    await asyncio.to_thread(ctrl.close)
+                    report["native_handle_released"] = ctrl._handle is None
+                if bridge:
+                    await bridge.aclose()
+                await inputs.close()
+                await capture.close()
+                await session.close()
+                report["cleanup"] = {
+                    "pending": session.connection.pending_count,
+                    "reader": session.connection.reader_running,
+                    "connected": session.connected,
+                }
+                # Save only test-owned target command data; no user target metadata.
+                report["proxy_trace"] = [
+                    r
+                    for r in proxy.trace
+                    if r.get("method") not in ("Runtime.evaluate", "Target.createTarget")
+                ]
+        report["proxy_sockets_remaining"] = len(proxy.sockets)
+        await oracle.connection.send("Target.closeTarget", {"targetId": target})
+        remaining = {t.target_id for t in await oracle.list_targets()}
+        report["owned_targets_remaining"] = sorted(remaining & {target})
+        report["preexisting_targets_preserved"] = original.issubset(remaining)
+        await oracle.close()
+        (output / f"fault-{mode}.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+        assert report["cleanup"] == {"pending": 0, "reader": False, "connected": False}
+        assert report["proxy_sockets_remaining"] == 0 and report["native_handle_released"]
+>       assert not report["owned_targets_remaining"] and report["preexisting_targets_preserved"]
+E       AssertionError: assert (not ['245CA314258D6DCB05371844F3474922'])
+
+tests\lite\test_real_addendum.py:502: AssertionError
+---------------------------- Captured stdout call -----------------------------
+[31m[2026-11-23 16:57:15.614][ERR][Px32496][Tx51489][MaaBuffer.cpp][L267][MaaImageBufferSetRawData] img is empty [data=true] [width=0] [height=0] [type=16] [0m
+[31m[2026-11-23 16:57:15.614][ERR][Px32496][Tx51489][CustomControlUnitMgr.cpp][L105][MaaNS::CtrlUnitNs::CustomControlUnitMgr::screencap] failed to cached_image [ret=false] [0m
+[31m[2026-11-23 16:57:15.614][ERR][Px32496][Tx51489][ControllerAgent.cpp][L842][MaaNS::ControllerNS::ControllerAgent::handle_screencap] controller screencap failed [0m
+[31m[2026-11-23 16:57:15.615][ERR][Px32496][Tx51489][MaaBuffer.cpp][L267][MaaImageBufferSetRawData] img is empty [data=true] [width=0] [height=0] [type=16] [0m
+[31m[2026-11-23 16:57:15.615][ERR][Px32496][Tx51489][CustomControlUnitMgr.cpp][L105][MaaNS::CtrlUnitNs::CustomControlUnitMgr::screencap] failed to cached_image [ret=false] [0m
+[31m[2026-11-23 16:57:15.615][ERR][Px32496][Tx51489][ControllerAgent.cpp][L842][MaaNS::ControllerNS::ControllerAgent::handle_screencap] controller screencap failed [0m
+=========================== short test summary info ===========================
+FAILED tests/lite/test_real_addendum.py::test_desktop_zoom_authorized_native_clicks
+FAILED tests/lite/test_real_addendum.py::test_real_transport_faults[close] - ...
+2 failed, 2 passed in 2.43s

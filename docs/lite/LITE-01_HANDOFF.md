@@ -107,3 +107,17 @@ Remove-Item Env:BCA_CDP_ENDPOINT
 - 显式授权只限定观察，不限定按钮坐标/业务步骤；可信应用层应把有限步骤和视觉结果绑定，不能让任意调用者重授权旧业务意图。
 - Python 3.12/3.13、其他系统、真实 WebGL、长期运行未测；尚无正式 CLI。
 - 建议架构主会话先审核公共观察授权及固定版本 Destroy 边界，再决定上述补测要求及 LITE-02 的启动。保留现有 README/PROJECT_CONTEXT 的正式验收状态，本轮未自行标 Accepted。
+
+## 2026-11-23 定向补证恢复断点
+
+本节更新前文 G1/G2 待办状态，前文测试数字为原始轮次。架构审查已认可核心实现，正式 Accepted 仍由主会话决定；**当前最终 G1 复测仍未完成**。
+
+- 新增 `tests/lite/test_real_addendum.py`：G1 使用 Windows 实际 Ctrl+0/±，覆盖 80/100/125% × raw/nonraw；按标题及 Chromium 窗口类找到唯一自建页，并核验前台 HWND，未取得焦点时不发送按键。G2 经真实 WebSocket 代理丢弃 Edge 已返回的 mousePressed ACK、断开连接、阻滞截图响应并与取消/关闭竞争。
+- G2 三份 JSON 记录 `status=passed`、实际代理请求/拦截响应、DOM mousedown、无重发、unknown 后阻断、native handle 释放及 pending/reader/socket/Target 清理。关闭竞争证明取消等待仍在途的 native 截图回调、随后无输入。
+- G1 发现真实 80% 缩放的 scrollY 精度差：Runtime `119.99999237060547`，CDP `120`。`geometry.py` 仅将重复滚动测量容差设为 `1e-4` CSS px，scale/offset 等校验未放宽。新增回归验证实际差值通过、`0.001` 差值仍拒绝。该补丁是对前文“旧 Core 未修改”的本轮增量例外。
+- `run-14.txt` 曾为 4 passed；随后完整 lite 复测因前台窗口不可用为 28 passed / 1 failed，失败覆盖了 `zoom.json`，因此不以残留截图及成功日志替代完整最终 G1 JSON。已为自建窗口补充 ShowWindow restore/BringWindowToTop，尚待真实复测该变更。
+- 中断恢复后端点 9341 已关闭，最新 `lite-live.txt` 为 24 passed / 5 failed（端点不可用）。自动策略拒绝重新启动 Edge（blocked by policy），已请用户恢复原隔离实例。没有绕过策略启动，也没有自动改绑其他浏览器。
+- 本轮离线：**786 passed / 50 skipped**；Browser capture/input 定向回归 **113 passed**；mypy 92 文件通过、Ruff/format 通过、wheel/sdist 构建成功。日志位于 `docs/evidence/LITE-01-addendum/`。这些是兼容性/静态证据，不替代新架构验收。
+- LITE-02 只交付设计提案，提交 **450523c**，见 `LITE-02_DESIGN.md`；未实现 02.1～02.3，需设计审查后开展。
+
+继续步骤：用户恢复 9341 → 按补证目录 README 运行完整 lite 测试 → 核验 zoom 六组及三种 fault JSON、清理统计 → 更新本节并附最终代码/证据 SHA → 交架构主会话复核。恢复断点提交可通过 `git log --oneline -- tests/lite/test_real_addendum.py` 定位。

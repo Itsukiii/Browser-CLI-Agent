@@ -1,0 +1,123 @@
+{
+  "status": "passed",
+  "mode": "close",
+  "owner_thread": 9088,
+  "close_waited_for_callback": true,
+  "dom_events": [],
+  "outcome": "not_attempted",
+  "last_error": "bridge stopped, blocked, or binding changed",
+  "calls": [
+    {
+      "callback": "screencap",
+      "thread": 30256
+    },
+    {
+      "callback": "screencap",
+      "thread": 30256
+    },
+    {
+      "callback": "click",
+      "thread": 30256,
+      "x": 0,
+      "y": 0
+    }
+  ],
+  "forwarded_mouse_pressed": 0,
+  "native_handle_released": true,
+  "cleanup": {
+    "pending": 0,
+    "reader": false,
+    "connected": false
+  },
+  "proxy_trace": [
+    {
+      "event": "forwarded",
+      "id": 1,
+      "method": "Target.setDiscoverTargets",
+      "params": {
+        "discover": true
+      },
+      "time": 195036.3496238
+    },
+    {
+      "event": "forwarded",
+      "id": 2,
+      "method": "Target.getTargets",
+      "params": {},
+      "time": 195036.3515419
+    },
+    {
+      "event": "forwarded",
+      "id": 3,
+      "method": "Target.getTargets",
+      "params": {},
+      "time": 195036.3533576
+    },
+    {
+      "event": "forwarded",
+      "id": 4,
+      "method": "Target.attachToTarget",
+      "params": {
+        "targetId": "AA9E55807F9163935244786D8CB0FA66",
+        "flatten": true
+      },
+      "time": 195036.3546995
+    },
+    {
+      "event": "forwarded",
+      "id": 5,
+      "method": "Page.getLayoutMetrics",
+      "params": {},
+      "time": 195036.3597194
+    },
+    {
+      "event": "forwarded",
+      "id": 7,
+      "method": "Page.getLayoutMetrics",
+      "params": {},
+      "time": 195036.3696987
+    },
+    {
+      "event": "forwarded",
+      "id": 9,
+      "method": "Page.captureScreenshot",
+      "params": {
+        "format": "png",
+        "fromSurface": true,
+        "captureBeyondViewport": false
+      },
+      "time": 195036.3717603
+    },
+    {
+      "event": "edge_reply_intercepted",
+      "request": {
+        "id": 9,
+        "method": "Page.captureScreenshot",
+        "params": {
+          "format": "png",
+          "fromSurface": true,
+          "captureBeyondViewport": false
+        },
+        "sessionId": "3716D69700EB38A313F738D16B6AFD5E"
+      },
+      "reply_id": 9,
+      "success": true,
+      "mode": "close",
+      "time": 195036.5226743
+    },
+    {
+      "event": "held_reply_released",
+      "id": 9
+    },
+    {
+      "event": "forwarded",
+      "id": 10,
+      "method": "Page.getLayoutMetrics",
+      "params": {},
+      "time": 195036.6838748
+    }
+  ],
+  "proxy_sockets_remaining": 0,
+  "owned_targets_remaining": [],
+  "preexisting_targets_preserved": true
+}

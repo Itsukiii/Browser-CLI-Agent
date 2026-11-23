@@ -471,3 +471,23 @@ def test_native_surface_removes_scrollbars_and_keeps_actual_css_coverage(dpr):
             await session.close()
 
     asyncio.run(scenario())
+
+
+@pytest.mark.parametrize("delta,accepted", [(7.62939453125e-6, True), (0.001, False)])
+def test_desktop_zoom_scroll_measurement_precision(delta, accepted):
+    async def scenario():
+        async with CapturePeer() as peer:
+            peer.runtime["y"] = peer.visual["pageY"] - delta
+            session, provider = await ready(peer)
+            try:
+                if accepted:
+                    frame = await provider.capture("page-a")
+                    assert frame.viewport.scroll_y == peer.visual["pageY"]
+                else:
+                    with pytest.raises(CaptureError, match="scroll position changed"):
+                        await provider.capture("page-a")
+            finally:
+                await provider.close()
+                await session.close()
+
+    asyncio.run(scenario())
