@@ -1,0 +1,35 @@
+........................................................................ [  8%]
+........................................................................ [ 17%]
+...........................ssss......................................... [ 26%]
+................................................ssssssssssssssssssssssss [ 35%]
+........................................................................ [ 44%]
+.............................................ssssssss................... [ 53%]
+........................................................................ [ 62%]
+........................................................................ [ 71%]
+........................................................................ [ 80%]
+.................sssssssss.............................................. [ 88%]
+........................................................................ [ 97%]
+..................                                                       [100%]
+=========================== short test summary info ===========================
+SKIPPED [1] tests\core\browser\test_real_browser.py:17: set BCA_CDP_ENDPOINT to a local test browser
+SKIPPED [1] tests\core\browser\test_real_capture.py:13: set BCA_CDP_ENDPOINT for real capture
+SKIPPED [1] tests\core\browser\test_real_end_to_end.py:10: set BCA_CDP_ENDPOINT for integration
+SKIPPED [1] tests\core\browser\test_real_input.py:10: set BCA_CDP_ENDPOINT for real input
+SKIPPED [9] tests\core\plugins\test_real_faults.py:21: explicit isolated CDP required
+SKIPPED [1] tests\core\plugins\test_real_integration.py:21: explicit isolated CDP required
+SKIPPED [1] tests\core\plugins\test_real_integration.py:29: explicit isolated CDP required
+SKIPPED [1] tests\core\plugins\test_real_integration.py:59: explicit isolated CDP required
+SKIPPED [8] tests\core\plugins\test_real_lifecycle.py:19: explicit isolated CDP required
+SKIPPED [1] tests\core\plugins\test_real_lifecycle.py:89: explicit isolated CDP required
+SKIPPED [2] tests\core\plugins\test_real_lifecycle.py:128: explicit isolated CDP required
+SKIPPED [1] tests\core\plugins\test_real_lifecycle.py:163: explicit isolated CDP required
+SKIPPED [1] tests\core\runtime\test_real_integration.py:28: explicit test CDP required
+SKIPPED [6] tests\core\runtime\test_real_integration.py:36: explicit test CDP required
+SKIPPED [1] tests\core\runtime\test_real_runtime.py:9: set BCA_CDP_ENDPOINT for runtime Browser smoke
+SKIPPED [1] tests\plugin_sdk\vision\test_browser.py:40: explicit CDP required
+SKIPPED [4] tests\plugin_sdk\vision\test_browser.py:46: explicit CDP required
+SKIPPED [1] tests\plugin_sdk\vision\test_browser.py:94: explicit CDP required
+SKIPPED [1] tests\plugin_sdk\vision\test_browser.py:116: explicit CDP required
+SKIPPED [1] tests\plugin_sdk\vision\test_browser.py:147: explicit CDP required
+SKIPPED [1] tests\plugin_sdk\vision\test_browser.py:181: explicit CDP required
+765 passed, 45 skipped in 36.24s

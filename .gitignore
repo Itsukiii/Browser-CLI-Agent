@@ -17,3 +17,5 @@ dist/
 /.pytest-*/
 
 /.test-artifacts/
+/.maa-models/
+/.maa-cache/
