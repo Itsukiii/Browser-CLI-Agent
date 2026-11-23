@@ -1,0 +1,221 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+_____________ test_real_native_coordinate_matrix_and_stale_guards _____________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/lite-real-01/test_real_native_coordinate_ma0')
+
+    def test_real_native_coordinate_matrix_and_stale_guards(tmp_path):
+        output = Path(os.environ.get("BCA_LITE_OUTPUT", str(tmp_path)))
+        output.mkdir(parents=True, exist_ok=True)
+        async def scenario():
+            session = BrowserSession(os.environ["BCA_CDP_ENDPOINT"])
+            capture, inputs = Capture(session), BrowserInputProvider(session)
+            target = None
+            bridge = None
+            report = {"status": "running", "python": platform.python_version(),
+                      "platform": platform.platform(), "maa": Library.version(),
+                      "owner_thread": threading.get_ident(), "coordinates": [], "faults": []}
+            try:
+                await session.connect()
+                original = {t.target_id for t in await session.list_targets()}
+                version = await session.connection.send("Browser.getVersion")
+                report["browser"] = version["product"]
+                target = (await session.connection.send("Target.createTarget", {
+                    "url": "data:text/html;charset=utf-8," + quote(HTML)}))["targetId"]
+                await session.bind(target)
+                await session.send("Page.bringToFront")
+                async with asyncio.timeout(10):
+                    while not await evaluate(session, "typeof hits==='object'"):
+                        await asyncio.sleep(0.01)
+                await capture.start()
+                await inputs.start()
+                for width, height, dpr in [(960, 540, 1), (720, 540, 1.5), (800, 600, 2)]:
+                    await session.send("Emulation.setDeviceMetricsOverride", {
+                        "width": width, "height": height, "deviceScaleFactor": dpr, "mobile": False})
+                    await evaluate(session, "scrollTo(80,120)")
+                    await evaluate(session, "new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))")
+                    for region in (False, True):
+                        capture.region = region
+                        for raw in (False, True):
+                            bridge = CDPBridge(loop=asyncio.get_running_loop(), session=session,
+                                               capture=capture, input_provider=inputs)
+                            def matrix_work():
+                                ctrl = TracedController(bridge, raw_size=raw)
+                                records = []
+                                try:
+                                    assert ctrl.post_connection().wait().succeeded
+                                    if not raw:
+                                        assert ctrl.set_screenshot_target_short_side(360)
+                                    for sample in range(3):
+                                        t0 = time.perf_counter()
+                                        job = ctrl.post_screencap().wait()
+                                        assert job.succeeded, bridge.last_error
+                                        image = job.get()
+                                        capture_ms = (time.perf_counter() - t0) * 1000
+                                        assert image.flags.c_contiguous and image.dtype == np.uint8
+                                        ys, xs = np.where((image[:, :, 2] > 240) &
+                                                         (image[:, :, 1] < 15) & (image[:, :, 0] < 15))
+                                        assert len(xs)
+                                        point = (int((xs.min()+xs.max())//2), int((ys.min()+ys.max())//2))
+                                        if sample == 0:
+                                            Image.fromarray(image[:, :, ::-1]).save(
+                                                output / f"dpr-{dpr}-region-{region}-raw-{raw}.png")
+                                        t1 = time.perf_counter()
+                                        assert ctrl.post_click(*point).wait().succeeded, bridge.last_error
+                                        click_ms = (time.perf_counter() - t1) * 1000
+                                        callback = ctrl.calls[-1]
+                                        frame = capture.frame
+                                        expected_raw = [math.floor(point[0]*frame.width/image.shape[1]+.5),
+                                                        math.floor(point[1]*frame.height/image.shape[0]+.5)]
+                                        assert [callback['x'], callback['y']] == expected_raw
+                                        css = frame.pixel_to_css(*expected_raw)
+                                        assert abs(css[0]-80) < 2 and abs(css[1]-80) < 2
+                                        records.append({"dpr": dpr, "region": region, "raw": raw,
+                                                        "sample": sample, "frame": to_dict(frame),
+                                                        "maa_size": [image.shape[1], image.shape[0]],
+                                                        "point": point, "callback": callback, "css": css,
+                                                        "capture_ms": capture_ms, "click_ms": click_ms})
+                                    assert not ctrl.post_click(*point).wait().succeeded  # no replay
+                                    assert all(c['thread'] != report['owner_thread'] for c in ctrl.calls)
+                                finally:
+                                    ctrl.close()
+                                return records
+                            records = await run_native(bridge, matrix_work)
+                            hits = await evaluate(session, "hits.splice(0)")
+                            assert len(hits) == len(records)
+                            for hit, record in zip(hits, records, strict=True):
+                                assert hit['target'] == 'mark'
+                                assert abs(hit['x']-record['css'][0]) <= 1
+                                assert abs(hit['y']-record['css'][1]) <= 1
+                                record['dom'] = hit
+                            report['coordinates'].extend(records)
+                            await bridge.aclose()
+                # Real native jobs must reject observed resize/navigation/disconnection.
+                capture.region = False
+                for fault in ('resize', 'navigation', 'destroy'):
+                    bridge = CDPBridge(loop=asyncio.get_running_loop(), session=session,
+                                       capture=capture, input_provider=inputs)
+                    ready = asyncio.Event()
+                    proceed = threading.Event()
+                    loop = asyncio.get_running_loop()
+                    def fault_work():
+                        ctrl = TracedController(bridge)
+                        try:
+                            assert ctrl.post_connection().wait().succeeded
+                            assert ctrl.post_screencap().wait().succeeded
+                            loop.call_soon_threadsafe(ready.set)
+                            assert proceed.wait(10)
+                            assert not ctrl.post_click(80, 80).wait().succeeded
+                            return {"fault": fault, "error": bridge.last_error,
+                                    "outcome": bridge.input_outcome, "calls": ctrl.calls}
+                        finally:
+                            ctrl.close()
+                    task = asyncio.create_task(run_native(bridge, fault_work))
+                    try:
+                        await asyncio.wait_for(ready.wait(), 10)
+                        if fault == 'resize':
+                            await session.send('Emulation.setDeviceMetricsOverride', {
+                                'width': 900, 'height': 600, 'deviceScaleFactor': 2, 'mobile': False})
+                        elif fault == 'navigation':
+                            await session.send('Page.navigate', {'url': 'about:blank'})
+                            async with asyncio.timeout(5):
+                                while await evaluate(session, 'location.href') != 'about:blank':
+                                    await asyncio.sleep(.01)
+                        else:
+                            await session.connection.send('Target.closeTarget', {'targetId': target})
+                            async with asyncio.timeout(5):
+                                while session.is_ready:
+                                    await asyncio.sleep(.01)
+                    finally:
+                        proceed.set()
+                    report['faults'].append(await task)
+                    await bridge.aclose()
+                report['status'] = 'passed'
+            finally:
+                if bridge:
+                    await bridge.aclose()
+                await inputs.close()
+                await capture.close()
+                if target and session.connected:
+                    remaining = {t.target_id for t in await session.list_targets()}
+                    if target in remaining:
+                        await session.connection.send('Target.closeTarget', {'targetId': target})
+                    remaining = {t.target_id for t in await session.list_targets()}
+                    report['owned_targets_remaining'] = sorted({target} & remaining)
+                    report['preexisting_targets_preserved'] = original.issubset(remaining)
+                await session.close()
+                report['cleanup'] = {'pending': session.connection.pending_count,
+                                     'reader': session.connection.reader_running,
+                                     'connected': session.connected}
+                (output / 'report.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
+            assert report['cleanup'] == {'pending': 0, 'reader': False, 'connected': False}
+            assert report['owned_targets_remaining'] == []
+            assert report['preexisting_targets_preserved']
+>       asyncio.run(scenario())
+
+tests\lite\test_real_bridge.py:203:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_real_bridge.py:132: in scenario
+    records = await run_native(bridge, matrix_work)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\bca\lite\bridge.py:264: in run_native
+    return await asyncio.shield(worker)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\threads.py:26: in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def matrix_work():
+        ctrl = TracedController(bridge, raw_size=raw)
+        records = []
+        try:
+            assert ctrl.post_connection().wait().succeeded
+            if not raw:
+                assert ctrl.set_screenshot_target_short_side(360)
+            for sample in range(3):
+                t0 = time.perf_counter()
+                job = ctrl.post_screencap().wait()
+                assert job.succeeded, bridge.last_error
+                image = job.get()
+                capture_ms = (time.perf_counter() - t0) * 1000
+                assert image.flags.c_contiguous and image.dtype == np.uint8
+                ys, xs = np.where((image[:, :, 2] > 240) &
+                                 (image[:, :, 1] < 15) & (image[:, :, 0] < 15))
+                assert len(xs)
+                point = (int((xs.min()+xs.max())//2), int((ys.min()+ys.max())//2))
+                if sample == 0:
+                    Image.fromarray(image[:, :, ::-1]).save(
+                        output / f"dpr-{dpr}-region-{region}-raw-{raw}.png")
+                t1 = time.perf_counter()
+                assert ctrl.post_click(*point).wait().succeeded, bridge.last_error
+                click_ms = (time.perf_counter() - t1) * 1000
+                callback = ctrl.calls[-1]
+                frame = capture.frame
+                expected_raw = [math.floor(point[0]*frame.width/image.shape[1]+.5),
+                                math.floor(point[1]*frame.height/image.shape[0]+.5)]
+                assert [callback['x'], callback['y']] == expected_raw
+                css = frame.pixel_to_css(*expected_raw)
+>               assert abs(css[0]-80) < 2 and abs(css[1]-80) < 2
+E               assert (2.0 < 2)
+E                +  where 2.0 = abs((78.0 - 80))
+
+tests\lite\test_real_bridge.py:121: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/lite/test_real_bridge.py::test_real_native_coordinate_matrix_and_stale_guards
+1 failed in 2.95s

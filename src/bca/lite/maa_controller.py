@@ -2,23 +2,55 @@
 
 Install the optional lite dependency to import this module. The surrounding
 application must keep the CDP asyncio loop alive while Maa callbacks run in
-workers, and close Maa jobs before invalidating the bridge.
+workers. On cancellation revoke bridge entry, join jobs, then drain providers.
 """
 
 from __future__ import annotations
 
+import asyncio
+
 import numpy as np
-from maa.controller import CustomController
+from maa.controller import CustomController  # type: ignore[import-untyped]
+from maa.library import Library  # type: ignore[import-untyped]
+from numpy.typing import NDArray
 
-from .bridge import CDPBridge
+from .bridge import BridgeError, CDPBridge
 
 
-class MaaCDPController(CustomController):
+class MaaCDPController(CustomController):  # type: ignore[misc]
     """Initial CDP adapter: screenshot and single-click; unsupported calls fail."""
 
-    def __init__(self, bridge: CDPBridge) -> None:
+    def __init__(self, bridge: CDPBridge, *, raw_size: bool = True) -> None:
         self._bridge = bridge
+        self._handle = None  # Also makes upstream __del__ safe on partial initialization.
+        try:
+            asyncio.get_running_loop()
+        except RuntimeError:
+            pass
+        else:
+            raise BridgeError("create native controller in a worker thread")
         super().__init__()
+        if not self.set_screenshot_use_raw_size(raw_size):
+            self.close()
+            raise RuntimeError("Maa rejected screenshot size policy")
+
+    def close(self) -> None:
+        """Owner-worker only, after jobs stop. Never post/use this object afterward.
+
+        v5.16.1 has no public close. Isolate its destructor's native release here,
+        clear the handle to make later __del__ harmless, keep callbacks alive until
+        destroy returns. The application must join this worker before providers.
+        """
+        handle = getattr(self, "_handle", None)
+        if handle:
+            try:
+                asyncio.get_running_loop()
+            except RuntimeError:
+                pass
+            else:
+                raise BridgeError("destroy native controller in a worker thread")
+            Library.framework().MaaControllerDestroy(handle)
+            self._handle = None
 
     def connect(self) -> bool:
         return self._bridge.connected
@@ -39,8 +71,12 @@ class MaaCDPController(CustomController):
     def stop_app(self, intent: str) -> bool:
         return False
 
-    def screencap(self) -> np.ndarray:
-        return self._bridge.screencap()
+    def screencap(self) -> NDArray[np.uint8]:
+        try:
+            return self._bridge.screencap()
+        except Exception:
+            # Empty image maps to failure without leaking exceptions through ctypes.
+            return np.empty((0, 0, 3), dtype=np.uint8)
 
     def click(self, x: int, y: int) -> bool:
         return self._bridge.click(x, y)

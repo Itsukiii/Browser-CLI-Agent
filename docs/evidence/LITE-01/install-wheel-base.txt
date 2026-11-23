@@ -1,0 +1,19 @@
+.test-artifacts/install-check/Scripts/python.exe : WARNING: There was an error checking the latest version of pip.
+所在位置 行:2 字符: 65
++ ... tall-check; .test-artifacts/install-check/Scripts/python.exe -m pip i ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (WARNING: There ...version of pip.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Processing .\dist\browser_cli_agent-0.2.0-py3-none-any.whl
+Collecting websockets<16,>=15 (from browser-cli-agent==0.2.0)
+  Downloading websockets-15.0.1-py3-none-any.whl.metadata (6.8 kB)
+Collecting Pillow<13,>=12 (from browser-cli-agent==0.2.0)
+  Downloading pillow-12.3.0-cp314-cp314-win_amd64.whl.metadata (9.3 kB)
+Downloading pillow-12.3.0-cp314-cp314-win_amd64.whl (7.2 MB)
+   ---------------------------------------- 7.2/7.2 MB 941.3 kB/s  0:00:07
+Downloading websockets-15.0.1-py3-none-any.whl (169 kB)
+Installing collected packages: websockets, Pillow, browser-cli-agent
+
+Successfully installed Pillow-12.3.0 browser-cli-agent-0.2.0 websockets-15.0.1
+base-only wheel imports OK

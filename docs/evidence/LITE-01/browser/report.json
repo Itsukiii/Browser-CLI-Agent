@@ -1,0 +1,2012 @@
+{
+  "status": "passed",
+  "python": "3.14.7",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "maa": "v5.16.1",
+  "owner_thread": 33596,
+  "coordinates": [
+    {
+      "dpr": 1,
+      "region": false,
+      "raw": false,
+      "sample": 0,
+      "frame": {
+        "protocol_version": 2,
+        "width": 944,
+        "height": 524,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 944.0,
+          "height": 524.0,
+          "capture_width": 944.0,
+          "capture_height": 524.0,
+          "device_scale_factor": 1.0000000298023224,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "80c8afd9-1ab0-457b-ad02-18df229600dd",
+        "captured_at": "2026-11-23T08:30:28.401407+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        649,
+        360
+      ],
+      "point": [
+        54,
+        54
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 7756,
+        "x": 79,
+        "y": 79
+      },
+      "css": [
+        79.0,
+        79.0
+      ],
+      "capture_ms": 122.6916000014171,
+      "click_ms": 6.082400010200217,
+      "dom": {
+        "target": "mark",
+        "x": 79,
+        "y": 79
+      }
+    },
+    {
+      "dpr": 1,
+      "region": false,
+      "raw": false,
+      "sample": 1,
+      "frame": {
+        "protocol_version": 2,
+        "width": 944,
+        "height": 524,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 944.0,
+          "height": 524.0,
+          "capture_width": 944.0,
+          "capture_height": 524.0,
+          "device_scale_factor": 1.0000000298023224,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "83bdcaf2-6d8c-432a-b365-174134f2c442",
+        "captured_at": "2026-11-23T08:30:28.491924+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        649,
+        360
+      ],
+      "point": [
+        54,
+        54
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 7756,
+        "x": 79,
+        "y": 79
+      },
+      "css": [
+        79.0,
+        79.0
+      ],
+      "capture_ms": 77.331000007689,
+      "click_ms": 4.270900011761114,
+      "dom": {
+        "target": "mark",
+        "x": 79,
+        "y": 79
+      }
+    },
+    {
+      "dpr": 1,
+      "region": false,
+      "raw": false,
+      "sample": 2,
+      "frame": {
+        "protocol_version": 2,
+        "width": 944,
+        "height": 524,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 944.0,
+          "height": 524.0,
+          "capture_width": 944.0,
+          "capture_height": 524.0,
+          "device_scale_factor": 1.0000000298023224,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "57590ea9-b9f0-4666-8b6c-e39f642db167",
+        "captured_at": "2026-11-23T08:30:28.577523+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        649,
+        360
+      ],
+      "point": [
+        54,
+        54
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 7756,
+        "x": 79,
+        "y": 79
+      },
+      "css": [
+        79.0,
+        79.0
+      ],
+      "capture_ms": 79.88759997533634,
+      "click_ms": 4.303499998059124,
+      "dom": {
+        "target": "mark",
+        "x": 79,
+        "y": 79
+      }
+    },
+    {
+      "dpr": 1,
+      "region": false,
+      "raw": true,
+      "sample": 0,
+      "frame": {
+        "protocol_version": 2,
+        "width": 944,
+        "height": 524,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 944.0,
+          "height": 524.0,
+          "capture_width": 944.0,
+          "capture_height": 524.0,
+          "device_scale_factor": 1.0000000298023224,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "a7f35ba2-acea-4c3e-aa2b-66775e649ab8",
+        "captured_at": "2026-11-23T08:30:28.666743+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        944,
+        524
+      ],
+      "point": [
+        80,
+        80
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 7984,
+        "x": 80,
+        "y": 80
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 82.8715999959968,
+      "click_ms": 3.7678999942727387,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 1,
+      "region": false,
+      "raw": true,
+      "sample": 1,
+      "frame": {
+        "protocol_version": 2,
+        "width": 944,
+        "height": 524,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 944.0,
+          "height": 524.0,
+          "capture_width": 944.0,
+          "capture_height": 524.0,
+          "device_scale_factor": 1.0000000298023224,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "f0c8685d-d77b-4aa8-85ab-f897f8d59b63",
+        "captured_at": "2026-11-23T08:30:28.764069+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        944,
+        524
+      ],
+      "point": [
+        80,
+        80
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 7984,
+        "x": 80,
+        "y": 80
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 83.10990000609308,
+      "click_ms": 4.124600003706291,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 1,
+      "region": false,
+      "raw": true,
+      "sample": 2,
+      "frame": {
+        "protocol_version": 2,
+        "width": 944,
+        "height": 524,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 944.0,
+          "height": 524.0,
+          "capture_width": 944.0,
+          "capture_height": 524.0,
+          "device_scale_factor": 1.0000000298023224,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "11563916-b280-4545-bdea-0759dc5713e2",
+        "captured_at": "2026-11-23T08:30:28.854753+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        944,
+        524
+      ],
+      "point": [
+        80,
+        80
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 7984,
+        "x": 80,
+        "y": 80
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 86.73230002750643,
+      "click_ms": 3.443099994910881,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 1,
+      "region": true,
+      "raw": false,
+      "sample": 0,
+      "frame": {
+        "protocol_version": 2,
+        "width": 120,
+        "height": 120,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 944.0,
+          "height": 524.0,
+          "capture_width": 120.0,
+          "capture_height": 120.0,
+          "device_scale_factor": 1.0000000298023224,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 20.0,
+          "capture_y": 20.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "d2974aea-d448-4ada-9a81-2b00520a6706",
+        "captured_at": "2026-11-23T08:30:28.942644+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        360,
+        360
+      ],
+      "point": [
+        180,
+        180
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 24108,
+        "x": 60,
+        "y": 60
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 71.84249997953884,
+      "click_ms": 3.351199993630871,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 1,
+      "region": true,
+      "raw": false,
+      "sample": 1,
+      "frame": {
+        "protocol_version": 2,
+        "width": 120,
+        "height": 120,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 944.0,
+          "height": 524.0,
+          "capture_width": 120.0,
+          "capture_height": 120.0,
+          "device_scale_factor": 1.0000000298023224,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 20.0,
+          "capture_y": 20.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "d3212a2c-a6d3-4c64-9406-b1b42f10b65e",
+        "captured_at": "2026-11-23T08:30:29.023855+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        360,
+        360
+      ],
+      "point": [
+        180,
+        180
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 24108,
+        "x": 60,
+        "y": 60
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 76.72549999551848,
+      "click_ms": 2.901100000599399,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 1,
+      "region": true,
+      "raw": false,
+      "sample": 2,
+      "frame": {
+        "protocol_version": 2,
+        "width": 120,
+        "height": 120,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 944.0,
+          "height": 524.0,
+          "capture_width": 120.0,
+          "capture_height": 120.0,
+          "device_scale_factor": 1.0000000298023224,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 20.0,
+          "capture_y": 20.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "0057527c-3146-4910-8384-5a2ffe29812b",
+        "captured_at": "2026-11-23T08:30:29.100774+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        360,
+        360
+      ],
+      "point": [
+        180,
+        180
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 24108,
+        "x": 60,
+        "y": 60
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 70.44630000018515,
+      "click_ms": 4.893100005574524,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 1,
+      "region": true,
+      "raw": true,
+      "sample": 0,
+      "frame": {
+        "protocol_version": 2,
+        "width": 120,
+        "height": 120,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 944.0,
+          "height": 524.0,
+          "capture_width": 120.0,
+          "capture_height": 120.0,
+          "device_scale_factor": 1.0000000298023224,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 20.0,
+          "capture_y": 20.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "1f67526e-56b6-4f15-a185-499e3152db96",
+        "captured_at": "2026-11-23T08:30:29.193290+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        120,
+        120
+      ],
+      "point": [
+        60,
+        60
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 34176,
+        "x": 60,
+        "y": 60
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 82.70480000646785,
+      "click_ms": 3.2489000004716218,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 1,
+      "region": true,
+      "raw": true,
+      "sample": 1,
+      "frame": {
+        "protocol_version": 2,
+        "width": 120,
+        "height": 120,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 944.0,
+          "height": 524.0,
+          "capture_width": 120.0,
+          "capture_height": 120.0,
+          "device_scale_factor": 1.0000000298023224,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 20.0,
+          "capture_y": 20.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "f3843a04-f3bb-4bea-ad8b-3021d8baad75",
+        "captured_at": "2026-11-23T08:30:29.269905+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        120,
+        120
+      ],
+      "point": [
+        60,
+        60
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 34176,
+        "x": 60,
+        "y": 60
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 76.9952000118792,
+      "click_ms": 8.914100006222725,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 1,
+      "region": true,
+      "raw": true,
+      "sample": 2,
+      "frame": {
+        "protocol_version": 2,
+        "width": 120,
+        "height": 120,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 944.0,
+          "height": 524.0,
+          "capture_width": 120.0,
+          "capture_height": 120.0,
+          "device_scale_factor": 1.0000000298023224,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 20.0,
+          "capture_y": 20.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "dd806fe1-7c6f-4c12-b5a4-d305d42be4cf",
+        "captured_at": "2026-11-23T08:30:29.374456+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        120,
+        120
+      ],
+      "point": [
+        60,
+        60
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 34176,
+        "x": 60,
+        "y": 60
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 91.09299999545328,
+      "click_ms": 6.266000011237338,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 1.5,
+      "region": false,
+      "raw": false,
+      "sample": 0,
+      "frame": {
+        "protocol_version": 2,
+        "width": 1056,
+        "height": 786,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 704.0,
+          "height": 524.0,
+          "capture_width": 704.0,
+          "capture_height": 524.0,
+          "device_scale_factor": 1.5,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "b48b5063-5078-46c5-aa2c-89af6d57b3b3",
+        "captured_at": "2026-11-23T08:30:29.511558+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        484,
+        360
+      ],
+      "point": [
+        54,
+        54
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 30020,
+        "x": 118,
+        "y": 118
+      },
+      "css": [
+        78.66666666666667,
+        78.66666666666667
+      ],
+      "capture_ms": 100.38580000400543,
+      "click_ms": 4.4855999876745045,
+      "dom": {
+        "target": "mark",
+        "x": 78,
+        "y": 78
+      }
+    },
+    {
+      "dpr": 1.5,
+      "region": false,
+      "raw": false,
+      "sample": 1,
+      "frame": {
+        "protocol_version": 2,
+        "width": 1056,
+        "height": 786,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 704.0,
+          "height": 524.0,
+          "capture_width": 704.0,
+          "capture_height": 524.0,
+          "device_scale_factor": 1.5,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "89048b97-42e2-42eb-9a5a-3f9d9e40e55e",
+        "captured_at": "2026-11-23T08:30:29.602809+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        484,
+        360
+      ],
+      "point": [
+        54,
+        54
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 30020,
+        "x": 118,
+        "y": 118
+      },
+      "css": [
+        78.66666666666667,
+        78.66666666666667
+      ],
+      "capture_ms": 86.73700000508688,
+      "click_ms": 3.7490999966394156,
+      "dom": {
+        "target": "mark",
+        "x": 78,
+        "y": 78
+      }
+    },
+    {
+      "dpr": 1.5,
+      "region": false,
+      "raw": false,
+      "sample": 2,
+      "frame": {
+        "protocol_version": 2,
+        "width": 1056,
+        "height": 786,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 704.0,
+          "height": 524.0,
+          "capture_width": 704.0,
+          "capture_height": 524.0,
+          "device_scale_factor": 1.5,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "36d73bdc-c42a-4dfd-9043-ad5bd6b286c7",
+        "captured_at": "2026-11-23T08:30:29.709538+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        484,
+        360
+      ],
+      "point": [
+        54,
+        54
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 30020,
+        "x": 118,
+        "y": 118
+      },
+      "css": [
+        78.66666666666667,
+        78.66666666666667
+      ],
+      "capture_ms": 102.0814000221435,
+      "click_ms": 4.0388999914284796,
+      "dom": {
+        "target": "mark",
+        "x": 78,
+        "y": 78
+      }
+    },
+    {
+      "dpr": 1.5,
+      "region": false,
+      "raw": true,
+      "sample": 0,
+      "frame": {
+        "protocol_version": 2,
+        "width": 1056,
+        "height": 786,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 704.0,
+          "height": 524.0,
+          "capture_width": 704.0,
+          "capture_height": 524.0,
+          "device_scale_factor": 1.5,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "936dca87-ac79-47b3-8c9b-ffa5b1d99fd0",
+        "captured_at": "2026-11-23T08:30:29.814583+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        1056,
+        786
+      ],
+      "point": [
+        120,
+        120
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 32432,
+        "x": 120,
+        "y": 120
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 93.40540002449416,
+      "click_ms": 3.468999988399446,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 1.5,
+      "region": false,
+      "raw": true,
+      "sample": 1,
+      "frame": {
+        "protocol_version": 2,
+        "width": 1056,
+        "height": 786,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 704.0,
+          "height": 524.0,
+          "capture_width": 704.0,
+          "capture_height": 524.0,
+          "device_scale_factor": 1.5,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "a48fa1b5-dde1-480b-a985-9c0c6d4e829e",
+        "captured_at": "2026-11-23T08:30:29.919681+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        1056,
+        786
+      ],
+      "point": [
+        120,
+        120
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 32432,
+        "x": 120,
+        "y": 120
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 89.16179998777807,
+      "click_ms": 4.10710001597181,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 1.5,
+      "region": false,
+      "raw": true,
+      "sample": 2,
+      "frame": {
+        "protocol_version": 2,
+        "width": 1056,
+        "height": 786,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 704.0,
+          "height": 524.0,
+          "capture_width": 704.0,
+          "capture_height": 524.0,
+          "device_scale_factor": 1.5,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "78d22e55-12ca-49e0-bee4-db614bbb8c9e",
+        "captured_at": "2026-11-23T08:30:30.028856+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        1056,
+        786
+      ],
+      "point": [
+        120,
+        120
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 32432,
+        "x": 120,
+        "y": 120
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 102.63209999538958,
+      "click_ms": 3.3611999824643135,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 1.5,
+      "region": true,
+      "raw": false,
+      "sample": 0,
+      "frame": {
+        "protocol_version": 2,
+        "width": 180,
+        "height": 180,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 704.0,
+          "height": 524.0,
+          "capture_width": 120.0,
+          "capture_height": 120.0,
+          "device_scale_factor": 1.5,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 20.0,
+          "capture_y": 20.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "c1e47ba9-0f78-4166-9a5f-3abeab979219",
+        "captured_at": "2026-11-23T08:30:30.112309+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        360,
+        360
+      ],
+      "point": [
+        180,
+        180
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 10476,
+        "x": 90,
+        "y": 90
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 64.16010000975803,
+      "click_ms": 5.038500006776303,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 1.5,
+      "region": true,
+      "raw": false,
+      "sample": 1,
+      "frame": {
+        "protocol_version": 2,
+        "width": 180,
+        "height": 180,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 704.0,
+          "height": 524.0,
+          "capture_width": 120.0,
+          "capture_height": 120.0,
+          "device_scale_factor": 1.5,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 20.0,
+          "capture_y": 20.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "50948623-8fee-4ae7-a777-77f54dd87b7a",
+        "captured_at": "2026-11-23T08:30:30.206907+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        360,
+        360
+      ],
+      "point": [
+        180,
+        180
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 10476,
+        "x": 90,
+        "y": 90
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 83.90500000678003,
+      "click_ms": 2.9434000025503337,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 1.5,
+      "region": true,
+      "raw": false,
+      "sample": 2,
+      "frame": {
+        "protocol_version": 2,
+        "width": 180,
+        "height": 180,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 704.0,
+          "height": 524.0,
+          "capture_width": 120.0,
+          "capture_height": 120.0,
+          "device_scale_factor": 1.5,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 20.0,
+          "capture_y": 20.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "9c0b7e59-5b72-4b2d-9357-636b1d5dbdf8",
+        "captured_at": "2026-11-23T08:30:30.298982+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        360,
+        360
+      ],
+      "point": [
+        180,
+        180
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 10476,
+        "x": 90,
+        "y": 90
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 88.65130000049248,
+      "click_ms": 2.943200001027435,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 1.5,
+      "region": true,
+      "raw": true,
+      "sample": 0,
+      "frame": {
+        "protocol_version": 2,
+        "width": 180,
+        "height": 180,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 704.0,
+          "height": 524.0,
+          "capture_width": 120.0,
+          "capture_height": 120.0,
+          "device_scale_factor": 1.5,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 20.0,
+          "capture_y": 20.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "1d5acd70-9d1c-439c-8e06-f94bdf1b9e55",
+        "captured_at": "2026-11-23T08:30:30.393197+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        180,
+        180
+      ],
+      "point": [
+        90,
+        90
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 8952,
+        "x": 90,
+        "y": 90
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 87.61970000341535,
+      "click_ms": 4.089800000656396,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 1.5,
+      "region": true,
+      "raw": true,
+      "sample": 1,
+      "frame": {
+        "protocol_version": 2,
+        "width": 180,
+        "height": 180,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 704.0,
+          "height": 524.0,
+          "capture_width": 120.0,
+          "capture_height": 120.0,
+          "device_scale_factor": 1.5,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 20.0,
+          "capture_y": 20.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "91036879-4aee-4acf-9dc0-6be022ac109a",
+        "captured_at": "2026-11-23T08:30:30.494713+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        180,
+        180
+      ],
+      "point": [
+        90,
+        90
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 8952,
+        "x": 90,
+        "y": 90
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 92.9183000116609,
+      "click_ms": 2.4323999823536724,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 1.5,
+      "region": true,
+      "raw": true,
+      "sample": 2,
+      "frame": {
+        "protocol_version": 2,
+        "width": 180,
+        "height": 180,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 704.0,
+          "height": 524.0,
+          "capture_width": 120.0,
+          "capture_height": 120.0,
+          "device_scale_factor": 1.5,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 20.0,
+          "capture_y": 20.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "e6e97980-c747-4697-a71e-73538f77e7ef",
+        "captured_at": "2026-11-23T08:30:30.594330+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        180,
+        180
+      ],
+      "point": [
+        90,
+        90
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 8952,
+        "x": 90,
+        "y": 90
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 97.12329998728819,
+      "click_ms": 2.743499993812293,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 2,
+      "region": false,
+      "raw": false,
+      "sample": 0,
+      "frame": {
+        "protocol_version": 2,
+        "width": 1568,
+        "height": 1168,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 784.0,
+          "height": 584.0,
+          "capture_width": 784.0,
+          "capture_height": 584.0,
+          "device_scale_factor": 2.0000000596046448,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "0efa6b8c-1d80-445d-a1d5-92ea6788514c",
+        "captured_at": "2026-11-23T08:30:30.732628+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        483,
+        360
+      ],
+      "point": [
+        48,
+        49
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 9248,
+        "x": 156,
+        "y": 159
+      },
+      "css": [
+        78.0,
+        79.5
+      ],
+      "capture_ms": 137.18240000889637,
+      "click_ms": 3.392000013263896,
+      "dom": {
+        "target": "mark",
+        "x": 78,
+        "y": 79
+      }
+    },
+    {
+      "dpr": 2,
+      "region": false,
+      "raw": false,
+      "sample": 1,
+      "frame": {
+        "protocol_version": 2,
+        "width": 1568,
+        "height": 1168,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 784.0,
+          "height": 584.0,
+          "capture_width": 784.0,
+          "capture_height": 584.0,
+          "device_scale_factor": 2.0000000596046448,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "ebb5008e-fea6-460d-afc3-7d2d4cc17f55",
+        "captured_at": "2026-11-23T08:30:30.884133+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        483,
+        360
+      ],
+      "point": [
+        48,
+        49
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 9248,
+        "x": 156,
+        "y": 159
+      },
+      "css": [
+        78.0,
+        79.5
+      ],
+      "capture_ms": 142.9000000061933,
+      "click_ms": 3.4747000026982278,
+      "dom": {
+        "target": "mark",
+        "x": 78,
+        "y": 79
+      }
+    },
+    {
+      "dpr": 2,
+      "region": false,
+      "raw": false,
+      "sample": 2,
+      "frame": {
+        "protocol_version": 2,
+        "width": 1568,
+        "height": 1168,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 784.0,
+          "height": 584.0,
+          "capture_width": 784.0,
+          "capture_height": 584.0,
+          "device_scale_factor": 2.0000000596046448,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "65256222-a70e-419b-b5ef-7c62961f9e40",
+        "captured_at": "2026-11-23T08:30:31.016843+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        483,
+        360
+      ],
+      "point": [
+        48,
+        49
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 9248,
+        "x": 156,
+        "y": 159
+      },
+      "css": [
+        78.0,
+        79.5
+      ],
+      "capture_ms": 129.99379998655058,
+      "click_ms": 3.595099988160655,
+      "dom": {
+        "target": "mark",
+        "x": 78,
+        "y": 79
+      }
+    },
+    {
+      "dpr": 2,
+      "region": false,
+      "raw": true,
+      "sample": 0,
+      "frame": {
+        "protocol_version": 2,
+        "width": 1568,
+        "height": 1168,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 784.0,
+          "height": 584.0,
+          "capture_width": 784.0,
+          "capture_height": 584.0,
+          "device_scale_factor": 2.0000000596046448,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "985e774a-bf05-413e-a56a-8fabd7f1cbb9",
+        "captured_at": "2026-11-23T08:30:31.164246+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        1568,
+        1168
+      ],
+      "point": [
+        160,
+        160
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 4060,
+        "x": 160,
+        "y": 160
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 144.10969999153167,
+      "click_ms": 4.316799982916564,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 2,
+      "region": false,
+      "raw": true,
+      "sample": 1,
+      "frame": {
+        "protocol_version": 2,
+        "width": 1568,
+        "height": 1168,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 784.0,
+          "height": 584.0,
+          "capture_width": 784.0,
+          "capture_height": 584.0,
+          "device_scale_factor": 2.0000000596046448,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "1f94d714-6221-47cd-9e55-8303c45bcdf2",
+        "captured_at": "2026-11-23T08:30:31.329022+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        1568,
+        1168
+      ],
+      "point": [
+        160,
+        160
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 4060,
+        "x": 160,
+        "y": 160
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 131.13650001469068,
+      "click_ms": 3.3488000044599175,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 2,
+      "region": false,
+      "raw": true,
+      "sample": 2,
+      "frame": {
+        "protocol_version": 2,
+        "width": 1568,
+        "height": 1168,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 784.0,
+          "height": 584.0,
+          "capture_width": 784.0,
+          "capture_height": 584.0,
+          "device_scale_factor": 2.0000000596046448,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "0faa8119-58d9-4379-a732-d448cc6e10ab",
+        "captured_at": "2026-11-23T08:30:31.481768+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        1568,
+        1168
+      ],
+      "point": [
+        160,
+        160
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 4060,
+        "x": 160,
+        "y": 160
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 142.9956000065431,
+      "click_ms": 3.7213000177871436,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 2,
+      "region": true,
+      "raw": false,
+      "sample": 0,
+      "frame": {
+        "protocol_version": 2,
+        "width": 240,
+        "height": 240,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 784.0,
+          "height": 584.0,
+          "capture_width": 120.0,
+          "capture_height": 120.0,
+          "device_scale_factor": 2.0000000596046448,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 20.0,
+          "capture_y": 20.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "b28110f4-866f-48bc-b690-0456add0819e",
+        "captured_at": "2026-11-23T08:30:31.633902+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        360,
+        360
+      ],
+      "point": [
+        180,
+        180
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 11912,
+        "x": 120,
+        "y": 120
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 111.44199999398552,
+      "click_ms": 3.6970000073779374,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 2,
+      "region": true,
+      "raw": false,
+      "sample": 1,
+      "frame": {
+        "protocol_version": 2,
+        "width": 240,
+        "height": 240,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 784.0,
+          "height": 584.0,
+          "capture_width": 120.0,
+          "capture_height": 120.0,
+          "device_scale_factor": 2.0000000596046448,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 20.0,
+          "capture_y": 20.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "579b50d4-12c3-4c7e-813b-bc9904ba29a7",
+        "captured_at": "2026-11-23T08:30:31.747577+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        360,
+        360
+      ],
+      "point": [
+        180,
+        180
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 11912,
+        "x": 120,
+        "y": 120
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 105.8189999894239,
+      "click_ms": 2.6299000019207597,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 2,
+      "region": true,
+      "raw": false,
+      "sample": 2,
+      "frame": {
+        "protocol_version": 2,
+        "width": 240,
+        "height": 240,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 784.0,
+          "height": 584.0,
+          "capture_width": 120.0,
+          "capture_height": 120.0,
+          "device_scale_factor": 2.0000000596046448,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 20.0,
+          "capture_y": 20.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "e8e2372e-a1aa-4722-82e2-36e6328753ef",
+        "captured_at": "2026-11-23T08:30:31.875593+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        360,
+        360
+      ],
+      "point": [
+        180,
+        180
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 11912,
+        "x": 120,
+        "y": 120
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 125.06810002378188,
+      "click_ms": 3.1387000053655356,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 2,
+      "region": true,
+      "raw": true,
+      "sample": 0,
+      "frame": {
+        "protocol_version": 2,
+        "width": 240,
+        "height": 240,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 784.0,
+          "height": 584.0,
+          "capture_width": 120.0,
+          "capture_height": 120.0,
+          "device_scale_factor": 2.0000000596046448,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 20.0,
+          "capture_y": 20.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "2970a241-87fe-4dfa-9310-5341f21ebf9c",
+        "captured_at": "2026-11-23T08:30:31.998440+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        240,
+        240
+      ],
+      "point": [
+        120,
+        120
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 24104,
+        "x": 120,
+        "y": 120
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 118.16969999927096,
+      "click_ms": 3.5880999930668622,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 2,
+      "region": true,
+      "raw": true,
+      "sample": 1,
+      "frame": {
+        "protocol_version": 2,
+        "width": 240,
+        "height": 240,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 784.0,
+          "height": 584.0,
+          "capture_width": 120.0,
+          "capture_height": 120.0,
+          "device_scale_factor": 2.0000000596046448,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 20.0,
+          "capture_y": 20.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "96dd40b6-ecc1-4066-9b61-4fb83a9449e3",
+        "captured_at": "2026-11-23T08:30:32.116807+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        240,
+        240
+      ],
+      "point": [
+        120,
+        120
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 24104,
+        "x": 120,
+        "y": 120
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 110.45670000021346,
+      "click_ms": 3.164099995046854,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    },
+    {
+      "dpr": 2,
+      "region": true,
+      "raw": true,
+      "sample": 2,
+      "frame": {
+        "protocol_version": 2,
+        "width": 240,
+        "height": 240,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 784.0,
+          "height": 584.0,
+          "capture_width": 120.0,
+          "capture_height": 120.0,
+          "device_scale_factor": 2.0000000596046448,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 20.0,
+          "capture_y": 20.0
+        },
+        "page_id": "A6C36551B5AD7333C413340D442E5814",
+        "frame_id": "baf78aed-7584-4a41-a37e-35019b8273e0",
+        "captured_at": "2026-11-23T08:30:32.233432+00:00",
+        "session_id": "CB60F3C93973386D943A8BA6E2A8AAC7"
+      },
+      "maa_size": [
+        240,
+        240
+      ],
+      "point": [
+        120,
+        120
+      ],
+      "callback": {
+        "callback": "click",
+        "thread": 24104,
+        "x": 120,
+        "y": 120
+      },
+      "css": [
+        80.0,
+        80.0
+      ],
+      "capture_ms": 113.36230000597425,
+      "click_ms": 3.043299977434799,
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      }
+    }
+  ],
+  "faults": [
+    {
+      "fault": "resize",
+      "error": "browser document/geometry changed since screenshot",
+      "outcome": "rejected",
+      "calls": [
+        {
+          "callback": "screencap",
+          "thread": 6740
+        },
+        {
+          "callback": "click",
+          "thread": 6740,
+          "x": 80,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "fault": "pinch",
+      "error": "GeometryError",
+      "outcome": "rejected",
+      "calls": [
+        {
+          "callback": "screencap",
+          "thread": 15152
+        },
+        {
+          "callback": "click",
+          "thread": 15152,
+          "x": 80,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "fault": "navigation",
+      "error": "browser document/geometry changed since screenshot",
+      "outcome": "rejected",
+      "calls": [
+        {
+          "callback": "screencap",
+          "thread": 34576
+        },
+        {
+          "callback": "click",
+          "thread": 34576,
+          "x": 80,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "fault": "rebind",
+      "error": "bridge stopped, blocked, or binding changed",
+      "outcome": "not_attempted",
+      "calls": [
+        {
+          "callback": "screencap",
+          "thread": 34872
+        },
+        {
+          "callback": "click",
+          "thread": 34872,
+          "x": 80,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "fault": "destroy",
+      "error": "bridge stopped, blocked, or binding changed",
+      "outcome": "not_attempted",
+      "calls": [
+        {
+          "callback": "screencap",
+          "thread": 22960
+        },
+        {
+          "callback": "click",
+          "thread": 22960,
+          "x": 80,
+          "y": 80
+        }
+      ]
+    }
+  ],
+  "browser": "Edg/158.0.4370.33",
+  "owned_targets_remaining": [],
+  "preexisting_targets_preserved": true,
+  "cleanup": {
+    "pending": 0,
+    "reader": false,
+    "connected": false
+  }
+}

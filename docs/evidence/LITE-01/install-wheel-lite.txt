@@ -1,0 +1,30 @@
+.test-artifacts/install-check/Scripts/python.exe : WARNING: There was an error checking the latest version of pip.
+所在位置 行:2 字符: 1
++ .test-artifacts/install-check/Scripts/python.exe -m pip install 'dist ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (WARNING: There ...version of pip.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Processing .\dist\browser_cli_agent-0.2.0-py3-none-any.whl (from browser-cli-agent==0.2.0)
+Requirement already satisfied: websockets<16,>=15 in .\.test-artifacts\install-check\Lib\site-packages (from browser-cli-agent==0.2.0->browser-cli-agent==0.2.0) (15.0.1)
+Requirement already satisfied: Pillow<13,>=12 in .\.test-artifacts\install-check\Lib\site-packages (from browser-cli-agent==0.2.0->browser-cli-agent==0.2.0) (12.3.0)
+Collecting maafw==5.16.1 (from browser-cli-agent==0.2.0->browser-cli-agent==0.2.0)
+  Downloading maafw-5.16.1-py3-none-win_amd64.whl.metadata (48 kB)
+Collecting numpy<3,>=2.4 (from browser-cli-agent==0.2.0->browser-cli-agent==0.2.0)
+  Downloading numpy-2.5.5-cp314-cp314-win_amd64.whl.metadata (6.6 kB)
+Collecting maaagentbinary (from maafw==5.16.1->browser-cli-agent==0.2.0->browser-cli-agent==0.2.0)
+  Downloading MaaAgentBinary-1.0.1-py3-none-any.whl.metadata (597 bytes)
+Collecting strenum (from maafw==5.16.1->browser-cli-agent==0.2.0->browser-cli-agent==0.2.0)
+  Downloading strenum-0.5.0-py3-none-any.whl.metadata (5.5 kB)
+browser-cli-agent is already installed with the same version as the provided wheel. Use --force-reinstall to force an installation of the wheel.
+Downloading maafw-5.16.1-py3-none-win_amd64.whl (36.7 MB)
+   ---------------------------------------- 36.7/36.7 MB 1.1 MB/s  0:00:33
+Downloading numpy-2.5.5-cp314-cp314-win_amd64.whl (12.7 MB)
+   ---------------------------------------- 12.7/12.7 MB 1.1 MB/s  0:00:11
+Downloading MaaAgentBinary-1.0.1-py3-none-any.whl (5.3 MB)
+   ---------------------------------------- 5.3/5.3 MB 1.0 MB/s  0:00:05
+Downloading strenum-0.5.0-py3-none-any.whl (9.1 kB)
+Installing collected packages: maaagentbinary, strenum, numpy, maafw
+
+Successfully installed maaagentbinary-1.0.1 maafw-5.16.1 numpy-2.5.5 strenum-0.5.0
+lite wheel imports OK; native v5.16.1
