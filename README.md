@@ -1,5 +1,8 @@
 # Browser CLI Agent (BCA)
 
+> **BCA-lite 重构分支（进行中）**：本分支开始基于 [MaaFramework](https://github.com/MaaXYZ/MaaFramework) 重构底层。已引入初版 CDP → MaaFramework `CustomController` 桥接、隔离 Target 截图和单次点击的 smoke 示例。详见 [BCA-LITE-01](docs/BCA-LITE-01.md)。当前属于技术集成阶段，尚未通过 Windows/Edge 真机验收；原 BCA-00～04 正式基线保留在 [main](https://github.com/Itsukiii/Browser-CLI-Agent/tree/main)。
+
+
 **一个面向浏览器页面的可扩展感知与输入控制框架。**
 
 Browser CLI Agent（BCA）将浏览器连接、截图采集、页面状态解析和命令执行分离。Core 提供通用的 Browser、Provider、Runtime 和 Plugin 能力；具体页面的识别、状态格式和交互规则由插件提供。项目目标是在终端中读取指定页面的结构化信息，并通过命令与该页面交互。
