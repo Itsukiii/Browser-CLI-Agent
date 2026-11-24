@@ -1,0 +1,190 @@
+{
+  "status": "passed",
+  "mode": "disconnect",
+  "owner_thread": 25788,
+  "dom_events": [
+    {
+      "type": "mousedown",
+      "x": 80,
+      "y": 79,
+      "target": "mark"
+    }
+  ],
+  "input_diagnostic": {
+    "protocol_version": 2,
+    "code": "browser.disconnected",
+    "message": "Input did not complete; inspect details before further actions",
+    "retryable": false,
+    "details": {
+      "stage": "mousePressed",
+      "completed_steps": 0,
+      "input_attempted": true,
+      "release_confirmed": false,
+      "outcome_uncertain": true,
+      "input_state_uncertain": true,
+      "held_button_count": 1,
+      "held_key_count": 0
+    }
+  },
+  "outcome": "unknown",
+  "last_error": "bridge stopped, blocked, or binding changed",
+  "calls": [
+    {
+      "callback": "screencap",
+      "thread": 36728
+    },
+    {
+      "callback": "click",
+      "thread": 36728,
+      "x": 120,
+      "y": 120
+    },
+    {
+      "callback": "click",
+      "thread": 36728,
+      "x": 120,
+      "y": 120
+    },
+    {
+      "callback": "screencap",
+      "thread": 36728
+    }
+  ],
+  "forwarded_mouse_pressed": 1,
+  "native_handle_released": true,
+  "cleanup": {
+    "pending": 0,
+    "reader": false,
+    "connected": false
+  },
+  "proxy_trace": [
+    {
+      "event": "forwarded",
+      "id": 1,
+      "method": "Target.setDiscoverTargets",
+      "params": {
+        "discover": true
+      },
+      "time": 256117.9751112
+    },
+    {
+      "event": "forwarded",
+      "id": 2,
+      "method": "Target.getTargets",
+      "params": {},
+      "time": 256117.9759693
+    },
+    {
+      "event": "forwarded",
+      "id": 3,
+      "method": "Target.getTargets",
+      "params": {},
+      "time": 256117.9764319
+    },
+    {
+      "event": "forwarded",
+      "id": 4,
+      "method": "Target.attachToTarget",
+      "params": {
+        "targetId": "83CBD5242F8E320D5BD19616F1ECDBAF",
+        "flatten": true
+      },
+      "time": 256117.9769153
+    },
+    {
+      "event": "forwarded",
+      "id": 5,
+      "method": "Page.getLayoutMetrics",
+      "params": {},
+      "time": 256117.9787494
+    },
+    {
+      "event": "forwarded",
+      "id": 7,
+      "method": "Page.getLayoutMetrics",
+      "params": {},
+      "time": 256117.9805943
+    },
+    {
+      "event": "forwarded",
+      "id": 9,
+      "method": "Page.captureScreenshot",
+      "params": {
+        "format": "png",
+        "fromSurface": true,
+        "captureBeyondViewport": false
+      },
+      "time": 256117.9860942
+    },
+    {
+      "event": "forwarded",
+      "id": 10,
+      "method": "Page.getLayoutMetrics",
+      "params": {},
+      "time": 256118.1090241
+    },
+    {
+      "event": "forwarded",
+      "id": 12,
+      "method": "Page.getLayoutMetrics",
+      "params": {},
+      "time": 256118.1106201
+    },
+    {
+      "event": "forwarded",
+      "id": 14,
+      "method": "Page.getLayoutMetrics",
+      "params": {},
+      "time": 256118.1506199
+    },
+    {
+      "event": "forwarded",
+      "id": 16,
+      "method": "Page.getLayoutMetrics",
+      "params": {},
+      "time": 256118.1522313
+    },
+    {
+      "event": "forwarded",
+      "id": 18,
+      "method": "Input.dispatchMouseEvent",
+      "params": {
+        "type": "mousePressed",
+        "x": 80.0,
+        "y": 79.97439180537772,
+        "button": "left",
+        "buttons": 1,
+        "clickCount": 1,
+        "modifiers": 0
+      },
+      "time": 256118.1535912
+    },
+    {
+      "event": "edge_reply_intercepted",
+      "request": {
+        "id": 18,
+        "method": "Input.dispatchMouseEvent",
+        "params": {
+          "type": "mousePressed",
+          "x": 80.0,
+          "y": 79.97439180537772,
+          "button": "left",
+          "buttons": 1,
+          "clickCount": 1,
+          "modifiers": 0
+        },
+        "sessionId": "1EFFF03184A42CF562CC1C3D28AAAEF9"
+      },
+      "reply_id": 18,
+      "success": true,
+      "mode": "disconnect",
+      "time": 256118.1548034
+    },
+    {
+      "event": "disconnect_after_edge_reply"
+    }
+  ],
+  "proxy_sockets_remaining": 0,
+  "owned_targets_remaining": [],
+  "preexisting_targets_preserved": true
+}

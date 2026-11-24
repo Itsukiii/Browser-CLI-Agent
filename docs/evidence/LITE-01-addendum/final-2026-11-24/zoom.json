@@ -1,0 +1,1029 @@
+{
+  "status": "passed",
+  "mechanism": "Windows desktop Ctrl+0 / Ctrl+- / Ctrl+=",
+  "owner_thread": 25788,
+  "groups": [
+    {
+      "percent": 80,
+      "ratio": 0.8000000317891439,
+      "metrics": {
+        "runtime": {
+          "dpr": 1.2000000476837158,
+          "width": 1155,
+          "height": 1302,
+          "scale": 1,
+          "x": 0,
+          "y": 0
+        },
+        "layout": {
+          "layoutViewport": {
+            "pageX": 0,
+            "pageY": 0,
+            "clientWidth": 1363,
+            "clientHeight": 1539
+          },
+          "visualViewport": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "pageX": 0,
+            "pageY": 0,
+            "clientWidth": 1363,
+            "clientHeight": 1539,
+            "scale": 1,
+            "zoom": 0.800000011920929
+          },
+          "contentSize": {
+            "x": 0,
+            "y": 0,
+            "width": 3600,
+            "height": 3600
+          },
+          "cssLayoutViewport": {
+            "pageX": 0,
+            "pageY": 0,
+            "clientWidth": 1135,
+            "clientHeight": 1282
+          },
+          "cssVisualViewport": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "pageX": 0,
+            "pageY": 0,
+            "clientWidth": 1135.833251953125,
+            "clientHeight": 1282.5,
+            "scale": 1,
+            "zoom": 0.800000011920929
+          },
+          "cssContentSize": {
+            "x": 0,
+            "y": 0,
+            "width": 3000,
+            "height": 3000
+          }
+        }
+      },
+      "raw": true,
+      "stale_zoom_rejected": "browser document/geometry changed since screenshot",
+      "frame": {
+        "protocol_version": 2,
+        "width": 1362,
+        "height": 1538,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 1135.0,
+          "height": 1282.0,
+          "capture_width": 1135.0,
+          "capture_height": 1281.9948783610755,
+          "device_scale_factor": 1.2000000476837158,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "8D42B80B26F64D700AEF699B47921D34",
+        "frame_id": "5eee2e42-aa10-4465-a9fc-34eab02c08cc",
+        "captured_at": "2026-11-24T01:58:55.801514+00:00",
+        "session_id": "F56EA63C0FEADE2802808CB37F8645D4"
+      },
+      "maa_size": [
+        1362,
+        1538
+      ],
+      "point": [
+        96,
+        96
+      ],
+      "native_callback": {
+        "callback": "click",
+        "thread": 35984,
+        "x": 96,
+        "y": 96
+      },
+      "css": [
+        80.0,
+        80.02048655569783
+      ],
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 80
+      },
+      "calls": [
+        {
+          "callback": "screencap",
+          "thread": 35984
+        },
+        {
+          "callback": "click",
+          "thread": 35984,
+          "x": 96,
+          "y": 96
+        },
+        {
+          "callback": "click",
+          "thread": 35984,
+          "x": 96,
+          "y": 96
+        },
+        {
+          "callback": "screencap",
+          "thread": 35984
+        },
+        {
+          "callback": "click",
+          "thread": 35984,
+          "x": 96,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "percent": 80,
+      "ratio": 0.8000000317891439,
+      "metrics": {
+        "runtime": {
+          "dpr": 1.2000000476837158,
+          "width": 1155,
+          "height": 1302,
+          "scale": 1,
+          "x": 0,
+          "y": 0
+        },
+        "layout": {
+          "layoutViewport": {
+            "pageX": 0,
+            "pageY": 0,
+            "clientWidth": 1363,
+            "clientHeight": 1539
+          },
+          "visualViewport": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "pageX": 0,
+            "pageY": 0,
+            "clientWidth": 1363,
+            "clientHeight": 1539,
+            "scale": 1,
+            "zoom": 0.800000011920929
+          },
+          "contentSize": {
+            "x": 0,
+            "y": 0,
+            "width": 3600,
+            "height": 3600
+          },
+          "cssLayoutViewport": {
+            "pageX": 0,
+            "pageY": 0,
+            "clientWidth": 1135,
+            "clientHeight": 1282
+          },
+          "cssVisualViewport": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "pageX": 0,
+            "pageY": 0,
+            "clientWidth": 1135.833251953125,
+            "clientHeight": 1282.5,
+            "scale": 1,
+            "zoom": 0.800000011920929
+          },
+          "cssContentSize": {
+            "x": 0,
+            "y": 0,
+            "width": 3000,
+            "height": 3000
+          }
+        }
+      },
+      "raw": false,
+      "stale_zoom_rejected": "browser document/geometry changed since screenshot",
+      "frame": {
+        "protocol_version": 2,
+        "width": 1362,
+        "height": 1538,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 1135.0,
+          "height": 1282.0,
+          "capture_width": 1135.0,
+          "capture_height": 1281.9948783610755,
+          "device_scale_factor": 1.2000000476837158,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "8D42B80B26F64D700AEF699B47921D34",
+        "frame_id": "9dac494b-e753-473b-87ac-d5c713bcca9b",
+        "captured_at": "2026-11-24T01:58:56.919462+00:00",
+        "session_id": "F56EA63C0FEADE2802808CB37F8645D4"
+      },
+      "maa_size": [
+        360,
+        407
+      ],
+      "point": [
+        25,
+        25
+      ],
+      "native_callback": {
+        "callback": "click",
+        "thread": 32356,
+        "x": 95,
+        "y": 94
+      },
+      "css": [
+        79.16666666666667,
+        78.35339308578745
+      ],
+      "dom": {
+        "target": "mark",
+        "x": 79,
+        "y": 78
+      },
+      "calls": [
+        {
+          "callback": "screencap",
+          "thread": 32356
+        },
+        {
+          "callback": "click",
+          "thread": 32356,
+          "x": 95,
+          "y": 94
+        },
+        {
+          "callback": "click",
+          "thread": 32356,
+          "x": 95,
+          "y": 94
+        },
+        {
+          "callback": "screencap",
+          "thread": 32356
+        },
+        {
+          "callback": "click",
+          "thread": 32356,
+          "x": 95,
+          "y": 94
+        }
+      ]
+    },
+    {
+      "percent": 100,
+      "ratio": 1.0,
+      "metrics": {
+        "runtime": {
+          "dpr": 1.5,
+          "width": 924,
+          "height": 1041,
+          "scale": 1,
+          "x": 80,
+          "y": 120
+        },
+        "layout": {
+          "layoutViewport": {
+            "pageX": 120,
+            "pageY": 180,
+            "clientWidth": 1363,
+            "clientHeight": 1539
+          },
+          "visualViewport": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "pageX": 80,
+            "pageY": 120,
+            "clientWidth": 1363,
+            "clientHeight": 1539,
+            "scale": 1,
+            "zoom": 1
+          },
+          "contentSize": {
+            "x": 0,
+            "y": 0,
+            "width": 4500,
+            "height": 4500
+          },
+          "cssLayoutViewport": {
+            "pageX": 80,
+            "pageY": 120,
+            "clientWidth": 908,
+            "clientHeight": 1026
+          },
+          "cssVisualViewport": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "pageX": 80,
+            "pageY": 120,
+            "clientWidth": 908.6666870117188,
+            "clientHeight": 1026,
+            "scale": 1,
+            "zoom": 1
+          },
+          "cssContentSize": {
+            "x": 0,
+            "y": 0,
+            "width": 3000,
+            "height": 3000
+          }
+        }
+      },
+      "raw": true,
+      "stale_zoom_rejected": "browser document/geometry changed since screenshot",
+      "frame": {
+        "protocol_version": 2,
+        "width": 1362,
+        "height": 1539,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 908.0,
+          "height": 1026.0,
+          "capture_width": 908.0,
+          "capture_height": 1025.6715749039693,
+          "device_scale_factor": 1.5,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "8D42B80B26F64D700AEF699B47921D34",
+        "frame_id": "f3c804df-ad26-4cb7-aa6e-5436172cc0a9",
+        "captured_at": "2026-11-24T01:58:58.560428+00:00",
+        "session_id": "F56EA63C0FEADE2802808CB37F8645D4"
+      },
+      "maa_size": [
+        1362,
+        1539
+      ],
+      "point": [
+        120,
+        120
+      ],
+      "native_callback": {
+        "callback": "click",
+        "thread": 20448,
+        "x": 120,
+        "y": 120
+      },
+      "css": [
+        80.0,
+        79.97439180537772
+      ],
+      "dom": {
+        "target": "mark",
+        "x": 80,
+        "y": 79
+      },
+      "calls": [
+        {
+          "callback": "screencap",
+          "thread": 20448
+        },
+        {
+          "callback": "click",
+          "thread": 20448,
+          "x": 120,
+          "y": 120
+        },
+        {
+          "callback": "click",
+          "thread": 20448,
+          "x": 120,
+          "y": 120
+        },
+        {
+          "callback": "screencap",
+          "thread": 20448
+        },
+        {
+          "callback": "click",
+          "thread": 20448,
+          "x": 120,
+          "y": 120
+        }
+      ]
+    },
+    {
+      "percent": 100,
+      "ratio": 1.0,
+      "metrics": {
+        "runtime": {
+          "dpr": 1.5,
+          "width": 924,
+          "height": 1041,
+          "scale": 1,
+          "x": 80,
+          "y": 120
+        },
+        "layout": {
+          "layoutViewport": {
+            "pageX": 120,
+            "pageY": 180,
+            "clientWidth": 1363,
+            "clientHeight": 1539
+          },
+          "visualViewport": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "pageX": 80,
+            "pageY": 120,
+            "clientWidth": 1363,
+            "clientHeight": 1539,
+            "scale": 1,
+            "zoom": 1
+          },
+          "contentSize": {
+            "x": 0,
+            "y": 0,
+            "width": 4500,
+            "height": 4500
+          },
+          "cssLayoutViewport": {
+            "pageX": 80,
+            "pageY": 120,
+            "clientWidth": 908,
+            "clientHeight": 1026
+          },
+          "cssVisualViewport": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "pageX": 80,
+            "pageY": 120,
+            "clientWidth": 908.6666870117188,
+            "clientHeight": 1026,
+            "scale": 1,
+            "zoom": 1
+          },
+          "cssContentSize": {
+            "x": 0,
+            "y": 0,
+            "width": 3000,
+            "height": 3000
+          }
+        }
+      },
+      "raw": false,
+      "stale_zoom_rejected": "browser document/geometry changed since screenshot",
+      "frame": {
+        "protocol_version": 2,
+        "width": 1362,
+        "height": 1539,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 908.0,
+          "height": 1026.0,
+          "capture_width": 908.0,
+          "capture_height": 1025.6715749039693,
+          "device_scale_factor": 1.5,
+          "scroll_x": 80.0,
+          "scroll_y": 120.0,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "8D42B80B26F64D700AEF699B47921D34",
+        "frame_id": "01a3caca-ffe8-40e3-9c9a-443cf6192f1c",
+        "captured_at": "2026-11-24T01:58:59.695227+00:00",
+        "session_id": "F56EA63C0FEADE2802808CB37F8645D4"
+      },
+      "maa_size": [
+        360,
+        407
+      ],
+      "point": [
+        31,
+        31
+      ],
+      "native_callback": {
+        "callback": "click",
+        "thread": 31040,
+        "x": 117,
+        "y": 117
+      },
+      "css": [
+        78.0,
+        77.97503201024327
+      ],
+      "dom": {
+        "target": "mark",
+        "x": 78,
+        "y": 77
+      },
+      "calls": [
+        {
+          "callback": "screencap",
+          "thread": 31040
+        },
+        {
+          "callback": "click",
+          "thread": 31040,
+          "x": 117,
+          "y": 117
+        },
+        {
+          "callback": "click",
+          "thread": 31040,
+          "x": 117,
+          "y": 117
+        },
+        {
+          "callback": "screencap",
+          "thread": 31040
+        },
+        {
+          "callback": "click",
+          "thread": 31040,
+          "x": 117,
+          "y": 117
+        }
+      ]
+    },
+    {
+      "percent": 125,
+      "ratio": 1.25,
+      "metrics": {
+        "runtime": {
+          "dpr": 1.875,
+          "width": 739,
+          "height": 833,
+          "scale": 1,
+          "x": 80,
+          "y": 120
+        },
+        "layout": {
+          "layoutViewport": {
+            "pageX": 150,
+            "pageY": 225,
+            "clientWidth": 1363,
+            "clientHeight": 1539
+          },
+          "visualViewport": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "pageX": 80.00000762939453,
+            "pageY": 120.00000762939453,
+            "clientWidth": 1363,
+            "clientHeight": 1539,
+            "scale": 1,
+            "zoom": 1.25
+          },
+          "contentSize": {
+            "x": 0,
+            "y": 0,
+            "width": 5625,
+            "height": 5625
+          },
+          "cssLayoutViewport": {
+            "pageX": 81,
+            "pageY": 121,
+            "clientWidth": 725,
+            "clientHeight": 819
+          },
+          "cssVisualViewport": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "pageX": 80.00000762939453,
+            "pageY": 120.00000762939453,
+            "clientWidth": 726.933349609375,
+            "clientHeight": 820.800048828125,
+            "scale": 1,
+            "zoom": 1.25
+          },
+          "cssContentSize": {
+            "x": 0,
+            "y": 0,
+            "width": 3000,
+            "height": 3000
+          }
+        }
+      },
+      "raw": true,
+      "stale_zoom_rejected": "browser document/geometry changed since screenshot",
+      "frame": {
+        "protocol_version": 2,
+        "width": 1359,
+        "height": 1535,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 725.0,
+          "height": 819.0,
+          "capture_width": 724.6038961038961,
+          "capture_height": 818.601152368758,
+          "device_scale_factor": 1.875,
+          "scroll_x": 80.00000762939453,
+          "scroll_y": 120.00000762939453,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "8D42B80B26F64D700AEF699B47921D34",
+        "frame_id": "1c43aaa4-6bd2-4ec7-8951-10bff54d0e68",
+        "captured_at": "2026-11-24T01:59:02.155884+00:00",
+        "session_id": "F56EA63C0FEADE2802808CB37F8645D4"
+      },
+      "maa_size": [
+        1359,
+        1535
+      ],
+      "point": [
+        150,
+        150
+      ],
+      "native_callback": {
+        "callback": "click",
+        "thread": 36848,
+        "x": 150,
+        "y": 150
+      },
+      "css": [
+        79.97835497835497,
+        79.99359795134443
+      ],
+      "dom": {
+        "target": "mark",
+        "x": 79,
+        "y": 79
+      },
+      "calls": [
+        {
+          "callback": "screencap",
+          "thread": 36848
+        },
+        {
+          "callback": "click",
+          "thread": 36848,
+          "x": 150,
+          "y": 150
+        },
+        {
+          "callback": "click",
+          "thread": 36848,
+          "x": 150,
+          "y": 150
+        },
+        {
+          "callback": "screencap",
+          "thread": 36848
+        },
+        {
+          "callback": "click",
+          "thread": 36848,
+          "x": 150,
+          "y": 150
+        }
+      ]
+    },
+    {
+      "percent": 125,
+      "ratio": 1.25,
+      "metrics": {
+        "runtime": {
+          "dpr": 1.875,
+          "width": 739,
+          "height": 833,
+          "scale": 1,
+          "x": 80,
+          "y": 120
+        },
+        "layout": {
+          "layoutViewport": {
+            "pageX": 150,
+            "pageY": 225,
+            "clientWidth": 1363,
+            "clientHeight": 1539
+          },
+          "visualViewport": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "pageX": 80.00000762939453,
+            "pageY": 120.00000762939453,
+            "clientWidth": 1363,
+            "clientHeight": 1539,
+            "scale": 1,
+            "zoom": 1.25
+          },
+          "contentSize": {
+            "x": 0,
+            "y": 0,
+            "width": 5625,
+            "height": 5625
+          },
+          "cssLayoutViewport": {
+            "pageX": 81,
+            "pageY": 121,
+            "clientWidth": 725,
+            "clientHeight": 819
+          },
+          "cssVisualViewport": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "pageX": 80.00000762939453,
+            "pageY": 120.00000762939453,
+            "clientWidth": 726.933349609375,
+            "clientHeight": 820.800048828125,
+            "scale": 1,
+            "zoom": 1.25
+          },
+          "cssContentSize": {
+            "x": 0,
+            "y": 0,
+            "width": 3000,
+            "height": 3000
+          }
+        }
+      },
+      "raw": false,
+      "stale_zoom_rejected": "browser document/geometry changed since screenshot",
+      "frame": {
+        "protocol_version": 2,
+        "width": 1359,
+        "height": 1535,
+        "format": "png",
+        "viewport": {
+          "protocol_version": 2,
+          "width": 725.0,
+          "height": 819.0,
+          "capture_width": 724.6038961038961,
+          "capture_height": 818.601152368758,
+          "device_scale_factor": 1.875,
+          "scroll_x": 80.00000762939453,
+          "scroll_y": 120.00000762939453,
+          "capture_x": 0.0,
+          "capture_y": 0.0
+        },
+        "page_id": "8D42B80B26F64D700AEF699B47921D34",
+        "frame_id": "f2c1a874-d148-4547-a72e-436696fc69c0",
+        "captured_at": "2026-11-24T01:59:03.266153+00:00",
+        "session_id": "F56EA63C0FEADE2802808CB37F8645D4"
+      },
+      "maa_size": [
+        360,
+        407
+      ],
+      "point": [
+        39,
+        39
+      ],
+      "native_callback": {
+        "callback": "click",
+        "thread": 16320,
+        "x": 147,
+        "y": 147
+      },
+      "css": [
+        78.37878787878788,
+        78.39372599231754
+      ],
+      "dom": {
+        "target": "mark",
+        "x": 78,
+        "y": 78
+      },
+      "calls": [
+        {
+          "callback": "screencap",
+          "thread": 16320
+        },
+        {
+          "callback": "click",
+          "thread": 16320,
+          "x": 147,
+          "y": 147
+        },
+        {
+          "callback": "click",
+          "thread": 16320,
+          "x": 147,
+          "y": 147
+        },
+        {
+          "callback": "screencap",
+          "thread": 16320
+        },
+        {
+          "callback": "click",
+          "thread": 16320,
+          "x": 147,
+          "y": 147
+        }
+      ]
+    }
+  ],
+  "shortcuts": [
+    {
+      "shortcut": "Ctrl+VK_30",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_30",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_BD",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_BD",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_BB",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_BD",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_BB",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_BD",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_30",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_BB",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_BD",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_BB",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_BD",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_30",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_BB",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_BB",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_BB",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_BD",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_BB",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_BD",
+      "foreground_owned": true
+    },
+    {
+      "shortcut": "Ctrl+VK_30",
+      "foreground_owned": true
+    }
+  ],
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Edg/158.0.4370.33",
+    "revision": "@56b8f691820060b6e15f702165117f203442943f",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/158.0.0.0 Safari/537.36 Edg/158.0.0.0",
+    "jsVersion": "15.8.13.3"
+  },
+  "baseline_100": {
+    "runtime": {
+      "dpr": 1.5,
+      "width": 924,
+      "height": 1041,
+      "scale": 1,
+      "x": 0,
+      "y": 0
+    },
+    "layout": {
+      "layoutViewport": {
+        "pageX": 0,
+        "pageY": 0,
+        "clientWidth": 1363,
+        "clientHeight": 1539
+      },
+      "visualViewport": {
+        "offsetX": 0,
+        "offsetY": 0,
+        "pageX": 0,
+        "pageY": 0,
+        "clientWidth": 1363,
+        "clientHeight": 1539,
+        "scale": 1,
+        "zoom": 1
+      },
+      "contentSize": {
+        "x": 0,
+        "y": 0,
+        "width": 4500,
+        "height": 4500
+      },
+      "cssLayoutViewport": {
+        "pageX": 0,
+        "pageY": 0,
+        "clientWidth": 908,
+        "clientHeight": 1026
+      },
+      "cssVisualViewport": {
+        "offsetX": 0,
+        "offsetY": 0,
+        "pageX": 0,
+        "pageY": 0,
+        "clientWidth": 908.6666870117188,
+        "clientHeight": 1026,
+        "scale": 1,
+        "zoom": 1
+      },
+      "cssContentSize": {
+        "x": 0,
+        "y": 0,
+        "width": 3000,
+        "height": 3000
+      }
+    }
+  },
+  "before_capture": {
+    "runtime": {
+      "dpr": 1.875,
+      "width": 739,
+      "height": 833,
+      "scale": 1,
+      "x": 80,
+      "y": 120
+    },
+    "layout": {
+      "layoutViewport": {
+        "pageX": 150,
+        "pageY": 225,
+        "clientWidth": 1363,
+        "clientHeight": 1539
+      },
+      "visualViewport": {
+        "offsetX": 0,
+        "offsetY": 0,
+        "pageX": 80.00000762939453,
+        "pageY": 120.00000762939453,
+        "clientWidth": 1363,
+        "clientHeight": 1539,
+        "scale": 1,
+        "zoom": 1.25
+      },
+      "contentSize": {
+        "x": 0,
+        "y": 0,
+        "width": 5625,
+        "height": 5625
+      },
+      "cssLayoutViewport": {
+        "pageX": 81,
+        "pageY": 121,
+        "clientWidth": 725,
+        "clientHeight": 819
+      },
+      "cssVisualViewport": {
+        "offsetX": 0,
+        "offsetY": 0,
+        "pageX": 80.00000762939453,
+        "pageY": 120.00000762939453,
+        "clientWidth": 726.933349609375,
+        "clientHeight": 820.800048828125,
+        "scale": 1,
+        "zoom": 1.25
+      },
+      "cssContentSize": {
+        "x": 0,
+        "y": 0,
+        "width": 3000,
+        "height": 3000
+      }
+    }
+  },
+  "owned_targets_remaining": [],
+  "preexisting_targets_preserved": true,
+  "cleanup": {
+    "pending": 0,
+    "reader": false,
+    "connected": false
+  }
+}
