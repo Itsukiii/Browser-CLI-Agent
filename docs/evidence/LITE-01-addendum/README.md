@@ -1,6 +1,8 @@
-# LITE-01 定向补证（恢复断点）
+# LITE-01 定向补证
 
-2026-11-23。G2 已取得真实 Edge 代理证据；G1 最终完整复测待隔离 Edge 9341 恢复。**本目录当前不能作为 G1/G2 全部最终通过的声明。**
+2026-11-24：G1/G2 最终复测完成，完整 lite 集合 **29 passed，19.45s**。最终证据提交 `3f01545`，见 `final-live-2026-11-24.txt` 与 `final-2026-11-24/`。该子目录包含六组真实桌面缩放的完整 zoom.json/PNG 及三种真实传输故障 JSON。正式 Accepted 仍待架构主会话复核。
+
+下方根目录索引是 2026-11-23 的历史断点与失败记录，不能与最终子目录混合解释。最终报告见 `docs/lite/LITE-01_HANDOFF.md` 的 2026-11-24 节。
 
 ## 复现
 
@@ -8,7 +10,7 @@
 
 ```powershell
 $env:BCA_CDP_ENDPOINT = 'http://127.0.0.1:9341'
-$env:BCA_LITE_ADDENDUM_OUTPUT = 'docs/evidence/LITE-01-addendum'
+$env:BCA_LITE_ADDENDUM_OUTPUT = '.test-artifacts/addendum-new-run'
 .venv/Scripts/python.exe -m pytest tests/lite -q -W error --basetemp=.test-artifacts/addendum-final-rerun
 ```
 

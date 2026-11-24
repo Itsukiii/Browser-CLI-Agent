@@ -1,6 +1,6 @@
 # LITE-01 基础控制器集成交接
 
-2026-11-23。状态：**基础桥接已实现并通过本轮 native/Edge 验证，提交架构审查；不代表完整阶段正式 Accepted**。桌面浏览器菜单缩放与更完整故障矩阵仍有缺口，见末节。未进入 LITE-02～06。
+2026-11-24 更新。状态：**核心实现预验收通过，G1/G2 定向补证已完成，提交架构复核；不代表正式 Accepted**。最终补证见末节。LITE-02 仅提交设计，未进入实现。
 
 ## 基线与提交
 
@@ -108,7 +108,7 @@ Remove-Item Env:BCA_CDP_ENDPOINT
 - Python 3.12/3.13、其他系统、真实 WebGL、长期运行未测；尚无正式 CLI。
 - 建议架构主会话先审核公共观察授权及固定版本 Destroy 边界，再决定上述补测要求及 LITE-02 的启动。保留现有 README/PROJECT_CONTEXT 的正式验收状态，本轮未自行标 Accepted。
 
-## 2026-11-23 定向补证恢复断点
+## 2026-11-23 定向补证恢复断点（历史记录，已由下一节解除）
 
 本节更新前文 G1/G2 待办状态，前文测试数字为原始轮次。架构审查已认可核心实现，正式 Accepted 仍由主会话决定；**当前最终 G1 复测仍未完成**。
 
@@ -121,3 +121,29 @@ Remove-Item Env:BCA_CDP_ENDPOINT
 - LITE-02 只交付设计提案，提交 **450523c**，见 `LITE-02_DESIGN.md`；未实现 02.1～02.3，需设计审查后开展。
 
 继续步骤：用户恢复 9341 → 按补证目录 README 运行完整 lite 测试 → 核验 zoom 六组及三种 fault JSON、清理统计 → 更新本节并附最终代码/证据 SHA → 交架构主会话复核。恢复断点提交可通过 `git log --oneline -- tests/lite/test_real_addendum.py` 定位。
+
+## 2026-11-24 最终定向补证
+
+用户恢复隔离 Edge 9341 后，在 `lite@8832601` 运行完整 lite 集合，**29 passed / 0 skipped，19.45s**。此次没有修改测试或生产代码。最终证据提交 **3f01545**；补测代码/滚动精度修正提交 **8832601**；LITE-02 设计提交 **450523c**。本节取代前文 G1/G2 未完成状态；旧失败日志及断点按历史保留。
+
+复现命令（PowerShell，仓库根目录）：
+
+```powershell
+$env:BCA_CDP_ENDPOINT = 'http://127.0.0.1:9341'
+$env:BCA_LITE_ADDENDUM_OUTPUT = 'docs/evidence/LITE-01-addendum/final-2026-11-24'
+.venv/Scripts/python.exe -m pytest tests/lite -q -W error --basetemp=.test-artifacts/addendum-20261124
+```
+
+控制台原始日志为 `docs/evidence/LITE-01-addendum/final-live-2026-11-24.txt`；JSON 与六张 fixture PNG 在同目录 `final-2026-11-24/`。复测须换新输出目录和 basetemp，避免覆盖原证据。
+
+| 补证 | 最终结果 |
+| --- | --- |
+| G1 实际桌面 Ctrl+0/± | 80%、100%、125% × raw/nonraw，共六组；Runtime DPR 相对 100% 基线确认真实缩放，visualViewport.scale=1；未用 emulation/pinch 替代 |
+| G1 坐标/授权 | 六次点击均命中 mark，Frame、Maa 图像尺寸、native callback、CSS、DOM 坐标完整；最大误差 **0.993598 CSS px**，符合 ≤1 px；每组重复点击被拒绝，新授权后改变桌面缩放的旧观察点击被拒绝 |
+| G2 丢 ACK / 断连 | 两项均先由代理收到真实 Edge mousePressed 成功响应，再丢弃或断开；独立 DOM 各记录一次 mousedown，代理各只转发一次 mousePressed；输入 unknown，后续点击及截图被阻断，无重发 |
+| G2 取消/关闭竞争 | 实际截图响应被代理持有；取消 native 调用与 aclose 均等待在途回调，释放响应后完成排空；无输入，outcome=not_attempted |
+| 清理 | 三个 fault 的 native handle 已释放、proxy sockets=0；全部场景 pending=0 / reader=false / connected=false，自建 Target 残留=[]、既有 Target 保留=true |
+
+29 是完整 lite 测试集合数量，并非 29 个真实 Edge 场景。原有 native/假后端测试及既有真实坐标矩阵同时通过；新增 G1/G2 证据仅按上表解释。此次补测不证明 OCR、业务语义回合或长期运行；既有这些边界仍成立。离线 786 passed / 50 skipped、定向回归 113 passed、静态与构建结果沿用 2026-11-23 同一源码验证，不冒充本日重跑。
+
+下一步由架构主会话复核 G1/G2 并决定正式 Accepted，同时审核 `LITE-02_DESIGN.md`。未修改 README/PROJECT_CONTEXT 的验收状态，未开始 02.1～02.3，未推送远端或合并 main。
