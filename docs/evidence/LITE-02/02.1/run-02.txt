@@ -1,0 +1,3518 @@
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF..F.                        [100%]
+================================== FAILURES ===================================
+________________________ test_template_matrix[True-0] _________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_template_matrix_True_0_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1A186C8A0>
+index = 0, positive = True
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:61: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C043BB60>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_template_matrix[True-1] _________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_template_matrix_True_1_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C03B1940>
+index = 1, positive = True
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:61: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1456210>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_template_matrix[True-2] _________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_template_matrix_True_2_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C0436C30>
+index = 2, positive = True
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:61: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1457610>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_template_matrix[True-3] _________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_template_matrix_True_3_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C16409E0>
+index = 3, positive = True
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:61: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1485CD0>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_template_matrix[True-4] _________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_template_matrix_True_4_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C16419D0>
+index = 4, positive = True
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:61: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1486EA0>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_template_matrix[True-5] _________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_template_matrix_True_5_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C14DD850>
+index = 5, positive = True
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:61: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C0437AD0>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_template_matrix[True-6] _________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_template_matrix_True_6_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C1459E50>
+index = 6, positive = True
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:61: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1641260>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_template_matrix[True-7] _________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_template_matrix_True_7_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C150F890>
+index = 7, positive = True
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:61: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1642F10>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_template_matrix[True-8] _________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_template_matrix_True_8_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C150F7A0>
+index = 8, positive = True
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:61: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C14DE850>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_template_matrix[True-9] _________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_template_matrix_True_9_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C0400750>
+index = 9, positive = True
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:61: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C14DC650>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_template_matrix[False-0] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_template_matrix_False_0_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C144F3F0>
+index = 0, positive = False
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:61: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C146A7B0>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_template_matrix[False-1] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_template_matrix_False_1_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C169C460>
+index = 1, positive = False
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:61: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C14F27B0>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_template_matrix[False-2] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_template_matrix_False_2_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C02F3590>
+index = 2, positive = False
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:61: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C144E5F0>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_template_matrix[False-3] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_template_matrix_False_3_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C02F3110>
+index = 3, positive = False
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:61: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1519010>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_template_matrix[False-4] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_template_matrix_False_4_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C148C470>
+index = 4, positive = False
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:61: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C169D3D0>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_template_matrix[False-5] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_template_matrix_False_5_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C148E150>
+index = 5, positive = False
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:61: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1504110>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_template_matrix[False-6] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_template_matrix_False_6_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C14EA990>
+index = 6, positive = False
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:61: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1504950>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_template_matrix[False-7] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_template_matrix_False_7_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C14EA350>
+index = 7, positive = False
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:61: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C14DA150>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_template_matrix[False-8] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_template_matrix_False_8_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1A1A11640>
+index = 8, positive = False
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:61: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C148DF40>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_template_matrix[False-9] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_template_matrix_False_9_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C14AFAD0>
+index = 9, positive = False
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:61: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C14EB4D0>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+_________________________ test_ocr_digits_and_roi[0] __________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_ocr_digits_and_roi_0_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C15EA150>
+text = '0'
+
+    @pytest.mark.parametrize(
+        "text", [str(i) for i in range(10)] + ["-1", "-20", "-305", "12", "345", "6789"]
+    )
+    def test_ocr_digits_and_roi(tmp_path, monkeypatch, text):
+        model = model_spec()
+
+        async def run():
+            image = scene(text=text, points=())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image, max_frame_age=10)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (OCRRequest("full"), OCRRequest("roi", (50, 100, 350, 110)))
+                )
+                record(tmp_path, f"ocr-{text}", result_record(batch), image)
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == RecognitionStatus.MATCHED
+                    assert [c.text for c in result.candidates] == [text]
+                    x, y, w, h = result.candidates[0].box
+                    assert x >= 50 and y >= 100 and x + w <= 400 and y + h <= 210
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:114:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:99: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C14EB250>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+_________________________ test_ocr_digits_and_roi[1] __________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_ocr_digits_and_roi_1_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C1514C20>
+text = '1'
+
+    @pytest.mark.parametrize(
+        "text", [str(i) for i in range(10)] + ["-1", "-20", "-305", "12", "345", "6789"]
+    )
+    def test_ocr_digits_and_roi(tmp_path, monkeypatch, text):
+        model = model_spec()
+
+        async def run():
+            image = scene(text=text, points=())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image, max_frame_age=10)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (OCRRequest("full"), OCRRequest("roi", (50, 100, 350, 110)))
+                )
+                record(tmp_path, f"ocr-{text}", result_record(batch), image)
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == RecognitionStatus.MATCHED
+                    assert [c.text for c in result.candidates] == [text]
+                    x, y, w, h = result.candidates[0].box
+                    assert x >= 50 and y >= 100 and x + w <= 400 and y + h <= 210
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:114:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:99: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C14E8C30>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+_________________________ test_ocr_digits_and_roi[2] __________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_ocr_digits_and_roi_2_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C1514440>
+text = '2'
+
+    @pytest.mark.parametrize(
+        "text", [str(i) for i in range(10)] + ["-1", "-20", "-305", "12", "345", "6789"]
+    )
+    def test_ocr_digits_and_roi(tmp_path, monkeypatch, text):
+        model = model_spec()
+
+        async def run():
+            image = scene(text=text, points=())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image, max_frame_age=10)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (OCRRequest("full"), OCRRequest("roi", (50, 100, 350, 110)))
+                )
+                record(tmp_path, f"ocr-{text}", result_record(batch), image)
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == RecognitionStatus.MATCHED
+                    assert [c.text for c in result.candidates] == [text]
+                    x, y, w, h = result.candidates[0].box
+                    assert x >= 50 and y >= 100 and x + w <= 400 and y + h <= 210
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:114:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:99: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1520190>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+_________________________ test_ocr_digits_and_roi[3] __________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_ocr_digits_and_roi_3_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C1514FA0>
+text = '3'
+
+    @pytest.mark.parametrize(
+        "text", [str(i) for i in range(10)] + ["-1", "-20", "-305", "12", "345", "6789"]
+    )
+    def test_ocr_digits_and_roi(tmp_path, monkeypatch, text):
+        model = model_spec()
+
+        async def run():
+            image = scene(text=text, points=())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image, max_frame_age=10)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (OCRRequest("full"), OCRRequest("roi", (50, 100, 350, 110)))
+                )
+                record(tmp_path, f"ocr-{text}", result_record(batch), image)
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == RecognitionStatus.MATCHED
+                    assert [c.text for c in result.candidates] == [text]
+                    x, y, w, h = result.candidates[0].box
+                    assert x >= 50 and y >= 100 and x + w <= 400 and y + h <= 210
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:114:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:99: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1520230>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+_________________________ test_ocr_digits_and_roi[4] __________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_ocr_digits_and_roi_4_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C15149F0>
+text = '4'
+
+    @pytest.mark.parametrize(
+        "text", [str(i) for i in range(10)] + ["-1", "-20", "-305", "12", "345", "6789"]
+    )
+    def test_ocr_digits_and_roi(tmp_path, monkeypatch, text):
+        model = model_spec()
+
+        async def run():
+            image = scene(text=text, points=())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image, max_frame_age=10)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (OCRRequest("full"), OCRRequest("roi", (50, 100, 350, 110)))
+                )
+                record(tmp_path, f"ocr-{text}", result_record(batch), image)
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == RecognitionStatus.MATCHED
+                    assert [c.text for c in result.candidates] == [text]
+                    x, y, w, h = result.candidates[0].box
+                    assert x >= 50 and y >= 100 and x + w <= 400 and y + h <= 210
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:114:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:99: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1520730>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+_________________________ test_ocr_digits_and_roi[5] __________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_ocr_digits_and_roi_5_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C15144B0>
+text = '5'
+
+    @pytest.mark.parametrize(
+        "text", [str(i) for i in range(10)] + ["-1", "-20", "-305", "12", "345", "6789"]
+    )
+    def test_ocr_digits_and_roi(tmp_path, monkeypatch, text):
+        model = model_spec()
+
+        async def run():
+            image = scene(text=text, points=())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image, max_frame_age=10)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (OCRRequest("full"), OCRRequest("roi", (50, 100, 350, 110)))
+                )
+                record(tmp_path, f"ocr-{text}", result_record(batch), image)
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == RecognitionStatus.MATCHED
+                    assert [c.text for c in result.candidates] == [text]
+                    x, y, w, h = result.candidates[0].box
+                    assert x >= 50 and y >= 100 and x + w <= 400 and y + h <= 210
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:114:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:99: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1520AF0>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+_________________________ test_ocr_digits_and_roi[6] __________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_ocr_digits_and_roi_6_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C1517700>
+text = '6'
+
+    @pytest.mark.parametrize(
+        "text", [str(i) for i in range(10)] + ["-1", "-20", "-305", "12", "345", "6789"]
+    )
+    def test_ocr_digits_and_roi(tmp_path, monkeypatch, text):
+        model = model_spec()
+
+        async def run():
+            image = scene(text=text, points=())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image, max_frame_age=10)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (OCRRequest("full"), OCRRequest("roi", (50, 100, 350, 110)))
+                )
+                record(tmp_path, f"ocr-{text}", result_record(batch), image)
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == RecognitionStatus.MATCHED
+                    assert [c.text for c in result.candidates] == [text]
+                    x, y, w, h = result.candidates[0].box
+                    assert x >= 50 and y >= 100 and x + w <= 400 and y + h <= 210
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:114:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:99: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1520A50>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+_________________________ test_ocr_digits_and_roi[7] __________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_ocr_digits_and_roi_7_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C15167B0>
+text = '7'
+
+    @pytest.mark.parametrize(
+        "text", [str(i) for i in range(10)] + ["-1", "-20", "-305", "12", "345", "6789"]
+    )
+    def test_ocr_digits_and_roi(tmp_path, monkeypatch, text):
+        model = model_spec()
+
+        async def run():
+            image = scene(text=text, points=())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image, max_frame_age=10)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (OCRRequest("full"), OCRRequest("roi", (50, 100, 350, 110)))
+                )
+                record(tmp_path, f"ocr-{text}", result_record(batch), image)
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == RecognitionStatus.MATCHED
+                    assert [c.text for c in result.candidates] == [text]
+                    x, y, w, h = result.candidates[0].box
+                    assert x >= 50 and y >= 100 and x + w <= 400 and y + h <= 210
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:114:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:99: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1520EB0>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+_________________________ test_ocr_digits_and_roi[8] __________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_ocr_digits_and_roi_8_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C15170E0>
+text = '8'
+
+    @pytest.mark.parametrize(
+        "text", [str(i) for i in range(10)] + ["-1", "-20", "-305", "12", "345", "6789"]
+    )
+    def test_ocr_digits_and_roi(tmp_path, monkeypatch, text):
+        model = model_spec()
+
+        async def run():
+            image = scene(text=text, points=())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image, max_frame_age=10)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (OCRRequest("full"), OCRRequest("roi", (50, 100, 350, 110)))
+                )
+                record(tmp_path, f"ocr-{text}", result_record(batch), image)
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == RecognitionStatus.MATCHED
+                    assert [c.text for c in result.candidates] == [text]
+                    x, y, w, h = result.candidates[0].box
+                    assert x >= 50 and y >= 100 and x + w <= 400 and y + h <= 210
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:114:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:99: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C15200F0>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+_________________________ test_ocr_digits_and_roi[9] __________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_ocr_digits_and_roi_9_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C15A4980>
+text = '9'
+
+    @pytest.mark.parametrize(
+        "text", [str(i) for i in range(10)] + ["-1", "-20", "-305", "12", "345", "6789"]
+    )
+    def test_ocr_digits_and_roi(tmp_path, monkeypatch, text):
+        model = model_spec()
+
+        async def run():
+            image = scene(text=text, points=())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image, max_frame_age=10)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (OCRRequest("full"), OCRRequest("roi", (50, 100, 350, 110)))
+                )
+                record(tmp_path, f"ocr-{text}", result_record(batch), image)
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == RecognitionStatus.MATCHED
+                    assert [c.text for c in result.candidates] == [text]
+                    x, y, w, h = result.candidates[0].box
+                    assert x >= 50 and y >= 100 and x + w <= 400 and y + h <= 210
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:114:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:99: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1521310>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+_________________________ test_ocr_digits_and_roi[-1] _________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_ocr_digits_and_roi__1_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C15A5550>
+text = '-1'
+
+    @pytest.mark.parametrize(
+        "text", [str(i) for i in range(10)] + ["-1", "-20", "-305", "12", "345", "6789"]
+    )
+    def test_ocr_digits_and_roi(tmp_path, monkeypatch, text):
+        model = model_spec()
+
+        async def run():
+            image = scene(text=text, points=())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image, max_frame_age=10)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (OCRRequest("full"), OCRRequest("roi", (50, 100, 350, 110)))
+                )
+                record(tmp_path, f"ocr-{text}", result_record(batch), image)
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == RecognitionStatus.MATCHED
+                    assert [c.text for c in result.candidates] == [text]
+                    x, y, w, h = result.candidates[0].box
+                    assert x >= 50 and y >= 100 and x + w <= 400 and y + h <= 210
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:114:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:99: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C15218B0>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_ocr_digits_and_roi[-20] _________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_ocr_digits_and_roi__20_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C15A7D20>
+text = '-20'
+
+    @pytest.mark.parametrize(
+        "text", [str(i) for i in range(10)] + ["-1", "-20", "-305", "12", "345", "6789"]
+    )
+    def test_ocr_digits_and_roi(tmp_path, monkeypatch, text):
+        model = model_spec()
+
+        async def run():
+            image = scene(text=text, points=())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image, max_frame_age=10)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (OCRRequest("full"), OCRRequest("roi", (50, 100, 350, 110)))
+                )
+                record(tmp_path, f"ocr-{text}", result_record(batch), image)
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == RecognitionStatus.MATCHED
+                    assert [c.text for c in result.candidates] == [text]
+                    x, y, w, h = result.candidates[0].box
+                    assert x >= 50 and y >= 100 and x + w <= 400 and y + h <= 210
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:114:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:99: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1521090>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_ocr_digits_and_roi[-305] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_ocr_digits_and_roi__305_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C15A7CB0>
+text = '-305'
+
+    @pytest.mark.parametrize(
+        "text", [str(i) for i in range(10)] + ["-1", "-20", "-305", "12", "345", "6789"]
+    )
+    def test_ocr_digits_and_roi(tmp_path, monkeypatch, text):
+        model = model_spec()
+
+        async def run():
+            image = scene(text=text, points=())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image, max_frame_age=10)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (OCRRequest("full"), OCRRequest("roi", (50, 100, 350, 110)))
+                )
+                record(tmp_path, f"ocr-{text}", result_record(batch), image)
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == RecognitionStatus.MATCHED
+                    assert [c.text for c in result.candidates] == [text]
+                    x, y, w, h = result.candidates[0].box
+                    assert x >= 50 and y >= 100 and x + w <= 400 and y + h <= 210
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:114:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:99: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1521E50>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+_________________________ test_ocr_digits_and_roi[12] _________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_ocr_digits_and_roi_12_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C15A4050>
+text = '12'
+
+    @pytest.mark.parametrize(
+        "text", [str(i) for i in range(10)] + ["-1", "-20", "-305", "12", "345", "6789"]
+    )
+    def test_ocr_digits_and_roi(tmp_path, monkeypatch, text):
+        model = model_spec()
+
+        async def run():
+            image = scene(text=text, points=())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image, max_frame_age=10)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (OCRRequest("full"), OCRRequest("roi", (50, 100, 350, 110)))
+                )
+                record(tmp_path, f"ocr-{text}", result_record(batch), image)
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == RecognitionStatus.MATCHED
+                    assert [c.text for c in result.candidates] == [text]
+                    x, y, w, h = result.candidates[0].box
+                    assert x >= 50 and y >= 100 and x + w <= 400 and y + h <= 210
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:114:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:99: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1522030>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_ocr_digits_and_roi[345] _________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_ocr_digits_and_roi_345_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C15A5630>
+text = '345'
+
+    @pytest.mark.parametrize(
+        "text", [str(i) for i in range(10)] + ["-1", "-20", "-305", "12", "345", "6789"]
+    )
+    def test_ocr_digits_and_roi(tmp_path, monkeypatch, text):
+        model = model_spec()
+
+        async def run():
+            image = scene(text=text, points=())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image, max_frame_age=10)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (OCRRequest("full"), OCRRequest("roi", (50, 100, 350, 110)))
+                )
+                record(tmp_path, f"ocr-{text}", result_record(batch), image)
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == RecognitionStatus.MATCHED
+                    assert [c.text for c in result.candidates] == [text]
+                    x, y, w, h = result.candidates[0].box
+                    assert x >= 50 and y >= 100 and x + w <= 400 and y + h <= 210
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:114:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:99: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1521950>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________________ test_ocr_digits_and_roi[6789] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_ocr_digits_and_roi_6789_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C15A7540>
+text = '6789'
+
+    @pytest.mark.parametrize(
+        "text", [str(i) for i in range(10)] + ["-1", "-20", "-305", "12", "345", "6789"]
+    )
+    def test_ocr_digits_and_roi(tmp_path, monkeypatch, text):
+        model = model_spec()
+
+        async def run():
+            image = scene(text=text, points=())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image, max_frame_age=10)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (OCRRequest("full"), OCRRequest("roi", (50, 100, 350, 110)))
+                )
+                record(tmp_path, f"ocr-{text}", result_record(batch), image)
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == RecognitionStatus.MATCHED
+                    assert [c.text for c in result.candidates] == [text]
+                    x, y, w, h = result.candidates[0].box
+                    assert x >= 50 and y >= 100 and x + w <= 400 and y + h <= 210
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:114:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:99: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1522670>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+____________________ test_ocr_negative_and_expected_filter ____________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_ocr_negative_and_expected0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C15A7770>
+
+    def test_ocr_negative_and_expected_filter(tmp_path, monkeypatch):
+        model = model_spec()
+
+        async def run():
+            bridge, capture, _, _ = bridge_for(monkeypatch, scene(text="", points=()))
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+                blank = await facade.recognize((OCRRequest("blank"),))
+                capture.image = scene(text="123", points=())
+                filtered = await facade.recognize((OCRRequest("filter", expected=("^999$",)),))
+                for batch in (blank, filtered):
+                    record(tmp_path, batch.results[0].request_key, result_record(batch))
+                    assert batch.results[0].status == RecognitionStatus.NOT_FOUND
+                    assert batch.results[0].job_status == "failed"
+                assert filtered.results[0].all_candidates[0].text == "123"
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:136:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:123: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C15223F0>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+_____________________ test_ambiguity_and_missing_resource _____________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_ambiguity_and_missing_res0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C161CFA0>
+
+    def test_ambiguity_and_missing_resource(tmp_path, monkeypatch):
+        async def run():
+            image = scene(points=((60, 50), (150, 50)))
+            bridge, _, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("unique", "marker.png"),
+                        TemplateRequest("many", "marker.png", unique=False),
+                        TemplateRequest("missing", "missing.png"),
+                        OCRRequest("ocr"),
+                    )
+                )
+                assert [r.status for r in batch.results] == [
+                    RecognitionStatus.AMBIGUOUS,
+                    RecognitionStatus.MATCHED,
+                    RecognitionStatus.ERROR,
+                    RecognitionStatus.ERROR,
+                ]
+                assert len(batch.results[0].candidates) == 2
+                record(tmp_path, "ambiguous-missing", result_record(batch), image)
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:165:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:144: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1522C10>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+______ test_pipeline_native_api_only[TemplateProbe-recognition_request0] ______
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_pipeline_native_api_only_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C161DEF0>
+entry = 'TemplateProbe'
+recognition_request = TemplateRequest(key='t', template='marker.png', roi=None, threshold=0.9, unique=True)
+
+    @pytest.mark.parametrize(
+        "entry,recognition_request",
+        [("TemplateProbe", TemplateRequest("t", "marker.png")), ("OCRProbe", OCRRequest("o"))],
+    )
+    def test_pipeline_native_api_only(tmp_path, monkeypatch, entry, recognition_request):
+        # Private test probe: pipeline details never become a source-authorized Batch.
+        model = model_spec()
+
+        async def run():
+            bridge, capture, _, _ = bridge_for(monkeypatch, scene())
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+
+                def probe():
+                    job = facade._native.tasker.post_task(entry).wait()
+                    return normalize(job, recognition_request, 480, 240)
+
+                result = await facade._submit(probe)
+                assert result.status == RecognitionStatus.MATCHED
+                assert capture.count == 1
+                if entry == "TemplateProbe":
+                    assert result.candidates[0].box == (60, 50, 36, 28)
+                else:
+                    assert result.candidates[0].text == "123"
+                record(
+                    tmp_path,
+                    entry,
+                    {
+                        "captures": capture.count,
+                        "authorized_batch": False,
+                        "result": dataclasses.asdict(result),
+                    },
+                )
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:205:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:179: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1522CB0>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________ test_pipeline_native_api_only[OCRProbe-recognition_request1] _________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_pipeline_native_api_only_1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C161EDD0>
+entry = 'OCRProbe'
+recognition_request = OCRRequest(key='o', roi=None, threshold=0.3, expected=(), unique=True, only_rec=False)
+
+    @pytest.mark.parametrize(
+        "entry,recognition_request",
+        [("TemplateProbe", TemplateRequest("t", "marker.png")), ("OCRProbe", OCRRequest("o"))],
+    )
+    def test_pipeline_native_api_only(tmp_path, monkeypatch, entry, recognition_request):
+        # Private test probe: pipeline details never become a source-authorized Batch.
+        model = model_spec()
+
+        async def run():
+            bridge, capture, _, _ = bridge_for(monkeypatch, scene())
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+
+                def probe():
+                    job = facade._native.tasker.post_task(entry).wait()
+                    return normalize(job, recognition_request, 480, 240)
+
+                result = await facade._submit(probe)
+                assert result.status == RecognitionStatus.MATCHED
+                assert capture.count == 1
+                if entry == "TemplateProbe":
+                    assert result.candidates[0].box == (60, 50, 36, 28)
+                else:
+                    assert result.candidates[0].text == "123"
+                record(
+                    tmp_path,
+                    entry,
+                    {
+                        "captures": capture.count,
+                        "authorized_batch": False,
+                        "result": dataclasses.asdict(result),
+                    },
+                )
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:205:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:179: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1523610>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+______________ test_source_rechecked_after_native_work[expired] _______________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_source_rechecked_after_na0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C161FBD0>
+change = 'expired'
+
+    @pytest.mark.parametrize("change", ["expired", "binding", "replacement"])
+    def test_source_rechecked_after_native_work(tmp_path, monkeypatch, change):
+        async def run():
+            bridge, capture, session, _ = bridge_for(monkeypatch, scene(), max_frame_age=0.2)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            entered, release = threading.Event(), threading.Event()
+            recognize = facade._native.recognize
+
+            def held(*args):
+                entered.set()
+                assert release.wait(5)
+                return recognize(*args)
+
+            monkeypatch.setattr(facade._native, "recognize", held)
+            task = asyncio.create_task(facade.recognize((TemplateRequest("t", "marker.png"),)))
+            try:
+                while not entered.is_set():
+                    await asyncio.sleep(0.005)
+                original = bridge.observation
+                if change == "expired":
+                    await asyncio.sleep(0.25)
+                elif change == "binding":
+                    session.generation += 1
+                else:
+                    await asyncio.to_thread(
+                        bridge.screencap
+                    )  # Deliberate external ownership violation.
+                release.set()
+                batch = await task
+                assert batch.capture.source_ref is original
+                if change == "expired":
+                    assert batch.expired and batch.source_current
+                    assert batch.results[0].status == RecognitionStatus.MATCHED
+                    with pytest.raises(BridgeError, match="expired"):
+                        await bridge.authorize(original)
+                else:
+                    assert (
+                        not batch.source_current and batch.results[0].status == RecognitionStatus.ERROR
+                    )
+                record(tmp_path, f"source-{change}", result_record(batch))
+            finally:
+                release.set()
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:253:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:213: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1523890>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+______________ test_source_rechecked_after_native_work[binding] _______________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_source_rechecked_after_na1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C161FEE0>
+change = 'binding'
+
+    @pytest.mark.parametrize("change", ["expired", "binding", "replacement"])
+    def test_source_rechecked_after_native_work(tmp_path, monkeypatch, change):
+        async def run():
+            bridge, capture, session, _ = bridge_for(monkeypatch, scene(), max_frame_age=0.2)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            entered, release = threading.Event(), threading.Event()
+            recognize = facade._native.recognize
+
+            def held(*args):
+                entered.set()
+                assert release.wait(5)
+                return recognize(*args)
+
+            monkeypatch.setattr(facade._native, "recognize", held)
+            task = asyncio.create_task(facade.recognize((TemplateRequest("t", "marker.png"),)))
+            try:
+                while not entered.is_set():
+                    await asyncio.sleep(0.005)
+                original = bridge.observation
+                if change == "expired":
+                    await asyncio.sleep(0.25)
+                elif change == "binding":
+                    session.generation += 1
+                else:
+                    await asyncio.to_thread(
+                        bridge.screencap
+                    )  # Deliberate external ownership violation.
+                release.set()
+                batch = await task
+                assert batch.capture.source_ref is original
+                if change == "expired":
+                    assert batch.expired and batch.source_current
+                    assert batch.results[0].status == RecognitionStatus.MATCHED
+                    with pytest.raises(BridgeError, match="expired"):
+                        await bridge.authorize(original)
+                else:
+                    assert (
+                        not batch.source_current and batch.results[0].status == RecognitionStatus.ERROR
+                    )
+                record(tmp_path, f"source-{change}", result_record(batch))
+            finally:
+                release.set()
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:253:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:213: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C15237F0>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+____________ test_source_rechecked_after_native_work[replacement] _____________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_source_rechecked_after_na2')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C161CD70>
+change = 'replacement'
+
+    @pytest.mark.parametrize("change", ["expired", "binding", "replacement"])
+    def test_source_rechecked_after_native_work(tmp_path, monkeypatch, change):
+        async def run():
+            bridge, capture, session, _ = bridge_for(monkeypatch, scene(), max_frame_age=0.2)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            entered, release = threading.Event(), threading.Event()
+            recognize = facade._native.recognize
+
+            def held(*args):
+                entered.set()
+                assert release.wait(5)
+                return recognize(*args)
+
+            monkeypatch.setattr(facade._native, "recognize", held)
+            task = asyncio.create_task(facade.recognize((TemplateRequest("t", "marker.png"),)))
+            try:
+                while not entered.is_set():
+                    await asyncio.sleep(0.005)
+                original = bridge.observation
+                if change == "expired":
+                    await asyncio.sleep(0.25)
+                elif change == "binding":
+                    session.generation += 1
+                else:
+                    await asyncio.to_thread(
+                        bridge.screencap
+                    )  # Deliberate external ownership violation.
+                release.set()
+                batch = await task
+                assert batch.capture.source_ref is original
+                if change == "expired":
+                    assert batch.expired and batch.source_current
+                    assert batch.results[0].status == RecognitionStatus.MATCHED
+                    with pytest.raises(BridgeError, match="expired"):
+                        await bridge.authorize(original)
+                else:
+                    assert (
+                        not batch.source_current and batch.results[0].status == RecognitionStatus.ERROR
+                    )
+                record(tmp_path, f"source-{change}", result_record(batch))
+            finally:
+                release.set()
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:253:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:213: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1523D90>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+________________ test_cancel_repeat_and_close_wait_for_native _________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_cancel_repeat_and_close_w0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C1555550>
+
+    def test_cancel_repeat_and_close_wait_for_native(tmp_path, monkeypatch):
+        async def run():
+            bridge, _, _, inputs = bridge_for(monkeypatch, scene())
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            entered, release = threading.Event(), threading.Event()
+            recognize = facade._native.recognize
+
+            def held(*args):
+                entered.set()
+                assert release.wait(5)
+                return recognize(*args)
+
+            monkeypatch.setattr(facade._native, "recognize", held)
+            task = asyncio.create_task(facade.recognize((TemplateRequest("t", "marker.png"),)))
+            while not entered.is_set():
+                await asyncio.sleep(0.005)
+            task.cancel()
+            await asyncio.sleep(0.01)
+            task.cancel()
+            close = asyncio.create_task(facade.aclose())
+            await asyncio.sleep(0.01)
+            close.cancel()
+            await asyncio.sleep(0.01)
+            assert not task.done() and not close.done()
+            assert facade._native.tasker._handle
+            release.set()
+            with pytest.raises(asyncio.CancelledError):
+                await task
+            with pytest.raises(asyncio.CancelledError):
+                await close
+            report = await facade.aclose()
+            assert report.released and not inputs.actions
+            assert not bridge.connected
+            with pytest.raises(VisionError):
+                await facade.recognize((TemplateRequest("t", "marker.png"),))
+            record(tmp_path, "cancel-close", dataclasses.asdict(report))
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:294:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:260: in run
+    await facade.start()
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1523890>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+_________________ test_partial_start_failure_cleanup[bundle] __________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_partial_start_failure_cle0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C1555D30>
+fault = 'bundle'
+
+    @pytest.mark.parametrize("fault", ["bundle", "model-missing", "hash"])
+    def test_partial_start_failure_cleanup(tmp_path, monkeypatch, fault):
+        async def run():
+            bundle = bundle_at(tmp_path / "bundle")
+            model = None
+            if fault == "bundle":
+                (bundle / "pipeline/fixture.json").write_text("{invalid", encoding="utf-8")
+            else:
+                root = tmp_path / "model"
+                root.mkdir()
+                if fault == "hash":
+                    manifest = json.loads(MANIFEST.read_text())
+                    for name, info in manifest["files"].items():
+                        (root / name).write_bytes(b"x" * info["size"])
+                model = OCRModelSpec(root, MANIFEST)
+            bridge, _, _, _ = bridge_for(monkeypatch, scene())
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle, model))
+            with pytest.raises(VisionError):
+                await facade.start()
+            report = await facade.aclose()
+            assert report.released
+            if fault == "bundle":
+                assert report.destroyed == ("controller", "resource")
+            else:
+                assert report.destroyed == ()
+            record(tmp_path, f"start-{fault}", dataclasses.asdict(report))
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:324:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def run():
+        bundle = bundle_at(tmp_path / "bundle")
+        model = None
+        if fault == "bundle":
+            (bundle / "pipeline/fixture.json").write_text("{invalid", encoding="utf-8")
+        else:
+            root = tmp_path / "model"
+            root.mkdir()
+            if fault == "hash":
+                manifest = json.loads(MANIFEST.read_text())
+                for name, info in manifest["files"].items():
+                    (root / name).write_bytes(b"x" * info["size"])
+            model = OCRModelSpec(root, MANIFEST)
+        bridge, _, _, _ = bridge_for(monkeypatch, scene())
+        facade = MaaVisionFacade(bridge, ResourceSpec(bundle, model))
+        with pytest.raises(VisionError):
+            await facade.start()
+        report = await facade.aclose()
+        assert report.released
+        if fault == "bundle":
+>           assert report.destroyed == ("controller", "resource")
+E           AssertionError: assert () == ('controller', 'resource')
+E
+E             Right contains 2 more items, first extra item: 'controller'
+E             Use -v to get more diff
+
+tests\lite\test_vision_native.py:319: AssertionError
+____________ test_repeated_native_lifecycle_and_concurrent_batches ____________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-02/test_repeated_native_lifecycle0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001C1C1557E00>
+
+    def test_repeated_native_lifecycle_and_concurrent_batches(tmp_path, monkeypatch):
+        async def run():
+            reports = []
+            for index in range(5):
+                bridge, capture, _, _ = bridge_for(monkeypatch, scene())
+                facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / str(index))))
+                await asyncio.gather(facade.start(), facade.start())
+                first, second = await asyncio.gather(
+                    facade.recognize((TemplateRequest("t", "marker.png"),)),
+                    facade.recognize((TemplateRequest("t", "marker.png"),)),
+                )
+                assert capture.count == 2 and first.capture.source_ref is not second.capture.source_ref
+                assert all(b.results[0].status == RecognitionStatus.MATCHED for b in (first, second))
+                closed = await asyncio.gather(facade.aclose(), facade.aclose())
+                assert closed[0] is closed[1] and closed[0].released
+                reports.append(dataclasses.asdict(closed[0]))
+            record(tmp_path, "lifecycle", reports)
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:345:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:333: in run
+    await asyncio.gather(facade.start(), facade.start())
+src\bca\lite\vision.py:82: in start
+    await self._submit(initialize)
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:80: in initialize
+    self._native.start()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.lite._native_vision.NativeVision object at 0x000001C1C1544AF0>
+
+    def start(self) -> None:
+        self._check_thread()
+        if importlib.metadata.version("maafw") != "5.16.1" or Library.version() != "v5.16.1":
+>           raise VisionError("native lifetime adapter requires Python/native Maa v5.16.1")
+E           bca.lite.vision_types.VisionError: native lifetime adapter requires Python/native Maa v5.16.1
+
+src\bca\lite\_native_vision.py:120: VisionError
+=========================== short test summary info ===========================
+FAILED tests/lite/test_vision_native.py::test_template_matrix[True-0] - bca.l...
+FAILED tests/lite/test_vision_native.py::test_template_matrix[True-1] - bca.l...
+FAILED tests/lite/test_vision_native.py::test_template_matrix[True-2] - bca.l...
+FAILED tests/lite/test_vision_native.py::test_template_matrix[True-3] - bca.l...
+FAILED tests/lite/test_vision_native.py::test_template_matrix[True-4] - bca.l...
+FAILED tests/lite/test_vision_native.py::test_template_matrix[True-5] - bca.l...
+FAILED tests/lite/test_vision_native.py::test_template_matrix[True-6] - bca.l...
+FAILED tests/lite/test_vision_native.py::test_template_matrix[True-7] - bca.l...
+FAILED tests/lite/test_vision_native.py::test_template_matrix[True-8] - bca.l...
+FAILED tests/lite/test_vision_native.py::test_template_matrix[True-9] - bca.l...
+FAILED tests/lite/test_vision_native.py::test_template_matrix[False-0] - bca....
+FAILED tests/lite/test_vision_native.py::test_template_matrix[False-1] - bca....
+FAILED tests/lite/test_vision_native.py::test_template_matrix[False-2] - bca....
+FAILED tests/lite/test_vision_native.py::test_template_matrix[False-3] - bca....
+FAILED tests/lite/test_vision_native.py::test_template_matrix[False-4] - bca....
+FAILED tests/lite/test_vision_native.py::test_template_matrix[False-5] - bca....
+FAILED tests/lite/test_vision_native.py::test_template_matrix[False-6] - bca....
+FAILED tests/lite/test_vision_native.py::test_template_matrix[False-7] - bca....
+FAILED tests/lite/test_vision_native.py::test_template_matrix[False-8] - bca....
+FAILED tests/lite/test_vision_native.py::test_template_matrix[False-9] - bca....
+FAILED tests/lite/test_vision_native.py::test_ocr_digits_and_roi[0] - bca.lit...
+FAILED tests/lite/test_vision_native.py::test_ocr_digits_and_roi[1] - bca.lit...
+FAILED tests/lite/test_vision_native.py::test_ocr_digits_and_roi[2] - bca.lit...
+FAILED tests/lite/test_vision_native.py::test_ocr_digits_and_roi[3] - bca.lit...
+FAILED tests/lite/test_vision_native.py::test_ocr_digits_and_roi[4] - bca.lit...
+FAILED tests/lite/test_vision_native.py::test_ocr_digits_and_roi[5] - bca.lit...
+FAILED tests/lite/test_vision_native.py::test_ocr_digits_and_roi[6] - bca.lit...
+FAILED tests/lite/test_vision_native.py::test_ocr_digits_and_roi[7] - bca.lit...
+FAILED tests/lite/test_vision_native.py::test_ocr_digits_and_roi[8] - bca.lit...
+FAILED tests/lite/test_vision_native.py::test_ocr_digits_and_roi[9] - bca.lit...
+FAILED tests/lite/test_vision_native.py::test_ocr_digits_and_roi[-1] - bca.li...
+FAILED tests/lite/test_vision_native.py::test_ocr_digits_and_roi[-20] - bca.l...
+FAILED tests/lite/test_vision_native.py::test_ocr_digits_and_roi[-305] - bca....
+FAILED tests/lite/test_vision_native.py::test_ocr_digits_and_roi[12] - bca.li...
+FAILED tests/lite/test_vision_native.py::test_ocr_digits_and_roi[345] - bca.l...
+FAILED tests/lite/test_vision_native.py::test_ocr_digits_and_roi[6789] - bca....
+FAILED tests/lite/test_vision_native.py::test_ocr_negative_and_expected_filter
+FAILED tests/lite/test_vision_native.py::test_ambiguity_and_missing_resource
+FAILED tests/lite/test_vision_native.py::test_pipeline_native_api_only[TemplateProbe-recognition_request0]
+FAILED tests/lite/test_vision_native.py::test_pipeline_native_api_only[OCRProbe-recognition_request1]
+FAILED tests/lite/test_vision_native.py::test_source_rechecked_after_native_work[expired]
+FAILED tests/lite/test_vision_native.py::test_source_rechecked_after_native_work[binding]
+FAILED tests/lite/test_vision_native.py::test_source_rechecked_after_native_work[replacement]
+FAILED tests/lite/test_vision_native.py::test_cancel_repeat_and_close_wait_for_native
+FAILED tests/lite/test_vision_native.py::test_partial_start_failure_cleanup[bundle]
+FAILED tests/lite/test_vision_native.py::test_repeated_native_lifecycle_and_concurrent_batches
+46 failed, 3 passed in 2.56s

@@ -1,0 +1,52 @@
+[
+  {
+    "released": true,
+    "worker_thread": 17020,
+    "destroyed": [
+      "tasker",
+      "controller",
+      "resource"
+    ],
+    "errors": []
+  },
+  {
+    "released": true,
+    "worker_thread": 24552,
+    "destroyed": [
+      "tasker",
+      "controller",
+      "resource"
+    ],
+    "errors": []
+  },
+  {
+    "released": true,
+    "worker_thread": 10740,
+    "destroyed": [
+      "tasker",
+      "controller",
+      "resource"
+    ],
+    "errors": []
+  },
+  {
+    "released": true,
+    "worker_thread": 2384,
+    "destroyed": [
+      "tasker",
+      "controller",
+      "resource"
+    ],
+    "errors": []
+  },
+  {
+    "released": true,
+    "worker_thread": 20568,
+    "destroyed": [
+      "tasker",
+      "controller",
+      "resource"
+    ],
+    "errors": []
+  }
+]

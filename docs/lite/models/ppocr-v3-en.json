@@ -1,0 +1,21 @@
+{
+  "source": "https://github.com/MaaXYZ/MaaCommonAssets",
+  "revision": "dabcd4681ac990dc4361de26416d986abd80e4aa",
+  "path": "OCR/ppocr_v3/en_us",
+  "license": "MIT (MaaCommonAssets); Apache-2.0 (PaddleOCR)",
+  "upstream": "https://github.com/PaddlePaddle/PaddleOCR/tree/795c81f1835725dbf9bf9f5a13e0c793dfd5f243",
+  "files": {
+    "det.onnx": {
+      "size": 2423224,
+      "sha256": "8fe4bf6abfb20402357827f2efc964c8b28cf980e29fe09a99b742ae29725fa9"
+    },
+    "rec.onnx": {
+      "size": 8956702,
+      "sha256": "da12c6e863761d774b07d3bd40fbaaa55516f90570e0b1dd9dc112e457301cc9"
+    },
+    "keys.txt": {
+      "size": 190,
+      "sha256": "5662df9d2d03f0e8ca0d3b0649d6acbab904b6a14b3d3521463c71c37c668ce3"
+    }
+  }
+}

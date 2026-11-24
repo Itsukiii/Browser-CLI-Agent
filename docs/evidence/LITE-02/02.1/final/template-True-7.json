@@ -1,0 +1,106 @@
+{
+  "frame_id": "1b81f51c-c44d-4f56-b2f0-7a1455a1f7c4",
+  "binding": [
+    "target-one",
+    "session-one",
+    3
+  ],
+  "size": [
+    480,
+    240
+  ],
+  "source_current": true,
+  "expired": false,
+  "results": [
+    {
+      "request_key": "full",
+      "algorithm": "TemplateMatch",
+      "status": "MATCHED",
+      "candidates": [
+        {
+          "box": [
+            88,
+            57,
+            36,
+            28
+          ],
+          "score": 1.0,
+          "text": null
+        }
+      ],
+      "all_candidates": [
+        {
+          "box": [
+            88,
+            57,
+            36,
+            28
+          ],
+          "score": 1.0,
+          "text": null
+        }
+      ],
+      "best": {
+        "box": [
+          88,
+          57,
+          36,
+          28
+        ],
+        "score": 1.0,
+        "text": null
+      },
+      "job_id": 200000026,
+      "job_status": "succeeded",
+      "reco_id": 400000017,
+      "hit": true,
+      "raw_detail_json": "{\"all\": [{\"box\": [88, 57, 36, 28], \"score\": 1.0}], \"best\": {\"box\": [88, 57, 36, 28], \"score\": 1.0}, \"filtered\": [{\"box\": [88, 57, 36, 28], \"score\": 1.0}]}",
+      "diagnostic": null
+    },
+    {
+      "request_key": "roi",
+      "algorithm": "TemplateMatch",
+      "status": "MATCHED",
+      "candidates": [
+        {
+          "box": [
+            88,
+            57,
+            36,
+            28
+          ],
+          "score": 1.0,
+          "text": null
+        }
+      ],
+      "all_candidates": [
+        {
+          "box": [
+            88,
+            57,
+            36,
+            28
+          ],
+          "score": 1.0,
+          "text": null
+        }
+      ],
+      "best": {
+        "box": [
+          88,
+          57,
+          36,
+          28
+        ],
+        "score": 1.0,
+        "text": null
+      },
+      "job_id": 200000027,
+      "job_status": "succeeded",
+      "reco_id": 400000018,
+      "hit": true,
+      "raw_detail_json": "{\"all\": [{\"box\": [88, 57, 36, 28], \"score\": 1.0}], \"best\": {\"box\": [88, 57, 36, 28], \"score\": 1.0}, \"filtered\": [{\"box\": [88, 57, 36, 28], \"score\": 1.0}]}",
+      "diagnostic": null
+    }
+  ]
+}

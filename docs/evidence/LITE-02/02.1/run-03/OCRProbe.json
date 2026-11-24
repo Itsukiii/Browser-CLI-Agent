@@ -1,0 +1,49 @@
+{
+  "captures": 1,
+  "authorized_batch": false,
+  "result": {
+    "request_key": "o",
+    "algorithm": "OCR",
+    "status": "MATCHED",
+    "candidates": [
+      {
+        "box": [
+          82,
+          138,
+          83,
+          43
+        ],
+        "score": 0.999893,
+        "text": "123"
+      }
+    ],
+    "all_candidates": [
+      {
+        "box": [
+          82,
+          138,
+          83,
+          43
+        ],
+        "score": 0.999893,
+        "text": "123"
+      }
+    ],
+    "best": {
+      "box": [
+        82,
+        138,
+        83,
+        43
+      ],
+      "score": 0.999893,
+      "text": "123"
+    },
+    "job_id": 200000117,
+    "job_status": "succeeded",
+    "reco_id": 400000078,
+    "hit": true,
+    "raw_detail_json": "{\"all\": [{\"box\": [82, 138, 83, 43], \"score\": 0.999893, \"text\": \"123\"}], \"best\": {\"box\": [82, 138, 83, 43], \"score\": 0.999893, \"text\": \"123\"}, \"filtered\": [{\"box\": [82, 138, 83, 43], \"score\": 0.999893, \"text\": \"123\"}]}",
+    "diagnostic": null
+  }
+}

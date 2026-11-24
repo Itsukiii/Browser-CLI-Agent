@@ -1,0 +1,2 @@
+D:\Project\BCA-lite\.test-artifacts\vision-wheel\bca\lite\vision.py
+D:\Project\BCA-lite\.maa-models\ppocr-v3-en

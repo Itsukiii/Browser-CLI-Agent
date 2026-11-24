@@ -1,0 +1,176 @@
+.......................................................FF                [100%]
+================================== FAILURES ===================================
+___________ test_pipeline_negative_native_semantics[TemplateProbe] ____________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-05/test_pipeline_negative_native_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001FA3CC97A10>
+entry = 'TemplateProbe'
+
+    @pytest.mark.parametrize("entry", ["TemplateProbe", "OCRProbe"])
+    def test_pipeline_negative_native_semantics(tmp_path, monkeypatch, entry):
+        model = model_spec()
+
+        async def run():
+            bridge, capture, _, _ = bridge_for(monkeypatch, scene(text="", points=()))
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+
+                def probe():
+                    job = facade._native.tasker.post_task(entry).wait()
+                    detail = job.get()
+                    return {
+                        "succeeded": job.succeeded,
+                        "failed": job.failed,
+                        "nodes": [
+                            {"hit": n.recognition.hit, "raw": n.recognition.raw_detail}
+                            for n in detail.nodes
+                        ]
+                        if detail
+                        else None,
+                    }
+
+                result = await facade._submit(probe)
+                record(
+                    tmp_path,
+                    f"{entry}-negative",
+                    {"native": result, "captures": capture.count, "authorized_batch": False},
+                )
+                assert result["failed"] and not result["succeeded"]
+                assert all(not n["hit"] for n in result["nodes"])
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:549:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:538: in run
+    result = await facade._submit(probe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def probe():
+        job = facade._native.tasker.post_task(entry).wait()
+        detail = job.get()
+        return {
+            "succeeded": job.succeeded,
+            "failed": job.failed,
+            "nodes": [
+>               {"hit": n.recognition.hit, "raw": n.recognition.raw_detail}
+                        ^^^^^^^^^^^^^^^^^
+                for n in detail.nodes
+            ]
+            if detail
+            else None,
+        }
+E       AttributeError: 'NoneType' object has no attribute 'hit'
+
+tests\lite\test_vision_native.py:531: AttributeError
+______________ test_pipeline_negative_native_semantics[OCRProbe] ______________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-05/test_pipeline_negative_native_1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001FA3CFE0EC0>
+entry = 'OCRProbe'
+
+    @pytest.mark.parametrize("entry", ["TemplateProbe", "OCRProbe"])
+    def test_pipeline_negative_native_semantics(tmp_path, monkeypatch, entry):
+        model = model_spec()
+
+        async def run():
+            bridge, capture, _, _ = bridge_for(monkeypatch, scene(text="", points=()))
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+
+                def probe():
+                    job = facade._native.tasker.post_task(entry).wait()
+                    detail = job.get()
+                    return {
+                        "succeeded": job.succeeded,
+                        "failed": job.failed,
+                        "nodes": [
+                            {"hit": n.recognition.hit, "raw": n.recognition.raw_detail}
+                            for n in detail.nodes
+                        ]
+                        if detail
+                        else None,
+                    }
+
+                result = await facade._submit(probe)
+                record(
+                    tmp_path,
+                    f"{entry}-negative",
+                    {"native": result, "captures": capture.count, "authorized_batch": False},
+                )
+                assert result["failed"] and not result["succeeded"]
+                assert all(not n["hit"] for n in result["nodes"])
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:549:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_vision_native.py:538: in run
+    result = await facade._submit(probe)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\bca\lite\vision.py:54: in _submit
+    return await asyncio.shield(future)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:86: in run
+    result = ctx.run(self.task)
+             ^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\concurrent\futures\thread.py:73: in run
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def probe():
+        job = facade._native.tasker.post_task(entry).wait()
+        detail = job.get()
+        return {
+            "succeeded": job.succeeded,
+            "failed": job.failed,
+            "nodes": [
+>               {"hit": n.recognition.hit, "raw": n.recognition.raw_detail}
+                        ^^^^^^^^^^^^^^^^^
+                for n in detail.nodes
+            ]
+            if detail
+            else None,
+        }
+E       AttributeError: 'NoneType' object has no attribute 'hit'
+
+tests\lite\test_vision_native.py:531: AttributeError
+=========================== short test summary info ===========================
+FAILED tests/lite/test_vision_native.py::test_pipeline_negative_native_semantics[TemplateProbe]
+FAILED tests/lite/test_vision_native.py::test_pipeline_negative_native_semantics[OCRProbe]
+2 failed, 55 passed in 8.49s

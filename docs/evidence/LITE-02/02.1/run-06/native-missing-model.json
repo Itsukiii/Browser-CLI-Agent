@@ -1,0 +1,47 @@
+{
+  "native": {
+    "succeeded": true,
+    "failed": false,
+    "nodes": [
+      {
+        "name": "recognition/OCR/bc950e11-a0fa-4bff-b5c2-2810688af775",
+        "hit": false,
+        "raw": {
+          "all": [],
+          "best": null,
+          "filtered": []
+        }
+      }
+    ]
+  },
+  "guarded": {
+    "frame_id": "f7fd1a7d-722c-46c7-87b4-5eed6c3a8ee5",
+    "binding": [
+      "target-one",
+      "session-one",
+      3
+    ],
+    "size": [
+      480,
+      240
+    ],
+    "source_current": true,
+    "expired": false,
+    "results": [
+      {
+        "request_key": "missing-model",
+        "algorithm": "OCR",
+        "status": "ERROR",
+        "candidates": [],
+        "all_candidates": [],
+        "best": null,
+        "job_id": null,
+        "job_status": null,
+        "reco_id": null,
+        "hit": null,
+        "raw_detail_json": null,
+        "diagnostic": "OCR model not explicitly loaded"
+      }
+    ]
+  }
+}

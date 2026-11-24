@@ -1,0 +1,8 @@
+
+=================================== ERRORS ====================================
+______________ ERROR collecting tests/lite/test_vision_native.py ______________
+tests/lite/test_vision_native.py::test_pipeline_native_api_only: 'request' is a reserved name and cannot be used in @pytest.mark.parametrize
+=========================== short test summary info ===========================
+ERROR tests/lite/test_vision_native.py - Failed: tests/lite/test_vision_nativ...
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.53s

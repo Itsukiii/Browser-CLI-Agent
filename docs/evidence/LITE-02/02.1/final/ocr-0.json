@@ -1,0 +1,106 @@
+{
+  "frame_id": "d8438490-2244-4995-9029-48076f724e22",
+  "binding": [
+    "target-one",
+    "session-one",
+    3
+  ],
+  "size": [
+    480,
+    240
+  ],
+  "source_current": true,
+  "expired": false,
+  "results": [
+    {
+      "request_key": "full",
+      "algorithm": "OCR",
+      "status": "MATCHED",
+      "candidates": [
+        {
+          "box": [
+            77,
+            138,
+            34,
+            42
+          ],
+          "score": 0.999699,
+          "text": "0"
+        }
+      ],
+      "all_candidates": [
+        {
+          "box": [
+            77,
+            138,
+            34,
+            42
+          ],
+          "score": 0.999699,
+          "text": "0"
+        }
+      ],
+      "best": {
+        "box": [
+          77,
+          138,
+          34,
+          42
+        ],
+        "score": 0.999699,
+        "text": "0"
+      },
+      "job_id": 200000065,
+      "job_status": "succeeded",
+      "reco_id": 400000043,
+      "hit": true,
+      "raw_detail_json": "{\"all\": [{\"box\": [77, 138, 34, 42], \"score\": 0.999699, \"text\": \"0\"}], \"best\": {\"box\": [77, 138, 34, 42], \"score\": 0.999699, \"text\": \"0\"}, \"filtered\": [{\"box\": [77, 138, 34, 42], \"score\": 0.999699, \"text\": \"0\"}]}",
+      "diagnostic": null
+    },
+    {
+      "request_key": "roi",
+      "algorithm": "OCR",
+      "status": "MATCHED",
+      "candidates": [
+        {
+          "box": [
+            74,
+            135,
+            38,
+            54
+          ],
+          "score": 0.999587,
+          "text": "0"
+        }
+      ],
+      "all_candidates": [
+        {
+          "box": [
+            74,
+            135,
+            38,
+            54
+          ],
+          "score": 0.999587,
+          "text": "0"
+        }
+      ],
+      "best": {
+        "box": [
+          74,
+          135,
+          38,
+          54
+        ],
+        "score": 0.999587,
+        "text": "0"
+      },
+      "job_id": 200000066,
+      "job_status": "succeeded",
+      "reco_id": 400000044,
+      "hit": true,
+      "raw_detail_json": "{\"all\": [{\"box\": [74, 135, 38, 54], \"score\": 0.999587, \"text\": \"0\"}], \"best\": {\"box\": [74, 135, 38, 54], \"score\": 0.999587, \"text\": \"0\"}, \"filtered\": [{\"box\": [74, 135, 38, 54], \"score\": 0.999587, \"text\": \"0\"}]}",
+      "diagnostic": null
+    }
+  ]
+}

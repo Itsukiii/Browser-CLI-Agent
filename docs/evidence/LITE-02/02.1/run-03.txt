@@ -1,0 +1,906 @@
+..........FFFFFFFFFF................F............                        [100%]
+================================== FAILURES ===================================
+________________________ test_template_matrix[False-0] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-03/test_template_matrix_False_0_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001634A12C830>
+index = 0, positive = False
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def run():
+        point = (60 + index * 4, 50 + index)
+        image = scene(points=(point,) if positive else ())
+        bridge, capture, _, _ = bridge_for(monkeypatch, image)
+        facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+        await facade.start()
+        try:
+            batch = await facade.recognize(
+                (
+                    TemplateRequest("full", "marker.png"),
+                    TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                )
+            )
+            assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+            for result in batch.results:
+                assert result.status == (
+                    RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                )
+>               assert result.job_status == ("succeeded" if positive else "failed")
+E               AssertionError: assert 'succeeded' == 'failed'
+E
+E                 - failed
+E                 + succeeded
+
+tests\lite\test_vision_native.py:74: AssertionError
+---------------------------- Captured stdout call -----------------------------
+[31m[2026-11-24 10:20:46.965][ERR][Px2640][Tx25834][Tasker.cpp][L300][MaaNS::Tasker::post_task] Tasker not inited [0m
+[31m[2026-11-24 10:20:46.965][ERR][Px2640][Tx25834][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+[31m[2026-11-24 10:20:46.966][ERR][Px2640][Tx25834][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+________________________ test_template_matrix[False-1] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-03/test_template_matrix_False_1_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001634B1B5570>
+index = 1, positive = False
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def run():
+        point = (60 + index * 4, 50 + index)
+        image = scene(points=(point,) if positive else ())
+        bridge, capture, _, _ = bridge_for(monkeypatch, image)
+        facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+        await facade.start()
+        try:
+            batch = await facade.recognize(
+                (
+                    TemplateRequest("full", "marker.png"),
+                    TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                )
+            )
+            assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+            for result in batch.results:
+                assert result.status == (
+                    RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                )
+>               assert result.job_status == ("succeeded" if positive else "failed")
+E               AssertionError: assert 'succeeded' == 'failed'
+E
+E                 - failed
+E                 + succeeded
+
+tests\lite\test_vision_native.py:74: AssertionError
+---------------------------- Captured stdout call -----------------------------
+[31m[2026-11-24 10:20:47.071][ERR][Px2640][Tx51764][Tasker.cpp][L300][MaaNS::Tasker::post_task] Tasker not inited [0m
+[31m[2026-11-24 10:20:47.071][ERR][Px2640][Tx51764][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+[31m[2026-11-24 10:20:47.071][ERR][Px2640][Tx51764][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+________________________ test_template_matrix[False-2] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-03/test_template_matrix_False_2_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001634A01BD10>
+index = 2, positive = False
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def run():
+        point = (60 + index * 4, 50 + index)
+        image = scene(points=(point,) if positive else ())
+        bridge, capture, _, _ = bridge_for(monkeypatch, image)
+        facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+        await facade.start()
+        try:
+            batch = await facade.recognize(
+                (
+                    TemplateRequest("full", "marker.png"),
+                    TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                )
+            )
+            assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+            for result in batch.results:
+                assert result.status == (
+                    RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                )
+>               assert result.job_status == ("succeeded" if positive else "failed")
+E               AssertionError: assert 'succeeded' == 'failed'
+E
+E                 - failed
+E                 + succeeded
+
+tests\lite\test_vision_native.py:74: AssertionError
+---------------------------- Captured stdout call -----------------------------
+[31m[2026-11-24 10:20:47.130][ERR][Px2640][Tx6039][Tasker.cpp][L300][MaaNS::Tasker::post_task] Tasker not inited [0m
+[31m[2026-11-24 10:20:47.130][ERR][Px2640][Tx6039][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+[31m[2026-11-24 10:20:47.130][ERR][Px2640][Tx6039][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+________________________ test_template_matrix[False-3] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-03/test_template_matrix_False_3_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001634A01B7D0>
+index = 3, positive = False
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def run():
+        point = (60 + index * 4, 50 + index)
+        image = scene(points=(point,) if positive else ())
+        bridge, capture, _, _ = bridge_for(monkeypatch, image)
+        facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+        await facade.start()
+        try:
+            batch = await facade.recognize(
+                (
+                    TemplateRequest("full", "marker.png"),
+                    TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                )
+            )
+            assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+            for result in batch.results:
+                assert result.status == (
+                    RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                )
+>               assert result.job_status == ("succeeded" if positive else "failed")
+E               AssertionError: assert 'succeeded' == 'failed'
+E
+E                 - failed
+E                 + succeeded
+
+tests\lite\test_vision_native.py:74: AssertionError
+---------------------------- Captured stdout call -----------------------------
+[31m[2026-11-24 10:20:47.194][ERR][Px2640][Tx16683][Tasker.cpp][L300][MaaNS::Tasker::post_task] Tasker not inited [0m
+[31m[2026-11-24 10:20:47.194][ERR][Px2640][Tx16683][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+[31m[2026-11-24 10:20:47.194][ERR][Px2640][Tx16683][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+________________________ test_template_matrix[False-4] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-03/test_template_matrix_False_4_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001634B221C80>
+index = 4, positive = False
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def run():
+        point = (60 + index * 4, 50 + index)
+        image = scene(points=(point,) if positive else ())
+        bridge, capture, _, _ = bridge_for(monkeypatch, image)
+        facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+        await facade.start()
+        try:
+            batch = await facade.recognize(
+                (
+                    TemplateRequest("full", "marker.png"),
+                    TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                )
+            )
+            assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+            for result in batch.results:
+                assert result.status == (
+                    RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                )
+>               assert result.job_status == ("succeeded" if positive else "failed")
+E               AssertionError: assert 'succeeded' == 'failed'
+E
+E                 - failed
+E                 + succeeded
+
+tests\lite\test_vision_native.py:74: AssertionError
+---------------------------- Captured stdout call -----------------------------
+[31m[2026-11-24 10:20:47.248][ERR][Px2640][Tx34866][Tasker.cpp][L300][MaaNS::Tasker::post_task] Tasker not inited [0m
+[31m[2026-11-24 10:20:47.248][ERR][Px2640][Tx34866][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+[31m[2026-11-24 10:20:47.248][ERR][Px2640][Tx34866][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+________________________ test_template_matrix[False-5] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-03/test_template_matrix_False_5_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001634B223750>
+index = 5, positive = False
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def run():
+        point = (60 + index * 4, 50 + index)
+        image = scene(points=(point,) if positive else ())
+        bridge, capture, _, _ = bridge_for(monkeypatch, image)
+        facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+        await facade.start()
+        try:
+            batch = await facade.recognize(
+                (
+                    TemplateRequest("full", "marker.png"),
+                    TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                )
+            )
+            assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+            for result in batch.results:
+                assert result.status == (
+                    RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                )
+>               assert result.job_status == ("succeeded" if positive else "failed")
+E               AssertionError: assert 'succeeded' == 'failed'
+E
+E                 - failed
+E                 + succeeded
+
+tests\lite\test_vision_native.py:74: AssertionError
+---------------------------- Captured stdout call -----------------------------
+[31m[2026-11-24 10:20:47.302][ERR][Px2640][Tx44368][Tasker.cpp][L300][MaaNS::Tasker::post_task] Tasker not inited [0m
+[31m[2026-11-24 10:20:47.302][ERR][Px2640][Tx44368][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+[31m[2026-11-24 10:20:47.302][ERR][Px2640][Tx44368][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+________________________ test_template_matrix[False-6] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-03/test_template_matrix_False_6_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001634B1E2490>
+index = 6, positive = False
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def run():
+        point = (60 + index * 4, 50 + index)
+        image = scene(points=(point,) if positive else ())
+        bridge, capture, _, _ = bridge_for(monkeypatch, image)
+        facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+        await facade.start()
+        try:
+            batch = await facade.recognize(
+                (
+                    TemplateRequest("full", "marker.png"),
+                    TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                )
+            )
+            assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+            for result in batch.results:
+                assert result.status == (
+                    RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                )
+>               assert result.job_status == ("succeeded" if positive else "failed")
+E               AssertionError: assert 'succeeded' == 'failed'
+E
+E                 - failed
+E                 + succeeded
+
+tests\lite\test_vision_native.py:74: AssertionError
+---------------------------- Captured stdout call -----------------------------
+[31m[2026-11-24 10:20:47.356][ERR][Px2640][Tx8568][Tasker.cpp][L300][MaaNS::Tasker::post_task] Tasker not inited [0m
+[31m[2026-11-24 10:20:47.356][ERR][Px2640][Tx8568][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+[31m[2026-11-24 10:20:47.356][ERR][Px2640][Tx8568][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+________________________ test_template_matrix[False-7] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-03/test_template_matrix_False_7_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001634B1E2C10>
+index = 7, positive = False
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def run():
+        point = (60 + index * 4, 50 + index)
+        image = scene(points=(point,) if positive else ())
+        bridge, capture, _, _ = bridge_for(monkeypatch, image)
+        facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+        await facade.start()
+        try:
+            batch = await facade.recognize(
+                (
+                    TemplateRequest("full", "marker.png"),
+                    TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                )
+            )
+            assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+            for result in batch.results:
+                assert result.status == (
+                    RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                )
+>               assert result.job_status == ("succeeded" if positive else "failed")
+E               AssertionError: assert 'succeeded' == 'failed'
+E
+E                 - failed
+E                 + succeeded
+
+tests\lite\test_vision_native.py:74: AssertionError
+---------------------------- Captured stdout call -----------------------------
+[31m[2026-11-24 10:20:47.411][ERR][Px2640][Tx2864][Tasker.cpp][L300][MaaNS::Tasker::post_task] Tasker not inited [0m
+[31m[2026-11-24 10:20:47.411][ERR][Px2640][Tx2864][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+[31m[2026-11-24 10:20:47.411][ERR][Px2640][Tx2864][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+________________________ test_template_matrix[False-8] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-03/test_template_matrix_False_8_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001632B6F5880>
+index = 8, positive = False
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def run():
+        point = (60 + index * 4, 50 + index)
+        image = scene(points=(point,) if positive else ())
+        bridge, capture, _, _ = bridge_for(monkeypatch, image)
+        facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+        await facade.start()
+        try:
+            batch = await facade.recognize(
+                (
+                    TemplateRequest("full", "marker.png"),
+                    TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                )
+            )
+            assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+            for result in batch.results:
+                assert result.status == (
+                    RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                )
+>               assert result.job_status == ("succeeded" if positive else "failed")
+E               AssertionError: assert 'succeeded' == 'failed'
+E
+E                 - failed
+E                 + succeeded
+
+tests\lite\test_vision_native.py:74: AssertionError
+---------------------------- Captured stdout call -----------------------------
+[31m[2026-11-24 10:20:47.467][ERR][Px2640][Tx15021][Tasker.cpp][L300][MaaNS::Tasker::post_task] Tasker not inited [0m
+[31m[2026-11-24 10:20:47.467][ERR][Px2640][Tx15021][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+[31m[2026-11-24 10:20:47.467][ERR][Px2640][Tx15021][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+________________________ test_template_matrix[False-9] ________________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-03/test_template_matrix_False_9_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001634B2C2B50>
+index = 9, positive = False
+
+    @pytest.mark.parametrize("index", range(10))
+    @pytest.mark.parametrize("positive", [True, False])
+    def test_template_matrix(tmp_path, monkeypatch, index, positive):
+        async def run():
+            point = (60 + index * 4, 50 + index)
+            image = scene(points=(point,) if positive else ())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (
+                        TemplateRequest("full", "marker.png"),
+                        TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                    )
+                )
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == (
+                        RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                    )
+                    assert result.job_status == ("succeeded" if positive else "failed")
+                    if positive:
+                        assert result.candidates[0].box == (*point, 36, 28)
+                with pytest.raises(ValueError):
+                    batch.capture.image.setflags(write=True)
+                record(tmp_path, f"template-{positive}-{index}", result_record(batch), image)
+            finally:
+                report = await facade.aclose()
+                assert report.released and report.destroyed == ("tasker", "controller", "resource")
+                assert report.worker_thread != threading.get_ident()
+                assert await facade.aclose() is report
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:86:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def run():
+        point = (60 + index * 4, 50 + index)
+        image = scene(points=(point,) if positive else ())
+        bridge, capture, _, _ = bridge_for(monkeypatch, image)
+        facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+        await facade.start()
+        try:
+            batch = await facade.recognize(
+                (
+                    TemplateRequest("full", "marker.png"),
+                    TemplateRequest("roi", "marker.png", (40, 30, 150, 80)),
+                )
+            )
+            assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+            for result in batch.results:
+                assert result.status == (
+                    RecognitionStatus.MATCHED if positive else RecognitionStatus.NOT_FOUND
+                )
+>               assert result.job_status == ("succeeded" if positive else "failed")
+E               AssertionError: assert 'succeeded' == 'failed'
+E
+E                 - failed
+E                 + succeeded
+
+tests\lite\test_vision_native.py:74: AssertionError
+---------------------------- Captured stdout call -----------------------------
+[31m[2026-11-24 10:20:47.521][ERR][Px2640][Tx9029][Tasker.cpp][L300][MaaNS::Tasker::post_task] Tasker not inited [0m
+[31m[2026-11-24 10:20:47.521][ERR][Px2640][Tx9029][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+[31m[2026-11-24 10:20:47.521][ERR][Px2640][Tx9029][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+____________________ test_ocr_negative_and_expected_filter ____________________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/vision-03/test_ocr_negative_and_expected0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001634B379D30>
+
+    def test_ocr_negative_and_expected_filter(tmp_path, monkeypatch):
+        model = model_spec()
+
+        async def run():
+            bridge, capture, _, _ = bridge_for(monkeypatch, scene(text="", points=()))
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+                blank = await facade.recognize((OCRRequest("blank"),))
+                capture.image = scene(text="123", points=())
+                filtered = await facade.recognize((OCRRequest("filter", expected=("^999$",)),))
+                for batch in (blank, filtered):
+                    record(tmp_path, batch.results[0].request_key, result_record(batch))
+                    assert batch.results[0].status == RecognitionStatus.NOT_FOUND
+                    assert batch.results[0].job_status == "failed"
+                assert filtered.results[0].all_candidates[0].text == "123"
+            finally:
+                assert (await facade.aclose()).released
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:136:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def run():
+        bridge, capture, _, _ = bridge_for(monkeypatch, scene(text="", points=()))
+        facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+        await facade.start()
+        try:
+            blank = await facade.recognize((OCRRequest("blank"),))
+            capture.image = scene(text="123", points=())
+            filtered = await facade.recognize((OCRRequest("filter", expected=("^999$",)),))
+            for batch in (blank, filtered):
+                record(tmp_path, batch.results[0].request_key, result_record(batch))
+                assert batch.results[0].status == RecognitionStatus.NOT_FOUND
+>               assert batch.results[0].job_status == "failed"
+E               AssertionError: assert 'succeeded' == 'failed'
+E
+E                 - failed
+E                 + succeeded
+
+tests\lite\test_vision_native.py:131: AssertionError
+---------------------------- Captured stdout call -----------------------------
+[31m[2026-11-24 10:20:52.048][ERR][Px2640][Tx8459][Tasker.cpp][L300][MaaNS::Tasker::post_task] Tasker not inited [0m
+[31m[2026-11-24 10:20:52.048][ERR][Px2640][Tx8459][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+[31m[2026-11-24 10:20:52.048][ERR][Px2640][Tx8459][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+=========================== short test summary info ===========================
+FAILED tests/lite/test_vision_native.py::test_template_matrix[False-0] - Asse...
+FAILED tests/lite/test_vision_native.py::test_template_matrix[False-1] - Asse...
+FAILED tests/lite/test_vision_native.py::test_template_matrix[False-2] - Asse...
+FAILED tests/lite/test_vision_native.py::test_template_matrix[False-3] - Asse...
+FAILED tests/lite/test_vision_native.py::test_template_matrix[False-4] - Asse...
+FAILED tests/lite/test_vision_native.py::test_template_matrix[False-5] - Asse...
+FAILED tests/lite/test_vision_native.py::test_template_matrix[False-6] - Asse...
+FAILED tests/lite/test_vision_native.py::test_template_matrix[False-7] - Asse...
+FAILED tests/lite/test_vision_native.py::test_template_matrix[False-8] - Asse...
+FAILED tests/lite/test_vision_native.py::test_template_matrix[False-9] - Asse...
+FAILED tests/lite/test_vision_native.py::test_ocr_negative_and_expected_filter
+11 failed, 38 passed in 7.90s

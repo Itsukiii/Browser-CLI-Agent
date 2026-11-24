@@ -100,6 +100,17 @@ class CDPBridge:
         return self._binding[1]
 
     @property
+    def binding(self) -> tuple[str | None, str | None, int]:
+        """Fixed provenance metadata; reading does not authorize an action."""
+        self._require_owner()
+        return self._binding[1:]
+
+    @property
+    def max_frame_age(self) -> float:
+        """Age budget used again by authorize/click, not a lease on future validity."""
+        return self._max_frame_age
+
+    @property
     def observation(self) -> ObservationRef | None:
         """Read on owner loop after a completed capture job; not a semantic revision."""
         self._require_owner()

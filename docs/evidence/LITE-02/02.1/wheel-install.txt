@@ -1,0 +1,6 @@
+Processing .\dist\browser_cli_agent-0.2.0-py3-none-any.whl
+Installing collected packages: browser-cli-agent
+Successfully installed browser-cli-agent-0.2.0
+
+[notice] A new release of pip is available: 26.2.1 -> 26.3
+[notice] To update, run: D:\Project\BCA-lite\.venv\Scripts\python.exe -m pip install --upgrade pip

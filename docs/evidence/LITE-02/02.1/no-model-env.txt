@@ -1,0 +1,4 @@
+....................sssssssssssssssss.ss...............sss               [100%]
+=========================== short test summary info ===========================
+SKIPPED [22] tests\lite\test_vision_native.py:28: set BCA_OCR_MODEL to an explicitly provisioned ppocr-v3-en directory
+36 passed, 22 skipped in 2.35s

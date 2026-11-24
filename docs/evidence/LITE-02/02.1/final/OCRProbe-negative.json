@@ -1,0 +1,15 @@
+{
+  "native": {
+    "succeeded": false,
+    "failed": true,
+    "nodes": [
+      {
+        "name": "",
+        "hit": null,
+        "raw": null
+      }
+    ]
+  },
+  "captures": 1,
+  "authorized_batch": false
+}

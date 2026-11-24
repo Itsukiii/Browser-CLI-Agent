@@ -1,0 +1,174 @@
+{
+  "frame_id": "4e34825f-d7ad-4976-bfed-f3b37ac39c2c",
+  "binding": [
+    "target-one",
+    "session-one",
+    3
+  ],
+  "size": [
+    480,
+    240
+  ],
+  "source_current": true,
+  "expired": false,
+  "results": [
+    {
+      "request_key": "unique",
+      "algorithm": "TemplateMatch",
+      "status": "AMBIGUOUS",
+      "candidates": [
+        {
+          "box": [
+            60,
+            50,
+            36,
+            28
+          ],
+          "score": 1.0,
+          "text": null
+        },
+        {
+          "box": [
+            150,
+            50,
+            36,
+            28
+          ],
+          "score": 1.0,
+          "text": null
+        }
+      ],
+      "all_candidates": [
+        {
+          "box": [
+            60,
+            50,
+            36,
+            28
+          ],
+          "score": 1.0,
+          "text": null
+        },
+        {
+          "box": [
+            150,
+            50,
+            36,
+            28
+          ],
+          "score": 1.0,
+          "text": null
+        }
+      ],
+      "best": {
+        "box": [
+          60,
+          50,
+          36,
+          28
+        ],
+        "score": 1.0,
+        "text": null
+      },
+      "job_id": 200000112,
+      "job_status": "succeeded",
+      "reco_id": 400000075,
+      "hit": true,
+      "raw_detail_json": "{\"all\": [{\"box\": [60, 50, 36, 28], \"score\": 1.0}, {\"box\": [150, 50, 36, 28], \"score\": 1.0}], \"best\": {\"box\": [60, 50, 36, 28], \"score\": 1.0}, \"filtered\": [{\"box\": [60, 50, 36, 28], \"score\": 1.0}, {\"box\": [150, 50, 36, 28], \"score\": 1.0}]}",
+      "diagnostic": null
+    },
+    {
+      "request_key": "many",
+      "algorithm": "TemplateMatch",
+      "status": "MATCHED",
+      "candidates": [
+        {
+          "box": [
+            60,
+            50,
+            36,
+            28
+          ],
+          "score": 1.0,
+          "text": null
+        },
+        {
+          "box": [
+            150,
+            50,
+            36,
+            28
+          ],
+          "score": 1.0,
+          "text": null
+        }
+      ],
+      "all_candidates": [
+        {
+          "box": [
+            60,
+            50,
+            36,
+            28
+          ],
+          "score": 1.0,
+          "text": null
+        },
+        {
+          "box": [
+            150,
+            50,
+            36,
+            28
+          ],
+          "score": 1.0,
+          "text": null
+        }
+      ],
+      "best": {
+        "box": [
+          60,
+          50,
+          36,
+          28
+        ],
+        "score": 1.0,
+        "text": null
+      },
+      "job_id": 200000113,
+      "job_status": "succeeded",
+      "reco_id": 400000076,
+      "hit": true,
+      "raw_detail_json": "{\"all\": [{\"box\": [60, 50, 36, 28], \"score\": 1.0}, {\"box\": [150, 50, 36, 28], \"score\": 1.0}], \"best\": {\"box\": [60, 50, 36, 28], \"score\": 1.0}, \"filtered\": [{\"box\": [60, 50, 36, 28], \"score\": 1.0}, {\"box\": [150, 50, 36, 28], \"score\": 1.0}]}",
+      "diagnostic": null
+    },
+    {
+      "request_key": "missing",
+      "algorithm": "TemplateMatch",
+      "status": "ERROR",
+      "candidates": [],
+      "all_candidates": [],
+      "best": null,
+      "job_id": null,
+      "job_status": null,
+      "reco_id": null,
+      "hit": null,
+      "raw_detail_json": null,
+      "diagnostic": "template missing or outside bundle/image: missing.png"
+    },
+    {
+      "request_key": "ocr",
+      "algorithm": "OCR",
+      "status": "ERROR",
+      "candidates": [],
+      "all_candidates": [],
+      "best": null,
+      "job_id": null,
+      "job_status": null,
+      "reco_id": null,
+      "hit": null,
+      "raw_detail_json": null,
+      "diagnostic": "OCR model not explicitly loaded"
+    }
+  ]
+}

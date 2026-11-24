@@ -1,0 +1,10 @@
+{
+  "released": true,
+  "worker_thread": 1320,
+  "destroyed": [
+    "tasker",
+    "controller",
+    "resource"
+  ],
+  "errors": []
+}

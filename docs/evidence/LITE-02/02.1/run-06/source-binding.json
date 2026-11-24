@@ -1,0 +1,30 @@
+{
+  "frame_id": "7278ceb3-7a51-4c4c-8886-da2784cd7470",
+  "binding": [
+    "target-one",
+    "session-one",
+    3
+  ],
+  "size": [
+    480,
+    240
+  ],
+  "source_current": false,
+  "expired": false,
+  "results": [
+    {
+      "request_key": "t",
+      "algorithm": "TemplateMatch",
+      "status": "ERROR",
+      "candidates": [],
+      "all_candidates": [],
+      "best": null,
+      "job_id": 0,
+      "job_status": "invalid",
+      "reco_id": null,
+      "hit": null,
+      "raw_detail_json": null,
+      "diagnostic": "observation replaced or binding retired"
+    }
+  ]
+}

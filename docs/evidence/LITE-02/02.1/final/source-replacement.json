@@ -1,0 +1,61 @@
+{
+  "frame_id": "7e341fb4-7a18-4d2b-beeb-7b41755f46f0",
+  "binding": [
+    "target-one",
+    "session-one",
+    3
+  ],
+  "size": [
+    480,
+    240
+  ],
+  "source_current": false,
+  "expired": false,
+  "results": [
+    {
+      "request_key": "t",
+      "algorithm": "TemplateMatch",
+      "status": "ERROR",
+      "candidates": [
+        {
+          "box": [
+            60,
+            50,
+            36,
+            28
+          ],
+          "score": 1.0,
+          "text": null
+        }
+      ],
+      "all_candidates": [
+        {
+          "box": [
+            60,
+            50,
+            36,
+            28
+          ],
+          "score": 1.0,
+          "text": null
+        }
+      ],
+      "best": {
+        "box": [
+          60,
+          50,
+          36,
+          28
+        ],
+        "score": 1.0,
+        "text": null
+      },
+      "job_id": 200000126,
+      "job_status": "succeeded",
+      "reco_id": 400000082,
+      "hit": true,
+      "raw_detail_json": "{\"all\": [{\"box\": [60, 50, 36, 28], \"score\": 1.0}], \"best\": {\"box\": [60, 50, 36, 28], \"score\": 1.0}, \"filtered\": [{\"box\": [60, 50, 36, 28], \"score\": 1.0}]}",
+      "diagnostic": "observation replaced or binding retired"
+    }
+  ]
+}

@@ -1,6 +1,15 @@
 # LITE-02 接口设计提案
 
-2026-11-23，基线 `lite@3e54a2d` + 本轮 LITE-01 定向补证。**供架构审查，尚未实现，未获设计通过前不启动 02.1～02.3。**
+2026-11-23 提案；2026-11-24 经架构审查 Approved，见 `LITE-02_DESIGN_REVIEW_2026-11-24.md`。02.1 从 `lite@a8c67e0` 开始实施；本文件中的后续阶段设计不代表已交付。
+
+### 02.1 原生探针确认与实现细化（2026-11-24）
+
+- 真实 v5.16.1 TemplateMatch / OCR 直接识别及单节点 Pipeline 都已跑通探针。ROI 返回框为全图绝对坐标，不加 ROI 原点；候选 box 是 list，顶层 recognition.box 是 Rect，需要分别解析。
+- 固定版本另有 `Resource.post_ocr_model(path)`；模型先由显式 OCRModelSpec 校验三个文件及来源清单，再独立调用此 API。模板 Bundle 不允许隐藏 model/ocr，避免绕过校验。模型不进 wheel，不自动下载。
+- 薄资源/DTO 辅助拆成 vision_resources.py / vision_types.py，native 适配私有模块隔离 untyped Maa 边界；不提前实现 BusinessPlugin/Coordinator。
+- CaptureContext 以不可变 bytes 持有 BGR，按需生成不可写 ndarray；Batch 保存完成时 source_current/expired。按架构意见，超龄但来源未变的结果可作历史只读展示，执行前仍必须刷新并由 Bridge 授权；来源替换/断连归 ERROR。
+- Pipeline 仅在独立原生探针测试中使用，不暴露可授权 Batch。Facade 只允许一次捕获、多次直接识别，便于证明来源唯一。
+- 直接识别正负例的 Job 都为 succeeded；无命中靠 hit=False 和完整空 filtered/best 判定。首次矩阵中预期负例 Job.failed 的断言失败，保留 run-03；归一化无需把 Job 状态等同 hit。正常关闭在排空后再 invalidate Bridge；取消已 invalidate 时 Tasker.inited 可能为 false，空闲且未初始化的 Tasker 不再投递无效 stop job，记录该情况后 Destroy。
 
 依据：LITE-02_CODEX_DEVELOPMENT_HANDOFF、LITE-01_ARCH_REVIEW、主交接书 §3/7/12/13、当前 bridge/controller/Browser 源码，以及安装的 maafw v5.16.1 Python binding。保留历史 Assets/Vision fixture 思路，不复用 RMSE 算法或旧 PluginManager。
 
