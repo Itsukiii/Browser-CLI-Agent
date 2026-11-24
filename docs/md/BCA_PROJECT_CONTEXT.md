@@ -1,4 +1,71 @@
-# BCA — 项目总纲与跨会话共享上下文
+# BCA / BCA-lite — 项目总纲与跨会话共享上下文
+
+> **文件角色：** 项目级共享背景（Project Context），供新旧开发会话读取。
+> **版本：** v0.7（BCA-lite LITE-01 正式验收）
+> **更新日期：** 2026-11-24
+> **当前权威状态：** `lite` 分支 MaaFramework 路线：LITE-00 审计交付、**LITE-01 Accepted**、**LITE-02 设计审查通过，尚未完成实现**。`main` 为原 BCA-00～04 历史已验收基线；下方原 BCA 章节为历史资料，接口规划不得覆盖本节和 lite 源码。
+
+## 0. BCA-lite 当前权威设计与交接（2026-11-24）
+
+### 0.1 产品定位和技术路线
+
+用户最初目标是轻量化的浏览器版 MAA：在终端持续阅读指定 Chromium/Edge 页面图像，输出结构化内容，接受手动命令并通过可插拔业务识别插件操作页面。**不自行建设另一套通用自动化框架**。
+
+- 视觉识别、模型/模板资源、任务执行：**MaaFramework v5.16.1**（`maafw==5.16.1`，当前固定版本以隔离绑定私有销毁接口）。
+- 浏览器 Target、CDP 截图和输入：复用 `src/bca/core/browser`、`Frame.pixel_to_css()`。
+- 适配基础：`src/bca/lite/bridge.py` 的 `CDPBridge` + `ObservationRef`，以及 `maa_controller.py` 的 `MaaCDPController`。
+- LITE-02 拟定：一个 MaaVisionFacade 持有 Controller/Resource/Tasker 与单 native worker；Coordinator 管理来源授权、状态、轮询和单步动作；轻量 BusinessPlugin 负责视觉结果解析与命令意图。
+- 未来：LITE-03 交互式 CLI；LITE-04 Quiz Demo；LITE-05 雀魂游戏插件；LITE-06 集成与发布。
+
+### 0.2 已交付与验收状态
+
+| 阶段 | 当前状态 | 权威资料 |
+| --- | --- | --- |
+| LITE-00 · 基线审计 | 交付完成 | `docs/lite/LITE-00_HANDOFF.md` |
+| **LITE-01 · Maa CDP Bridge** | **正式 Accepted（2026-11-24）** | `docs/lite/LITE-01_ACCEPTANCE_2026-11-24.md`、`docs/lite/LITE-01_HANDOFF.md`、`docs/evidence/LITE-01-addendum/final-2026-11-24/` |
+| **LITE-02 · Vision & Plugin** | **设计批准，尚未开始功能实现验收** | `docs/lite/LITE-02_DESIGN.md`、`docs/lite/LITE-02_DESIGN_REVIEW_2026-11-24.md`、`docs/lite/LITE-02_CODEX_DEVELOPMENT_HANDOFF.md` |
+| LITE-03～06 | 按阶段任务规划 | `docs/md/BCA-LITE_MASTER_HANDOFF.md` |
+
+### 0.3 LITE-01 可依赖的准确公共接口
+
+- `CDPBridge(loop, session, capture, input_provider, timeout, max_frame_age, require_authorization=True)`：在浏览器 owner loop 上创建并固定 connection/page/session/generation，借用已经 start 的 Capture/Input。
+- `bridge.screencap()`：由 Maa native callback worker 调用，BGR 连续 `numpy.ndarray`；成功后 owner loop 可读 `bridge.observation: ObservationRef | None`。不要在 owner loop 同步等待 native job。
+- `await bridge.authorize(ref)`：仅接受同一个当前有效观察对象，无法复制旧引用后重新授权；每次授权最多一个 click。
+- `bridge.click(raw_x, raw_y)`：Maa callback 提供原始 Frame 像素，Bridge 经 `Frame.pixel_to_css()` 一次映射；`input_outcome` 为 `not_attempted/rejected/confirmed/unknown`，confirmed 仅证明输入确认。
+- `bridge.invalidate()` 任意线程快速停止；`await bridge.aclose()` 排空 owner-loop 的在途 coroutine。`run_native()` 用于一次性 smoke；长期的 Facade 将使用固定单 worker。
+- `MaaCDPController` worker 中创建、绑定 Maa 后调用，原始截图模式默认 True；所有 native jobs 结束后 `close()` 显式销毁。使用 `maafw==5.16.1`，升级需复核上游私有 API。
+- **安全边界：** 当前授权验证 Frame/几何/URL/Target/时效，不证明同一页面中题目或 Canvas 内容未更新。LITE-02 需要语义签名，LITE-04 需要业务回合及结算验证。
+
+### 0.4 已验证的真实证据与未扩大声称
+
+- 平台：Windows 11，Python 3.14.7，Edge 158/CDP 1.3，MaaFW Python/native v5.16.1。
+- 原始控制器测试：12 个 DPR×ROI×raw 条件，**36 次真实 Edge 点击**，误差最大 0.667 CSS px；真实 Target 失效矩阵以及 native 模拟故障验证。
+- 最终补证：Edge 实际桌面 80%/100%/125% × raw/non-raw 六组，误差最大 **0.993598 CSS px**，重复点击和旧缩放引用拒绝；真实 Edge ACK 丢失、断连和 native 回调关闭竞争三种故障，无重发、无泄漏、保持原有 Target。
+- 2026-11-24：整个 lite 测试集合 **29 passed / 0 skipped**；另有 2026-11-23 离线 **786 passed / 50 skipped**、Browser 定向 **113 passed**、mypy/Ruff/build 通过的单独记录。29 是整个 lite 集合数量，非 29 项 Edge 场景。
+- 证据为仓库原始日志/JSON，架构主会话完成静态/记录复核，但没有独立在用户 Windows 机器重跑。Maa OCR、长期 RSS、完整 CLI、Quiz Demo、实际雀魂尚按后续阶段验收。
+
+### 0.5 LITE-02 已批准的设计及验收边界
+
+设计文件 `docs/lite/LITE-02_DESIGN.md` 审核通过，以附加架构意见为实施约束。**默认使用一次 Maa screencap + 多次 `Tasker.post_recognition(type, dataclass, image)`；单节点 Pipeline 仅用于 API/来源验证。** 真实 TemplateMatch 和 OCR、模型资产许可证与校验、ROI 全图坐标、结果详情惰性物化，先在 02.1 实测。
+
+- BusinessPlugin 使用纯业务的 plan/observe/format_state/parse_command/resolve/close；插件不直接持有 Controller/Tasker/Session。
+- Coordinator 持有唯一序列化门；状态去重采用业务 signature，操作回合采用 interaction_revision，来源授权采用精确 `ObservationRef`；三者不能混淆。
+- 只读查询触发新截图；写操作重新观察、唯一视觉候选、逐步授权、输入确认后再次视觉验证。
+- 真实 OCR 模型必须记录来源、许可证、文件哈希；未授权不可打包转发。识别错误与未命中不同，歧义结果不能猜测性点击。
+- LITE-02.1 原生 Vision 结果；02.2 插件/观察协调；02.3 Edge/持续运行与分发回归。验收资料、目标和完成度不得用原 BCA 的 Vision 测试替代。
+
+### 0.6 开发职责与同步规则
+
+- Codex 在用户本机 `lite` 工作目录实现、测试、提交阶段内容；架构主会话审查、定义接口并正式 Accepted。主会话无需修改产品源码。
+- **每个正式大阶段 Accepted 后更新本文件和 `lite` 分支 README。** 不因设计审查或中途开发反复改状态。
+- 子阶段交接中分别记录 `Git SHA`、运行环境、可复现测试命令、原始日志、失效/取消/资源回收和未覆盖事项；不擅自合并至 `main`。
+
+---
+
+## 历史资料说明
+
+**以下第 1～8 节保留原 BCA 架构的历史记录，部分阶段文字和待办状态停留在 2026-11-20。与 BCA-lite 冲突时，以第 0 节、`docs/md/BCA-LITE_MASTER_HANDOFF.md`、`docs/lite/LITE-02_DESIGN_REVIEW_2026-11-24.md` 和 `lite` 实际源码为准。**
+
 
 > **文件角色：** 项目级共享背景文件（Project Context）。供 ChatGPT 项目中的全部子会话读取，并作为每份子系统开发任务 MD 的共同前置上下文。
 >
