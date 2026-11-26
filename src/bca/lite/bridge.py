@@ -111,6 +111,10 @@ class CDPBridge:
         return self._max_frame_age
 
     @property
+    def requires_authorization(self) -> bool:
+        return self._require_authorization
+
+    @property
     def observation(self) -> ObservationRef | None:
         """Read on owner loop after a completed capture job; not a semantic revision."""
         self._require_owner()

@@ -1,0 +1,73 @@
+.................................................................F....   [100%]
+================================== FAILURES ===================================
+________ test_stop_failure_preserves_dependencies_and_worker_for_retry ________
+
+tmp_path = WindowsPath('D:/Project/BCA-lite/.test-artifacts/coord-01/test_stop_failure_preserves_de0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000140FFDD97F0>
+
+    def test_stop_failure_preserves_dependencies_and_worker_for_retry(tmp_path, monkeypatch):
+        async def run():
+            bridge, _, _, _ = bridge_for(monkeypatch, scene())
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+            await facade.start()
+
+            with monkeypatch.context() as patch:
+                failed_stop = SimpleNamespace(succeeded=False)
+                failed_stop.wait = lambda: failed_stop
+                patch.setattr(facade._native.tasker, "post_stop", lambda: failed_stop)
+                failed = await facade.aclose()
+            assert failed.stop_status == "failed"
+            assert not failed.released and failed.errors and not failed.destroyed
+            assert facade._native.controller._handle and facade._native.resource._handle
+            recovered = await facade.aclose()
+            assert recovered.released and recovered.worker_thread == failed.worker_thread
+            assert recovered.destroyed == ("tasker", "controller", "resource")
+            record(
+                tmp_path,
+                "stop-retry",
+                {"failed": dataclasses.asdict(failed), "recovered": dataclasses.asdict(recovered)},
+            )
+
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:487:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def run():
+        bridge, _, _, _ = bridge_for(monkeypatch, scene())
+        facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
+        await facade.start()
+
+        with monkeypatch.context() as patch:
+            failed_stop = SimpleNamespace(succeeded=False)
+            failed_stop.wait = lambda: failed_stop
+            patch.setattr(facade._native.tasker, "post_stop", lambda: failed_stop)
+            failed = await facade.aclose()
+        assert failed.stop_status == "failed"
+        assert not failed.released and failed.errors and not failed.destroyed
+        assert facade._native.controller._handle and facade._native.resource._handle
+        recovered = await facade.aclose()
+>       assert recovered.released and recovered.worker_thread == failed.worker_thread
+E       AssertionError: assert (False)
+E        +  where False = CloseReport(released=False, worker_thread=14012, destroyed=(), errors=('VisionError: Tasker stop did not establish idle; retain all handles',), stop_status='failed').released
+
+tests\lite\test_vision_native.py:479: AssertionError
+---------------------------- Captured stdout call -----------------------------
+[31m[2026-11-26 10:28:53.211][ERR][Px9548][Tx49903][Tasker.cpp][L300][MaaNS::Tasker::post_task] Tasker not inited [0m
+[31m[2026-11-26 10:28:53.211][ERR][Px9548][Tx49903][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+[31m[2026-11-26 10:28:53.211][ERR][Px9548][Tx49903][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+[31m[2026-11-26 10:28:53.211][ERR][Px9548][Tx49903][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+[31m[2026-11-26 10:28:53.211][ERR][Px9548][Tx49903][Tasker.cpp][L408][MaaNS::Tasker::task_id_to_runner_id] runner id not found [task_id=0] [0m
+=========================== short test summary info ===========================
+FAILED tests/lite/test_vision_native.py::test_stop_failure_preserves_dependencies_and_worker_for_retry
+1 failed, 69 passed in 21.19s

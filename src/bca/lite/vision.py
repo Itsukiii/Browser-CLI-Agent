@@ -43,6 +43,19 @@ class MaaVisionFacade:
         self._stopping = False
         self._close_task: asyncio.Task[CloseReport] | None = None
         self.close_report: CloseReport | None = None
+        self._last_batch: RecognitionBatch | None = None
+
+    @property
+    def connected(self) -> bool:
+        return self._bridge.connected and not self._stopping
+
+    @property
+    def resources(self) -> ResourceSpec:
+        return self._resources
+
+    def invalidate(self) -> None:
+        self._stopping = True
+        self._bridge.invalidate()
 
     def _owner(self) -> None:
         if asyncio.get_running_loop() is not self._loop:
@@ -87,12 +100,13 @@ class MaaVisionFacade:
             await self.aclose()
             raise
 
-    async def recognize(self, requests: tuple[RecognitionRequest, ...]) -> RecognitionBatch:
+    async def recognize(
+        self,
+        requests: tuple[RecognitionRequest, ...]
+        | Callable[[tuple[int, int]], tuple[RecognitionRequest, ...]],
+    ) -> RecognitionBatch:
         """Take exactly one fresh Maa screenshot and recognize all requests on it."""
         self._owner()
-        requests = tuple(requests)
-        if not requests or len({r.key for r in requests}) != len(requests):
-            raise ValueError("nonempty requests with distinct keys required")
         async with self._lock:
             if not self._ready or self._stopping or self._native is None:
                 raise VisionError("facade is not running")
@@ -104,6 +118,11 @@ class MaaVisionFacade:
             context = CaptureContext(
                 ref, self._bridge.binding, image.shape[1], image.shape[0], image.tobytes()
             )
+            requests = tuple(
+                requests((context.width, context.height)) if callable(requests) else requests
+            )
+            if not requests or len({r.key for r in requests}) != len(requests):
+                raise ValueError("nonempty requests with distinct keys required")
             for request in requests:
                 if not request.key or not math.isfinite(request.threshold):
                     raise ValueError("invalid recognition key/threshold")
@@ -134,13 +153,52 @@ class MaaVisionFacade:
                     )
                     for r in results
                 )
-            return RecognitionBatch(
+            batch = RecognitionBatch(
                 context,
                 results,
                 completed,
                 current,
                 completed - ref.observed_at > self._bridge.max_frame_age,
             )
+            self._last_batch = batch
+            return batch
+
+    async def click(self, batch: RecognitionBatch, request_key: str, candidate_index: int) -> str:
+        """Coordinator-only: exact latest batch, unique candidate, fresh one-shot authorization."""
+        self._owner()
+        async with self._lock:
+            if (
+                not self.connected
+                or self._native is None
+                or not self._bridge.requires_authorization
+            ):
+                raise VisionError("click requires live explicitly authorized composition")
+            if batch is not self._last_batch or not batch.source_current or batch.expired:
+                raise VisionError("not the current issued batch")
+            matches = [r for r in batch.results if r.request_key == request_key]
+            if len(matches) != 1 or matches[0].status != RecognitionStatus.MATCHED:
+                raise VisionError("target recognition is not matched")
+            candidates = matches[0].candidates
+            if len(candidates) != 1 or candidate_index != 0:
+                raise VisionError("target must be a unique visual candidate")
+            x, y, w, h = candidates[0].box
+            point = (x + (w - 1) // 2, y + (h - 1) // 2)
+            context = batch.capture
+            frame = context.source_ref.frame
+            raw = tuple(
+                math.floor(p * size / returned + 0.5)
+                for p, size, returned in zip(
+                    point, (frame.width, frame.height), (context.width, context.height), strict=True
+                )
+            )
+            if not (0 <= raw[0] < frame.width and 0 <= raw[1] < frame.height):
+                raise VisionError("mapped native point outside Frame")
+            await self._bridge.authorize(context.source_ref)
+            self._last_batch = None
+            controller = self._native.controller
+            assert controller is not None
+            await self._submit(lambda: controller.post_click(*point).wait().succeeded)
+            return self._bridge.input_outcome
 
     async def _close(self) -> CloseReport:
         async with self._lock:
@@ -150,8 +208,11 @@ class MaaVisionFacade:
                 report = CloseReport(True, None, (), ())
             self.close_report = report
             self._ready = False
-            await self._bridge.aclose()
             if report.released:
+                await self._bridge.aclose()
+                await asyncio.to_thread(self._executor.shutdown, wait=True)
+            elif self._native is not None and self._native._destroy_uncertain:
+                self._bridge.invalidate()
                 await asyncio.to_thread(self._executor.shutdown, wait=True)
             return report
 
@@ -160,7 +221,9 @@ class MaaVisionFacade:
         self._owner()
         if self._close_task is not None and self._close_task.done():
             previous = self._close_task.result()
-            if not previous.released:
+            if not previous.released and not (
+                self._native is not None and self._native._destroy_uncertain
+            ):
                 self._close_task = None  # Retry on the same owning worker, retaining handles.
         if self._close_task is None:
             self._stopping = True

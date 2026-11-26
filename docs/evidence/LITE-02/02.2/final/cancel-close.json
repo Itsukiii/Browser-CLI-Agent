@@ -1,0 +1,11 @@
+{
+  "released": true,
+  "worker_thread": 10732,
+  "destroyed": [
+    "tasker",
+    "controller",
+    "resource"
+  ],
+  "errors": [],
+  "stop_status": "not_needed_idle_disconnected"
+}

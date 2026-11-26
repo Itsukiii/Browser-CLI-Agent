@@ -1,0 +1,30 @@
+{
+  "frame_id": "069e339e-f154-4ee1-9753-c0c9f3c99e87",
+  "binding": [
+    "target-one",
+    "session-one",
+    3
+  ],
+  "size": [
+    480,
+    240
+  ],
+  "source_current": true,
+  "expired": false,
+  "results": [
+    {
+      "request_key": "blank",
+      "algorithm": "OCR",
+      "status": "NOT_FOUND",
+      "candidates": [],
+      "all_candidates": [],
+      "best": null,
+      "job_id": 200000182,
+      "job_status": "succeeded",
+      "reco_id": 400000129,
+      "hit": false,
+      "raw_detail_json": "{\"all\": [], \"best\": null, \"filtered\": []}",
+      "diagnostic": null
+    }
+  ]
+}

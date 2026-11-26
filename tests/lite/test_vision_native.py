@@ -461,20 +461,18 @@ def test_version_guard(tmp_path, monkeypatch):
     asyncio.run(run())
 
 
-def test_destroy_failure_preserves_dependencies_and_worker_for_retry(tmp_path, monkeypatch):
-    from maa.library import Library
-
+def test_stop_failure_preserves_dependencies_and_worker_for_retry(tmp_path, monkeypatch):
     async def run():
         bridge, _, _, _ = bridge_for(monkeypatch, scene())
         facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle")))
         await facade.start()
 
-        def fail_destroy(handle):
-            raise RuntimeError("injected destroy failure before release")
-
         with monkeypatch.context() as patch:
-            patch.setattr(Library.framework(), "MaaTaskerDestroy", fail_destroy)
+            failed_stop = SimpleNamespace(succeeded=False)
+            failed_stop.wait = lambda: failed_stop
+            patch.setattr(facade._native.tasker, "post_stop", lambda: failed_stop)
             failed = await facade.aclose()
+        assert failed.stop_status == "failed"
         assert not failed.released and failed.errors and not failed.destroyed
         assert facade._native.controller._handle and facade._native.resource._handle
         recovered = await facade.aclose()
@@ -482,7 +480,7 @@ def test_destroy_failure_preserves_dependencies_and_worker_for_retry(tmp_path, m
         assert recovered.destroyed == ("tasker", "controller", "resource")
         record(
             tmp_path,
-            "destroy-retry",
+            "stop-retry",
             {"failed": dataclasses.asdict(failed), "recovered": dataclasses.asdict(recovered)},
         )
 

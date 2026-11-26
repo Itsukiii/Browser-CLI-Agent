@@ -1,0 +1,20 @@
+{
+  "states": [
+    "NOT_FOUND",
+    "AMBIGUOUS",
+    "MATCHED",
+    "ERROR",
+    "MATCHED"
+  ],
+  "stats": {
+    "completed": 8,
+    "valid": 5,
+    "dropped_notifications": 3,
+    "skipped_ticks": 0,
+    "last_duration": 0.016973800025880337
+  },
+  "frames": [
+    "dde03bbb-e1fc-4b3b-a218-0001079b1489",
+    "0020ef2e-c8a4-471a-bb5f-846c36b94bc8"
+  ]
+}

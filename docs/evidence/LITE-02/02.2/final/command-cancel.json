@@ -1,0 +1,14 @@
+{
+  "inputs": 1,
+  "close": {
+    "released": true,
+    "worker_thread": 19900,
+    "destroyed": [
+      "tasker",
+      "controller",
+      "resource"
+    ],
+    "errors": [],
+    "stop_status": "not_needed_idle_disconnected"
+  }
+}

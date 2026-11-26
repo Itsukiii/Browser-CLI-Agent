@@ -103,6 +103,9 @@ def normalize(job: Any, request: RecognitionRequest, width: int, height: int) ->
         return RecognitionResult(status=RecognitionStatus.ERROR, diagnostic=str(exc), **meta)
 
 
+_QUARANTINED: list[NativeVision] = []
+
+
 class NativeVision:
     def __init__(self, bridge: CDPBridge, spec: ResourceSpec, raw_size: bool) -> None:
         self.thread = threading.get_ident()
@@ -112,6 +115,8 @@ class NativeVision:
         self.tasker: Any = None
         self.destroyed: list[str] = []
         self.ocr_loaded = False
+        self._destroy_uncertain = False
+        self._stop_failed = False
 
     def _check_thread(self) -> None:
         if threading.get_ident() != self.thread:
@@ -183,29 +188,60 @@ class NativeVision:
 
     def close(self) -> CloseReport:
         self._check_thread()
+        if self._destroy_uncertain:
+            return CloseReport(
+                False,
+                self.thread,
+                tuple(self.destroyed),
+                ("Destroy outcome uncertain; no pointer retry",),
+                "quarantined",
+            )
         errors = []
         stop_status = None
+        destroying = False
         # Do not destroy dependencies if destroying their tasker fails.
         try:
             if self.tasker is not None and self.tasker._handle:
-                if self.tasker.inited or self.tasker.running:
+                if self._stop_failed or self.tasker.inited or self.tasker.running:
+                    self._stop_failed = True
                     stop = self.tasker.post_stop().wait()
                     stop_status = "succeeded" if stop.succeeded else "failed"
+                    if not stop.succeeded or self.tasker.running:
+                        raise VisionError("Tasker stop did not establish idle; retain all handles")
+                    self._stop_failed = False
                 else:
                     stop_status = "not_needed_idle_disconnected"
+                destroying = True
                 Library.framework().MaaTaskerDestroy(self.tasker._handle)
                 self.tasker._handle = None
+                destroying = False
                 self.destroyed.append("tasker")
             if self.controller is not None and self.controller._handle:
+                destroying = True
                 self.controller.close()
+                destroying = False
                 self.destroyed.append("controller")
             if self.resource is not None and self.resource._handle:
+                destroying = True
                 Library.framework().MaaResourceDestroy(self.resource._handle)
                 self.resource._handle = None
+                destroying = False
                 self.destroyed.append("resource")
         except Exception as exc:
+            if destroying:
+                self._destroy_uncertain = True
+                # Do not let upstream destructors retry a possibly freed pointer.
+                # Keep the entire owner alive for process-lifetime quarantine.
+                _QUARANTINED.append(self)
+                self._quarantined_handles = tuple(
+                    getattr(obj, "_handle", None)
+                    for obj in (self.tasker, self.controller, self.resource)
+                )
+                for obj in (self.tasker, self.controller, self.resource):
+                    if obj is not None:
+                        obj._handle = None  # Quarantine is NOT proof of release.
             errors.append(f"{type(exc).__name__}: {exc}")
-        released = not any(
+        released = not self._destroy_uncertain and not any(
             getattr(o, "_handle", None) for o in (self.tasker, self.controller, self.resource)
         )
         return CloseReport(released, self.thread, tuple(self.destroyed), tuple(errors), stop_status)

@@ -1,0 +1,57 @@
+[
+  {
+    "released": true,
+    "worker_thread": 36288,
+    "destroyed": [
+      "tasker",
+      "controller",
+      "resource"
+    ],
+    "errors": [],
+    "stop_status": "succeeded"
+  },
+  {
+    "released": true,
+    "worker_thread": 29412,
+    "destroyed": [
+      "tasker",
+      "controller",
+      "resource"
+    ],
+    "errors": [],
+    "stop_status": "succeeded"
+  },
+  {
+    "released": true,
+    "worker_thread": 36980,
+    "destroyed": [
+      "tasker",
+      "controller",
+      "resource"
+    ],
+    "errors": [],
+    "stop_status": "succeeded"
+  },
+  {
+    "released": true,
+    "worker_thread": 33132,
+    "destroyed": [
+      "tasker",
+      "controller",
+      "resource"
+    ],
+    "errors": [],
+    "stop_status": "succeeded"
+  },
+  {
+    "released": true,
+    "worker_thread": 11412,
+    "destroyed": [
+      "tasker",
+      "controller",
+      "resource"
+    ],
+    "errors": [],
+    "stop_status": "succeeded"
+  }
+]

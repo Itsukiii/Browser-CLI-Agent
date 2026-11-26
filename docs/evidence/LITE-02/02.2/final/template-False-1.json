@@ -1,0 +1,44 @@
+{
+  "frame_id": "20ba873a-ec8b-4afb-8d72-883af7e18d66",
+  "binding": [
+    "target-one",
+    "session-one",
+    3
+  ],
+  "size": [
+    480,
+    240
+  ],
+  "source_current": true,
+  "expired": false,
+  "results": [
+    {
+      "request_key": "full",
+      "algorithm": "TemplateMatch",
+      "status": "NOT_FOUND",
+      "candidates": [],
+      "all_candidates": [],
+      "best": null,
+      "job_id": 200000107,
+      "job_status": "succeeded",
+      "reco_id": 400000079,
+      "hit": false,
+      "raw_detail_json": "{\"all\": [], \"best\": null, \"filtered\": []}",
+      "diagnostic": null
+    },
+    {
+      "request_key": "roi",
+      "algorithm": "TemplateMatch",
+      "status": "NOT_FOUND",
+      "candidates": [],
+      "all_candidates": [],
+      "best": null,
+      "job_id": 200000108,
+      "job_status": "succeeded",
+      "reco_id": 400000080,
+      "hit": false,
+      "raw_detail_json": "{\"all\": [], \"best\": null, \"filtered\": []}",
+      "diagnostic": null
+    }
+  ]
+}

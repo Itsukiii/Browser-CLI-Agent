@@ -1,0 +1,22 @@
+{
+  "failed": {
+    "released": false,
+    "worker_thread": 35476,
+    "destroyed": [],
+    "errors": [
+      "VisionError: Tasker stop did not establish idle; retain all handles"
+    ],
+    "stop_status": "failed"
+  },
+  "recovered": {
+    "released": true,
+    "worker_thread": 35476,
+    "destroyed": [
+      "tasker",
+      "controller",
+      "resource"
+    ],
+    "errors": [],
+    "stop_status": "succeeded"
+  }
+}

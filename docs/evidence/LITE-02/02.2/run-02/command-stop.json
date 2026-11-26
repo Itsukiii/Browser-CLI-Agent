@@ -1,0 +1,14 @@
+{
+  "inputs": 1,
+  "close": {
+    "released": true,
+    "worker_thread": 33328,
+    "destroyed": [
+      "tasker",
+      "controller",
+      "resource"
+    ],
+    "errors": [],
+    "stop_status": "succeeded"
+  }
+}

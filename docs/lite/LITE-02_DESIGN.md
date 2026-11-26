@@ -11,6 +11,12 @@
 - Pipeline 仅在独立原生探针测试中使用，不暴露可授权 Batch。Facade 只允许一次捕获、多次直接识别，便于证明来源唯一。
 - 直接识别正负例的 Job 都为 succeeded；无命中靠 hit=False 和完整空 filtered/best 判定。首次矩阵中预期负例 Job.failed 的断言失败，保留 run-03；归一化无需把 Job 状态等同 hit。正常关闭在排空后再 invalidate Bridge；取消已 invalidate 时 Tasker.inited 可能为 false，空闲且未初始化的 Tasker 不再投递无效 stop job，记录该情况后 Destroy。
 
+### 02.2 实施细化（2026-11-26）
+
+- 02.1 已 Accepted，按新增审查 P1-A 加严关闭：stop失败/仍running时不Destroy也不关Bridge；Destroy异常结果不明时进程期隔离而不重试同指针，released始终false。此规则取代02.1的Destroy异常重试策略。
+- plan 在 Facade 单次截图之后调用，以本次返回尺寸制定请求；Coordinator只拥有外层业务串行门，不另造Runtime。VisualTarget只返回实际候选索引，框由宿主结果提供，不允许插件伪造框。
+- 协议、暂停/关闭/取消、通知容量与准确指标见 `PLUGIN_CONTRACT.md`；历史OpenCV异常保留至 `LITE-02.3_STABILITY_PLAN.md`，未归因、未宣称修复。
+
 依据：LITE-02_CODEX_DEVELOPMENT_HANDOFF、LITE-01_ARCH_REVIEW、主交接书 §3/7/12/13、当前 bridge/controller/Browser 源码，以及安装的 maafw v5.16.1 Python binding。保留历史 Assets/Vision fixture 思路，不复用 RMSE 算法或旧 PluginManager。
 
 ## 1. 决策摘要
