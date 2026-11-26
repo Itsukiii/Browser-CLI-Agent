@@ -1,0 +1,1 @@
+Config and fixture resources valid; OCR provenance and SHA256 verified.

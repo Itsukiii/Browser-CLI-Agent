@@ -1,0 +1,11 @@
+# Paths are relative to THIS file. CLI path overrides are relative to cwd.
+endpoint = "http://127.0.0.1:9341"
+# target = "EXACT_ID_FROM_LIST_TARGETS"
+plugin = "fixture"
+model = "../.maa-models/ppocr-v3-en"
+manifest = "../docs/lite/models/ppocr-v3-en.json"
+interval = 0.75
+callback_timeout = 10.0
+max_frame_age = 2.0
+log_level = "WARNING"
+roi = true
