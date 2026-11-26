@@ -1,0 +1,10 @@
+{
+  "first": "confirmed",
+  "second": "unknown",
+  "callbacks_before_retry": 2,
+  "inputs_total": 2,
+  "second_frame": "865a351d-8ced-4a7b-82ac-fad4184cde4c",
+  "first_frame": "5ce73699-9c09-48c7-b008-7ac18030f7a0",
+  "diagnostic": "bridge stopped, blocked, or binding changed",
+  "retired": true
+}

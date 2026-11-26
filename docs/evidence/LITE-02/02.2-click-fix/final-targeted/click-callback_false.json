@@ -1,0 +1,10 @@
+{
+  "first": "confirmed",
+  "second": "unknown",
+  "callbacks_before_retry": 2,
+  "inputs_total": 1,
+  "second_frame": "11c38f32-3800-40bb-8d89-9d63f75ef1f5",
+  "first_frame": "65e1ba81-6f7d-4121-af2e-89afa260e75b",
+  "diagnostic": "NativeClickUnconfirmed: native job and current CDP confirmation disagree",
+  "retired": true
+}

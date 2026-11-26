@@ -138,6 +138,26 @@ class CDPBridge:
             if reference is not self._last:
                 raise BridgeError("observation is obsolete or belongs to another bridge")
             self._authorized = reference
+            # A new native action must not inherit an earlier input confirmation.
+            self._outcome = "not_attempted"
+
+    def finish_native_click(self, succeeded: bool) -> str:
+        """Owner-loop reconciliation after the exclusive native click job is drained.
+
+        Confirmation requires both this job's success and this authorization's
+        CDP confirmation. Any disagreement retires the bridge without replay.
+        """
+        self._require_owner()
+        self._authorized = None
+        self._last = None
+        if succeeded and self._outcome == "confirmed" and self.connected:
+            return "confirmed"
+        self._outcome = "unknown"
+        self._blocked.set()
+        self._last_error = (
+            "NativeClickUnconfirmed: native job and current CDP confirmation disagree"
+        )
+        return self._outcome
 
     def _require_owner(self) -> None:
         if asyncio.get_running_loop() is not self._loop:

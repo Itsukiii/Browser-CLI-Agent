@@ -197,8 +197,16 @@ class MaaVisionFacade:
             self._last_batch = None
             controller = self._native.controller
             assert controller is not None
-            await self._submit(lambda: controller.post_click(*point).wait().succeeded)
-            return self._bridge.input_outcome
+            try:
+                succeeded = await self._submit(
+                    lambda: controller.post_click(*point).wait().succeeded
+                )
+            except asyncio.CancelledError:
+                self._bridge.finish_native_click(False)
+                raise
+            except Exception:
+                return self._bridge.finish_native_click(False)
+            return self._bridge.finish_native_click(bool(succeeded))
 
     async def _close(self) -> CloseReport:
         async with self._lock:

@@ -24,6 +24,8 @@ Application 先绑定明确 Target 并启动 Capture/Input，以 `require_author
 
 Facade.click 只接受自己最后签发的同一 Batch 对象，要求明确授权模式、MATCHED 且唯一候选；复制的 Batch 或前一帧都拒绝。候选中心使用 Maa 返回图像像素，Maa 转 raw，Bridge 转 CSS；映射后 raw 越界拒绝，不提前转 CSS。
 
+2026-11-26 P1补充：成功authorize建立本次输入边界，将input_outcome重置为not_attempted；截图本身不改历史输入结果。Facade保存并核验本次native Job.succeeded，排空后由Bridge.finish_native_click进行一致性检查：只有本次Job成功、当前边界CDP确认且Bridge仍有效才返回confirmed。native未进callback就失败、成功但没有callback、callback失败、ACK丢失、callback后native失败/异常一律unknown并阻断组合，无自动重试；此处unknown是保守结果，不声称一定发出了输入。取消仍等native排空再传播，不以历史confirmed报本次成功。该同步归并接口只供独占Facade在本次job排空后调用，不是可绕过Job的授权接口。
+
 Coordinator.latest 永远更新，通知只比较 `(status,signature,diagnostic)`。`take_change()` 非阻塞取轻量 `(sequence,status)`；容量满丢最旧提示并增加 dropped_notifications，消费者通过序号发现遗漏并读 latest，不阻塞观察。非广播事件总线，无无限图片队列。
 
 `stats` 返回 completed/valid/dropped_notifications/skipped_ticks/last_duration 快照；valid 仅计本次来源有效且未过期的 MATCHED。周期操作不会并行，超期不积压补跑；interval 是目标起始间隔，实际频率由完成时间记录测量，不以配置值冒充性能。
