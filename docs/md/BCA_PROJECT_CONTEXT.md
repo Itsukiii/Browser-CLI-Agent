@@ -1,9 +1,9 @@
 # BCA / BCA-lite — 项目总纲与跨会话共享上下文
 
 > **文件角色：** 项目级共享背景（Project Context），供新旧开发会话读取。
-> **版本：** v0.8（BCA-lite LITE-02 正式验收）
+> **版本：** v0.9（BCA-lite LITE-03 正式验收）
 > **更新日期：** 2026-11-26
-> **当前权威状态：** `lite` 分支 MaaFramework 路线：LITE-00 审计交付、**LITE-01 Accepted（2026-11-24）**、**LITE-02 Accepted（2026-11-26）**，接下来进入 LITE-03 交互式 CLI。`main` 为原 BCA-00～04 历史已验收基线；下方原 BCA 章节为历史资料，接口规划不得覆盖本节和 lite 源码。
+> **当前权威状态：** `lite` 分支 MaaFramework 路线：LITE-00 审计交付、**LITE-01 Accepted（2026-11-24）**、**LITE-02 Accepted（2026-11-26）**、**LITE-03 Accepted（2026-11-26）**，当前进入 LITE-04 Quiz Demo 设计与开发。`main` 为原 BCA-00～04 历史已验收基线；下方原 BCA 章节为历史资料，接口规划不得覆盖本节和 lite 源码。
 
 ## 0. BCA-lite 当前权威设计与交接（2026-11-26）
 
@@ -15,7 +15,7 @@
 - 浏览器 Target、CDP 截图和输入：复用 `src/bca/core/browser`、`Frame.pixel_to_css()`。
 - 适配基础：`src/bca/lite/bridge.py` 的 `CDPBridge` + `ObservationRef`，以及 `maa_controller.py` 的 `MaaCDPController`。
 - LITE-02 已交付：`MaaVisionFacade`（Controller/Resource/Tasker + 单 native worker），`BusinessPlugin`（纯业务），`ObservationCoordinator`（串行观察、通知、读取和一轮点击）；真实 Edge/长时/打包已验收，详情见第 0.7 节。
-- 未来：LITE-03 交互式 CLI；LITE-04 Quiz Demo；LITE-05 雀魂游戏插件；LITE-06 集成与发布。
+- LITE-03 已交付：可安装 `bca-lite` 终端入口、严格 TOML/目标选择、prompt_toolkit 异步输入、状态去重、命令与安全退出，详见第 0.8 节；后续 LITE-04 Quiz Demo、LITE-05 雀魂、LITE-06 集成发布。
 
 ### 0.2 已交付与验收状态
 
@@ -24,8 +24,9 @@
 | LITE-00 · 基线审计 | 交付完成 | `docs/lite/LITE-00_HANDOFF.md` |
 | **LITE-01 · Maa CDP Bridge** | **正式 Accepted（2026-11-24）** | `docs/lite/LITE-01_ACCEPTANCE_2026-11-24.md`、`docs/lite/LITE-01_HANDOFF.md`、`docs/evidence/LITE-01-addendum/final-2026-11-24/` |
 | **LITE-02 · Vision & Plugin** | **正式 Accepted（2026-11-26）** | `docs/lite/LITE-02_ACCEPTANCE_2026-11-26.md`、`docs/lite/LITE-02_HANDOFF.md`、`docs/evidence/LITE-02/02.3/` |
-| **LITE-03 · Interactive CLI** | **准备开发** | `docs/lite/LITE-03_KICKOFF_2026-11-26.md`、`docs/md/BCA-LITE_MASTER_HANDOFF.md` |
-| LITE-04～06 | 按阶段任务规划 | `docs/md/BCA-LITE_MASTER_HANDOFF.md` |
+| **LITE-03 · Interactive CLI** | **正式 Accepted（2026-11-26）** | `docs/lite/LITE-03_ACCEPTANCE_2026-11-26.md`、`docs/lite/LITE-03_HANDOFF.md`、`docs/lite/CLI.md` |
+| **LITE-04 · Quiz Demo** | **设计准备** | `docs/lite/LITE-04_KICKOFF_2026-11-26.md`、`docs/md/BCA-LITE_MASTER_HANDOFF.md` 第 9 节 |
+| LITE-05～06 | 按阶段任务规划 | `docs/md/BCA-LITE_MASTER_HANDOFF.md` |
 
 ### 0.3 LITE-01 可依赖的准确公共接口
 
@@ -43,7 +44,7 @@
 - 原始控制器测试：12 个 DPR×ROI×raw 条件，**36 次真实 Edge 点击**，误差最大 0.667 CSS px；真实 Target 失效矩阵以及 native 模拟故障验证。
 - 最终补证：Edge 实际桌面 80%/100%/125% × raw/non-raw 六组，误差最大 **0.993598 CSS px**，重复点击和旧缩放引用拒绝；真实 Edge ACK 丢失、断连和 native 回调关闭竞争三种故障，无重发、无泄漏、保持原有 Target。
 - 2026-11-24：整个 lite 测试集合 **29 passed / 0 skipped**；另有 2026-11-23 离线 **786 passed / 50 skipped**、Browser 定向 **113 passed**、mypy/Ruff/build 通过的单独记录。29 是整个 lite 集合数量，非 29 项 Edge 场景。
-- 证据为仓库原始日志/JSON，架构主会话完成静态/记录复核，但没有独立在用户 Windows 机器重跑。Maa OCR 与真实 Edge 长时指标已在 LITE-02 验证；完整 CLI、Quiz Demo 和实际雀魂仍按后续阶段验收。
+- 证据为仓库原始日志/JSON，架构主会话完成静态/记录复核，但没有独立在用户 Windows 机器重跑。Maa OCR 与真实 Edge 长时指标已在 LITE-02 验证；正式可安装 CLI 与终端交互在 LITE-03 验证；Quiz Demo 和实际雀魂仍按后续阶段验收。
 
 ### 0.5 LITE-02 已批准的设计及验收边界
 
@@ -81,7 +82,29 @@
 - 旧 OpenCV 4096×4096 decode access violation 在 3×4 配置的12次独立进程复查中未复现，**根因未知/未声称修复**。本次另记录 Maa stop succeeded 但 running 短暂为 true；新增 <=1s 的 bounded idle 等待，无法确认 idle 时仍不 Destroy。
 - 干净 Windows venv/wheel[lite] 安装、跨 cwd 模板/模型校验及 Edge 点击通过，wheel/sdist 包完整性已核对；最终离线 **878 passed / 57 deselected**，browser_integration 另行真机测试；Ruff、mypy strict、build 通过。
 
-**LITE-03 接续限制：** 终端必须只通过 Coordinator 输入与观察，不绕过 Facade；将低 CPU、ROI 选择、超时/歧义提示、Ctrl+C/EOF、unknown 重建边界纳入验收；CLI 的人机交互、Quiz 10s 回合及雀魂 WebGL 未在 LITE-02 声称完成。
+**LITE-03 接续限制（已完成）：** 终端只通过 Coordinator 输入与观察；安全退出、ROI 和故障显示已验证；中文 IME 体验与高 CPU 成本仍需跟踪。Quiz 10s 回合及雀魂 WebGL 仍属后续阶段。
+
+### 0.8 LITE-03 正式验收基线（2026-11-26）
+
+**决定：LITE-03 整阶段 Accepted。** 实现提交 `bdd3f8a`（配置/入口）、`f9fef05`（可编辑异步输入）、`b62d57b`（真实验证/修复）；交接提交 `815cda10beefa60113f8afe0cca7deb4ac4ce8f0`。权威文件 `docs/lite/LITE-03_ACCEPTANCE_2026-11-26.md`、`docs/lite/LITE-03_HANDOFF.md`、`docs/lite/CLI.md`。
+
+**稳定接口与所有权：**
+
+- `src/bca/lite/cli.py` 提供 `bca-lite`/`python -m bca.lite`；`cli_config.py` 严格读取显式 TOML 与 CLI 覆盖，CDP 端点仅允许本机 loopback HTTP origin；Target ID 精确选择，无隐式切换或模糊选择。
+- `cli_session.py` 保持 Application 原生资源所有权：Session → Input/Capture → Bridge(require_authorization=True) → Facade → Coordinator；CLI 只能通过 Coordinator 下发命令。`--create-fixture` 显式创建自有测试 Target，退出仅关闭自有目标。
+- `terminal.py`/`interactive.py` 使用 `prompt_toolkit` 的可编辑输入和后台增量状态显示；单命令在途，Busy 拒绝且不排队；`?` 必须真实新 Frame；stop/resume、quit、Ctrl+C、EOF、安全 unknown 停止。
+- 若 `CloseReport.released=False`，短时有限重试后保留 native/Provider 依赖并以 exit3 终止 CLI 自身进程，不尝试重复释放不确定指针；正常关闭按所有权顺序核对 pending/reader。此行为不能被认为保证永久卡住的 native worker 能强制退出。
+
+**最终实测：**
+
+- Windows11 / Python3.14.7 / Edge158 / Maa5.16.1；真实 ConPTY+Edge **7 passed**；新建虚拟环境中 wheel[lite] 从 Temp cwd ConPTY **6 passed**，独立超龄验证 **1 passed**；人工 PowerShell 记录有 `click123→124→125` 和三次 `?` 不同 Frame ID，人工记录非自动终端视频。
+- 半输入 `click 45` 时后台轮次变为456、保留编辑缓冲、补 `6` 回车后命中自有 DOM button；旧回合、歧义、长命令、Busy、目标失效、未知输入、native stop 失败退出3、Ctrl+C/EOF 等有明确证据。
+- CLI 周期观察66.1624秒 87次有效 / **1.31495Hz**，内容未变只提醒一次；当前阶段资源监控显示该 CLI 工作 PID 平均CPU **397.02%（约3.97逻辑核）**、峰值RSS **153.35MiB**、PrivateBytes **611.52MiB**。测试期同时存在构建/安装活动，不与 LITE-02 3.26核直接比较。
+- 最终离线 **907 passed / 66 deselected**，严格类型/格式/Ruff、wheel/sdist、安装后site-packages与构建产物哈希一致；开发期两个失败轮次均保留日志并修正后重新完整验证。
+
+**限制：** 真实人工中文 IME 候选窗/退格/闪屏体验并未确认；当前正式 CLI 插件仅 `fixture`；旧 OpenCV 原生异常仍未归因；不同 OS / Python 3.12/3.13、长周期 RSS 与 native 永久卡死均需按后续阶段评估。CPU 成本为必须跟踪的性能风险，不能因为达到1Hz就声称轻量低耗。
+
+**LITE-04 接续重点：** 10s自动换题、A/B/C/D四选一、点选后确认与分数+1/-1、?即时视觉查分、跨两次操作的每步新截图+轮次证明、可见结算状态与含0的分数差、正确/错误多轮真机证据。先审设计再实现。全文见 `docs/lite/LITE-04_KICKOFF_2026-11-26.md`。
 
 ---
 

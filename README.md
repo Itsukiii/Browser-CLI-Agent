@@ -1,6 +1,6 @@
 # Browser CLI Agent (BCA)
 
-> **BCA-lite / `lite` 分支 — 当前研发路线。** 本分支采用 [MaaFramework v5.16.1](https://github.com/MaaXYZ/MaaFramework) 作为通用视觉与任务底座，BCA 自身保留 Chromium/Edge CDP Target 控制、可信观察授权与后续终端交互。**LITE-00 已交付；LITE-01 CDP × Maa 于 2026-11-24 Accepted；LITE-02 Vision & Plugin 于 2026-11-26 正式 Accepted；当前准备 LITE-03 交互式 CLI。** 历史 BCA-00～04 的完整基线保留在 [main](https://github.com/Itsukiii/Browser-CLI-Agent/tree/main)。
+> **BCA-lite / `lite` 分支 — 当前研发路线。** 本分支采用 [MaaFramework v5.16.1](https://github.com/MaaXYZ/MaaFramework) 作为通用视觉与任务底座，BCA 自身保留 Chromium/Edge CDP Target 控制、可信观察授权与后续终端交互。**LITE-00 已交付；LITE-01 CDP × Maa 于 2026-11-24 Accepted；LITE-02 Vision & Plugin 和 LITE-03 Interactive CLI 均于 2026-11-26 正式 Accepted；当前启动 LITE-04 Quiz Demo。** 历史 BCA-00～04 的完整基线保留在 [main](https://github.com/Itsukiii/Browser-CLI-Agent/tree/main)。
 
 ### BCA-lite 当前进度
 
@@ -9,8 +9,27 @@
 | LITE-00 · 基线审计 | 已交付 | [审计](docs/lite/LITE-00_HANDOFF.md) |
 | **LITE-01 · Maa CDP Bridge** | **Accepted（2026-11-24）** | [验收结论](docs/lite/LITE-01_ACCEPTANCE_2026-11-24.md) · [交接](docs/lite/LITE-01_HANDOFF.md) · [最终 G1/G2 证据](docs/evidence/LITE-01-addendum/final-2026-11-24/) |
 | **LITE-02 · Maa Vision / Plugin** | **Accepted（2026-11-26）** | [正式验收](docs/lite/LITE-02_ACCEPTANCE_2026-11-26.md) · [阶段索引](docs/lite/LITE-02_HANDOFF.md) · [02.3 证据](docs/evidence/LITE-02/02.3/README.md) |
-| **LITE-03 · Interactive CLI** | **准备开发** | [启动交接](docs/lite/LITE-03_KICKOFF_2026-11-26.md) · [总交接书](docs/md/BCA-LITE_MASTER_HANDOFF.md) |
-| LITE-04～06 · Quiz / 雀魂 / Release | 规划中 | [总交接书](docs/md/BCA-LITE_MASTER_HANDOFF.md) |
+| **LITE-03 · Interactive CLI** | **Accepted（2026-11-26）** | [正式验收](docs/lite/LITE-03_ACCEPTANCE_2026-11-26.md) · [交接](docs/lite/LITE-03_HANDOFF.md) · [CLI 用法](docs/lite/CLI.md) |
+| **LITE-04 · Quiz Demo** | **设计准备** | [启动交接](docs/lite/LITE-04_KICKOFF_2026-11-26.md) · [完整规格](docs/md/BCA-LITE_MASTER_HANDOFF.md) |
+| LITE-05～06 · 雀魂 / Release | 规划中 | [总交接书](docs/md/BCA-LITE_MASTER_HANDOFF.md) |
+
+#### LITE-03 已验收的交互式 CLI
+
+- 正式入口 `bca-lite` / `python -m bca.lite`，PowerShell 上使用 `prompt_toolkit` 保持可编辑输入、后台增量更新和单条命令串行；TOML 配置/CLI 参数、精确 Target 选择、`--check`/`--list-targets`/`--once`、显式 fixture 插件。
+- 已验收操作：`?` 强制拍摄新图；`click <visible-round>` 基于 Maa 可见回合和唯一视觉候选执行单步安全点击；`stop`/`resume`/`quit`、Ctrl+C、EOF 和失效/unknown 提示。不把输入确认冒充页面业务结算。
+- Windows/Edge ConPTY **7 passed**，全新 wheel+系统 Temp cwd ConPTY **6 passed**，过期观察单独 **1 passed**；人工 PowerShell 记录的 `click123→124→125` 与三次 `?` 新帧可复核。CLI 65 秒周期运行 **87/87 有效，1.31495Hz**，同内容只输出一次状态。
+- 最终离线 **907 passed / 66 deselected**（浏览器测试单独执行），mypy strict、Ruff、build 与干净 wheel 安装通过。原生未释放则结束 CLI 自有进程（exit3），不重试不确定指针；原有浏览器 Target 保留。
+- **体验与性能边界：** 实际中文 IME 候选窗、退格、闪屏体验暂无明确人工确认；单进程 CPU 监控约 **397%（约3.97逻辑核）**，测试期间有其他构建/安装活动，不与 LITE-02 的 3.26 核直接作性能回归判断；历史 OpenCV access violation 仍未归因。
+
+配置与运行（需先准备隔离 CDP Edge、OCR 模型和来源 manifest，详见 CLI 文档）：
+
+~~~powershell
+bca-lite --help
+bca-lite --endpoint http://127.0.0.1:9341 --list-targets
+bca-lite --config configs/lite.example.toml --create-fixture
+~~~
+
+完整使用方式见 [CLI.md](docs/lite/CLI.md)。目前生产 CLI 的内置插件为受控 `fixture`，LITE-04 将接入正式 Quiz 示例。
 
 #### LITE-02 已验收的 Vision / Plugin 基础
 
@@ -27,7 +46,7 @@
 python examples/lite_vision.py --endpoint http://127.0.0.1:9341 --model "ABSOLUTE_MODEL_DIRECTORY" --manifest "ABSOLUTE_MANIFEST_JSON"
 ~~~
 
-> 此示例仅演示受控自有网页的单次视觉交互；真正日常使用的交互式终端入口与业务插件将在 LITE-03～05 交付。
+> 此旧示例仅演示受控自有网页的单次视觉交互；已交付的正式交互式入口及具体使用见上方 LITE-03 和 CLI 文档。
 
 #### LITE-01 已验证能力
 
@@ -52,9 +71,9 @@ python examples/lite_maa_cdp_smoke.py --endpoint http://127.0.0.1:9341 --target-
 
 Browser CLI Agent（BCA）将浏览器连接、截图采集、页面状态解析和命令执行分离。Core 提供通用的 Browser、Provider、Runtime 和 Plugin 能力；具体页面的识别、状态格式和交互规则由插件提供。项目目标是在终端中读取指定页面的结构化信息，并通过命令与该页面交互。
 
-**历史基线：BCA-00～04 均完成原架构阶段验收。** 这些源码和示例保留用于回归和参考；当前 lite 开发顺序为 LITE-03 CLI → LITE-04 Quiz → LITE-05 雀魂 → LITE-06 集成发布。
+**历史基线：BCA-00～04 均完成原架构阶段验收。** 这些源码和示例保留用于回归和参考；当前 lite 开发顺序为 LITE-04 Quiz → LITE-05 雀魂 → LITE-06 集成发布。
 
-> 当前 lite 分支具备已验收的 MaaFramework-CDP 控制器、视觉 OCR/模板、业务插件和持续观察底座；统一终端 CLI 与具体 Quiz/雀魂插件按后续阶段推进。
+> 当前 lite 分支具备已验收的 MaaFramework-CDP 控制器、视觉 OCR/模板、业务插件、持续观察和交互式 CLI；Quiz 与雀魂业务插件按后续阶段推进。
 
 ## 功能与模块
 
