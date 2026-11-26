@@ -1,11 +1,11 @@
 # BCA / BCA-lite — 项目总纲与跨会话共享上下文
 
 > **文件角色：** 项目级共享背景（Project Context），供新旧开发会话读取。
-> **版本：** v0.7（BCA-lite LITE-01 正式验收）
-> **更新日期：** 2026-11-24
-> **当前权威状态：** `lite` 分支 MaaFramework 路线：LITE-00 审计交付、**LITE-01 Accepted**、**LITE-02 设计审查通过，尚未完成实现**。`main` 为原 BCA-00～04 历史已验收基线；下方原 BCA 章节为历史资料，接口规划不得覆盖本节和 lite 源码。
+> **版本：** v0.8（BCA-lite LITE-02 正式验收）
+> **更新日期：** 2026-11-26
+> **当前权威状态：** `lite` 分支 MaaFramework 路线：LITE-00 审计交付、**LITE-01 Accepted（2026-11-24）**、**LITE-02 Accepted（2026-11-26）**，接下来进入 LITE-03 交互式 CLI。`main` 为原 BCA-00～04 历史已验收基线；下方原 BCA 章节为历史资料，接口规划不得覆盖本节和 lite 源码。
 
-## 0. BCA-lite 当前权威设计与交接（2026-11-24）
+## 0. BCA-lite 当前权威设计与交接（2026-11-26）
 
 ### 0.1 产品定位和技术路线
 
@@ -14,7 +14,7 @@
 - 视觉识别、模型/模板资源、任务执行：**MaaFramework v5.16.1**（`maafw==5.16.1`，当前固定版本以隔离绑定私有销毁接口）。
 - 浏览器 Target、CDP 截图和输入：复用 `src/bca/core/browser`、`Frame.pixel_to_css()`。
 - 适配基础：`src/bca/lite/bridge.py` 的 `CDPBridge` + `ObservationRef`，以及 `maa_controller.py` 的 `MaaCDPController`。
-- LITE-02 拟定：一个 MaaVisionFacade 持有 Controller/Resource/Tasker 与单 native worker；Coordinator 管理来源授权、状态、轮询和单步动作；轻量 BusinessPlugin 负责视觉结果解析与命令意图。
+- LITE-02 已交付：`MaaVisionFacade`（Controller/Resource/Tasker + 单 native worker），`BusinessPlugin`（纯业务），`ObservationCoordinator`（串行观察、通知、读取和一轮点击）；真实 Edge/长时/打包已验收，详情见第 0.7 节。
 - 未来：LITE-03 交互式 CLI；LITE-04 Quiz Demo；LITE-05 雀魂游戏插件；LITE-06 集成与发布。
 
 ### 0.2 已交付与验收状态
@@ -23,8 +23,9 @@
 | --- | --- | --- |
 | LITE-00 · 基线审计 | 交付完成 | `docs/lite/LITE-00_HANDOFF.md` |
 | **LITE-01 · Maa CDP Bridge** | **正式 Accepted（2026-11-24）** | `docs/lite/LITE-01_ACCEPTANCE_2026-11-24.md`、`docs/lite/LITE-01_HANDOFF.md`、`docs/evidence/LITE-01-addendum/final-2026-11-24/` |
-| **LITE-02 · Vision & Plugin** | **设计批准，尚未开始功能实现验收** | `docs/lite/LITE-02_DESIGN.md`、`docs/lite/LITE-02_DESIGN_REVIEW_2026-11-24.md`、`docs/lite/LITE-02_CODEX_DEVELOPMENT_HANDOFF.md` |
-| LITE-03～06 | 按阶段任务规划 | `docs/md/BCA-LITE_MASTER_HANDOFF.md` |
+| **LITE-02 · Vision & Plugin** | **正式 Accepted（2026-11-26）** | `docs/lite/LITE-02_ACCEPTANCE_2026-11-26.md`、`docs/lite/LITE-02_HANDOFF.md`、`docs/evidence/LITE-02/02.3/` |
+| **LITE-03 · Interactive CLI** | **准备开发** | `docs/lite/LITE-03_KICKOFF_2026-11-26.md`、`docs/md/BCA-LITE_MASTER_HANDOFF.md` |
+| LITE-04～06 | 按阶段任务规划 | `docs/md/BCA-LITE_MASTER_HANDOFF.md` |
 
 ### 0.3 LITE-01 可依赖的准确公共接口
 
@@ -42,7 +43,7 @@
 - 原始控制器测试：12 个 DPR×ROI×raw 条件，**36 次真实 Edge 点击**，误差最大 0.667 CSS px；真实 Target 失效矩阵以及 native 模拟故障验证。
 - 最终补证：Edge 实际桌面 80%/100%/125% × raw/non-raw 六组，误差最大 **0.993598 CSS px**，重复点击和旧缩放引用拒绝；真实 Edge ACK 丢失、断连和 native 回调关闭竞争三种故障，无重发、无泄漏、保持原有 Target。
 - 2026-11-24：整个 lite 测试集合 **29 passed / 0 skipped**；另有 2026-11-23 离线 **786 passed / 50 skipped**、Browser 定向 **113 passed**、mypy/Ruff/build 通过的单独记录。29 是整个 lite 集合数量，非 29 项 Edge 场景。
-- 证据为仓库原始日志/JSON，架构主会话完成静态/记录复核，但没有独立在用户 Windows 机器重跑。Maa OCR、长期 RSS、完整 CLI、Quiz Demo、实际雀魂尚按后续阶段验收。
+- 证据为仓库原始日志/JSON，架构主会话完成静态/记录复核，但没有独立在用户 Windows 机器重跑。Maa OCR 与真实 Edge 长时指标已在 LITE-02 验证；完整 CLI、Quiz Demo 和实际雀魂仍按后续阶段验收。
 
 ### 0.5 LITE-02 已批准的设计及验收边界
 
@@ -59,6 +60,28 @@
 - Codex 在用户本机 `lite` 工作目录实现、测试、提交阶段内容；架构主会话审查、定义接口并正式 Accepted。主会话无需修改产品源码。
 - **每个正式大阶段 Accepted 后更新本文件和 `lite` 分支 README。** 不因设计审查或中途开发反复改状态。
 - 子阶段交接中分别记录 `Git SHA`、运行环境、可复现测试命令、原始日志、失效/取消/资源回收和未覆盖事项；不擅自合并至 `main`。
+
+### 0.7 LITE-02 正式验收基线（2026-11-26）
+
+**决定：LITE-02.1 / 02.2 / 02.3 通过源码与原始证据复核，LITE-02 整体 Accepted。** 权威记录：`docs/lite/LITE-02_ACCEPTANCE_2026-11-26.md`；功能代码基线 `5b107e463c85292cd8ecb5653dce54ebd341a164`；归档提交 `984c61c8a9a05c22aaa96c54e40a2083714dfdd4`；不依赖旧 BCA-04 的视觉 SDK 承担 lite 主路线。
+
+**公共接口（Codex 在 LITE-03 中应复用）：**
+
+- `MaaVisionFacade.start() / recognize(tuple|plan) / click(batch,key,index) / aclose()`；使用真正的 Maa Controller、Resource、Tasker。一个 native worker；无法证明释放时不关闭其依赖。
+- `BusinessPlugin` 为轻量同步纯业务契约：`plan(image_size) → observe(batch) → format_state(state) → parse_command(text) → resolve(intent,state) → close()`；冻结结果和不可变 payload，插件不触碰 CDP/Native。
+- `ObservationCoordinator.start()/stop()/refresh()/execute_text()/execute_intent()/take_change()/aclose()`；唯一业务门，真实新帧查询，业务 signature 去重、视觉回合 revision、精确 ObservationRef、单步确认及后置观察。
+- `CDPBridge.authorize(ref)` 重置本次 action outcome；`finish_native_click(succeeded)` 同时要求**本次** Maa Job 成功、**本次** CDP 输入确认、有效绑定，才能返回 confirmed，否则 unknown 并退役组合，禁止重放。
+- `fixture_bundle()` / `fixture_html()` 和 `src/bca/lite/resources/fixture` 是 wheel 内自制受控测试资产；Windows 示例 `examples/lite_vision.py`。OCR 模型独立显式设置、版本/许可/文件 SHA256 校验，模型二进制不打包。
+
+**最新原始实测：**
+
+- 真 Edge 12 组 DPR×raw×ROI，真实桌面 80/100/125%（实际 DPR 1.2/1.5/1.875），字体/负数/多位数、目标缺失/双候选、点击 DOM oracle、来源/取消/关闭通过。全图 OCR 5/12 初始条件发生图案误识别，均安全拒绝，显式 ROI 重新观察后恢复；额外字体 36 样本 33 MATCHED/3 AMBIGUOUS。
+- 独立 Edge 持续 **185.0128s**：245 完成、239 有效、**1.2918Hz**（目标 >=1Hz），6 次 NOT_FOUND 是主动隐藏目标；5 条业务状态变化通知，0 丢通知，0 skipped tick；总识别闭环 median/p95 **139.71/187.32ms**；结束 Tasker/Controller/Resource 释放，原有 Target 保留、pending=0、reader=false。
+- 测试进程树约185.97s 的平均 CPU 使用 **325.63%（约3.26逻辑核）**，峰值 RSS **164.60MiB**，峰值 PrivateBytes **619.14MiB**；另行统计隔离 Edge。此 CPU 成本需在 LITE-03、LITE-06 针对实际部署硬件继续量化和优化，不能笼统称为低负载。
+- 旧 OpenCV 4096×4096 decode access violation 在 3×4 配置的12次独立进程复查中未复现，**根因未知/未声称修复**。本次另记录 Maa stop succeeded 但 running 短暂为 true；新增 <=1s 的 bounded idle 等待，无法确认 idle 时仍不 Destroy。
+- 干净 Windows venv/wheel[lite] 安装、跨 cwd 模板/模型校验及 Edge 点击通过，wheel/sdist 包完整性已核对；最终离线 **878 passed / 57 deselected**，browser_integration 另行真机测试；Ruff、mypy strict、build 通过。
+
+**LITE-03 接续限制：** 终端必须只通过 Coordinator 输入与观察，不绕过 Facade；将低 CPU、ROI 选择、超时/歧义提示、Ctrl+C/EOF、unknown 重建边界纳入验收；CLI 的人机交互、Quiz 10s 回合及雀魂 WebGL 未在 LITE-02 声称完成。
 
 ---
 

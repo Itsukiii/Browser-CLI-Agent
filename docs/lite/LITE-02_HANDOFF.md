@@ -1,17 +1,15 @@
-# LITE-02 阶段交接索引
+# LITE-02 阶段交接索引（正式验收归档）
 
-2026-11-26。设计已 Approved；**LITE-02.1 子阶段已Accepted，LITE-02.2实现交付，等待架构审查**。LITE-02整体尚未正式Accepted。
+**状态：Accepted（2026-11-26）。** 子阶段 02.1 / 02.2 / 02.3 已全部完成代码与原始证据复核。正式决定见 [LITE-02_ACCEPTANCE_2026-11-26.md](LITE-02_ACCEPTANCE_2026-11-26.md)。
 
-| 子阶段 | 状态 | 代码/证据 | 报告 |
+| 子阶段 | 状态 | 实现与证据 | 交接 |
 | --- | --- | --- | --- |
-| 02.1 原生 Vision / 资源 | 子阶段Accepted（2026-11-26） | `3316abb`；`docs/evidence/LITE-02/02.1/` | [LITE-02.1_HANDOFF.md](LITE-02.1_HANDOFF.md) |
-| 02.2 插件 / 观察 | 已实现与验证，提交审查 | `0dcaf74`；`docs/evidence/LITE-02/02.2/` | [LITE-02.2_HANDOFF.md](LITE-02.2_HANDOFF.md) |
-| 02.3 Edge / 长时 / 分发 | 未实现 | — | — |
+| 02.1 Maa 原生视觉与模型 | Accepted | `3316abb` · `docs/evidence/LITE-02/02.1/` | [02.1 报告](LITE-02.1_HANDOFF.md) |
+| 02.2 BusinessPlugin 与 Coordinator | Accepted | `0dcaf74` + P1 修复 `b7118e3` · `docs/evidence/LITE-02/02.2/` 和 `02.2-click-fix/` | [02.2 报告](LITE-02.2_HANDOFF.md) · [P1 验收](LITE-02.2_P1_ACCEPTANCE_2026-11-26.md) |
+| 02.3 真实 Edge / 长时 / 打包 | Accepted | `5b107e4` · `docs/evidence/LITE-02/02.3/` | [02.3 报告](LITE-02.3_HANDOFF.md) |
 
-02.1 新增58项测试，最终 lite 集合82 passed / 5 skipped，全量离线且显式模型844 passed / 50 skipped；另一次诊断复跑的旧 OpenCV 原生异常与92项独立复查均在子报告披露，不以单次通过隐去异常。模型哈希/来源/许可和离线加载见 [models/README.md](models/README.md)。
+**整阶段实测摘要：** 12 组 Edge DPR×raw×ROI、桌面80/100/125%、点击DOM oracle及失效拒绝通过；185.0128s／239有效／**1.2918Hz**；干净 wheel+模型完整性；最终离线878 passed／57 deselected，独立 Edge 矩阵5 passed、缩放1 passed、长时1 passed。
 
-精确接口、释放/取消/来源边界、原始命令、失败轮次和后续事项以子报告为准。Codex 负责实现与测试；架构主会话负责复核与正式验收。未改 main，未提前更新全阶段 Accepted 状态。
+**保留风险：** OCR 全图歧义会拒绝写入（5/12 初始矩阵和3/36字体样本）；平均 CPU ≈3.26核；历史 OpenCV access violation 在12个独立稳定性进程未复现、仍未归因。详情和边界见正式验收书。
 
-02.2最终lite105 passed/5 skipped，全量867 passed/50 skipped；stop-failure保留所有依赖、不确定Destroy禁止指针重试。历史OpenCV异常未归因，已纳入02.3稳定性计划。02.2的短时原生图片观察不替代02.3真实Edge与长期验证。
-
-2026-11-26架构复核：02.2主体预验收通过，P1输入结果归属问题定向修复提交 **b7118e3**，待快速复核。新增9项回归；本轮lite114 passed/5 skipped、全量876 passed/50 skipped。新动作不复用历史confirmed，native Job与本次CDP确认不一致时unknown并退役；详见02.2子报告增补及 `docs/evidence/LITE-02/02.2-click-fix/`。上述各轮数字不累加，02.2尚未自行标Accepted。
+后续进入 [LITE-03 Interactive CLI](LITE-03_KICKOFF_2026-11-26.md)，不将单帧视觉闭环误写成完整终端应用或雀魂插件。`main` 无修改。

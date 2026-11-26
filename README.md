@@ -1,6 +1,6 @@
 # Browser CLI Agent (BCA)
 
-> **BCA-lite / `lite` 分支 — 当前研发路线。** 本分支采用 [MaaFramework v5.16.1](https://github.com/MaaXYZ/MaaFramework) 作为通用视觉与任务底座，BCA 自身保留 Chromium/Edge CDP Target 控制、可信观察授权与后续终端交互。**LITE-00 审计完成；LITE-01 CDP × Maa 控制器集成于 2026-11-24 正式 Accepted；LITE-02 Vision & Plugin 设计通过、实现阶段进行前置准备。** 历史 BCA-00～04 的完整基线保留在 [main](https://github.com/Itsukiii/Browser-CLI-Agent/tree/main)。
+> **BCA-lite / `lite` 分支 — 当前研发路线。** 本分支采用 [MaaFramework v5.16.1](https://github.com/MaaXYZ/MaaFramework) 作为通用视觉与任务底座，BCA 自身保留 Chromium/Edge CDP Target 控制、可信观察授权与后续终端交互。**LITE-00 已交付；LITE-01 CDP × Maa 于 2026-11-24 Accepted；LITE-02 Vision & Plugin 于 2026-11-26 正式 Accepted；当前准备 LITE-03 交互式 CLI。** 历史 BCA-00～04 的完整基线保留在 [main](https://github.com/Itsukiii/Browser-CLI-Agent/tree/main)。
 
 ### BCA-lite 当前进度
 
@@ -8,8 +8,26 @@
 | --- | --- | --- |
 | LITE-00 · 基线审计 | 已交付 | [审计](docs/lite/LITE-00_HANDOFF.md) |
 | **LITE-01 · Maa CDP Bridge** | **Accepted（2026-11-24）** | [验收结论](docs/lite/LITE-01_ACCEPTANCE_2026-11-24.md) · [交接](docs/lite/LITE-01_HANDOFF.md) · [最终 G1/G2 证据](docs/evidence/LITE-01-addendum/final-2026-11-24/) |
-| **LITE-02 · Maa Vision / Plugin** | **设计批准，待实现** | [设计方案](docs/lite/LITE-02_DESIGN.md) · [架构意见](docs/lite/LITE-02_DESIGN_REVIEW_2026-11-24.md) |
-| LITE-03～06 · CLI / Quiz / Majsoul / Release | 按总交接书规划 | [总交接书](docs/md/BCA-LITE_MASTER_HANDOFF.md) |
+| **LITE-02 · Maa Vision / Plugin** | **Accepted（2026-11-26）** | [正式验收](docs/lite/LITE-02_ACCEPTANCE_2026-11-26.md) · [阶段索引](docs/lite/LITE-02_HANDOFF.md) · [02.3 证据](docs/evidence/LITE-02/02.3/README.md) |
+| **LITE-03 · Interactive CLI** | **准备开发** | [启动交接](docs/lite/LITE-03_KICKOFF_2026-11-26.md) · [总交接书](docs/md/BCA-LITE_MASTER_HANDOFF.md) |
+| LITE-04～06 · Quiz / 雀魂 / Release | 规划中 | [总交接书](docs/md/BCA-LITE_MASTER_HANDOFF.md) |
+
+#### LITE-02 已验收的 Vision / Plugin 基础
+
+- `MaaVisionFacade` 独占单 native worker，实际 Maa TemplateMatch / OCR、Bundle 和显式哈希校验模型；`RecognitionBatch` 保存精确 `ObservationRef`、坐标、歧义/错误/超龄语义，模型二进制不进入发行包。
+- `BusinessPlugin` 负责纯业务 plan/observe/format/parse/resolve；`ObservationCoordinator` 负责新帧观察、业务 signature 去重、可见 `interaction_revision`、单门串行操作及 native Job 与本次 CDP 输入确认一致性。点击结果 `confirmed` 不代表业务已经结算。
+- **真实 Edge**：12 组 DPR1/1.5/2 × raw/nonraw × 全图/ROI、80%/100%/125% 桌面缩放；OCR 负数/多位/字体变化、缺失/歧义安全拒绝、视觉定位点击后 DOM 核验；歧义时只允许显式 ROI 和新观察恢复。
+- **长时**：185.0128s、245 次完成、239 次有效、**1.2918Hz**；应用进程树平均 CPU 约 **325.63%（约 3.26 个逻辑核）**、峰值 RSS 约 **164.60MiB**（树内共享页可能重复计数）；LITE-03/06 需要针对目标机器评估 CPU 预算。
+- **稳定性**：legacy / Maa / 双向混合各三轮共 12 个独立进程正常退出；旧 OpenCV access violation 本轮未复现、**仍未归因**。Native stop 成功但 running 暂未归零时有至多 1s 的状态等待，无法确认 idle 仍保留句柄。
+- **发行**：干净 venv 安装 wheel[lite]、临时 cwd 资源加载、OCR 模型哈希拒绝、真实 Edge wheel 示例通过。最终离线记录 **878 passed / 57 deselected**（浏览器测试单独记录，不与旧轮次累加）。
+
+使用已准备好的隔离 Edge、本地 OCR 模型及来源 manifest 体验真实端到端示例：
+
+~~~powershell
+python examples/lite_vision.py --endpoint http://127.0.0.1:9341 --model "ABSOLUTE_MODEL_DIRECTORY" --manifest "ABSOLUTE_MANIFEST_JSON"
+~~~
+
+> 此示例仅演示受控自有网页的单次视觉交互；真正日常使用的交互式终端入口与业务插件将在 LITE-03～05 交付。
 
 #### LITE-01 已验证能力
 
@@ -34,9 +52,9 @@ python examples/lite_maa_cdp_smoke.py --endpoint http://127.0.0.1:9341 --target-
 
 Browser CLI Agent（BCA）将浏览器连接、截图采集、页面状态解析和命令执行分离。Core 提供通用的 Browser、Provider、Runtime 和 Plugin 能力；具体页面的识别、状态格式和交互规则由插件提供。项目目标是在终端中读取指定页面的结构化信息，并通过命令与该页面交互。
 
-**历史基线：BCA-00～04 均完成原架构阶段验收。** 这些源文件与示例暂时保留用于回归和参考；当前 lite 开发顺序为 LITE-02 Vision/Plugin → LITE-03 CLI → LITE-04 Quiz → LITE-05 雀魂 → LITE-06 集成发布。
+**历史基线：BCA-00～04 均完成原架构阶段验收。** 这些源码和示例保留用于回归和参考；当前 lite 开发顺序为 LITE-03 CLI → LITE-04 Quiz → LITE-05 雀魂 → LITE-06 集成发布。
 
-> 当前 lite 分支具备已验收的 MaaFramework-CDP 控制器基础集成；统一 CLI 与视觉业务插件按 LITE 计划推进。
+> 当前 lite 分支具备已验收的 MaaFramework-CDP 控制器、视觉 OCR/模板、业务插件和持续观察底座；统一终端 CLI 与具体 Quiz/雀魂插件按后续阶段推进。
 
 ## 功能与模块
 
