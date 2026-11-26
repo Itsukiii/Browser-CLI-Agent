@@ -70,3 +70,34 @@
 02.3还须真实Edge图像/视觉点击/DOM oracle、DPR/raw/ROI/字体、≥3分钟与≥120有效周期、完整模型/包内fixture分发和干净依赖安装。本轮不扩展到这些工作，也没有新增终端交互或完整Quiz多步骤。
 
 下一步请架构主会话复核02.2子阶段，尤其stop-failure/不确定Destroy、独占委托、串行授权和取消边界；复核后再进入02.3。
+
+## 2026-11-26 P1 输入结果归属定向修复
+
+依据 `LITE-02.2_ARCH_REVIEW_2026-11-26.md`：主体预验收通过，正式Accepted仍待本次快速复核。修复与原始证据提交 **b7118e3**；本节独立归档。没有改变Coordinator架构、引入02.3功能或修改大阶段验收状态。
+
+### 缺陷与修正
+
+原Facade丢弃 `post_click().wait().succeeded`；新截图不重置Bridge历史input_outcome。因此“第一步confirmed→新图→第二步native在callback前失败”可能误报第二步confirmed。
+
+- `CDPBridge.authorize(ref)` 在现有精确ref/时效/绑定校验通过后，将input_outcome设为not_attempted，建立本次动作边界；截图本身仍不修改历史输入结果。
+- Facade保存本次native作业成功布尔值，在作业排空后调用owner-loop `finish_native_click(succeeded)`；只有本次Job成功、本次CDP确认且Bridge仍有效三者一致才返回confirmed。
+- native失败/异常、未调用callback却报告成功、callback失败、ACK丢失、callback后失败/异常都返回unknown并永久阻断本Bridge，清除授权/ref，无自动重试。unknown是保守判断，不声称一定已发输入。
+- 取消继续沿用 `_submit` 等待真实native工作完成，再归并unknown并传播CancelledError；不强杀、不绕开close/stop安全门。既有单次观察授权不放宽。
+- `finish_native_click` 仅供独占Facade在本次已授权native作业排空后调用，不是绕过native确认的公共业务授权入口。无业务插件可调用Controller或Bridge。
+
+### 定向回归
+
+新增 `tests/lite/test_click_outcome.py` 共9项：首次实际native输入确认、新图后的native提前失败/提交异常、虚假成功无callback、callback返回False、已派发后ACK丢失、真实callback确认后native失败/异常、Coordinator结果传播、两次合法新动作及重复授权/消费后重用拒绝。
+
+核心证据 `final-targeted/coordinator-native-pre-failure.json`：第一次confirmed；第二次新截图后callback次数 **0**、累计输入 **1**（仅第一次），第二次CommandResult为 **unknown**、source=None，后续再次执行被拒绝。Facade级JSON分别保留两张不同Frame ID、callback计数、实际输入计数和NativeClickUnconfirmed诊断。callback后失败最多保留已经派发的第二次输入，无第三次重发。
+
+| 本轮执行 | 结果 |
+| --- | --- |
+| 定向最终 | **9 passed，0.98s**；初轮9 passed/1.17s也保留 |
+| 完整lite | **114 passed / 5 skipped，23.70s，exit=0** |
+| 全量离线+显式模型 | **876 passed / 50 skipped，61.41s，exit=0** |
+| 静态与构建 | mypy strict 99源码文件、Ruff/check format通过，wheel/sdist成功 |
+
+证据目录：[docs/evidence/LITE-02/02.2-click-fix](../evidence/LITE-02/02.2-click-fix/README.md)。最终定向轮比全量轮仅补充测试层的重复授权断言和在拒绝重试前保存诊断；生产源码相同。真实DLL与受控Provider、native故障注入分开说明，不冒充本轮实际Edge/真实传输测试。旧全量回归仍只作兼容性证据。
+
+本轮未发生测试失败或重现历史OpenCV异常；不据此声称历史异常已修复。02.3 Edge/稳定性计划沿用既有 `LITE-02.3_STABILITY_PLAN.md`，未启动新阶段功能。两份用户新增架构审查文件原样保留为未跟踪文件；全部实现与修复只在lite，未推送远端、未合并main。请架构主会话快速复核后决定02.2正式Accepted。

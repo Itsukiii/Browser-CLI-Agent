@@ -13,3 +13,5 @@
 精确接口、释放/取消/来源边界、原始命令、失败轮次和后续事项以子报告为准。Codex 负责实现与测试；架构主会话负责复核与正式验收。未改 main，未提前更新全阶段 Accepted 状态。
 
 02.2最终lite105 passed/5 skipped，全量867 passed/50 skipped；stop-failure保留所有依赖、不确定Destroy禁止指针重试。历史OpenCV异常未归因，已纳入02.3稳定性计划。02.2的短时原生图片观察不替代02.3真实Edge与长期验证。
+
+2026-11-26架构复核：02.2主体预验收通过，P1输入结果归属问题定向修复提交 **b7118e3**，待快速复核。新增9项回归；本轮lite114 passed/5 skipped、全量876 passed/50 skipped。新动作不复用历史confirmed，native Job与本次CDP确认不一致时unknown并退役；详见02.2子报告增补及 `docs/evidence/LITE-02/02.2-click-fix/`。上述各轮数字不累加，02.2尚未自行标Accepted。
