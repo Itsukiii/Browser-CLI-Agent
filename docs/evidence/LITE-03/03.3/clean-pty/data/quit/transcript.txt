@@ -1,0 +1,40 @@
+[0m[0KBound Target 36901AF940F0FE4BF94020159E57832B; plugin=fixture roi=True[0K[?25l
+help | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits[0K
+[0K[?25hbca-lite>[0K[11G[?25l[0K[11G[?25h[?25lState: MATCHED revision=123 expired=False frame=275a55d1-7297-4e11-8786-ab28d375de33 diagnostic=none[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> ?[0K
+bca-lite>[0K[11G[?25h[?25lResult: read MATCHED revision=123 expired=False frame=1873065d-0ee7-4d42-a5b3-4a3143a8800d diagnostic=none[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> click 45[0K[?25h[?25lState: MATCHED revision=456 expired=False frame=62aac576-b8ed-408c-a6ad-4ae3988f4d96 diagnostic=none[0K
+bca-lite> click 45[0K[?25h6[0K[?25l
+bca-lite>[0K[11G[?25h[?25lResult: confirmed MATCHED revision=457 expired=False frame=aebe5fee-bf70-46fb-ace1-a867c4f8612a diagnostic=none[0K
+bca-lite>[0K[11G[?25h[?25lState: MATCHED revision=457 expired=False frame=aebe5fee-bf70-46fb-ace1-a867c4f8612a diagnostic=none[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> click 456[0K
+bca-lite>[0K[11G[?25h[?25lRejected: VisionError: intent expired, revision changed or observation invalid[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> stop[0K
+bca-lite>[0K[11G[?25h[?25lStopped; resources retained. Use resume.[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> stop[0K
+Stopped; resources retained. Use resume.[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> resume[0K
+Observation resumed.[0K
+bca-lite>[0K[11G[?25h[?25lState: NOT_FOUND revision=457 expired=False frame=8518486d-6ef1-464e-acfb-cf6a109db269 diagnostic=none[0K
+bca-lite>[0K[11G[?25h[?25lState: AMBIGUOUS revision=457 expired=False frame=802f4d5f-7357-4f8c-91c9-6ef0439771ea diagnostic=none[0K
+bca-lite>[0K[11G[?25h[?25lState: MATCHED revision=457 expired=False frame=4e44b8d9-bb2b-48d1-ab82-181d3f935e41 diagnostic=none[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> 中文非法命令[0K
+[0K[?25hRejected: ValueError: expected '?' or 'click <visible-round>'[0K[?25l
+bca-lite> xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[0K
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[0K
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[0K
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[0K
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[0K
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[0K
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx[0K[?25h[?25l
+Rejected: command exceeds 1024 characters.[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> ?[0K
+bca-lite> ?[0K
+Busy: command rejected, not queued; submit again after result.[0K
+bca-lite> ?[0K
+Busy: command rejected, not queued; submit again after result.[0K
+bca-lite>[0K[11G[?25h[?25lResult: read MATCHED revision=457 expired=False frame=a5130078-9083-4cac-8f9a-06f6804885e0 diagnostic=none[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> quit[0K
+[0K[?25hClose: released=True errors=()[0K[?25l
+CDP closed: pending=0 reader=False[0K
+[0K[?25h

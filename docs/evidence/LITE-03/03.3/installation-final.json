@@ -1,0 +1,27 @@
+{
+  "wheel_sha256": "02d965655abbc578efe1d0dcaf78a32ffa065cccb22929bdcb10562cf0850995",
+  "source_and_clean_install_equal_wheel": true,
+  "files": [
+    "bca/lite/__init__.py",
+    "bca/lite/__main__.py",
+    "bca/lite/_native_vision.py",
+    "bca/lite/bridge.py",
+    "bca/lite/cli.py",
+    "bca/lite/cli_config.py",
+    "bca/lite/cli_session.py",
+    "bca/lite/fixture.py",
+    "bca/lite/interactive.py",
+    "bca/lite/maa_controller.py",
+    "bca/lite/observation.py",
+    "bca/lite/plugin.py",
+    "bca/lite/terminal.py",
+    "bca/lite/vision.py",
+    "bca/lite/vision_resources.py",
+    "bca/lite/vision_types.py",
+    "bca/lite/resources/fixture/README.md",
+    "bca/lite/resources/fixture/page.html",
+    "bca/lite/resources/fixture/image/marker.png",
+    "bca/lite/resources/fixture/pipeline/fixture.json"
+  ],
+  "post_regression_fix": "__main__ import guard; final-wheel-import.txt confirms import-safe"
+}

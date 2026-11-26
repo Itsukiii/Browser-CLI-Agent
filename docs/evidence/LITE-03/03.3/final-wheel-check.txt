@@ -1,0 +1,2 @@
+Config and fixture resources valid; OCR provenance and SHA256 verified.
+CDP closed: pending=0 reader=False

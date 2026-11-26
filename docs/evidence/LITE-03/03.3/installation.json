@@ -1,0 +1,34 @@
+{
+  "packages": {
+    "maafw": "v5.16.1",
+    "prompt-toolkit": "3.0.53",
+    "pywinpty": "3.1.2",
+    "psutil": "7.2.2",
+    "numpy": "2.5.5",
+    "Pillow": "12.3.0"
+  },
+  "wheel_sha256": "bbb0bcc18463635bc1cf02f9a3d0678eea0f40bdd41d71c479a3caad23abcfd5",
+  "installed_lite_files_equal_wheel": true,
+  "files": [
+    "bca/lite/__init__.py",
+    "bca/lite/__main__.py",
+    "bca/lite/_native_vision.py",
+    "bca/lite/bridge.py",
+    "bca/lite/cli.py",
+    "bca/lite/cli_config.py",
+    "bca/lite/cli_session.py",
+    "bca/lite/fixture.py",
+    "bca/lite/interactive.py",
+    "bca/lite/maa_controller.py",
+    "bca/lite/observation.py",
+    "bca/lite/plugin.py",
+    "bca/lite/terminal.py",
+    "bca/lite/vision.py",
+    "bca/lite/vision_resources.py",
+    "bca/lite/vision_types.py",
+    "bca/lite/resources/fixture/README.md",
+    "bca/lite/resources/fixture/page.html",
+    "bca/lite/resources/fixture/image/marker.png",
+    "bca/lite/resources/fixture/pipeline/fixture.json"
+  ]
+}

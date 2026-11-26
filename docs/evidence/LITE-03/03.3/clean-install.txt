@@ -1,0 +1,31 @@
+Processing .\dist\browser_cli_agent-0.2.0-py3-none-any.whl (from browser-cli-agent==0.2.0)
+Collecting websockets<16,>=15 (from browser-cli-agent==0.2.0->browser-cli-agent==0.2.0)
+  Using cached websockets-15.0.1-py3-none-any.whl.metadata (6.8 kB)
+Collecting Pillow<13,>=12 (from browser-cli-agent==0.2.0->browser-cli-agent==0.2.0)
+  Using cached pillow-12.3.0-cp314-cp314-win_amd64.whl.metadata (9.3 kB)
+Collecting maafw==5.16.1 (from browser-cli-agent==0.2.0->browser-cli-agent==0.2.0)
+  Using cached maafw-5.16.1-py3-none-win_amd64.whl.metadata (48 kB)
+Collecting numpy<3,>=2.4 (from browser-cli-agent==0.2.0->browser-cli-agent==0.2.0)
+  Using cached numpy-2.5.5-cp314-cp314-win_amd64.whl.metadata (6.6 kB)
+Collecting prompt-toolkit<4,>=3.0.51 (from browser-cli-agent==0.2.0->browser-cli-agent==0.2.0)
+  Using cached prompt_toolkit-3.0.53-py3-none-any.whl.metadata (6.4 kB)
+Collecting maaagentbinary (from maafw==5.16.1->browser-cli-agent==0.2.0->browser-cli-agent==0.2.0)
+  Using cached MaaAgentBinary-1.0.1-py3-none-any.whl.metadata (597 bytes)
+Collecting strenum (from maafw==5.16.1->browser-cli-agent==0.2.0->browser-cli-agent==0.2.0)
+  Using cached strenum-0.5.0-py3-none-any.whl.metadata (5.5 kB)
+Collecting wcwidth>=0.1.4 (from prompt-toolkit<4,>=3.0.51->browser-cli-agent==0.2.0->browser-cli-agent==0.2.0)
+  Using cached wcwidth-0.9.5-cp310-abi3-win_amd64.whl.metadata (26 kB)
+Using cached maafw-5.16.1-py3-none-win_amd64.whl (36.7 MB)
+Using cached numpy-2.5.5-cp314-cp314-win_amd64.whl (12.7 MB)
+Using cached pillow-12.3.0-cp314-cp314-win_amd64.whl (7.2 MB)
+Using cached prompt_toolkit-3.0.53-py3-none-any.whl (392 kB)
+Using cached websockets-15.0.1-py3-none-any.whl (169 kB)
+Using cached wcwidth-0.9.5-cp310-abi3-win_amd64.whl (619 kB)
+Using cached MaaAgentBinary-1.0.1-py3-none-any.whl (5.3 MB)
+Using cached strenum-0.5.0-py3-none-any.whl (9.1 kB)
+Installing collected packages: maaagentbinary, websockets, wcwidth, strenum, Pillow, numpy, prompt-toolkit, maafw, browser-cli-agent
+
+Successfully installed Pillow-12.3.0 browser-cli-agent-0.2.0 maaagentbinary-1.0.1 maafw-5.16.1 numpy-2.5.5 prompt-toolkit-3.0.53 strenum-0.5.0 wcwidth-0.9.5 websockets-15.0.1
+
+[notice] A new release of pip is available: 26.2.1 -> 26.3
+[notice] To update, run: D:\Project\BCA-lite\.test-artifacts\lite03-clean\Scripts\python.exe -m pip install --upgrade pip

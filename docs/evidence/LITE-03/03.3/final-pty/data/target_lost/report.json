@@ -1,0 +1,28 @@
+{
+  "command": [
+    "D:\\Project\\BCA-lite\\.venv\\Scripts\\python.exe",
+    "-m",
+    "bca.lite",
+    "--config",
+    "D:\\Project\\BCA-lite\\configs\\lite.example.toml",
+    "--endpoint",
+    "http://127.0.0.1:9341",
+    "--create-fixture"
+  ],
+  "ending": "target_lost",
+  "start": 1795686957.2310698,
+  "stimuli": [],
+  "target": "60C3CE6DED35E09AA81AC6D8CEE6ED1B",
+  "dom": [
+    {
+      "id": "button",
+      "x": 107,
+      "y": 81,
+      "round": "456"
+    }
+  ],
+  "exit_code": 0,
+  "transcript": "Bound Target 60C3CE6DED35E09AA81AC6D8CEE6ED1B; plugin=fixture roi=True\nhelp | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits\nbca-lite>State: MATCHED revision=123 expired=False frame=1ef3ecd4-dff5-4502-9aeb-9012735d6c60 diagnostic=none\nbca-lite>bca-lite> ?\nbca-lite>Result: read MATCHED revision=123 expired=False frame=e09c7b04-4768-4404-bc7e-cc82cf65cbcc diagnostic=none\nbca-lite>bca-lite> click 45State: MATCHED revision=456 expired=False frame=385377cf-68d8-41a5-b70a-77281a2b72f3 diagnostic=none\nbca-lite> click 456\nbca-lite>Result: confirmed MATCHED revision=457 expired=False frame=8de84811-10ce-4f0a-a9ed-44307371a14b diagnostic=none\nbca-lite>WARNING: CDP command failed id=72 method=Page.captureScreenshot session=DA8DA068D5CEFDA1350CA9EE75E88995 code=-32000\nState: ERROR revision=None expired=True frame=none diagnostic=VisionError\nTarget/transport lost or session retired; no reconnect/replay.\nbca-lite> click 457\nRejected: VisionError: coordinator is stopped, closed or retired\nbca-lite>bca-lite> quit\nClose: released=True errors=()\nCDP closed: pending=0 reader=False\n",
+  "original_preserved": true,
+  "end": 1795686962.4075723
+}

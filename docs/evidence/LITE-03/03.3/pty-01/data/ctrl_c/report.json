@@ -1,0 +1,28 @@
+{
+  "command": [
+    "D:\\Project\\BCA-lite\\.venv\\Scripts\\python.exe",
+    "-m",
+    "bca.lite",
+    "--config",
+    "D:\\Project\\BCA-lite\\configs\\lite.example.toml",
+    "--endpoint",
+    "http://127.0.0.1:9341",
+    "--create-fixture"
+  ],
+  "ending": "ctrl_c",
+  "start": 1795686763.232387,
+  "stimuli": [],
+  "target": "4C69B7EF1742707C6CB13C1EDCB31323",
+  "dom": [
+    {
+      "id": "button",
+      "x": 107,
+      "y": 81,
+      "round": "456"
+    }
+  ],
+  "exit_code": 0,
+  "transcript": "Bound Target 4C69B7EF1742707C6CB13C1EDCB31323; plugin=fixture roi=True\nhelp | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits\nbca-lite>State: MATCHED revision=123 expired=False frame=fa45fedb-ae58-4e7a-9b77-28c3b20fc431 diagnostic=none\nbca-lite>bca-lite> ?\nbca-lite>Result: read MATCHED revision=123 expired=False frame=9da08180-e61b-40f7-9b6c-fe4f58bc8dba diagnostic=none\nbca-lite>bca-lite> click 45State: MATCHED revision=456 expired=False frame=0fbe4e86-61ad-4427-a6ac-18964189010a diagnostic=none\nbca-lite> click 456\nbca-lite>Result: confirmed MATCHED revision=457 expired=False frame=e15f185f-dc28-43d7-9128-919e82c12528 diagnostic=none\nbca-lite>bca-lite> ?\nbca-lite>State: MATCHED revision=457 expired=False frame=e15f185f-dc28-43d7-9128-919e82c12528 diagnostic=none\nbca-lite>\n?[31m[2026-11-26 17:52:47.898][ERR][Px30184][Tx27033][MaaBuffer.cpp][L267][MaaImageBufferSetRawData] img is empty [data=true] [width=0] [height=0] [type=16] ?[0\nm\n?[31m[2026-11-26 17:52:47.898][ERR][Px30184][Tx27033][CustomControlUnitMgr.cpp][L105][MaaNS::CtrlUnitNs::CustomControlUnitMgr::screencap] failed to cached_image\n [ret=false] ?[0m\n?[31m[2026-11-26 17:52:47.899][ERR][Px30184][Tx27033][ControllerAgent.cpp][L842][MaaNS::ControllerNS::ControllerAgent::handle_screencap] controller screencap fa\niled ?[0m\nClose: released=True errors=()\nCDP closed: pending=0 reader=False\n",
+  "original_preserved": true,
+  "end": 1795686768.1916335
+}

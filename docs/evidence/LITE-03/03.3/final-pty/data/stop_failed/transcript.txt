@@ -1,0 +1,10 @@
+[0m[0KBound Target 7ACF5F9EDA77A001C666AD69FF353D6D; plugin=fixture roi=True[0K[?25l
+help | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits[0K
+bca-lite>[0K[11G[?25h[?25l[0K[?25hState: MATCHED revision=123 expired=False frame=e292e9fa-84b2-4cb6-8798-9fefd397fb67 diagnostic=none[0K[?25l
+bca-lite>[0K[11G[?25h[?25lbca-lite> quit[0K
+INJECTION stop failed; no Destroy[0K
+[0K[?25hINJECTION stop failed; no Destroy[0K[?25l
+[0K[?25hINJECTION stop failed; no Destroy[0K[?25l
+Close: released=False errors=('injected stop failure',)[0K
+Fatal cleanup: native release unconfirmed; dependencies retained; ending process without destructor retries.[0K
+[0K[?25h

@@ -1,0 +1,24 @@
+Obtaining file:///D:/Project/BCA-lite
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: browser-cli-agent
+  Building editable for browser-cli-agent (pyproject.toml): started
+  Building editable for browser-cli-agent (pyproject.toml): finished with status 'done'
+  Created wheel for browser-cli-agent: filename=browser_cli_agent-0.2.0-0.editable-py3-none-any.whl size=10640 sha256=65f5eaa77b252f2f2ff6bbb8efd0578ca027c5ec80b8d587fe5884e056d60247
+  Stored in directory: C:\Users\wutong\AppData\Local\Temp\pip-ephem-wheel-cache-lcc2thnd\wheels\a6\c2\b2\8b67ae4a99bebdf46c98516a8add425c0600ee65558bf987ae
+Successfully built browser-cli-agent
+Installing collected packages: browser-cli-agent
+  Attempting uninstall: browser-cli-agent
+    Found existing installation: browser-cli-agent 0.2.0
+    Uninstalling browser-cli-agent-0.2.0:
+      Successfully uninstalled browser-cli-agent-0.2.0
+Successfully installed browser-cli-agent-0.2.0
+
+[notice] A new release of pip is available: 26.2.1 -> 26.3
+[notice] To update, run: D:\Project\BCA-lite\.venv\Scripts\python.exe -m pip install --upgrade pip

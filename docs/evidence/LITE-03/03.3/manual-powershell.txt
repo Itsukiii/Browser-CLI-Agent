@@ -1,0 +1,24 @@
+Source: user-supplied PowerShell transcript in this development conversation, 2026-11-26.
+This is not automatically captured output. User did not explicitly confirm IME/backspace/flicker behavior.
+
+PS D:\Project\BCA-lite> .venv\Scripts\bca-lite.exe --config configs\lite.example.toml --create-fixture
+Bound Target E15F39CEC8136099554CA32E20D6A70A; plugin=fixture roi=True
+help | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits
+State: MATCHED revision=123 expired=False frame=7c0a9fbb-7f25-465a-bf18-141deeff9335 diagnostic=none
+bca-lite> click 123
+Result: confirmed MATCHED revision=124 expired=False frame=8049f132-7ea1-445d-8ca8-a6caf96b4a48 diagnostic=none
+State: MATCHED revision=124 expired=False frame=8049f132-7ea1-445d-8ca8-a6caf96b4a48 diagnostic=none
+bca-lite> click 123
+Rejected: VisionError: intent expired, revision changed or observation invalid
+bca-lite> click 124
+Result: confirmed MATCHED revision=125 expired=False frame=06204cce-4ed1-48bf-acc0-9c6fa1cb780c diagnostic=none
+State: MATCHED revision=125 expired=False frame=06204cce-4ed1-48bf-acc0-9c6fa1cb780c diagnostic=none
+bca-lite> ?
+Result: read MATCHED revision=125 expired=False frame=74413c13-9c04-4503-a7bb-f3d2f753015d diagnostic=none
+bca-lite> ?
+Result: read MATCHED revision=125 expired=False frame=de324cda-0e09-4ab5-8f24-c5ea71f9af5e diagnostic=none
+bca-lite> ?
+Result: read MATCHED revision=125 expired=False frame=ff783ac7-ffaf-45d3-b3d4-fb9d623f6933 diagnostic=none
+bca-lite> quit
+Close: released=True errors=()
+CDP closed: pending=0 reader=False

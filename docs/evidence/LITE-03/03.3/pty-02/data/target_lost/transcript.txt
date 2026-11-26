@@ -1,0 +1,31 @@
+[0m[0KBound Target F9EFEDFB8257742D6795ABD056FED148; plugin=fixture roi=True[0K[?25l
+help | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits[0K
+bca-lite>[0K[11G[?25h[?25l[0K[?25hState: MATCHED revision=123 expired=False frame=95f5776e-c455-40a8-8c71-235391143011 diagnostic=none[0K[?25l
+bca-lite>[0K[11G[?25h[?25lbca-lite> ?[0K
+bca-lite>[0K[11G[?25h[?25lResult: read MATCHED revision=123 expired=False frame=0841d3fe-7b19-438e-8693-6bf4684c14f3 diagnostic=none[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> click 45[0K[?25h[?25lState: MATCHED revision=456 expired=False frame=04655541-e5b6-433f-a072-45057b62816d diagnostic=none[0K[1G[?25h[?25l
+bca-lite> click 456[0K
+bca-lite>[0K[11G[?25h[?25lResult: confirmed MATCHED revision=457 expired=False frame=7d18099d-be75-43d2-89d9-98d91be5e8fe diagnostic=none[0K
+bca-lite>[0K[1A[11G[?25h[?25l
+[11G[?25h[?25lbca-lite> WARNING CDP command failed id=72 method=Page.captureScreenshot session=3782421F4B80FE3B80E9885B2760C587 code=-32000[0K
+State: MATCHED revision=457 expired=False frame=7d18099d-be75-43d2-89d9-98d91be5e8fe diagnostic=none[0K
+bca-lite>[0K[1G[?25hbca-lite> ?[31m[2026-11-26 17:53:55.319][ERR][Px35052][Tx64597][MaaBuffer.cpp][L267][MaaImageBufferSetRawData] img is empty [data=true] [width=0] [height=0] [t[0Ky[?25l
+pe=16] ?[0m[0K
+?[31m[2026-11-26 17:53:55.323][ERR][Px35052][Tx64597][CustomControlUnitMgr.cpp][L105][MaaNS::CtrlUnitNs::CustomControlUnitMgr::screencap] failed to cached_imag[0Ke
+ [ret=false] ?[0m[0K
+?[31m[2026-11-26 17:53:55.323][ERR][Px35052][Tx64597][ControllerAgent.cpp][L842][MaaNS::ControllerNS::ControllerAgent::handle_screencap] controller screencap f[0Ka
+iled ?[0m[0K
+?[31m[2026-11-26 17:53:55.331][ERR][Px35052][Tx64597][MaaBuffer.cpp][L267][MaaImageBufferSetRawData] img is empty [data=true] [width=0] [height=0] [type=16] ?[[0K0
+m[0K
+?[31m[2026-11-26 17:53:55.338][ERR][Px35052][Tx64597][CustomControlUnitMgr.cpp][L105][MaaNS::CtrlUnitNs::CustomControlUnitMgr::screencap] failed to cached_imag[0Ke
+ [ret=false] ?[0m[0K
+?[31m[2026-11-26 17:53:55.340][ERR][Px35052][Tx64597][ControllerAgent.cpp][L842][MaaNS::ControllerNS::ControllerAgent::handle_screencap] controller screencap f[0Ka
+iled ?[0m[0K
+[0K[?25hState: ERROR revision=None expired=True frame=none diagnostic=VisionError[0K[?25l
+Target/transport lost or session retired; no reconnect/replay.[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> click 457[0K
+[0K[?25hRejected: VisionError: coordinator is stopped, closed or retired[0K[?25l
+bca-lite>[0K[11G[?25h[?25lbca-lite> quit[0K
+[0K[?25hClose: released=True errors=()[0K[?25l
+CDP closed: pending=0 reader=False[0K
+[0K[?25h

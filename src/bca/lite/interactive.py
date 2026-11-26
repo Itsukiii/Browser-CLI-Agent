@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import asyncio
+import logging
+from collections import deque
 from collections.abc import Callable
 
 from .observation import ObservationCoordinator, VisualObservation
@@ -27,6 +29,14 @@ async def interact(
 ) -> None:
     active: asyncio.Task[None] | None = None
     done = asyncio.Event()
+    logs: deque[str] = deque(maxlen=16)
+
+    class LogHandler(logging.Handler):
+        def emit(self, record: logging.LogRecord) -> None:
+            logs.append(f"{record.levelname}: {record.getMessage()}")
+
+    logger = logging.getLogger()
+    previous_handlers = logger.handlers[:]
 
     async def command(text: str) -> None:
         try:
@@ -77,6 +87,8 @@ async def interact(
         signature: object = object()
         lost_reported = False
         while not done.is_set():
+            while logs:
+                await terminal.write(logs.popleft())
             change = coordinator.take_change()
             while coordinator.take_change() is not None:
                 pass  # Coalesce bounded notification hints; never retain frames.
@@ -101,6 +113,7 @@ async def interact(
             await asyncio.sleep(0.1)
 
     await terminal.write(HELP)
+    logger.handlers = [LogHandler()]
     tasks = [asyncio.create_task(read()), asyncio.create_task(updates())]
     try:
         finished, _ = await asyncio.wait(tasks, return_when=asyncio.FIRST_COMPLETED)
@@ -119,3 +132,4 @@ async def interact(
                 await asyncio.shield(draining)
             except asyncio.CancelledError:
                 continue
+        logger.handlers = previous_handlers

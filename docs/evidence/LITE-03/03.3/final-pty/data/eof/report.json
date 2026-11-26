@@ -1,0 +1,28 @@
+{
+  "command": [
+    "D:\\Project\\BCA-lite\\.venv\\Scripts\\python.exe",
+    "-m",
+    "bca.lite",
+    "--config",
+    "D:\\Project\\BCA-lite\\configs\\lite.example.toml",
+    "--endpoint",
+    "http://127.0.0.1:9341",
+    "--create-fixture"
+  ],
+  "ending": "eof",
+  "start": 1795686951.7141807,
+  "stimuli": [],
+  "target": "80285EAC4920AEAA3AF5CEB7332B525E",
+  "dom": [
+    {
+      "id": "button",
+      "x": 107,
+      "y": 81,
+      "round": "456"
+    }
+  ],
+  "exit_code": 0,
+  "transcript": "Bound Target 80285EAC4920AEAA3AF5CEB7332B525E; plugin=fixture roi=True\nhelp | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits\nbca-lite>State: MATCHED revision=123 expired=False frame=3da2b0d9-166a-4aac-ac38-fc3a44cc0a15 diagnostic=none\nbca-lite>bca-lite> ?\nbca-lite>Result: read MATCHED revision=123 expired=False frame=e91b2b0a-3b7b-4a05-88be-d1e827189ef6 diagnostic=none\nbca-lite>bca-lite> click 45State: MATCHED revision=456 expired=False frame=246e65cc-334a-4981-959b-8d57bcfbca3f diagnostic=none\nbca-lite> click 456\nbca-lite>Result: confirmed MATCHED revision=457 expired=False frame=f982caa7-2265-41d9-ad20-927243c28ce0 diagnostic=none\nbca-lite>State: MATCHED revision=457 expired=False frame=f982caa7-2265-41d9-ad20-927243c28ce0 diagnostic=none\nbca-lite>\nClose: released=True errors=()\nCDP closed: pending=0 reader=False\n",
+  "original_preserved": true,
+  "end": 1795686957.2138364
+}

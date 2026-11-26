@@ -1,0 +1,7 @@
+[0m[0KBound Target 4FB3D2AEE3943E7917C60691BF9FCC8D; plugin=fixture roi=True[0K[?25l
+help | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits[0K
+bca-lite>[0K[11G[?25h[?25l[0K[?25hState: MATCHED revision=123 expired=False frame=b30a17c9-e152-4b32-a9ad-73e3bf8aa846 diagnostic=none[0K[?25l
+bca-lite>[0K[11G[?25h[?25lbca-lite> quit[0K
+[0K[?25hClose: released=True errors=()[0K[?25l
+CDP closed: pending=0 reader=False[0K
+[0K[?25h

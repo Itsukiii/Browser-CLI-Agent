@@ -1,0 +1,28 @@
+{
+  "command": [
+    "D:\\Project\\BCA-lite\\.venv\\Scripts\\python.exe",
+    "-m",
+    "bca.lite",
+    "--config",
+    "D:\\Project\\BCA-lite\\configs\\lite.example.toml",
+    "--endpoint",
+    "http://127.0.0.1:9341",
+    "--create-fixture"
+  ],
+  "ending": "target_lost",
+  "start": 1795686830.7936652,
+  "stimuli": [],
+  "target": "F9EFEDFB8257742D6795ABD056FED148",
+  "dom": [
+    {
+      "id": "button",
+      "x": 107,
+      "y": 81,
+      "round": "456"
+    }
+  ],
+  "exit_code": 0,
+  "transcript": "Bound Target F9EFEDFB8257742D6795ABD056FED148; plugin=fixture roi=True\nhelp | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits\nbca-lite>State: MATCHED revision=123 expired=False frame=95f5776e-c455-40a8-8c71-235391143011 diagnostic=none\nbca-lite>bca-lite> ?\nbca-lite>Result: read MATCHED revision=123 expired=False frame=0841d3fe-7b19-438e-8693-6bf4684c14f3 diagnostic=none\nbca-lite>bca-lite> click 45State: MATCHED revision=456 expired=False frame=04655541-e5b6-433f-a072-45057b62816d diagnostic=none\nbca-lite> click 456\nbca-lite>Result: confirmed MATCHED revision=457 expired=False frame=7d18099d-be75-43d2-89d9-98d91be5e8fe diagnostic=none\nbca-lite>\nbca-lite> WARNING CDP command failed id=72 method=Page.captureScreenshot session=3782421F4B80FE3B80E9885B2760C587 code=-32000\nState: MATCHED revision=457 expired=False frame=7d18099d-be75-43d2-89d9-98d91be5e8fe diagnostic=none\nbca-lite>bca-lite> ?[31m[2026-11-26 17:53:55.319][ERR][Px35052][Tx64597][MaaBuffer.cpp][L267][MaaImageBufferSetRawData] img is empty [data=true] [width=0] [height=0] [ty\npe=16] ?[0m\n?[31m[2026-11-26 17:53:55.323][ERR][Px35052][Tx64597][CustomControlUnitMgr.cpp][L105][MaaNS::CtrlUnitNs::CustomControlUnitMgr::screencap] failed to cached_image\n [ret=false] ?[0m\n?[31m[2026-11-26 17:53:55.323][ERR][Px35052][Tx64597][ControllerAgent.cpp][L842][MaaNS::ControllerNS::ControllerAgent::handle_screencap] controller screencap fa\niled ?[0m\n?[31m[2026-11-26 17:53:55.331][ERR][Px35052][Tx64597][MaaBuffer.cpp][L267][MaaImageBufferSetRawData] img is empty [data=true] [width=0] [height=0] [type=16] ?[0\nm\n?[31m[2026-11-26 17:53:55.338][ERR][Px35052][Tx64597][CustomControlUnitMgr.cpp][L105][MaaNS::CtrlUnitNs::CustomControlUnitMgr::screencap] failed to cached_image\n [ret=false] ?[0m\n?[31m[2026-11-26 17:53:55.340][ERR][Px35052][Tx64597][ControllerAgent.cpp][L842][MaaNS::ControllerNS::ControllerAgent::handle_screencap] controller screencap fa\niled ?[0m\nState: ERROR revision=None expired=True frame=none diagnostic=VisionError\nTarget/transport lost or session retired; no reconnect/replay.\nbca-lite>bca-lite> click 457\nRejected: VisionError: coordinator is stopped, closed or retired\nbca-lite>bca-lite> quit\nClose: released=True errors=()\nCDP closed: pending=0 reader=False\n",
+  "original_preserved": true,
+  "end": 1795686835.8641856
+}

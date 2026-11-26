@@ -1,0 +1,22 @@
+{
+  "pid": 17608,
+  "duration": 66.1624095000443,
+  "stats": {
+    "completed": 87,
+    "valid": 87,
+    "dropped_notifications": 0,
+    "skipped_ticks": 0,
+    "last_duration": 0.11150130000896752
+  },
+  "close": {
+    "released": true,
+    "worker_thread": 39016,
+    "destroyed": [
+      "tasker",
+      "controller",
+      "resource"
+    ],
+    "errors": [],
+    "stop_status": "succeeded"
+  }
+}

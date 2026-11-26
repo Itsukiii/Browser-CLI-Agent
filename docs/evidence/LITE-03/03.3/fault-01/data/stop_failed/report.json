@@ -1,0 +1,18 @@
+{
+  "fault": "stop_failed",
+  "command": [
+    "D:\\Project\\BCA-lite\\.venv\\Scripts\\python.exe",
+    "-m",
+    "tests.lite.cli_fault_child",
+    "stop_failed",
+    "--config",
+    "D:\\Project\\BCA-lite\\configs\\lite.example.toml",
+    "--endpoint",
+    "http://127.0.0.1:9341",
+    "--create-fixture"
+  ],
+  "exit_code": 3,
+  "transcript": "Bound Target 0FBC63BBE72A4B01402620C508A8654F; plugin=fixture roi=True\nhelp | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits\nbca-lite>State: MATCHED revision=123 expired=False frame=88bec794-311e-42d7-933b-27451d2ec943 diagnostic=none\nbca-lite>bca-lite> quit\nINJECTION stop failed; no Destroy\nINJECTION stop failed; no Destroy\nINJECTION stop failed; no Destroy\nClose: released=False errors=('injected stop failure',)\nFatal cleanup: native release unconfirmed; dependencies retained; ending process without destructor retries.\n\n",
+  "dependencies_not_closed_by_cli": true,
+  "test_harness_closed_owned_target": true
+}

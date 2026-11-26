@@ -76,6 +76,13 @@ async def run(settings: Settings, *, check: bool, once: bool, create_fixture: bo
             from .terminal import PromptTerminal
 
             terminal = PromptTerminal()
+            # CLI owns this process. Native stdout bypasses the editable renderer;
+            # normalized Coordinator/CloseReport diagnostics remain visible.
+            from maa.define import LoggingLevelEnum  # type: ignore[import-untyped]
+            from maa.tasker import Tasker  # type: ignore[import-untyped]
+
+            if not await asyncio.to_thread(Tasker.set_stdout_level, LoggingLevelEnum.Off):
+                raise RuntimeError("cannot configure native console logging")
         if not settings.target and not create_fixture and terminal is None:
             raise ValueError("select an exact --target from --list-targets, or --create-fixture")
         await session.connect()
@@ -161,7 +168,8 @@ async def run(settings: Settings, *, check: bool, once: bool, create_fixture: bo
                     errors.append(f"{type(exc).__name__}: {exc}")
             try:
                 if owned and session.connected:
-                    await session.connection.send("Target.closeTarget", {"targetId": owned})
+                    if owned in {t.target_id for t in await session.list_targets()}:
+                        await session.connection.send("Target.closeTarget", {"targetId": owned})
             except Exception as exc:
                 errors.append(f"Target cleanup: {type(exc).__name__}")
             finally:

@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import logging
 import os
+import signal
 import sys
 from collections.abc import Sequence
 
@@ -25,6 +26,17 @@ def main(argv: Sequence[str] | None = None) -> int:
             from .cli_session import UnreleasedNativeError, run
 
             async def execute() -> None:
+                loop = asyncio.get_running_loop()
+                current = asyncio.current_task()
+                interrupted = False
+
+                def interrupt(signum: int, frame: object) -> None:
+                    nonlocal interrupted
+                    if not interrupted and current is not None:
+                        interrupted = True
+                        loop.call_soon_threadsafe(current.cancel)
+
+                previous = signal.signal(signal.SIGINT, interrupt)
                 try:
                     await run(
                         settings,
@@ -40,10 +52,12 @@ def main(argv: Sequence[str] | None = None) -> int:
                     )
                     sys.stdout.flush()
                     os._exit(3)  # Before asyncio.run shuts down borrowed CDP loop.
+                finally:
+                    signal.signal(signal.SIGINT, previous)
 
             asyncio.run(execute())
         return 0
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt, asyncio.CancelledError):
         print("Interrupted; shutdown completed.", file=sys.stderr)
         return 130
     except ImportError as exc:

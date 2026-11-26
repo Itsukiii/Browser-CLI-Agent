@@ -1,0 +1,16 @@
+[0m[0KBound Target 8B4E2C2EB832EA9819584A611F228839; plugin=fixture roi=True[0K[?25l
+help | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits[0K
+bca-lite>[0K[11G[?25h[?25lState: MATCHED revision=123 expired=False frame=444602ec-0418-43ca-947b-1951d8e52522 diagnostic=none[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> click 123[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> INJECTION native job failed before Bridge.click[0K
+Result: unknown ERROR revision=None expired=True frame=none diagnostic=input_unknown[0K
+Input unknown; session retired, no replay. Exit required.[0K[1A[?25h[?25l
+
+[0K[?25hState: ERROR revision=None expired=True frame=none diagnostic=input_unknown[0K[?25l
+Target/transport lost or session retired; no reconnect/replay.[0K
+bca-lite> click 123[0K
+Rejected: VisionError: coordinator is stopped, closed or retired[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> quit[0K
+Close: released=True errors=()[0K
+[0K[?25hCDP closed: pending=0 reader=False[0K[?25l
+[0K[?25h

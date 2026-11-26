@@ -1,0 +1,32 @@
+[0m[0KBound Target BA8C466A42FB61E11D7FF8562C021389; plugin=fixture roi=True[0K[?25l
+help | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits[0K
+bca-lite>[0K[11G[?25h[?25lState: MATCHED revision=123 expired=False frame=0973c33f-9e74-465c-9bf5-b495bfd8e469 diagnostic=none[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> ?[0K
+bca-lite>[0K[11G[?25h[?25lResult: read MATCHED revision=123 expired=False frame=cdf328a5-05f3-4eea-b3d3-0e0e78e17efc diagnostic=none[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> click 45[0K[?25h[?25lState: MATCHED revision=456 expired=False frame=88633f80-cc02-41f4-9095-9c3dd303622a diagnostic=none[0K
+bca-lite> click 45[0K[?25h6[0K[?25l
+bca-lite>[0K[11G[?25h[?25lResult: confirmed MATCHED revision=457 expired=False frame=2cb29129-25d5-47b4-8799-a9bc3adba953 diagnostic=none[0K
+bca-lite>[0K[1G[?25hState: MATCHED revision=457 expired=False frame=2cb29129-25d5-47b4-8799-a9bc3adba953 diagnostic=none[0K[?25l
+bca-lite> WARNING CDP command failed id=72 method=Page.captureScreenshot session=30507653A45C09EEE9340E3EAB05C1BD code=-32000[0K
+?[31m[2026-11-26 17:52:57.583][ERR][Px37416][Tx40974][MaaBuffer.cpp][L267][MaaImageBufferSetRawData] img is empty [data=true] [width=0] [height=0] [type=16] ?[[0K0
+m[0K
+?[31m[2026-11-26 17:52:57.583][ERR][Px37416][Tx40974][CustomControlUnitMgr.cpp][L105][MaaNS::CtrlUnitNs::CustomControlUnitMgr::screencap] failed to cached_imag[0Ke
+ [ret=false] ?[0m[0K
+?[31m[2026-11-26 17:52:57.583][ERR][Px37416][Tx40974][ControllerAgent.cpp][L842][MaaNS::ControllerNS::ControllerAgent::handle_screencap] controller screencap f[0Ka
+iled ?[0m[0K
+[0K[?25hState: ERROR revision=None expired=True frame=none diagnostic=VisionError[0K[?25l
+Target/transport lost or session retired; no reconnect/replay.[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> click 457[0K
+bca-lite> ?[31m[2026-11-26 17:52:57.781][ERR][Px37416][Tx40974][MaaBuffer.cpp][L267][MaaImageBufferSetRawData] img is empty [data=true] [width=0] [height=0] [t[0Ky
+pe=16] ?[0m[0K
+?[31m[2026-11-26 17:52:57.782][ERR][Px37416][Tx40974][CustomControlUnitMgr.cpp][L105][MaaNS::CtrlUnitNs::CustomControlUnitMgr::screencap] failed to cached_imag[0Ke
+ [ret=false] ?[0m[0K
+?[31m[2026-11-26 17:52:57.782][ERR][Px37416][Tx40974][ControllerAgent.cpp][L842][MaaNS::ControllerNS::ControllerAgent::handle_screencap] controller screencap f[0Ka
+iled ?[0m[0K
+Rejected: VisionError: coordinator is stopped, closed or retired[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> quit[0K
+[0K[?25hClose: released=True errors=()[0K[?25l
+WARNING CDP command failed id=73 method=Target.closeTarget session=None code=-32602[0K
+CDP closed: pending=0 reader=False[0K
+RuntimeError: cleanup diagnostics: Target cleanup: CDPCommandError[0K
+[0K[?25h

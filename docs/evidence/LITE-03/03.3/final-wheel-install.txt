@@ -1,0 +1,10 @@
+Processing .\dist\browser_cli_agent-0.2.0-py3-none-any.whl
+Installing collected packages: browser-cli-agent
+  Attempting uninstall: browser-cli-agent
+    Found existing installation: browser-cli-agent 0.2.0
+    Uninstalling browser-cli-agent-0.2.0:
+      Successfully uninstalled browser-cli-agent-0.2.0
+Successfully installed browser-cli-agent-0.2.0
+
+[notice] A new release of pip is available: 26.2.1 -> 26.3
+[notice] To update, run: D:\Project\BCA-lite\.test-artifacts\lite03-clean\Scripts\python.exe -m pip install --upgrade pip

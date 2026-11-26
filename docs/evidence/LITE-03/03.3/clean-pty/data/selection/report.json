@@ -1,0 +1,14 @@
+{
+  "target_preserved": true,
+  "exit_code": 0,
+  "transcript": "Target E15F39CEC8136099554CA32E20D6A70A host=None\nTarget 1DE07A85F52162DF4E35FF287086CFAC host=None\nTarget 09DE933CDBCC0E8A568069D8169DD61F host=None\nExact Target ID (blank cancels):Exact Target ID (blank cancels): 09DE933CDBCC0E8A568069D8169DD61F\nBound Target 09DE933CDBCC0E8A568069D8169DD61F; plugin=fixture roi=True\nhelp | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits\nbca-lite>State: NOT_FOUND revision=123 expired=False frame=20071014-5f5e-4f2d-86e5-1ba6ec725e7e diagnostic=none\nbca-lite>bca-lite> ?\nbca-lite>Result: read NOT_FOUND revision=123 expired=False frame=915c182d-8eea-4fc8-a887-46d5d5cc860c diagnostic=none\nbca-lite>bca-lite> quit\nClose: released=True errors=()\nCDP closed: pending=0 reader=False\n",
+  "command": [
+    "D:\\Project\\BCA-lite\\.test-artifacts\\lite03-clean\\Scripts\\python.exe",
+    "-m",
+    "bca.lite",
+    "--config",
+    "D:\\Project\\BCA-lite\\configs\\lite.example.toml",
+    "--endpoint",
+    "http://127.0.0.1:9341"
+  ]
+}

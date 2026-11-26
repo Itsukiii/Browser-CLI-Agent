@@ -1,0 +1,26 @@
+usage: bca-lite [-h] [--config CONFIG] [--endpoint ENDPOINT] [--target TARGET]
+                [--plugin {fixture}] [--model MODEL] [--manifest MANIFEST]
+                [--interval INTERVAL] [--callback-timeout CALLBACK_TIMEOUT]
+                [--max-frame-age MAX_FRAME_AGE]
+                [--log-level {ERROR,WARNING,INFO,DEBUG}] [--roi | --no-roi]
+                [--list-targets | --check | --once] [--create-fixture]
+
+Maa visual browser CLI
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG       explicit TOML file; no automatic search
+  --endpoint ENDPOINT   loopback HTTP CDP origin
+  --target TARGET       exact page Target ID; never a title/URL substring
+  --plugin {fixture}    installed built-in business plugin
+  --model MODEL         explicit OCR directory (not downloaded)
+  --manifest MANIFEST   OCR source/license/SHA256 JSON
+  --interval INTERVAL
+  --callback-timeout CALLBACK_TIMEOUT
+  --max-frame-age MAX_FRAME_AGE
+  --log-level {ERROR,WARNING,INFO,DEBUG}
+  --roi, --no-roi
+  --list-targets        list IDs; no native startup
+  --check               validate config/resources offline
+  --once                one new visual observation then close
+  --create-fixture      create and own a demo page

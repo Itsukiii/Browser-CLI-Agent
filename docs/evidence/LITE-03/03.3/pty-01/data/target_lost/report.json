@@ -1,0 +1,28 @@
+{
+  "command": [
+    "D:\\Project\\BCA-lite\\.venv\\Scripts\\python.exe",
+    "-m",
+    "bca.lite",
+    "--config",
+    "D:\\Project\\BCA-lite\\configs\\lite.example.toml",
+    "--endpoint",
+    "http://127.0.0.1:9341",
+    "--create-fixture"
+  ],
+  "ending": "target_lost",
+  "start": 1795686773.3238943,
+  "stimuli": [],
+  "target": "BA8C466A42FB61E11D7FF8562C021389",
+  "dom": [
+    {
+      "id": "button",
+      "x": 107,
+      "y": 81,
+      "round": "456"
+    }
+  ],
+  "exit_code": 2,
+  "transcript": "Bound Target BA8C466A42FB61E11D7FF8562C021389; plugin=fixture roi=True\nhelp | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits\nbca-lite>State: MATCHED revision=123 expired=False frame=0973c33f-9e74-465c-9bf5-b495bfd8e469 diagnostic=none\nbca-lite>bca-lite> ?\nbca-lite>Result: read MATCHED revision=123 expired=False frame=cdf328a5-05f3-4eea-b3d3-0e0e78e17efc diagnostic=none\nbca-lite>bca-lite> click 45State: MATCHED revision=456 expired=False frame=88633f80-cc02-41f4-9095-9c3dd303622a diagnostic=none\nbca-lite> click 456\nbca-lite>Result: confirmed MATCHED revision=457 expired=False frame=2cb29129-25d5-47b4-8799-a9bc3adba953 diagnostic=none\nbca-lite>State: MATCHED revision=457 expired=False frame=2cb29129-25d5-47b4-8799-a9bc3adba953 diagnostic=none\nbca-lite> WARNING CDP command failed id=72 method=Page.captureScreenshot session=30507653A45C09EEE9340E3EAB05C1BD code=-32000\n?[31m[2026-11-26 17:52:57.583][ERR][Px37416][Tx40974][MaaBuffer.cpp][L267][MaaImageBufferSetRawData] img is empty [data=true] [width=0] [height=0] [type=16] ?[0\nm\n?[31m[2026-11-26 17:52:57.583][ERR][Px37416][Tx40974][CustomControlUnitMgr.cpp][L105][MaaNS::CtrlUnitNs::CustomControlUnitMgr::screencap] failed to cached_image\n [ret=false] ?[0m\n?[31m[2026-11-26 17:52:57.583][ERR][Px37416][Tx40974][ControllerAgent.cpp][L842][MaaNS::ControllerNS::ControllerAgent::handle_screencap] controller screencap fa\niled ?[0m\nState: ERROR revision=None expired=True frame=none diagnostic=VisionError\nTarget/transport lost or session retired; no reconnect/replay.\nbca-lite>bca-lite> click 457\nbca-lite> ?[31m[2026-11-26 17:52:57.781][ERR][Px37416][Tx40974][MaaBuffer.cpp][L267][MaaImageBufferSetRawData] img is empty [data=true] [width=0] [height=0] [ty\npe=16] ?[0m\n?[31m[2026-11-26 17:52:57.782][ERR][Px37416][Tx40974][CustomControlUnitMgr.cpp][L105][MaaNS::CtrlUnitNs::CustomControlUnitMgr::screencap] failed to cached_image\n [ret=false] ?[0m\n?[31m[2026-11-26 17:52:57.782][ERR][Px37416][Tx40974][ControllerAgent.cpp][L842][MaaNS::ControllerNS::ControllerAgent::handle_screencap] controller screencap fa\niled ?[0m\nRejected: VisionError: coordinator is stopped, closed or retired\nbca-lite>bca-lite> quit\nClose: released=True errors=()\nWARNING CDP command failed id=73 method=Target.closeTarget session=None code=-32602\nCDP closed: pending=0 reader=False\nRuntimeError: cleanup diagnostics: Target cleanup: CDPCommandError\n",
+  "original_preserved": true,
+  "end": 1795686778.0716164
+}

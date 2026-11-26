@@ -1,0 +1,13 @@
+[0m[0KBound Target FB3CFF0B69DB56C69436F64AFEB018C8; plugin=fixture roi=True[0K[?25l
+help | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits[0K
+bca-lite>[0K[11G[?25h[?25lState: MATCHED revision=123 expired=False frame=21f0f031-20a1-422c-984f-17ff9f897110 diagnostic=none[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> ?[0K
+bca-lite>[0K[11G[?25h[?25lResult: read MATCHED revision=123 expired=False frame=45ef2bfc-f2d8-4dd5-a8b2-8cbc800b0a3c diagnostic=none[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> click 45[0K[?25h[?25lState: MATCHED revision=456 expired=False frame=a56f53b5-8e12-4598-a515-ff9d49dcd127 diagnostic=none[0K
+[0K[?25hbca-lite> click 45[0K6[0K[?25l
+bca-lite>[0K[11G[?25h[?25l[0K[11G[?25h[?25lResult: confirmed MATCHED revision=457 expired=False frame=9b27a405-c29f-4252-8b24-7b8fffcd6314 diagnostic=none[0K
+State: MATCHED revision=457 expired=False frame=9b27a405-c29f-4252-8b24-7b8fffcd6314 diagnostic=none[0K
+[0K[?25hbca-lite>[0K[11G[?25l
+[0K[?25hClose: released=True errors=()[0K[?25l
+CDP closed: pending=0 reader=False[0K
+[0K[?25h

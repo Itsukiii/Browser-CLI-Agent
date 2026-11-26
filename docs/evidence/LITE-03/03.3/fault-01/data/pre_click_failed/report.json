@@ -1,0 +1,17 @@
+{
+  "fault": "pre_click_failed",
+  "command": [
+    "D:\\Project\\BCA-lite\\.venv\\Scripts\\python.exe",
+    "-m",
+    "tests.lite.cli_fault_child",
+    "pre_click_failed",
+    "--config",
+    "D:\\Project\\BCA-lite\\configs\\lite.example.toml",
+    "--endpoint",
+    "http://127.0.0.1:9341",
+    "--create-fixture"
+  ],
+  "dom": [],
+  "exit_code": 0,
+  "transcript": "Bound Target 8B4E2C2EB832EA9819584A611F228839; plugin=fixture roi=True\nhelp | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits\nbca-lite>State: MATCHED revision=123 expired=False frame=444602ec-0418-43ca-947b-1951d8e52522 diagnostic=none\nbca-lite>bca-lite> click 123\nbca-lite>bca-lite> INJECTION native job failed before Bridge.click\nResult: unknown ERROR revision=None expired=True frame=none diagnostic=input_unknown\nInput unknown; session retired, no replay. Exit required.\n\nState: ERROR revision=None expired=True frame=none diagnostic=input_unknown\nTarget/transport lost or session retired; no reconnect/replay.\nbca-lite> click 123\nRejected: VisionError: coordinator is stopped, closed or retired\nbca-lite>bca-lite> quit\nClose: released=True errors=()\nCDP closed: pending=0 reader=False\n"
+}

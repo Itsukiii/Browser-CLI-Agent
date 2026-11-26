@@ -1,0 +1,20 @@
+[0m[0KBound Target 4C69B7EF1742707C6CB13C1EDCB31323; plugin=fixture roi=True[0K[?25l
+help | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits[0K
+bca-lite>[0K[11G[?25h[?25l[0K[?25hState: MATCHED revision=123 expired=False frame=fa45fedb-ae58-4e7a-9b77-28c3b20fc431 diagnostic=none[0K[?25l
+bca-lite>[0K[11G[?25h[?25lbca-lite> ?[0K
+bca-lite>[0K[11G[?25h[?25lResult: read MATCHED revision=123 expired=False frame=9da08180-e61b-40f7-9b6c-fe4f58bc8dba diagnostic=none[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> click 45[0K[?25h[?25l[0K[?25hState: MATCHED revision=456 expired=False frame=0fbe4e86-61ad-4427-a6ac-18964189010a diagnostic=none[0K[?25l
+bca-lite> click 45[0K[?25h6[0K[?25l
+bca-lite>[0K[11G[?25h[?25lResult: confirmed MATCHED revision=457 expired=False frame=e15f185f-dc28-43d7-9128-919e82c12528 diagnostic=none[0K
+bca-lite>[0K[11G[?25h[?25lbca-lite> ?[0K
+bca-lite>[0K[11G[?25h[?25lState: MATCHED revision=457 expired=False frame=e15f185f-dc28-43d7-9128-919e82c12528 diagnostic=none[0K
+bca-lite>[0K
+[0K[?25h?[31m[2026-11-26 17:52:47.898][ERR][Px30184][Tx27033][MaaBuffer.cpp][L267][MaaImageBufferSetRawData] img is empty [data=true] [width=0] [height=0] [type=16] ?[[0K0[?25l
+m[0K
+?[31m[2026-11-26 17:52:47.898][ERR][Px30184][Tx27033][CustomControlUnitMgr.cpp][L105][MaaNS::CtrlUnitNs::CustomControlUnitMgr::screencap] failed to cached_imag[0Ke
+ [ret=false] ?[0m[0K
+?[31m[2026-11-26 17:52:47.899][ERR][Px30184][Tx27033][ControllerAgent.cpp][L842][MaaNS::ControllerNS::ControllerAgent::handle_screencap] controller screencap f[0Ka
+iled ?[0m[0K
+[0K[?25hClose: released=True errors=()[0K[?25l
+CDP closed: pending=0 reader=False[0K
+[0K[?25h

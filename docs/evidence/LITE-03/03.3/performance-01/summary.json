@@ -1,0 +1,35 @@
+{
+  "pid": 17608,
+  "valid_hz": 1.3149460646523423,
+  "sample_count": 149,
+  "sample_duration": 66.0310587999993,
+  "cpu_core_percent": 397.0196067793521,
+  "peak_rss": 160800768,
+  "peak_private_bytes": 641220608,
+  "first": {
+    "scope": "workload",
+    "monotonic": 457550.398613,
+    "pid": 17608,
+    "rss": 67899392,
+    "private_bytes": 554618880,
+    "cpu_seconds": 0.375,
+    "threads": 24,
+    "handles": 225,
+    "system_available": 2649796608,
+    "system_commit": 26079666176,
+    "system_commit_limit": 37039616000
+  },
+  "last": {
+    "scope": "workload",
+    "monotonic": 457616.4296718,
+    "pid": 17608,
+    "rss": 154263552,
+    "private_bytes": 634118144,
+    "cpu_seconds": 262.53125,
+    "threads": 35,
+    "handles": 281,
+    "system_available": 1639571456,
+    "system_commit": 27456974848,
+    "system_commit_limit": 37039616000
+  }
+}

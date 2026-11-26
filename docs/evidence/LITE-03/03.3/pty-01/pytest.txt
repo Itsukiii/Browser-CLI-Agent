@@ -1,0 +1,217 @@
+...F
+================================== FAILURES ===================================
+_____________________ test_real_editable_cli[target_lost] _____________________
+
+tmp_path = WindowsPath('C:/Users/wutong/AppData/Local/Temp/pytest-of-wutong/pytest-31/test_real_editable_cli_target_0')
+ending = 'target_lost'
+
+    @pytest.mark.parametrize("ending", ["quit", "ctrl_c", "eof", "target_lost"])
+    def test_real_editable_cli(tmp_path, ending):
+        out = Path(os.environ.get("BCA_CLI_EVIDENCE", str(tmp_path))) / ending
+        out.mkdir(parents=True, exist_ok=False)
+    
+        async def run():
+            session = BrowserSession(os.environ["BCA_CDP_ENDPOINT"])
+            await session.connect()
+            original = {t.target_id for t in await session.list_targets()}
+            console = None
+            report = {"command": command(), "ending": ending, "start": time.time(), "stimuli": []}
+            try:
+                console = Console(command(), out / "transcript.txt")
+                await console.expect("Bound Target")
+                async with asyncio.timeout(10):
+                    while True:
+                        created = [
+                            t.target_id
+                            for t in await session.list_targets()
+                            if t.target_id not in original
+                        ]
+                        if len(created) == 1:
+                            break
+                        await asyncio.sleep(0.05)
+                target = created[0]
+                report["target"] = target
+                await session.bind(target)
+                await console.expect("revision=123")
+                console.send("?")
+                console.send("\r")
+                await console.expect("Result: read")
+                # Keep half a command in the real console while a changed state renders.
+                console.send("click 45")
+                await asyncio.sleep(0.3)
+                await evaluate(session, "configure('456',1)")
+                await console.expect("revision=456")
+                console.send("6\r")
+                await console.expect("Result: confirmed")
+                await console.expect("revision=457")
+                report["dom"] = await evaluate(session, "hits")
+                assert len(report["dom"]) == 1 and report["dom"][0]["id"] == "button"
+                assert report["dom"][0]["round"] == "456"
+                if ending == "quit":
+                    for text, expect in [
+                        ("click 456", "Rejected:"),
+                        ("stop", "Stopped;"),
+                        ("stop", "Stopped;"),
+                        ("resume", "Observation resumed."),
+                    ]:
+                        offset = len(console.plain())
+                        console.send(text + "\r")
+                        await console.expect(expect, offset)
+                    for count, expected in [(0, "NOT_FOUND"), (2, "AMBIGUOUS"), (1, "MATCHED")]:
+                        offset = len(console.plain())
+                        await evaluate(session, f"configure('457',{count})")
+                        await console.expect(expected, offset)
+                    # Long/invalid/Unicode/batched input: no extra confirmed action.
+                    console.send("���ķǷ�����\r" + "x" * 1030 + "\r")
+                    await console.expect("exceeds 1024")
+                    console.send("?\r?\r?\r")
+                    await console.expect("Busy:")
+                    await asyncio.sleep(1)
+                    assert await evaluate(session, "hits.length") == 1
+                    console.send("quit\r")
+                elif ending == "ctrl_c":
+                    console.send("?\r")
+                    await asyncio.sleep(0.02)
+                    console.send("\x03")
+                elif ending == "eof":
+                    console.send("\x04")
+                else:
+                    await session.connection.send("Target.closeTarget", {"targetId": target})
+                    await console.expect("no reconnect/replay")
+                    console.send("click 457\r")
+                    await console.expect("Rejected:")
+                    console.send("quit\r")
+                async with asyncio.timeout(30):
+                    while console.process.isalive():
+                        await asyncio.sleep(0.05)
+                console.thread.join(timeout=2)
+                report["exit_code"] = console.process.exitstatus
+                report["transcript"] = console.plain()
+                assert "released=True" in report["transcript"]
+                assert "pending=0 reader=False" in report["transcript"]
+                async with asyncio.timeout(5):
+                    while target in {t.target_id for t in await session.list_targets()}:
+                        await asyncio.sleep(0.05)
+                remaining = {t.target_id for t in await session.list_targets()}
+                report["original_preserved"] = original.issubset(remaining)
+                assert report["original_preserved"]
+                assert report["exit_code"] == 0
+            finally:
+                if console is not None and console.process.isalive():
+                    console.send("\x03")
+                    await asyncio.sleep(2)
+                    if console.process.isalive():
+                        console.process.terminate(force=True)  # Only this test-owned child on failure.
+                        report["forced_test_cleanup"] = True
+                await session.close()
+                report["end"] = time.time()
+                (out / "report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    
+>       asyncio.run(run())
+
+tests\lite\test_real_cli.py:185: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def run():
+        session = BrowserSession(os.environ["BCA_CDP_ENDPOINT"])
+        await session.connect()
+        original = {t.target_id for t in await session.list_targets()}
+        console = None
+        report = {"command": command(), "ending": ending, "start": time.time(), "stimuli": []}
+        try:
+            console = Console(command(), out / "transcript.txt")
+            await console.expect("Bound Target")
+            async with asyncio.timeout(10):
+                while True:
+                    created = [
+                        t.target_id
+                        for t in await session.list_targets()
+                        if t.target_id not in original
+                    ]
+                    if len(created) == 1:
+                        break
+                    await asyncio.sleep(0.05)
+            target = created[0]
+            report["target"] = target
+            await session.bind(target)
+            await console.expect("revision=123")
+            console.send("?")
+            console.send("\r")
+            await console.expect("Result: read")
+            # Keep half a command in the real console while a changed state renders.
+            console.send("click 45")
+            await asyncio.sleep(0.3)
+            await evaluate(session, "configure('456',1)")
+            await console.expect("revision=456")
+            console.send("6\r")
+            await console.expect("Result: confirmed")
+            await console.expect("revision=457")
+            report["dom"] = await evaluate(session, "hits")
+            assert len(report["dom"]) == 1 and report["dom"][0]["id"] == "button"
+            assert report["dom"][0]["round"] == "456"
+            if ending == "quit":
+                for text, expect in [
+                    ("click 456", "Rejected:"),
+                    ("stop", "Stopped;"),
+                    ("stop", "Stopped;"),
+                    ("resume", "Observation resumed."),
+                ]:
+                    offset = len(console.plain())
+                    console.send(text + "\r")
+                    await console.expect(expect, offset)
+                for count, expected in [(0, "NOT_FOUND"), (2, "AMBIGUOUS"), (1, "MATCHED")]:
+                    offset = len(console.plain())
+                    await evaluate(session, f"configure('457',{count})")
+                    await console.expect(expected, offset)
+                # Long/invalid/Unicode/batched input: no extra confirmed action.
+                console.send("���ķǷ�����\r" + "x" * 1030 + "\r")
+                await console.expect("exceeds 1024")
+                console.send("?\r?\r?\r")
+                await console.expect("Busy:")
+                await asyncio.sleep(1)
+                assert await evaluate(session, "hits.length") == 1
+                console.send("quit\r")
+            elif ending == "ctrl_c":
+                console.send("?\r")
+                await asyncio.sleep(0.02)
+                console.send("\x03")
+            elif ending == "eof":
+                console.send("\x04")
+            else:
+                await session.connection.send("Target.closeTarget", {"targetId": target})
+                await console.expect("no reconnect/replay")
+                console.send("click 457\r")
+                await console.expect("Rejected:")
+                console.send("quit\r")
+            async with asyncio.timeout(30):
+                while console.process.isalive():
+                    await asyncio.sleep(0.05)
+            console.thread.join(timeout=2)
+            report["exit_code"] = console.process.exitstatus
+            report["transcript"] = console.plain()
+            assert "released=True" in report["transcript"]
+            assert "pending=0 reader=False" in report["transcript"]
+            async with asyncio.timeout(5):
+                while target in {t.target_id for t in await session.list_targets()}:
+                    await asyncio.sleep(0.05)
+            remaining = {t.target_id for t in await session.list_targets()}
+            report["original_preserved"] = original.issubset(remaining)
+            assert report["original_preserved"]
+>           assert report["exit_code"] == 0
+E           assert 2 == 0
+
+tests\lite\test_real_cli.py:173: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/lite/test_real_cli.py::test_real_editable_cli[target_lost] - ass...
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed, 3 passed in 26.78s
