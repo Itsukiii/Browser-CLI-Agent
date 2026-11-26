@@ -1,4 +1,9 @@
-# 02.3 稳定性验收待办（尚未执行）
+# 02.3 稳定性验收计划及执行索引
+
+2026-11-26 已按下列计划执行，结果见 `LITE-02.3_HANDOFF.md` 与
+`docs/evidence/LITE-02/02.3/`。真实 Edge 185.01秒/239有效观察、三轮四种进程配置、
+干净wheel和全量离线均已有原始证据，等待架构复核。历史access violation本次未复现，
+仍未归因；新增stop成功但running尚为true的现场及bounded idle等待另见报告，不混为同一问题。
 
 来源：`LITE-02.1_ARCH_REVIEW_2026-11-26.md` P1-B，历史证据 `docs/evidence/LITE-02/02.1/offline-diagnostic.txt`。旧 OpenCV 4096×4096 decode 用例曾出现 Windows access violation；92项独立复查通过不等于已归因或已修复。低内存快照只能作为相关现场，不能认定内存不足是原因。
 
