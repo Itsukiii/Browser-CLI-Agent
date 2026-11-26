@@ -1,0 +1,33 @@
+Processing .\dist\browser_cli_agent-0.2.0-py3-none-any.whl (from browser-cli-agent==0.2.0)
+Collecting websockets<16,>=15 (from browser-cli-agent==0.2.0->browser-cli-agent==0.2.0)
+  Downloading websockets-15.0.1-py3-none-any.whl.metadata (6.8 kB)
+Collecting Pillow<13,>=12 (from browser-cli-agent==0.2.0->browser-cli-agent==0.2.0)
+  Downloading pillow-12.3.0-cp314-cp314-win_amd64.whl.metadata (9.3 kB)
+Collecting maafw==5.16.1 (from browser-cli-agent==0.2.0->browser-cli-agent==0.2.0)
+  Downloading maafw-5.16.1-py3-none-win_amd64.whl.metadata (48 kB)
+Collecting numpy<3,>=2.4 (from browser-cli-agent==0.2.0->browser-cli-agent==0.2.0)
+  Downloading numpy-2.5.5-cp314-cp314-win_amd64.whl.metadata (6.6 kB)
+Collecting maaagentbinary (from maafw==5.16.1->browser-cli-agent==0.2.0->browser-cli-agent==0.2.0)
+  Downloading MaaAgentBinary-1.0.1-py3-none-any.whl.metadata (597 bytes)
+Collecting strenum (from maafw==5.16.1->browser-cli-agent==0.2.0->browser-cli-agent==0.2.0)
+  Downloading strenum-0.5.0-py3-none-any.whl.metadata (5.5 kB)
+Downloading maafw-5.16.1-py3-none-win_amd64.whl (36.7 MB)
+   -----                                    5.0/36.7 MB 156.1 kB/s eta 0:03:24
+WARNING: Connection interrupted while downloading.
+WARNING: Attempting to resume incomplete download (5.0 MB/36.7 MB, attempt 1)
+Resuming download maafw-5.16.1-py3-none-win_amd64.whl (5.0 MB/36.7 MB)
+   ---------------------------------------- 36.7/36.7 MB 269.6 kB/s  0:03:47
+Downloading numpy-2.5.5-cp314-cp314-win_amd64.whl (12.7 MB)
+   ---------------------------------------- 12.7/12.7 MB 275.7 kB/s  0:00:55
+Downloading pillow-12.3.0-cp314-cp314-win_amd64.whl (7.2 MB)
+   ---------------------------------------- 7.2/7.2 MB 217.4 kB/s  0:00:32
+Downloading websockets-15.0.1-py3-none-any.whl (169 kB)
+Downloading MaaAgentBinary-1.0.1-py3-none-any.whl (5.3 MB)
+   ---------------------------------------- 5.3/5.3 MB 268.1 kB/s  0:00:22
+Downloading strenum-0.5.0-py3-none-any.whl (9.1 kB)
+Installing collected packages: maaagentbinary, websockets, strenum, Pillow, numpy, maafw, browser-cli-agent
+
+Successfully installed Pillow-12.3.0 browser-cli-agent-0.2.0 maaagentbinary-1.0.1 maafw-5.16.1 numpy-2.5.5 strenum-0.5.0 websockets-15.0.1
+
+[notice] A new release of pip is available: 26.2.1 -> 26.3
+[notice] To update, run: D:\Project\BCA-lite\.test-artifacts\lite023-clean\Scripts\python.exe -m pip install --upgrade pip

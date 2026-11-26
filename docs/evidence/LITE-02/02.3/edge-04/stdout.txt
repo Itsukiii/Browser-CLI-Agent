@@ -1,0 +1,196 @@
+F
+================================== FAILURES ===================================
+___________________________ test_edge_visual_matrix ___________________________
+
+self = <bca.core.browser.connection.CDPConnection object at 0x00000267691F6990>
+method = 'Runtime.evaluate'
+params = {'expression': 'new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))', 'returnByValue': True, 'awaitPromise': True}
+session_id = 'EA58D4DB2D714F2A4617E0747ACE0B1C', timeout = None
+
+    async def send(
+        self,
+        method: str,
+        params: JsonObject | None = None,
+        *,
+        session_id: str | None = None,
+        timeout: float | None = None,
+    ) -> JsonObject:
+        token(method, "method")
+        if session_id is not None:
+            token(session_id, "session_id")
+        payload = {} if params is None else params
+        json_object(payload, "params")
+        duration = self._request_timeout if timeout is None else timeout
+        positive(duration, "timeout")
+        request_id: int | None = None
+        future: asyncio.Future[JsonObject] | None = None
+        send_started = sent = False
+        started = monotonic()
+        try:
+            async with asyncio.timeout(duration):
+                async with self._send_lock:
+                    socket = self._socket
+                    if not self.connected or socket is None:
+                        raise CDPDisconnectedError("CDP is not connected")
+                    self._next_id += 1
+                    request_id = self._next_id
+                    future = asyncio.get_running_loop().create_future()
+                    self._pending[request_id] = _Pending(method, session_id, future)
+                    message: JsonObject = {"id": request_id, "method": method, "params": payload}
+                    if session_id is not None:
+                        message["sessionId"] = session_id
+                    send_started = True
+                    await socket.send(json.dumps(message, allow_nan=False, separators=(",", ":")))
+                    sent = True
+>               return await future
+                       ^^^^^^^^^^^^
+E               asyncio.exceptions.CancelledError
+
+src\bca\core\browser\connection.py:195: CancelledError
+
+The above exception was the direct cause of the following exception:
+
+self = <bca.core.browser.connection.CDPConnection object at 0x00000267691F6990>
+method = 'Runtime.evaluate'
+params = {'expression': 'new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))', 'returnByValue': True, 'awaitPromise': True}
+session_id = 'EA58D4DB2D714F2A4617E0747ACE0B1C', timeout = None
+
+    async def send(
+        self,
+        method: str,
+        params: JsonObject | None = None,
+        *,
+        session_id: str | None = None,
+        timeout: float | None = None,
+    ) -> JsonObject:
+        token(method, "method")
+        if session_id is not None:
+            token(session_id, "session_id")
+        payload = {} if params is None else params
+        json_object(payload, "params")
+        duration = self._request_timeout if timeout is None else timeout
+        positive(duration, "timeout")
+        request_id: int | None = None
+        future: asyncio.Future[JsonObject] | None = None
+        send_started = sent = False
+        started = monotonic()
+        try:
+>           async with asyncio.timeout(duration):
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src\bca\core\browser\connection.py:180: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Timeout [expired]>
+exc_type = <class 'asyncio.exceptions.CancelledError'>
+exc_val = CancelledError(), exc_tb = <traceback object at 0x000002676A414740>
+
+    async def __aexit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc_val: BaseException | None,
+        exc_tb: TracebackType | None,
+    ) -> bool | None:
+        assert self._state in (_State.ENTERED, _State.EXPIRING)
+    
+        if self._timeout_handler is not None:
+            self._timeout_handler.cancel()
+            self._timeout_handler = None
+    
+        if self._state is _State.EXPIRING:
+            self._state = _State.EXPIRED
+    
+            if self._task.uncancel() <= self._cancelling and exc_type is not None:
+                # Since there are no new cancel requests, we're
+                # handling this.
+                if issubclass(exc_type, exceptions.CancelledError):
+>                   raise TimeoutError from exc_val
+E                   TimeoutError
+
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\timeouts.py:115: TimeoutError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Users/wutong/AppData/Local/Temp/pytest-of-wutong/pytest-12/test_edge_visual_matrix0')
+
+    finally:
+>       if coordinator is not None:
+
+tests\lite\test_real_vision.py:283: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_real_vision.py:262: in run_matrix
+    assert await evaluate(session, "hits.length") == count
+    ^^^^^^^^^^^^^^^^^^^^^
+tests\lite\test_real_vision.py:91: in settle
+    await evaluate(session, "new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))")
+examples\browser_end_to_end.py:51: in evaluate
+    result = await session.send(
+src\bca\core\browser\session.py:270: in send
+    result = await connection.send(method, params, session_id=sid, timeout=timeout)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <bca.core.browser.connection.CDPConnection object at 0x00000267691F6990>
+method = 'Runtime.evaluate'
+params = {'expression': 'new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))', 'returnByValue': True, 'awaitPromise': True}
+session_id = 'EA58D4DB2D714F2A4617E0747ACE0B1C', timeout = None
+
+    async def send(
+        self,
+        method: str,
+        params: JsonObject | None = None,
+        *,
+        session_id: str | None = None,
+        timeout: float | None = None,
+    ) -> JsonObject:
+        token(method, "method")
+        if session_id is not None:
+            token(session_id, "session_id")
+        payload = {} if params is None else params
+        json_object(payload, "params")
+        duration = self._request_timeout if timeout is None else timeout
+        positive(duration, "timeout")
+        request_id: int | None = None
+        future: asyncio.Future[JsonObject] | None = None
+        send_started = sent = False
+        started = monotonic()
+        try:
+            async with asyncio.timeout(duration):
+                async with self._send_lock:
+                    socket = self._socket
+                    if not self.connected or socket is None:
+                        raise CDPDisconnectedError("CDP is not connected")
+                    self._next_id += 1
+                    request_id = self._next_id
+                    future = asyncio.get_running_loop().create_future()
+                    self._pending[request_id] = _Pending(method, session_id, future)
+                    message: JsonObject = {"id": request_id, "method": method, "params": payload}
+                    if session_id is not None:
+                        message["sessionId"] = session_id
+                    send_started = True
+                    await socket.send(json.dumps(message, allow_nan=False, separators=(",", ":")))
+                    sent = True
+                return await future
+        except TimeoutError as exc:
+            if send_started and not sent:
+                self.abort(CDPDisconnectedError("interrupted socket send"))
+            logger.warning("CDP timeout id=%s method=%s session=%s", request_id, method, session_id)
+>           raise CDPTimeoutError(f"CDP request timed out: {method}") from exc
+E           bca.core.browser.errors.CDPTimeoutError: CDP request timed out: Runtime.evaluate
+
+src\bca\core\browser\connection.py:200: CDPTimeoutError
+------------------------------ Captured log call ------------------------------
+WARNING  bca.core.browser.connection:connection.py:199 CDP timeout id=1871 method=Runtime.evaluate session=EA58D4DB2D714F2A4617E0747ACE0B1C
+=========================== short test summary info ===========================
+FAILED tests/lite/test_real_vision.py::test_edge_visual_matrix - bca.core.bro...
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed, 2 deselected in 67.10s (0:01:07)

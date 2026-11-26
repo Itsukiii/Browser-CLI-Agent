@@ -1,0 +1,157 @@
+{
+  "fault": "target_closed",
+  "outcome": "rejected_by_exception",
+  "status": "ERROR",
+  "input_outcome": "not_attempted",
+  "records": [
+    {
+      "started": 435801.7532556,
+      "completed": 435802.0802123,
+      "total": 0.32696919998852536,
+      "capture": 0.08580169995548204,
+      "native": 0.24103430000832304,
+      "parse": 1.9200029782950878e-05,
+      "sequence": 1,
+      "status": "MATCHED",
+      "revision": "123",
+      "expired": false,
+      "batch": {
+        "frame_id": "194a296a-e435-4d12-a432-a4f93aba255d",
+        "binding": [
+          "EEA7FD14549D061CCFD02688646783E5",
+          "4772B8E82348FE31A0FF1F3208AEE75B",
+          2
+        ],
+        "size": [
+          640,
+          400
+        ],
+        "source_current": true,
+        "expired": false,
+        "results": [
+          {
+            "request_key": "button",
+            "algorithm": "TemplateMatch",
+            "status": "MATCHED",
+            "candidates": [
+              {
+                "box": [
+                  60,
+                  50,
+                  96,
+                  64
+                ],
+                "score": 1.0,
+                "text": null
+              }
+            ],
+            "all_candidates": [
+              {
+                "box": [
+                  60,
+                  50,
+                  96,
+                  64
+                ],
+                "score": 1.0,
+                "text": null
+              }
+            ],
+            "best": {
+              "box": [
+                60,
+                50,
+                96,
+                64
+              ],
+              "score": 1.0,
+              "text": null
+            },
+            "job_id": 200000356,
+            "job_status": "succeeded",
+            "reco_id": 400000343,
+            "hit": true,
+            "raw_detail_json": "{\"all\": [{\"box\": [60, 50, 96, 64], \"score\": 1.0}], \"best\": {\"box\": [60, 50, 96, 64], \"score\": 1.0}, \"filtered\": [{\"box\": [60, 50, 96, 64], \"score\": 1.0}]}",
+            "diagnostic": null
+          },
+          {
+            "request_key": "round",
+            "algorithm": "OCR",
+            "status": "MATCHED",
+            "candidates": [
+              {
+                "box": [
+                  80,
+                  244,
+                  81,
+                  44
+                ],
+                "score": 0.999838,
+                "text": "123"
+              }
+            ],
+            "all_candidates": [
+              {
+                "box": [
+                  80,
+                  244,
+                  81,
+                  44
+                ],
+                "score": 0.999838,
+                "text": "123"
+              }
+            ],
+            "best": {
+              "box": [
+                80,
+                244,
+                81,
+                44
+              ],
+              "score": 0.999838,
+              "text": "123"
+            },
+            "job_id": 200000357,
+            "job_status": "succeeded",
+            "reco_id": 400000344,
+            "hit": true,
+            "raw_detail_json": "{\"all\": [{\"box\": [80, 244, 81, 44], \"score\": 0.999838, \"text\": \"123\"}], \"best\": {\"box\": [80, 244, 81, 44], \"score\": 0.999838, \"text\": \"123\"}, \"filtered\": [{\"box\": [80, 244, 81, 44], \"score\": 0.999838, \"text\": \"123\"}]}",
+            "diagnostic": null
+          }
+        ]
+      }
+    },
+    {
+      "started": 435802.1940911,
+      "completed": 435802.1950244,
+      "total": 0.0009471999946981668,
+      "capture": 0.0008919999818317592,
+      "native": 0.24103430000832304,
+      "parse": 1.9200029782950878e-05,
+      "sequence": 2,
+      "status": "ERROR",
+      "revision": null,
+      "expired": true,
+      "batch": null
+    }
+  ],
+  "close": {
+    "released": true,
+    "worker_thread": 22068,
+    "destroyed": [
+      "tasker",
+      "controller",
+      "resource"
+    ],
+    "errors": [],
+    "stop_status": "not_needed_idle_disconnected"
+  },
+  "owned_targets_remaining": [],
+  "preexisting_targets_preserved": true,
+  "cleanup": {
+    "pending": 0,
+    "reader": false,
+    "connected": false
+  }
+}

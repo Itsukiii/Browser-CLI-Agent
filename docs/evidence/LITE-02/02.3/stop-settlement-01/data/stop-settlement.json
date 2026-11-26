@@ -1,0 +1,2102 @@
+[
+  {
+    "event": "running",
+    "value": false,
+    "at": 434975.9482967
+  },
+  {
+    "event": "close",
+    "round": 0,
+    "at": 434975.9551588,
+    "report": {
+      "released": true,
+      "worker_thread": 2440,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434976.1867172
+  },
+  {
+    "event": "close",
+    "round": 1,
+    "at": 434976.1938792,
+    "report": {
+      "released": true,
+      "worker_thread": 6784,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434976.3901553
+  },
+  {
+    "event": "close",
+    "round": 2,
+    "at": 434976.3971083,
+    "report": {
+      "released": true,
+      "worker_thread": 22076,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434976.5803963
+  },
+  {
+    "event": "close",
+    "round": 3,
+    "at": 434976.5866851,
+    "report": {
+      "released": true,
+      "worker_thread": 24368,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434976.7662452
+  },
+  {
+    "event": "close",
+    "round": 4,
+    "at": 434976.7734723,
+    "report": {
+      "released": true,
+      "worker_thread": 9032,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434976.9547327
+  },
+  {
+    "event": "close",
+    "round": 5,
+    "at": 434976.9611353,
+    "report": {
+      "released": true,
+      "worker_thread": 36848,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434977.1466004
+  },
+  {
+    "event": "close",
+    "round": 6,
+    "at": 434977.1531635,
+    "report": {
+      "released": true,
+      "worker_thread": 6988,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434977.3878574
+  },
+  {
+    "event": "close",
+    "round": 7,
+    "at": 434977.3958829,
+    "report": {
+      "released": true,
+      "worker_thread": 26928,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434977.5934776
+  },
+  {
+    "event": "close",
+    "round": 8,
+    "at": 434977.6007836,
+    "report": {
+      "released": true,
+      "worker_thread": 29808,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434977.7892474
+  },
+  {
+    "event": "close",
+    "round": 9,
+    "at": 434977.7975443,
+    "report": {
+      "released": true,
+      "worker_thread": 31276,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434978.0034079
+  },
+  {
+    "event": "close",
+    "round": 10,
+    "at": 434978.0099175,
+    "report": {
+      "released": true,
+      "worker_thread": 35988,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434978.4646238
+  },
+  {
+    "event": "close",
+    "round": 11,
+    "at": 434978.4835398,
+    "report": {
+      "released": true,
+      "worker_thread": 32036,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434979.7118953
+  },
+  {
+    "event": "close",
+    "round": 12,
+    "at": 434979.7321552,
+    "report": {
+      "released": true,
+      "worker_thread": 32564,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434980.7668217
+  },
+  {
+    "event": "close",
+    "round": 13,
+    "at": 434980.7823283,
+    "report": {
+      "released": true,
+      "worker_thread": 6696,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434982.0664851
+  },
+  {
+    "event": "close",
+    "round": 14,
+    "at": 434982.0834116,
+    "report": {
+      "released": true,
+      "worker_thread": 30628,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434983.5249458
+  },
+  {
+    "event": "close",
+    "round": 15,
+    "at": 434983.5407778,
+    "report": {
+      "released": true,
+      "worker_thread": 7004,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434984.5672505
+  },
+  {
+    "event": "close",
+    "round": 16,
+    "at": 434984.5948976,
+    "report": {
+      "released": true,
+      "worker_thread": 3524,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434985.8088371
+  },
+  {
+    "event": "close",
+    "round": 17,
+    "at": 434985.8259457,
+    "report": {
+      "released": true,
+      "worker_thread": 9708,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434987.0604899
+  },
+  {
+    "event": "close",
+    "round": 18,
+    "at": 434987.0761955,
+    "report": {
+      "released": true,
+      "worker_thread": 26468,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434988.1665742
+  },
+  {
+    "event": "close",
+    "round": 19,
+    "at": 434988.1819442,
+    "report": {
+      "released": true,
+      "worker_thread": 28204,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434989.3747023
+  },
+  {
+    "event": "close",
+    "round": 20,
+    "at": 434989.3900374,
+    "report": {
+      "released": true,
+      "worker_thread": 15708,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434990.3972556
+  },
+  {
+    "event": "close",
+    "round": 21,
+    "at": 434990.4068996,
+    "report": {
+      "released": true,
+      "worker_thread": 16608,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434991.6733933
+  },
+  {
+    "event": "close",
+    "round": 22,
+    "at": 434991.6876122,
+    "report": {
+      "released": true,
+      "worker_thread": 27936,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434992.824358
+  },
+  {
+    "event": "close",
+    "round": 23,
+    "at": 434992.8411557,
+    "report": {
+      "released": true,
+      "worker_thread": 4164,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434994.0150356
+  },
+  {
+    "event": "close",
+    "round": 24,
+    "at": 434994.0310641,
+    "report": {
+      "released": true,
+      "worker_thread": 14904,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434995.2564261
+  },
+  {
+    "event": "close",
+    "round": 25,
+    "at": 434995.2740338,
+    "report": {
+      "released": true,
+      "worker_thread": 35664,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434996.4302015
+  },
+  {
+    "event": "close",
+    "round": 26,
+    "at": 434996.4432234,
+    "report": {
+      "released": true,
+      "worker_thread": 30760,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434997.5530205
+  },
+  {
+    "event": "close",
+    "round": 27,
+    "at": 434997.5702989,
+    "report": {
+      "released": true,
+      "worker_thread": 19148,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434998.8215452
+  },
+  {
+    "event": "close",
+    "round": 28,
+    "at": 434998.834481,
+    "report": {
+      "released": true,
+      "worker_thread": 2344,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 434999.9946397
+  },
+  {
+    "event": "close",
+    "round": 29,
+    "at": 435000.0094734,
+    "report": {
+      "released": true,
+      "worker_thread": 35704,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435001.1231574
+  },
+  {
+    "event": "close",
+    "round": 30,
+    "at": 435001.1371792,
+    "report": {
+      "released": true,
+      "worker_thread": 34948,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435002.2661837
+  },
+  {
+    "event": "close",
+    "round": 31,
+    "at": 435002.2810762,
+    "report": {
+      "released": true,
+      "worker_thread": 5340,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435003.3644129
+  },
+  {
+    "event": "close",
+    "round": 32,
+    "at": 435003.3792521,
+    "report": {
+      "released": true,
+      "worker_thread": 29120,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435004.145855
+  },
+  {
+    "event": "close",
+    "round": 33,
+    "at": 435004.1656171,
+    "report": {
+      "released": true,
+      "worker_thread": 35784,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435004.8359563
+  },
+  {
+    "event": "close",
+    "round": 34,
+    "at": 435004.8471129,
+    "report": {
+      "released": true,
+      "worker_thread": 10424,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435005.3643794
+  },
+  {
+    "event": "close",
+    "round": 35,
+    "at": 435005.3725356,
+    "report": {
+      "released": true,
+      "worker_thread": 1240,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435005.880316
+  },
+  {
+    "event": "close",
+    "round": 36,
+    "at": 435005.8890907,
+    "report": {
+      "released": true,
+      "worker_thread": 35908,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435006.4011124
+  },
+  {
+    "event": "close",
+    "round": 37,
+    "at": 435006.409477,
+    "report": {
+      "released": true,
+      "worker_thread": 27444,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435007.1047824
+  },
+  {
+    "event": "close",
+    "round": 38,
+    "at": 435007.1229477,
+    "report": {
+      "released": true,
+      "worker_thread": 10316,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435008.1379779
+  },
+  {
+    "event": "close",
+    "round": 39,
+    "at": 435008.1491571,
+    "report": {
+      "released": true,
+      "worker_thread": 35228,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435009.4646103
+  },
+  {
+    "event": "close",
+    "round": 40,
+    "at": 435009.4805743,
+    "report": {
+      "released": true,
+      "worker_thread": 15996,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435010.5941868
+  },
+  {
+    "event": "close",
+    "round": 41,
+    "at": 435010.6059561,
+    "report": {
+      "released": true,
+      "worker_thread": 6280,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435011.5212953
+  },
+  {
+    "event": "close",
+    "round": 42,
+    "at": 435011.5327808,
+    "report": {
+      "released": true,
+      "worker_thread": 27672,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435012.4935861
+  },
+  {
+    "event": "close",
+    "round": 43,
+    "at": 435012.5071324,
+    "report": {
+      "released": true,
+      "worker_thread": 15648,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435013.5152742
+  },
+  {
+    "event": "close",
+    "round": 44,
+    "at": 435013.5286312,
+    "report": {
+      "released": true,
+      "worker_thread": 19256,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435014.6621485
+  },
+  {
+    "event": "close",
+    "round": 45,
+    "at": 435014.6779247,
+    "report": {
+      "released": true,
+      "worker_thread": 3676,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435015.7699561
+  },
+  {
+    "event": "close",
+    "round": 46,
+    "at": 435015.7820075,
+    "report": {
+      "released": true,
+      "worker_thread": 35592,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435016.7183522
+  },
+  {
+    "event": "close",
+    "round": 47,
+    "at": 435016.7346793,
+    "report": {
+      "released": true,
+      "worker_thread": 2848,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435017.7301067
+  },
+  {
+    "event": "close",
+    "round": 48,
+    "at": 435017.7405441,
+    "report": {
+      "released": true,
+      "worker_thread": 35052,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435018.8018885
+  },
+  {
+    "event": "close",
+    "round": 49,
+    "at": 435018.8166155,
+    "report": {
+      "released": true,
+      "worker_thread": 28960,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435019.7528896
+  },
+  {
+    "event": "close",
+    "round": 50,
+    "at": 435019.7645297,
+    "report": {
+      "released": true,
+      "worker_thread": 11464,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435020.8364036
+  },
+  {
+    "event": "close",
+    "round": 51,
+    "at": 435020.8514327,
+    "report": {
+      "released": true,
+      "worker_thread": 25672,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435021.8546571
+  },
+  {
+    "event": "close",
+    "round": 52,
+    "at": 435021.8705337,
+    "report": {
+      "released": true,
+      "worker_thread": 30676,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435022.7999899
+  },
+  {
+    "event": "close",
+    "round": 53,
+    "at": 435022.8126043,
+    "report": {
+      "released": true,
+      "worker_thread": 37268,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435023.9378613
+  },
+  {
+    "event": "close",
+    "round": 54,
+    "at": 435023.9496431,
+    "report": {
+      "released": true,
+      "worker_thread": 36444,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435025.0405955
+  },
+  {
+    "event": "close",
+    "round": 55,
+    "at": 435025.052215,
+    "report": {
+      "released": true,
+      "worker_thread": 4868,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435026.0677295
+  },
+  {
+    "event": "close",
+    "round": 56,
+    "at": 435026.0855032,
+    "report": {
+      "released": true,
+      "worker_thread": 35892,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435027.3698039
+  },
+  {
+    "event": "close",
+    "round": 57,
+    "at": 435027.3870559,
+    "report": {
+      "released": true,
+      "worker_thread": 37548,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435028.3593171
+  },
+  {
+    "event": "close",
+    "round": 58,
+    "at": 435028.375135,
+    "report": {
+      "released": true,
+      "worker_thread": 2180,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435029.5636912
+  },
+  {
+    "event": "close",
+    "round": 59,
+    "at": 435029.5759999,
+    "report": {
+      "released": true,
+      "worker_thread": 20352,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435030.7239365
+  },
+  {
+    "event": "close",
+    "round": 60,
+    "at": 435030.7420271,
+    "report": {
+      "released": true,
+      "worker_thread": 1680,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435032.0660118
+  },
+  {
+    "event": "close",
+    "round": 61,
+    "at": 435032.0777729,
+    "report": {
+      "released": true,
+      "worker_thread": 36428,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435033.165838
+  },
+  {
+    "event": "close",
+    "round": 62,
+    "at": 435033.1782102,
+    "report": {
+      "released": true,
+      "worker_thread": 14904,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435034.2289321
+  },
+  {
+    "event": "close",
+    "round": 63,
+    "at": 435034.2440394,
+    "report": {
+      "released": true,
+      "worker_thread": 11456,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435035.2677123
+  },
+  {
+    "event": "close",
+    "round": 64,
+    "at": 435035.2808817,
+    "report": {
+      "released": true,
+      "worker_thread": 34948,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435036.4240601
+  },
+  {
+    "event": "close",
+    "round": 65,
+    "at": 435036.4421296,
+    "report": {
+      "released": true,
+      "worker_thread": 24688,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435037.3947524
+  },
+  {
+    "event": "close",
+    "round": 66,
+    "at": 435037.4096228,
+    "report": {
+      "released": true,
+      "worker_thread": 9056,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435038.4675842
+  },
+  {
+    "event": "close",
+    "round": 67,
+    "at": 435038.4809188,
+    "report": {
+      "released": true,
+      "worker_thread": 36404,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435039.6314454
+  },
+  {
+    "event": "close",
+    "round": 68,
+    "at": 435039.6459314,
+    "report": {
+      "released": true,
+      "worker_thread": 11292,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435040.8720405
+  },
+  {
+    "event": "close",
+    "round": 69,
+    "at": 435040.8879453,
+    "report": {
+      "released": true,
+      "worker_thread": 32100,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435041.8485956
+  },
+  {
+    "event": "close",
+    "round": 70,
+    "at": 435041.8610787,
+    "report": {
+      "released": true,
+      "worker_thread": 22332,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435042.911998
+  },
+  {
+    "event": "close",
+    "round": 71,
+    "at": 435042.9265577,
+    "report": {
+      "released": true,
+      "worker_thread": 32112,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435043.986366
+  },
+  {
+    "event": "close",
+    "round": 72,
+    "at": 435044.0003035,
+    "report": {
+      "released": true,
+      "worker_thread": 21968,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435044.9527827
+  },
+  {
+    "event": "close",
+    "round": 73,
+    "at": 435044.9613047,
+    "report": {
+      "released": true,
+      "worker_thread": 37524,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435045.7346934
+  },
+  {
+    "event": "close",
+    "round": 74,
+    "at": 435045.745345,
+    "report": {
+      "released": true,
+      "worker_thread": 36796,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435046.2556508
+  },
+  {
+    "event": "close",
+    "round": 75,
+    "at": 435046.2646505,
+    "report": {
+      "released": true,
+      "worker_thread": 14316,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435046.7631986
+  },
+  {
+    "event": "close",
+    "round": 76,
+    "at": 435046.7704915,
+    "report": {
+      "released": true,
+      "worker_thread": 17192,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435047.2881092
+  },
+  {
+    "event": "close",
+    "round": 77,
+    "at": 435047.2974057,
+    "report": {
+      "released": true,
+      "worker_thread": 34460,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435047.7898474
+  },
+  {
+    "event": "close",
+    "round": 78,
+    "at": 435047.796958,
+    "report": {
+      "released": true,
+      "worker_thread": 8764,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435048.2890857
+  },
+  {
+    "event": "close",
+    "round": 79,
+    "at": 435048.2968812,
+    "report": {
+      "released": true,
+      "worker_thread": 16080,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435049.0430337
+  },
+  {
+    "event": "close",
+    "round": 80,
+    "at": 435049.0561241,
+    "report": {
+      "released": true,
+      "worker_thread": 30844,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435050.432768
+  },
+  {
+    "event": "close",
+    "round": 81,
+    "at": 435050.4452986,
+    "report": {
+      "released": true,
+      "worker_thread": 11312,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435051.454767
+  },
+  {
+    "event": "close",
+    "round": 82,
+    "at": 435051.4671154,
+    "report": {
+      "released": true,
+      "worker_thread": 23640,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435052.5431233
+  },
+  {
+    "event": "close",
+    "round": 83,
+    "at": 435052.5580023,
+    "report": {
+      "released": true,
+      "worker_thread": 14652,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435053.6108568
+  },
+  {
+    "event": "close",
+    "round": 84,
+    "at": 435053.6237613,
+    "report": {
+      "released": true,
+      "worker_thread": 32320,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435054.9868445
+  },
+  {
+    "event": "close",
+    "round": 85,
+    "at": 435055.0019327,
+    "report": {
+      "released": true,
+      "worker_thread": 14300,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435056.2605817
+  },
+  {
+    "event": "close",
+    "round": 86,
+    "at": 435056.2726188,
+    "report": {
+      "released": true,
+      "worker_thread": 10788,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435057.4410751
+  },
+  {
+    "event": "close",
+    "round": 87,
+    "at": 435057.4525138,
+    "report": {
+      "released": true,
+      "worker_thread": 29220,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435058.4850209
+  },
+  {
+    "event": "close",
+    "round": 88,
+    "at": 435058.4969747,
+    "report": {
+      "released": true,
+      "worker_thread": 32460,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435059.7072405
+  },
+  {
+    "event": "close",
+    "round": 89,
+    "at": 435059.7181735,
+    "report": {
+      "released": true,
+      "worker_thread": 36568,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435060.7998155
+  },
+  {
+    "event": "close",
+    "round": 90,
+    "at": 435060.8130261,
+    "report": {
+      "released": true,
+      "worker_thread": 15736,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435061.8082331
+  },
+  {
+    "event": "close",
+    "round": 91,
+    "at": 435061.8225089,
+    "report": {
+      "released": true,
+      "worker_thread": 5804,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435062.9273983
+  },
+  {
+    "event": "close",
+    "round": 92,
+    "at": 435062.9396805,
+    "report": {
+      "released": true,
+      "worker_thread": 31576,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435064.1029333
+  },
+  {
+    "event": "close",
+    "round": 93,
+    "at": 435064.1152099,
+    "report": {
+      "released": true,
+      "worker_thread": 1848,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435065.1245291
+  },
+  {
+    "event": "close",
+    "round": 94,
+    "at": 435065.1385793,
+    "report": {
+      "released": true,
+      "worker_thread": 28456,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435066.2696965
+  },
+  {
+    "event": "close",
+    "round": 95,
+    "at": 435066.2834855,
+    "report": {
+      "released": true,
+      "worker_thread": 35900,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435067.4408449
+  },
+  {
+    "event": "close",
+    "round": 96,
+    "at": 435067.4538894,
+    "report": {
+      "released": true,
+      "worker_thread": 22108,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435068.6805813
+  },
+  {
+    "event": "close",
+    "round": 97,
+    "at": 435068.6914133,
+    "report": {
+      "released": true,
+      "worker_thread": 25200,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435069.726091
+  },
+  {
+    "event": "close",
+    "round": 98,
+    "at": 435069.7376331,
+    "report": {
+      "released": true,
+      "worker_thread": 10436,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  },
+  {
+    "event": "running",
+    "value": false,
+    "at": 435071.0675517
+  },
+  {
+    "event": "close",
+    "round": 99,
+    "at": 435071.08426,
+    "report": {
+      "released": true,
+      "worker_thread": 35272,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    }
+  }
+]

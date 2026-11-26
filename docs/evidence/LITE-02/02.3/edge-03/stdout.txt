@@ -1,0 +1,87 @@
+F
+================================== FAILURES ===================================
+___________________________ test_edge_visual_matrix ___________________________
+
+tmp_path = WindowsPath('C:/Users/wutong/AppData/Local/Temp/pytest-of-wutong/pytest-10/test_edge_visual_matrix0')
+
+    def test_edge_visual_matrix(tmp_path):
+>       asyncio.run(run_matrix(tmp_path, output(tmp_path, "matrix")))
+
+tests\lite\test_real_vision.py:270: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+tmp_path = WindowsPath('C:/Users/wutong/AppData/Local/Temp/pytest-of-wutong/pytest-10/test_edge_visual_matrix0')
+out = WindowsPath('docs/evidence/LITE-02/02.3/edge-03/data/matrix')
+zoom = False
+
+    async def run_matrix(tmp_path, out, zoom=False):
+        session = BrowserSession(os.environ["BCA_CDP_ENDPOINT"])
+        capture, inputs = BrowserCaptureProvider(session), BrowserInputProvider(session)
+        report = {"cases": [], "status": "running"}
+        coordinator = target = None
+        await session.connect()
+        original = {t.target_id for t in await session.list_targets()}
+        try:
+            with fixture_bundle() as bundle:
+                target = await create(session, bundle, window=zoom)
+                await capture.start()
+                await inputs.start()
+                conditions = (
+                    [(0.8, True, True), (1, True, False), (1.25, False, True)]
+                    if zoom
+                    else [
+                        (dpr, raw, roi)
+                        for dpr in (1, 1.5, 2)
+                        for raw in (True, False)
+                        for roi in (True, False)
+                    ]
+                )
+                for index, (factor, raw, roi) in enumerate(conditions):
+                    if zoom:
+                        desktop_key(0x30)
+                        if factor != 1:
+                            for _ in range(2):
+                                desktop_key(0xBD if factor < 1 else 0xBB)
+                    else:
+                        await session.send(
+                            "Emulation.setDeviceMetricsOverride",
+                            {"width": 640, "height": 400, "deviceScaleFactor": factor, "mobile": False},
+                        )
+                    await evaluate(session, "configure()")
+                    await settle(session)
+                    coordinator, facade, bridge = await composition(
+                        session, capture, inputs, bundle, tmp_path / f"bundle-{index}", raw=raw, roi=roi
+                    )
+                    case = {
+                        "factor": factor,
+                        "raw": raw,
+                        "roi": roi,
+                        "metrics": await metrics(session),
+                        "records": coordinator.records,
+                    }
+                    report["cases"].append(case)
+                    first = await coordinator.refresh()
+                    batch = facade.last_batch
+                    (out / f"input-{index}.png").write_bytes(batch.capture.source_ref.frame.data)
+>                   assert first.state.status == RecognitionStatus.MATCHED, case
+E                   AssertionError: {'factor': 1, 'raw': False, 'roi': False, 'metrics': {'runtime': {'dpr': 1.0000000298023224, 'width': 640, 'height': 4...60, 'height': 600}, 'cssLayoutViewport': {'pageX': 0, 'pageY': 0, 'clientWidth': 640, 'clientHeight': 400}, ...}}, ...}
+E                   assert <RecognitionS...: 'AMBIGUOUS'> == <RecognitionS...ED: 'MATCHED'>
+E                     
+E                     - MATCHED
+E                     + AMBIGUOUS
+
+tests\lite\test_real_vision.py:195: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/lite/test_real_vision.py::test_edge_visual_matrix - AssertionErr...
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed, 6 deselected in 23.92s

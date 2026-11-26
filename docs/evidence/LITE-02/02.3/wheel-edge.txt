@@ -1,0 +1,22 @@
+{
+  "outcome": "confirmed",
+  "payload": [
+    "MATCHED",
+    "124"
+  ],
+  "oracle": {
+    "result": {
+      "type": "object",
+      "value": [
+        {
+          "id": "button",
+          "x": 107,
+          "y": 81,
+          "round": "123"
+        }
+      ]
+    }
+  },
+  "resource": "D:\\Project\\BCA-lite\\.test-artifacts\\lite023-clean\\Lib\\site-packages\\bca\\lite\\resources\\fixture"
+}
+{"native_close": {"released": true, "worker_thread": 11292, "destroyed": ["tasker", "controller", "resource"], "errors": [], "stop_status": "succeeded"}}

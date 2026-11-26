@@ -6,6 +6,7 @@ import importlib.metadata
 import json
 import math
 import threading
+import time
 from typing import Any
 
 import numpy as np
@@ -206,6 +207,13 @@ class NativeVision:
                     self._stop_failed = True
                     stop = self.tasker.post_stop().wait()
                     stop_status = "succeeded" if stop.succeeded else "failed"
+                    # 02.3 observed a succeeded stop with running still true.
+                    # Allow bounded settling on this owner thread; never treat
+                    # timeout as proof of release or retry an input operation.
+                    if stop.succeeded:
+                        deadline = time.monotonic() + 1.0
+                        while self.tasker.running and time.monotonic() < deadline:
+                            time.sleep(0.005)
                     if not stop.succeeded or self.tasker.running:
                         raise VisionError("Tasker stop did not establish idle; retain all handles")
                     self._stop_failed = False

@@ -1,0 +1,6 @@
+{"python": "3.14.7", "pid": 11456, "mode": "maa", "packages": {"maafw": "v5.16.1", "numpy": "2.5.5", "opencv-python-headless": "4.14.0.94", "Pillow": "12.3.0"}}
+{"phase": "maa-before", "monotonic": 435412.5851553, "pid": 11456, "rss": 39084032, "private_bytes": 28659712, "cpu_seconds": 0.171875, "threads": 4, "handles": 153, "system_available": 2592706560, "system_commit": 27268972544, "system_commit_limit": 37039616000}
+......................................................................   [100%]
+70 passed in 51.67s
+{"native_maa": "v5.16.1"}
+{"phase": "maa-after", "exit_code": 0, "cv2_loaded": false, "legacy_loaded": false, "monotonic": 435464.428152, "pid": 11456, "rss": 108519424, "private_bytes": 580349952, "cpu_seconds": 125.84375, "threads": 23, "handles": 242, "system_available": 1860771840, "system_commit": 29503565824, "system_commit_limit": 37039616000}

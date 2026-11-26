@@ -1,0 +1,3 @@
+Command: python -m tests.lite.stability_probe docs/evidence/LITE-02/02.3/zoom-01 -- python -X faulthandler -m pytest tests/lite/test_real_vision.py -k desktop_zoom -x -q
+Monitor failed before spawning test: RuntimeError: multiple isolated Edge roots; monitor scope ambiguous
+Cause: renderer command lines also carry --remote-debugging-port=9341. Fixed root selection excludes all --type= child processes. No browser test ran in this attempt.

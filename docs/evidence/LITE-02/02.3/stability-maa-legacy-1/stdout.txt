@@ -1,0 +1,76 @@
+{"python": "3.14.7", "pid": 8804, "mode": "maa-legacy", "packages": {"maafw": "v5.16.1", "numpy": "2.5.5", "opencv-python-headless": "4.14.0.94", "Pillow": "12.3.0"}}
+{"phase": "maa-before", "monotonic": 434836.3205113, "pid": 8804, "rss": 38944768, "private_bytes": 28725248, "cpu_seconds": 0.1875, "threads": 4, "handles": 153, "system_available": 2682765312, "system_commit": 28903989248, "system_commit_limit": 37039616000}
+...............................F......................................   [100%]
+================================== FAILURES ===================================
+________________________ test_ocr_digits_and_roi[-20] _________________________
+
+tmp_path = WindowsPath('C:/Users/wutong/AppData/Local/Temp/pytest-of-wutong/pytest-6/test_ocr_digits_and_roi__20_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001EFFF37A820>
+text = '-20'
+
+    @pytest.mark.parametrize(
+        "text", [str(i) for i in range(10)] + ["-1", "-20", "-305", "12", "345", "6789"]
+    )
+    def test_ocr_digits_and_roi(tmp_path, monkeypatch, text):
+        model = model_spec()
+    
+        async def run():
+            image = scene(text=text, points=())
+            bridge, capture, _, _ = bridge_for(monkeypatch, image, max_frame_age=10)
+            facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+            await facade.start()
+            try:
+                batch = await facade.recognize(
+                    (OCRRequest("full"), OCRRequest("roi", (50, 100, 350, 110)))
+                )
+                record(tmp_path, f"ocr-{text}", result_record(batch), image)
+                assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+                for result in batch.results:
+                    assert result.status == RecognitionStatus.MATCHED
+                    assert [c.text for c in result.candidates] == [text]
+                    x, y, w, h = result.candidates[0].box
+                    assert x >= 50 and y >= 100 and x + w <= 400 and y + h <= 210
+            finally:
+                assert (await facade.aclose()).released
+    
+>       asyncio.run(run())
+
+tests\lite\test_vision_native.py:116: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def run():
+        image = scene(text=text, points=())
+        bridge, capture, _, _ = bridge_for(monkeypatch, image, max_frame_age=10)
+        facade = MaaVisionFacade(bridge, ResourceSpec(bundle_at(tmp_path / "bundle"), model))
+        await facade.start()
+        try:
+            batch = await facade.recognize(
+                (OCRRequest("full"), OCRRequest("roi", (50, 100, 350, 110)))
+            )
+            record(tmp_path, f"ocr-{text}", result_record(batch), image)
+            assert capture.count == 1 and batch.capture.source_ref is bridge.observation
+            for result in batch.results:
+                assert result.status == RecognitionStatus.MATCHED
+                assert [c.text for c in result.candidates] == [text]
+                x, y, w, h = result.candidates[0].box
+                assert x >= 50 and y >= 100 and x + w <= 400 and y + h <= 210
+        finally:
+>           assert (await facade.aclose()).released
+E           AssertionError: assert False
+E            +  where False = CloseReport(released=False, worker_thread=36980, destroyed=(), errors=('VisionError: Tasker stop did not establish idle; retain all handles',), stop_status='succeeded').released
+
+tests\lite\test_vision_native.py:114: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/lite/test_vision_native.py::test_ocr_digits_and_roi[-20] - Asser...
+1 failed, 69 passed in 34.05s
+{"phase": "maa-after", "exit_code": 1, "cv2_loaded": false, "legacy_loaded": false, "monotonic": 434870.5440109, "pid": 8804, "rss": 113471488, "private_bytes": 588001280, "cpu_seconds": 115.3125, "threads": 23, "handles": 242, "system_available": 2405474304, "system_commit": 29563330560, "system_commit_limit": 37039616000}

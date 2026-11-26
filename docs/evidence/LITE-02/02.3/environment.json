@@ -1,0 +1,40 @@
+{
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "packages": {
+    "maafw": "v5.16.1",
+    "numpy": "2.5.5",
+    "Pillow": "12.3.0",
+    "opencv-python-headless": "4.14.0.94",
+    "psutil": "7.2.2",
+    "websockets": "15.0.1"
+  },
+  "model_manifest": {
+    "source": "https://github.com/MaaXYZ/MaaCommonAssets",
+    "revision": "dabcd4681ac990dc4361de26416d986abd80e4aa",
+    "path": "OCR/ppocr_v3/en_us",
+    "license": "MIT (MaaCommonAssets); Apache-2.0 (PaddleOCR)",
+    "upstream": "https://github.com/PaddlePaddle/PaddleOCR/tree/795c81f1835725dbf9bf9f5a13e0c793dfd5f243",
+    "files": {
+      "det.onnx": {
+        "size": 2423224,
+        "sha256": "8fe4bf6abfb20402357827f2efc964c8b28cf980e29fe09a99b742ae29725fa9"
+      },
+      "rec.onnx": {
+        "size": 8956702,
+        "sha256": "da12c6e863761d774b07d3bd40fbaaa55516f90570e0b1dd9dc112e457301cc9"
+      },
+      "keys.txt": {
+        "size": 190,
+        "sha256": "5662df9d2d03f0e8ca0d3b0649d6acbab904b6a14b3d3521463c71c37c668ce3"
+      }
+    }
+  },
+  "assets": {
+    "src\\bca\\lite\\resources\\fixture\\page.html": "5368cd76520dd7a80d38c19d418bb2462342c85192624e681e38bdb97ae60ab0",
+    "src\\bca\\lite\\resources\\fixture\\README.md": "0836f6b10732e3ba4201337b6afe4659fec64e04b0c4120bffb658477a7930d6",
+    "src\\bca\\lite\\resources\\fixture\\image\\marker.png": "6ad7855b53a683ca63a71b01ff002d1c5239919bc9f4ed1285d4591a4fa08162",
+    "src\\bca\\lite\\resources\\fixture\\pipeline\\fixture.json": "e3566b3a06430868d71e9287dfd6c6c520a3da027aabea01951d407ee131dc2f"
+  },
+  "logical_cpus": 16
+}

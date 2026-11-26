@@ -1,0 +1,772 @@
+* Creating isolated environment: venv+pip...
+* Installing packages in isolated environment:
+  - setuptools>=77
+* Getting build dependencies for sdist...
+running egg_info
+writing src\browser_cli_agent.egg-info\PKG-INFO
+writing dependency_links to src\browser_cli_agent.egg-info\dependency_links.txt
+writing requirements to src\browser_cli_agent.egg-info\requires.txt
+writing top-level names to src\browser_cli_agent.egg-info\top_level.txt
+reading manifest file 'src\browser_cli_agent.egg-info\SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+writing manifest file 'src\browser_cli_agent.egg-info\SOURCES.txt'
+* Installed build dependency versions:
+  - setuptools==84.2.1
+* Building sdist...
+running sdist
+running egg_info
+writing src\browser_cli_agent.egg-info\PKG-INFO
+writing dependency_links to src\browser_cli_agent.egg-info\dependency_links.txt
+writing requirements to src\browser_cli_agent.egg-info\requires.txt
+writing top-level names to src\browser_cli_agent.egg-info\top_level.txt
+reading manifest file 'src\browser_cli_agent.egg-info\SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+writing manifest file 'src\browser_cli_agent.egg-info\SOURCES.txt'
+running check
+creating browser_cli_agent-0.2.0
+creating browser_cli_agent-0.2.0\configs
+creating browser_cli_agent-0.2.0\docs
+creating browser_cli_agent-0.2.0\docs\evidence\BCA-04.2
+creating browser_cli_agent-0.2.0\docs\evidence\LITE-01-addendum
+creating browser_cli_agent-0.2.0\docs\evidence\LITE-02\02.1
+creating browser_cli_agent-0.2.0\docs\evidence\LITE-02\02.2
+creating browser_cli_agent-0.2.0\docs\evidence\LITE-02\02.2-click-fix
+creating browser_cli_agent-0.2.0\docs\lite
+creating browser_cli_agent-0.2.0\docs\lite\models
+creating browser_cli_agent-0.2.0\docs\md
+creating browser_cli_agent-0.2.0\examples
+creating browser_cli_agent-0.2.0\examples\plugins
+creating browser_cli_agent-0.2.0\examples\plugins\pixel_fixture
+creating browser_cli_agent-0.2.0\examples\plugins\vision_fixture
+creating browser_cli_agent-0.2.0\plugins\example
+creating browser_cli_agent-0.2.0\plugins\majsoul
+creating browser_cli_agent-0.2.0\src\bca
+creating browser_cli_agent-0.2.0\src\bca\app
+creating browser_cli_agent-0.2.0\src\bca\app\cli
+creating browser_cli_agent-0.2.0\src\bca\core
+creating browser_cli_agent-0.2.0\src\bca\core\browser
+creating browser_cli_agent-0.2.0\src\bca\core\plugins
+creating browser_cli_agent-0.2.0\src\bca\core\protocol
+creating browser_cli_agent-0.2.0\src\bca\core\providers
+creating browser_cli_agent-0.2.0\src\bca\core\runtime
+creating browser_cli_agent-0.2.0\src\bca\lite
+creating browser_cli_agent-0.2.0\src\bca\lite\resources\fixture
+creating browser_cli_agent-0.2.0\src\bca\lite\resources\fixture\image
+creating browser_cli_agent-0.2.0\src\bca\lite\resources\fixture\pipeline
+creating browser_cli_agent-0.2.0\src\bca\plugin_sdk
+creating browser_cli_agent-0.2.0\src\bca\plugin_sdk\assets
+creating browser_cli_agent-0.2.0\src\bca\plugin_sdk\interfaces
+creating browser_cli_agent-0.2.0\src\bca\plugin_sdk\vision
+creating browser_cli_agent-0.2.0\src\browser_cli_agent.egg-info
+creating browser_cli_agent-0.2.0\tests
+creating browser_cli_agent-0.2.0\tests\app
+creating browser_cli_agent-0.2.0\tests\core
+creating browser_cli_agent-0.2.0\tests\core\browser
+creating browser_cli_agent-0.2.0\tests\core\plugins
+creating browser_cli_agent-0.2.0\tests\core\runtime
+creating browser_cli_agent-0.2.0\tests\lite
+creating browser_cli_agent-0.2.0\tests\plugin_sdk
+creating browser_cli_agent-0.2.0\tests\plugin_sdk\assets
+creating browser_cli_agent-0.2.0\tests\plugin_sdk\assets\fixtures
+creating browser_cli_agent-0.2.0\tests\plugin_sdk\vision
+creating browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying files to browser_cli_agent-0.2.0...
+copying MANIFEST.in -> browser_cli_agent-0.2.0
+copying README.md -> browser_cli_agent-0.2.0
+copying pyproject.toml -> browser_cli_agent-0.2.0
+copying configs\default.toml -> browser_cli_agent-0.2.0\configs
+copying docs\ARCHITECTURE.md -> browser_cli_agent-0.2.0\docs
+copying docs\ASSETS.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-00_HANDOFF.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-01.1_HANDOFF.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-01.1_METADATA_FIX_HANDOFF.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-01.1_NAVIGATION_DEBUG.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-01.2_DELIVERY.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-01.2_HANDOFF.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-01.2_VIEWPORT_FIX_HANDOFF.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-01.3_HANDOFF.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-01.4_HANDOFF.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-01_MAIN_SYNC.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-02.1_HANDOFF.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-02.2_HANDOFF.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-02.3_HANDOFF.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-02.4_CODE_AUDIT.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-02.4_HANDOFF.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-02_MAIN_SYNC.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-03.1_HANDOFF.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-03.2_HANDOFF.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-03_MAIN_SYNC.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-04.1_HANDOFF.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-04.2_HANDOFF.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-04_MAIN_SYNC.md -> browser_cli_agent-0.2.0\docs
+copying docs\BCA-LITE-01.md -> browser_cli_agent-0.2.0\docs
+copying docs\BROWSER.md -> browser_cli_agent-0.2.0\docs
+copying docs\DEVELOPMENT_PLAN.md -> browser_cli_agent-0.2.0\docs
+copying docs\INTERFACES.md -> browser_cli_agent-0.2.0\docs
+copying docs\PLUGIN_SPEC.md -> browser_cli_agent-0.2.0\docs
+copying docs\RUNTIME.md -> browser_cli_agent-0.2.0\docs
+copying docs\VISION.md -> browser_cli_agent-0.2.0\docs
+copying docs\evidence\BCA-04.2\browser.json -> browser_cli_agent-0.2.0\docs\evidence\BCA-04.2
+copying docs\evidence\BCA-04.2\full-with-cdp.txt -> browser_cli_agent-0.2.0\docs\evidence\BCA-04.2
+copying docs\evidence\BCA-04.2\full-without-cdp.txt -> browser_cli_agent-0.2.0\docs\evidence\BCA-04.2
+copying docs\evidence\BCA-04.2\mypy.txt -> browser_cli_agent-0.2.0\docs\evidence\BCA-04.2
+copying docs\evidence\BCA-04.2\offline.json -> browser_cli_agent-0.2.0\docs\evidence\BCA-04.2
+copying docs\evidence\BCA-04.2\package.txt -> browser_cli_agent-0.2.0\docs\evidence\BCA-04.2
+copying docs\evidence\BCA-04.2\ruff.txt -> browser_cli_agent-0.2.0\docs\evidence\BCA-04.2
+copying docs\evidence\BCA-04.2\verification.json -> browser_cli_agent-0.2.0\docs\evidence\BCA-04.2
+copying docs\evidence\BCA-04.2\vision-without-cdp.txt -> browser_cli_agent-0.2.0\docs\evidence\BCA-04.2
+copying docs\evidence\LITE-01-addendum\README.md -> browser_cli_agent-0.2.0\docs\evidence\LITE-01-addendum
+copying docs\evidence\LITE-02\02.1\README.md -> browser_cli_agent-0.2.0\docs\evidence\LITE-02\02.1
+copying docs\evidence\LITE-02\02.2\README.md -> browser_cli_agent-0.2.0\docs\evidence\LITE-02\02.2
+copying docs\evidence\LITE-02\02.2-click-fix\README.md -> browser_cli_agent-0.2.0\docs\evidence\LITE-02\02.2-click-fix
+copying docs\lite\LITE-00_HANDOFF.md -> browser_cli_agent-0.2.0\docs\lite
+copying docs\lite\LITE-01_ACCEPTANCE_2026-11-24.md -> browser_cli_agent-0.2.0\docs\lite
+copying docs\lite\LITE-01_ARCH_REVIEW_2026-11-23.md -> browser_cli_agent-0.2.0\docs\lite
+copying docs\lite\LITE-01_HANDOFF.md -> browser_cli_agent-0.2.0\docs\lite
+copying docs\lite\LITE-02.1_ARCH_REVIEW_2026-11-26.md -> browser_cli_agent-0.2.0\docs\lite
+copying docs\lite\LITE-02.1_HANDOFF.md -> browser_cli_agent-0.2.0\docs\lite
+copying docs\lite\LITE-02.2_ARCH_REVIEW_2026-11-26.md -> browser_cli_agent-0.2.0\docs\lite
+copying docs\lite\LITE-02.2_HANDOFF.md -> browser_cli_agent-0.2.0\docs\lite
+copying docs\lite\LITE-02.2_P1_ACCEPTANCE_2026-11-26.md -> browser_cli_agent-0.2.0\docs\lite
+copying docs\lite\LITE-02.3_STABILITY_PLAN.md -> browser_cli_agent-0.2.0\docs\lite
+copying docs\lite\LITE-02_CODEX_DEVELOPMENT_HANDOFF.md -> browser_cli_agent-0.2.0\docs\lite
+copying docs\lite\LITE-02_DESIGN.md -> browser_cli_agent-0.2.0\docs\lite
+copying docs\lite\LITE-02_DESIGN_REVIEW_2026-11-24.md -> browser_cli_agent-0.2.0\docs\lite
+copying docs\lite\LITE-02_HANDOFF.md -> browser_cli_agent-0.2.0\docs\lite
+copying docs\lite\PLUGIN_CONTRACT.md -> browser_cli_agent-0.2.0\docs\lite
+copying docs\lite\models\MaaCommonAssets-LICENSE.txt -> browser_cli_agent-0.2.0\docs\lite\models
+copying docs\lite\models\PaddleOCR-LICENSE.txt -> browser_cli_agent-0.2.0\docs\lite\models
+copying docs\lite\models\README.md -> browser_cli_agent-0.2.0\docs\lite\models
+copying docs\lite\models\ppocr-v3-en-UPSTREAM.md -> browser_cli_agent-0.2.0\docs\lite\models
+copying docs\lite\models\ppocr-v3-en.json -> browser_cli_agent-0.2.0\docs\lite\models
+copying docs\md\BCA-00_MAIN_SYNC.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-00_Protocol.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-00_Protocol_��������������_Codex��ʾ��.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-00_��Ŀ��ʼ���빫���ӿ����.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-01.1_Codex_Prompt.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-01.1_Navigation_Debug_Prompt.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-01.1_Navigation_Investigation_Prompt.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-01.1_Target_Metadata_Fix_Prompt.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-01.2_Codex_Prompt.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-01.2_Viewport_Geometry_Fix_Prompt.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-01.3_Codex_Prompt.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-01.4_Codex_Prompt.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-01_Browser.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-02.1_State_Store_Event_Bus_Codex.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-02.2_Scheduler_Observation_Codex.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-02.3_Action_Pipeline_Controller_Codex.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-02.4_Integration_Refactoring_Final_Handoff_Codex.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-02_Runtime.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-03.1_Plugin_Core_Runtime_Codex.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-03.2_Real_Browser_Integration_Codex.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-03_Plugin_System.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-04.1_Asset_Foundation_Codex_Prompt.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-04.2_Vision_Engine_Integration_Codex_Prompt.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA-LITE_MASTER_HANDOFF.md -> browser_cli_agent-0.2.0\docs\md
+copying docs\md\BCA_PROJECT_CONTEXT.md -> browser_cli_agent-0.2.0\docs\md
+copying examples\__init__.py -> browser_cli_agent-0.2.0\examples
+copying examples\asset_foundation.py -> browser_cli_agent-0.2.0\examples
+copying examples\browser_end_to_end.py -> browser_cli_agent-0.2.0\examples
+copying examples\browser_session.py -> browser_cli_agent-0.2.0\examples
+copying examples\capture_browser.py -> browser_cli_agent-0.2.0\examples
+copying examples\input_browser.py -> browser_cli_agent-0.2.0\examples
+copying examples\lite_maa_cdp_smoke.py -> browser_cli_agent-0.2.0\examples
+copying examples\lite_vision.py -> browser_cli_agent-0.2.0\examples
+copying examples\navigation_debug.py -> browser_cli_agent-0.2.0\examples
+copying examples\plugin_browser.py -> browser_cli_agent-0.2.0\examples
+copying examples\plugin_integration.py -> browser_cli_agent-0.2.0\examples
+copying examples\plugin_runtime.py -> browser_cli_agent-0.2.0\examples
+copying examples\runtime_actions.py -> browser_cli_agent-0.2.0\examples
+copying examples\runtime_basics.py -> browser_cli_agent-0.2.0\examples
+copying examples\runtime_browser.py -> browser_cli_agent-0.2.0\examples
+copying examples\runtime_integration.py -> browser_cli_agent-0.2.0\examples
+copying examples\runtime_observation.py -> browser_cli_agent-0.2.0\examples
+copying examples\vision_benchmark.py -> browser_cli_agent-0.2.0\examples
+copying examples\vision_foundation.py -> browser_cli_agent-0.2.0\examples
+copying examples\vision_integration.py -> browser_cli_agent-0.2.0\examples
+copying examples\plugins\__init__.py -> browser_cli_agent-0.2.0\examples\plugins
+copying examples\plugins\lite_fixture.py -> browser_cli_agent-0.2.0\examples\plugins
+copying examples\plugins\pixel_fixture\__init__.py -> browser_cli_agent-0.2.0\examples\plugins\pixel_fixture
+copying examples\plugins\pixel_fixture\plugin.py -> browser_cli_agent-0.2.0\examples\plugins\pixel_fixture
+copying examples\plugins\pixel_fixture\plugin.toml -> browser_cli_agent-0.2.0\examples\plugins\pixel_fixture
+copying examples\plugins\vision_fixture\__init__.py -> browser_cli_agent-0.2.0\examples\plugins\vision_fixture
+copying examples\plugins\vision_fixture\assets.py -> browser_cli_agent-0.2.0\examples\plugins\vision_fixture
+copying examples\plugins\vision_fixture\plugin.py -> browser_cli_agent-0.2.0\examples\plugins\vision_fixture
+copying examples\plugins\vision_fixture\plugin.toml -> browser_cli_agent-0.2.0\examples\plugins\vision_fixture
+copying plugins\example\__init__.py -> browser_cli_agent-0.2.0\plugins\example
+copying plugins\majsoul\README.md -> browser_cli_agent-0.2.0\plugins\majsoul
+copying src\bca\__init__.py -> browser_cli_agent-0.2.0\src\bca
+copying src\bca\py.typed -> browser_cli_agent-0.2.0\src\bca
+copying src\bca\app\__init__.py -> browser_cli_agent-0.2.0\src\bca\app
+copying src\bca\app\logging.py -> browser_cli_agent-0.2.0\src\bca\app
+copying src\bca\app\cli\__init__.py -> browser_cli_agent-0.2.0\src\bca\app\cli
+copying src\bca\core\__init__.py -> browser_cli_agent-0.2.0\src\bca\core
+copying src\bca\core\errors.py -> browser_cli_agent-0.2.0\src\bca\core
+copying src\bca\core\browser\__init__.py -> browser_cli_agent-0.2.0\src\bca\core\browser
+copying src\bca\core\browser\capture.py -> browser_cli_agent-0.2.0\src\bca\core\browser
+copying src\bca\core\browser\connection.py -> browser_cli_agent-0.2.0\src\bca\core\browser
+copying src\bca\core\browser\endpoint.py -> browser_cli_agent-0.2.0\src\bca\core\browser
+copying src\bca\core\browser\errors.py -> browser_cli_agent-0.2.0\src\bca\core\browser
+copying src\bca\core\browser\geometry.py -> browser_cli_agent-0.2.0\src\bca\core\browser
+copying src\bca\core\browser\input.py -> browser_cli_agent-0.2.0\src\bca\core\browser
+copying src\bca\core\browser\keys.py -> browser_cli_agent-0.2.0\src\bca\core\browser
+copying src\bca\core\browser\models.py -> browser_cli_agent-0.2.0\src\bca\core\browser
+copying src\bca\core\browser\session.py -> browser_cli_agent-0.2.0\src\bca\core\browser
+copying src\bca\core\browser\targets.py -> browser_cli_agent-0.2.0\src\bca\core\browser
+copying src\bca\core\plugins\__init__.py -> browser_cli_agent-0.2.0\src\bca\core\plugins
+copying src\bca\core\plugins\capture_adapter.py -> browser_cli_agent-0.2.0\src\bca\core\plugins
+copying src\bca\core\plugins\catalog.py -> browser_cli_agent-0.2.0\src\bca\core\plugins
+copying src\bca\core\plugins\contracts.py -> browser_cli_agent-0.2.0\src\bca\core\plugins
+copying src\bca\core\plugins\errors.py -> browser_cli_agent-0.2.0\src\bca\core\plugins
+copying src\bca\core\plugins\host.py -> browser_cli_agent-0.2.0\src\bca\core\plugins
+copying src\bca\core\plugins\loader.py -> browser_cli_agent-0.2.0\src\bca\core\plugins
+copying src\bca\core\plugins\lookup.py -> browser_cli_agent-0.2.0\src\bca\core\plugins
+copying src\bca\core\plugins\manager.py -> browser_cli_agent-0.2.0\src\bca\core\plugins
+copying src\bca\core\plugins\models.py -> browser_cli_agent-0.2.0\src\bca\core\plugins
+copying src\bca\core\plugins\validation.py -> browser_cli_agent-0.2.0\src\bca\core\plugins
+copying src\bca\core\protocol\__init__.py -> browser_cli_agent-0.2.0\src\bca\core\protocol
+copying src\bca\core\protocol\codec.py -> browser_cli_agent-0.2.0\src\bca\core\protocol
+copying src\bca\core\protocol\models.py -> browser_cli_agent-0.2.0\src\bca\core\protocol
+copying src\bca\core\protocol\validation.py -> browser_cli_agent-0.2.0\src\bca\core\protocol
+copying src\bca\core\providers\__init__.py -> browser_cli_agent-0.2.0\src\bca\core\providers
+copying src\bca\core\providers\base.py -> browser_cli_agent-0.2.0\src\bca\core\providers
+copying src\bca\core\providers\registry.py -> browser_cli_agent-0.2.0\src\bca\core\providers
+copying src\bca\core\runtime\__init__.py -> browser_cli_agent-0.2.0\src\bca\core\runtime
+copying src\bca\core\runtime\action_models.py -> browser_cli_agent-0.2.0\src\bca\core\runtime
+copying src\bca\core\runtime\action_pipeline.py -> browser_cli_agent-0.2.0\src\bca\core\runtime
+copying src\bca\core\runtime\browser_freshness.py -> browser_cli_agent-0.2.0\src\bca\core\runtime
+copying src\bca\core\runtime\controller.py -> browser_cli_agent-0.2.0\src\bca\core\runtime
+copying src\bca\core\runtime\diagnostics.py -> browser_cli_agent-0.2.0\src\bca\core\runtime
+copying src\bca\core\runtime\event_bus.py -> browser_cli_agent-0.2.0\src\bca\core\runtime
+copying src\bca\core\runtime\observation.py -> browser_cli_agent-0.2.0\src\bca\core\runtime
+copying src\bca\core\runtime\ports.py -> browser_cli_agent-0.2.0\src\bca\core\runtime
+copying src\bca\core\runtime\scheduler.py -> browser_cli_agent-0.2.0\src\bca\core\runtime
+copying src\bca\core\runtime\state_store.py -> browser_cli_agent-0.2.0\src\bca\core\runtime
+copying src\bca\lite\__init__.py -> browser_cli_agent-0.2.0\src\bca\lite
+copying src\bca\lite\_native_vision.py -> browser_cli_agent-0.2.0\src\bca\lite
+copying src\bca\lite\bridge.py -> browser_cli_agent-0.2.0\src\bca\lite
+copying src\bca\lite\fixture.py -> browser_cli_agent-0.2.0\src\bca\lite
+copying src\bca\lite\maa_controller.py -> browser_cli_agent-0.2.0\src\bca\lite
+copying src\bca\lite\observation.py -> browser_cli_agent-0.2.0\src\bca\lite
+copying src\bca\lite\plugin.py -> browser_cli_agent-0.2.0\src\bca\lite
+copying src\bca\lite\vision.py -> browser_cli_agent-0.2.0\src\bca\lite
+copying src\bca\lite\vision_resources.py -> browser_cli_agent-0.2.0\src\bca\lite
+copying src\bca\lite\vision_types.py -> browser_cli_agent-0.2.0\src\bca\lite
+copying src\bca\lite\resources\fixture\README.md -> browser_cli_agent-0.2.0\src\bca\lite\resources\fixture
+copying src\bca\lite\resources\fixture\page.html -> browser_cli_agent-0.2.0\src\bca\lite\resources\fixture
+copying src\bca\lite\resources\fixture\image\marker.png -> browser_cli_agent-0.2.0\src\bca\lite\resources\fixture\image
+copying src\bca\lite\resources\fixture\pipeline\fixture.json -> browser_cli_agent-0.2.0\src\bca\lite\resources\fixture\pipeline
+copying src\bca\plugin_sdk\__init__.py -> browser_cli_agent-0.2.0\src\bca\plugin_sdk
+copying src\bca\plugin_sdk\assets\__init__.py -> browser_cli_agent-0.2.0\src\bca\plugin_sdk\assets
+copying src\bca\plugin_sdk\assets\cache.py -> browser_cli_agent-0.2.0\src\bca\plugin_sdk\assets
+copying src\bca\plugin_sdk\assets\errors.py -> browser_cli_agent-0.2.0\src\bca\plugin_sdk\assets
+copying src\bca\plugin_sdk\assets\loader.py -> browser_cli_agent-0.2.0\src\bca\plugin_sdk\assets
+copying src\bca\plugin_sdk\assets\manifest.py -> browser_cli_agent-0.2.0\src\bca\plugin_sdk\assets
+copying src\bca\plugin_sdk\assets\models.py -> browser_cli_agent-0.2.0\src\bca\plugin_sdk\assets
+copying src\bca\plugin_sdk\assets\paths.py -> browser_cli_agent-0.2.0\src\bca\plugin_sdk\assets
+copying src\bca\plugin_sdk\assets\profile.py -> browser_cli_agent-0.2.0\src\bca\plugin_sdk\assets
+copying src\bca\plugin_sdk\assets\store.py -> browser_cli_agent-0.2.0\src\bca\plugin_sdk\assets
+copying src\bca\plugin_sdk\interfaces\__init__.py -> browser_cli_agent-0.2.0\src\bca\plugin_sdk\interfaces
+copying src\bca\plugin_sdk\vision\__init__.py -> browser_cli_agent-0.2.0\src\bca\plugin_sdk\vision
+copying src\bca\plugin_sdk\vision\decode.py -> browser_cli_agent-0.2.0\src\bca\plugin_sdk\vision
+copying src\bca\plugin_sdk\vision\errors.py -> browser_cli_agent-0.2.0\src\bca\plugin_sdk\vision
+copying src\bca\plugin_sdk\vision\matching.py -> browser_cli_agent-0.2.0\src\bca\plugin_sdk\vision
+copying src\bca\plugin_sdk\vision\models.py -> browser_cli_agent-0.2.0\src\bca\plugin_sdk\vision
+copying src\bca\plugin_sdk\vision\preprocess.py -> browser_cli_agent-0.2.0\src\bca\plugin_sdk\vision
+copying src\browser_cli_agent.egg-info\PKG-INFO -> browser_cli_agent-0.2.0\src\browser_cli_agent.egg-info
+copying src\browser_cli_agent.egg-info\SOURCES.txt -> browser_cli_agent-0.2.0\src\browser_cli_agent.egg-info
+copying src\browser_cli_agent.egg-info\dependency_links.txt -> browser_cli_agent-0.2.0\src\browser_cli_agent.egg-info
+copying src\browser_cli_agent.egg-info\requires.txt -> browser_cli_agent-0.2.0\src\browser_cli_agent.egg-info
+copying src\browser_cli_agent.egg-info\top_level.txt -> browser_cli_agent-0.2.0\src\browser_cli_agent.egg-info
+copying tests\__init__.py -> browser_cli_agent-0.2.0\tests
+copying tests\conftest.py -> browser_cli_agent-0.2.0\tests
+copying tests\app\__init__.py -> browser_cli_agent-0.2.0\tests\app
+copying tests\app\package_smoke.py -> browser_cli_agent-0.2.0\tests\app
+copying tests\app\test_foundation.py -> browser_cli_agent-0.2.0\tests\app
+copying tests\core\__init__.py -> browser_cli_agent-0.2.0\tests\core
+copying tests\core\test_dependencies.py -> browser_cli_agent-0.2.0\tests\core
+copying tests\core\test_protocol.py -> browser_cli_agent-0.2.0\tests\core
+copying tests\core\test_protocol_incremental.py -> browser_cli_agent-0.2.0\tests\core
+copying tests\core\test_providers.py -> browser_cli_agent-0.2.0\tests\core
+copying tests\core\browser\__init__.py -> browser_cli_agent-0.2.0\tests\core\browser
+copying tests\core\browser\mock_cdp.py -> browser_cli_agent-0.2.0\tests\core\browser
+copying tests\core\browser\test_capture.py -> browser_cli_agent-0.2.0\tests\core\browser
+copying tests\core\browser\test_connection.py -> browser_cli_agent-0.2.0\tests\core\browser
+copying tests\core\browser\test_end_to_end.py -> browser_cli_agent-0.2.0\tests\core\browser
+copying tests\core\browser\test_input.py -> browser_cli_agent-0.2.0\tests\core\browser
+copying tests\core\browser\test_navigation_debug.py -> browser_cli_agent-0.2.0\tests\core\browser
+copying tests\core\browser\test_real_browser.py -> browser_cli_agent-0.2.0\tests\core\browser
+copying tests\core\browser\test_real_capture.py -> browser_cli_agent-0.2.0\tests\core\browser
+copying tests\core\browser\test_real_end_to_end.py -> browser_cli_agent-0.2.0\tests\core\browser
+copying tests\core\browser\test_real_input.py -> browser_cli_agent-0.2.0\tests\core\browser
+copying tests\core\browser\test_refresh.py -> browser_cli_agent-0.2.0\tests\core\browser
+copying tests\core\browser\test_session.py -> browser_cli_agent-0.2.0\tests\core\browser
+copying tests\core\plugins\real_helpers.py -> browser_cli_agent-0.2.0\tests\core\plugins
+copying tests\core\plugins\test_catalog_loader.py -> browser_cli_agent-0.2.0\tests\core\plugins
+copying tests\core\plugins\test_deployment.py -> browser_cli_agent-0.2.0\tests\core\plugins
+copying tests\core\plugins\test_host.py -> browser_cli_agent-0.2.0\tests\core\plugins
+copying tests\core\plugins\test_manager.py -> browser_cli_agent-0.2.0\tests\core\plugins
+copying tests\core\plugins\test_real_faults.py -> browser_cli_agent-0.2.0\tests\core\plugins
+copying tests\core\plugins\test_real_integration.py -> browser_cli_agent-0.2.0\tests\core\plugins
+copying tests\core\plugins\test_real_lifecycle.py -> browser_cli_agent-0.2.0\tests\core\plugins
+copying tests\core\runtime\action_fakes.py -> browser_cli_agent-0.2.0\tests\core\runtime
+copying tests\core\runtime\cdp_fault_proxy.py -> browser_cli_agent-0.2.0\tests\core\runtime
+copying tests\core\runtime\test_action_pipeline.py -> browser_cli_agent-0.2.0\tests\core\runtime
+copying tests\core\runtime\test_audit_regressions.py -> browser_cli_agent-0.2.0\tests\core\runtime
+copying tests\core\runtime\test_browser_freshness.py -> browser_cli_agent-0.2.0\tests\core\runtime
+copying tests\core\runtime\test_controller.py -> browser_cli_agent-0.2.0\tests\core\runtime
+copying tests\core\runtime\test_event_bus.py -> browser_cli_agent-0.2.0\tests\core\runtime
+copying tests\core\runtime\test_observation.py -> browser_cli_agent-0.2.0\tests\core\runtime
+copying tests\core\runtime\test_real_integration.py -> browser_cli_agent-0.2.0\tests\core\runtime
+copying tests\core\runtime\test_real_runtime.py -> browser_cli_agent-0.2.0\tests\core\runtime
+copying tests\core\runtime\test_scheduler.py -> browser_cli_agent-0.2.0\tests\core\runtime
+copying tests\core\runtime\test_scheduler_integration.py -> browser_cli_agent-0.2.0\tests\core\runtime
+copying tests\core\runtime\test_state_store.py -> browser_cli_agent-0.2.0\tests\core\runtime
+copying tests\lite\generate_fixture.py -> browser_cli_agent-0.2.0\tests\lite
+copying tests\lite\stability_probe.py -> browser_cli_agent-0.2.0\tests\lite
+copying tests\lite\stability_workload.py -> browser_cli_agent-0.2.0\tests\lite
+copying tests\lite\summarize_stability.py -> browser_cli_agent-0.2.0\tests\lite
+copying tests\lite\test_cdp_bridge.py -> browser_cli_agent-0.2.0\tests\lite
+copying tests\lite\test_click_outcome.py -> browser_cli_agent-0.2.0\tests\lite
+copying tests\lite\test_coordinator_lifecycle.py -> browser_cli_agent-0.2.0\tests\lite
+copying tests\lite\test_maa_native.py -> browser_cli_agent-0.2.0\tests\lite
+copying tests\lite\test_observation.py -> browser_cli_agent-0.2.0\tests\lite
+copying tests\lite\test_real_addendum.py -> browser_cli_agent-0.2.0\tests\lite
+copying tests\lite\test_real_bridge.py -> browser_cli_agent-0.2.0\tests\lite
+copying tests\lite\test_real_vision.py -> browser_cli_agent-0.2.0\tests\lite
+copying tests\lite\test_stop_settlement.py -> browser_cli_agent-0.2.0\tests\lite
+copying tests\lite\test_vision_native.py -> browser_cli_agent-0.2.0\tests\lite
+copying tests\lite\vision_fixture.py -> browser_cli_agent-0.2.0\tests\lite
+copying tests\lite\wheel_probe.py -> browser_cli_agent-0.2.0\tests\lite
+copying tests\plugin_sdk\__init__.py -> browser_cli_agent-0.2.0\tests\plugin_sdk
+copying tests\plugin_sdk\test_example.py -> browser_cli_agent-0.2.0\tests\plugin_sdk
+copying tests\plugin_sdk\assets\__init__.py -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets
+copying tests\plugin_sdk\assets\conftest.py -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets
+copying tests\plugin_sdk\assets\test_cache.py -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets
+copying tests\plugin_sdk\assets\test_loader.py -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets
+copying tests\plugin_sdk\assets\test_manifest.py -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets
+copying tests\plugin_sdk\assets\test_paths.py -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets
+copying tests\plugin_sdk\assets\test_profile.py -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets
+copying tests\plugin_sdk\assets\test_regressions.py -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets
+copying tests\plugin_sdk\assets\test_store.py -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets
+copying tests\plugin_sdk\assets\fixtures\README.md -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets\fixtures
+copying tests\plugin_sdk\assets\fixtures\dark.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets\fixtures
+copying tests\plugin_sdk\assets\fixtures\expected.json -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets\fixtures
+copying tests\plugin_sdk\assets\fixtures\l.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets\fixtures
+copying tests\plugin_sdk\assets\fixtures\la.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets\fixtures
+copying tests\plugin_sdk\assets\fixtures\mask.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets\fixtures
+copying tests\plugin_sdk\assets\fixtures\opaque.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets\fixtures
+copying tests\plugin_sdk\assets\fixtures\palette.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets\fixtures
+copying tests\plugin_sdk\assets\fixtures\rgb.jpg -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets\fixtures
+copying tests\plugin_sdk\assets\fixtures\rgb.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets\fixtures
+copying tests\plugin_sdk\assets\fixtures\rgba.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets\fixtures
+copying tests\plugin_sdk\assets\fixtures\white.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets\fixtures
+copying tests\plugin_sdk\assets\fixtures\zero.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\assets\fixtures
+copying tests\plugin_sdk\vision\__init__.py -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision
+copying tests\plugin_sdk\vision\conftest.py -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision
+copying tests\plugin_sdk\vision\test_browser.py -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision
+copying tests\plugin_sdk\vision\test_dataset.py -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision
+copying tests\plugin_sdk\vision\test_decode.py -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision
+copying tests\plugin_sdk\vision\test_errors.py -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision
+copying tests\plugin_sdk\vision\test_geometry.py -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision
+copying tests\plugin_sdk\vision\test_matching.py -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision
+copying tests\plugin_sdk\vision\test_performance.py -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision
+copying tests\plugin_sdk\vision\test_preprocess.py -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision
+copying tests\plugin_sdk\vision\fixtures\README.md -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\alpha.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\ambiguous-0.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\ambiguous-1.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\ambiguous-2.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\ambiguous-3.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\ambiguous-4.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\ambiguous-5.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\anisotropic-negative-0.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\anisotropic-negative-1.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\anisotropic-negative-2.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\anisotropic-negative-3.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\anisotropic-positive-0.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\anisotropic-positive-1.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\anisotropic-positive-2.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\anisotropic-positive-3.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\enlarge-negative-0.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\enlarge-negative-1.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\enlarge-negative-2.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\enlarge-negative-3.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\enlarge-positive-0.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\enlarge-positive-1.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\enlarge-positive-2.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\enlarge-positive-3.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\expected.json -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\generate.py -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\gray-negative-0.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\gray-negative-1.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\gray-negative-2.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\gray-negative-3.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\gray-positive-0.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\gray-positive-1.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\gray-positive-2.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\gray-positive-3.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\jpeg-negative-0.jpg -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\jpeg-negative-1.jpg -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\jpeg-negative-2.jpg -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\jpeg-negative-3.jpg -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\jpeg-positive-0.jpg -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\jpeg-positive-1.jpg -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\jpeg-positive-2.jpg -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\jpeg-positive-3.jpg -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\manifest.json -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\mask-negative-0.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\mask-negative-1.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\mask-negative-2.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\mask-negative-3.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\mask-positive-0.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\mask-positive-1.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\mask-positive-2.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\mask-positive-3.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\mask.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\repeated-0.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\repeated-1.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\repeated-2.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\repeated-3.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\repeated-4.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\repeated-5.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\rgb-negative-0.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\rgb-negative-1.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\rgb-negative-2.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\rgb-negative-3.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\rgb-positive-0.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\rgb-positive-1.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\rgb-positive-2.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\rgb-positive-3.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\roi-negative-0.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\roi-negative-1.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\roi-negative-2.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\roi-negative-3.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\roi-positive-0.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\roi-positive-1.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\roi-positive-2.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\roi-positive-3.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\shrink-negative-0.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\shrink-negative-1.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\shrink-negative-2.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\shrink-negative-3.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\shrink-positive-0.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\shrink-positive-1.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\shrink-positive-2.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\shrink-positive-3.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\texture.png -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+copying tests\plugin_sdk\vision\fixtures\weighted.ini -> browser_cli_agent-0.2.0\tests\plugin_sdk\vision\fixtures
+Writing browser_cli_agent-0.2.0\setup.cfg
+Creating tar archive
+removing 'browser_cli_agent-0.2.0' (and everything under it)
+* Building wheel from sdist
+* Creating isolated environment: venv+pip...
+* Installing packages in isolated environment:
+  - setuptools>=77
+* Getting build dependencies for wheel...
+running egg_info
+writing src\browser_cli_agent.egg-info\PKG-INFO
+writing dependency_links to src\browser_cli_agent.egg-info\dependency_links.txt
+writing requirements to src\browser_cli_agent.egg-info\requires.txt
+writing top-level names to src\browser_cli_agent.egg-info\top_level.txt
+reading manifest file 'src\browser_cli_agent.egg-info\SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+writing manifest file 'src\browser_cli_agent.egg-info\SOURCES.txt'
+* Installed build dependency versions:
+  - setuptools==84.2.1
+* Building wheel...
+running bdist_wheel
+running build
+running build_py
+creating build\lib\bca
+copying src\bca\__init__.py -> build\lib\bca
+creating build\lib\bca\app
+copying src\bca\app\logging.py -> build\lib\bca\app
+copying src\bca\app\__init__.py -> build\lib\bca\app
+creating build\lib\bca\core
+copying src\bca\core\errors.py -> build\lib\bca\core
+copying src\bca\core\__init__.py -> build\lib\bca\core
+creating build\lib\bca\lite
+copying src\bca\lite\bridge.py -> build\lib\bca\lite
+copying src\bca\lite\fixture.py -> build\lib\bca\lite
+copying src\bca\lite\maa_controller.py -> build\lib\bca\lite
+copying src\bca\lite\observation.py -> build\lib\bca\lite
+copying src\bca\lite\plugin.py -> build\lib\bca\lite
+copying src\bca\lite\vision.py -> build\lib\bca\lite
+copying src\bca\lite\vision_resources.py -> build\lib\bca\lite
+copying src\bca\lite\vision_types.py -> build\lib\bca\lite
+copying src\bca\lite\_native_vision.py -> build\lib\bca\lite
+copying src\bca\lite\__init__.py -> build\lib\bca\lite
+creating build\lib\bca\plugin_sdk
+copying src\bca\plugin_sdk\__init__.py -> build\lib\bca\plugin_sdk
+creating build\lib\bca\app\cli
+copying src\bca\app\cli\__init__.py -> build\lib\bca\app\cli
+creating build\lib\bca\core\browser
+copying src\bca\core\browser\capture.py -> build\lib\bca\core\browser
+copying src\bca\core\browser\connection.py -> build\lib\bca\core\browser
+copying src\bca\core\browser\endpoint.py -> build\lib\bca\core\browser
+copying src\bca\core\browser\errors.py -> build\lib\bca\core\browser
+copying src\bca\core\browser\geometry.py -> build\lib\bca\core\browser
+copying src\bca\core\browser\input.py -> build\lib\bca\core\browser
+copying src\bca\core\browser\keys.py -> build\lib\bca\core\browser
+copying src\bca\core\browser\models.py -> build\lib\bca\core\browser
+copying src\bca\core\browser\session.py -> build\lib\bca\core\browser
+copying src\bca\core\browser\targets.py -> build\lib\bca\core\browser
+copying src\bca\core\browser\__init__.py -> build\lib\bca\core\browser
+creating build\lib\bca\core\plugins
+copying src\bca\core\plugins\capture_adapter.py -> build\lib\bca\core\plugins
+copying src\bca\core\plugins\catalog.py -> build\lib\bca\core\plugins
+copying src\bca\core\plugins\contracts.py -> build\lib\bca\core\plugins
+copying src\bca\core\plugins\errors.py -> build\lib\bca\core\plugins
+copying src\bca\core\plugins\host.py -> build\lib\bca\core\plugins
+copying src\bca\core\plugins\loader.py -> build\lib\bca\core\plugins
+copying src\bca\core\plugins\lookup.py -> build\lib\bca\core\plugins
+copying src\bca\core\plugins\manager.py -> build\lib\bca\core\plugins
+copying src\bca\core\plugins\models.py -> build\lib\bca\core\plugins
+copying src\bca\core\plugins\validation.py -> build\lib\bca\core\plugins
+copying src\bca\core\plugins\__init__.py -> build\lib\bca\core\plugins
+creating build\lib\bca\core\protocol
+copying src\bca\core\protocol\codec.py -> build\lib\bca\core\protocol
+copying src\bca\core\protocol\models.py -> build\lib\bca\core\protocol
+copying src\bca\core\protocol\validation.py -> build\lib\bca\core\protocol
+copying src\bca\core\protocol\__init__.py -> build\lib\bca\core\protocol
+creating build\lib\bca\core\providers
+copying src\bca\core\providers\base.py -> build\lib\bca\core\providers
+copying src\bca\core\providers\registry.py -> build\lib\bca\core\providers
+copying src\bca\core\providers\__init__.py -> build\lib\bca\core\providers
+creating build\lib\bca\core\runtime
+copying src\bca\core\runtime\action_models.py -> build\lib\bca\core\runtime
+copying src\bca\core\runtime\action_pipeline.py -> build\lib\bca\core\runtime
+copying src\bca\core\runtime\browser_freshness.py -> build\lib\bca\core\runtime
+copying src\bca\core\runtime\controller.py -> build\lib\bca\core\runtime
+copying src\bca\core\runtime\diagnostics.py -> build\lib\bca\core\runtime
+copying src\bca\core\runtime\event_bus.py -> build\lib\bca\core\runtime
+copying src\bca\core\runtime\observation.py -> build\lib\bca\core\runtime
+copying src\bca\core\runtime\ports.py -> build\lib\bca\core\runtime
+copying src\bca\core\runtime\scheduler.py -> build\lib\bca\core\runtime
+copying src\bca\core\runtime\state_store.py -> build\lib\bca\core\runtime
+copying src\bca\core\runtime\__init__.py -> build\lib\bca\core\runtime
+creating build\lib\bca\plugin_sdk\assets
+copying src\bca\plugin_sdk\assets\cache.py -> build\lib\bca\plugin_sdk\assets
+copying src\bca\plugin_sdk\assets\errors.py -> build\lib\bca\plugin_sdk\assets
+copying src\bca\plugin_sdk\assets\loader.py -> build\lib\bca\plugin_sdk\assets
+copying src\bca\plugin_sdk\assets\manifest.py -> build\lib\bca\plugin_sdk\assets
+copying src\bca\plugin_sdk\assets\models.py -> build\lib\bca\plugin_sdk\assets
+copying src\bca\plugin_sdk\assets\paths.py -> build\lib\bca\plugin_sdk\assets
+copying src\bca\plugin_sdk\assets\profile.py -> build\lib\bca\plugin_sdk\assets
+copying src\bca\plugin_sdk\assets\store.py -> build\lib\bca\plugin_sdk\assets
+copying src\bca\plugin_sdk\assets\__init__.py -> build\lib\bca\plugin_sdk\assets
+creating build\lib\bca\plugin_sdk\interfaces
+copying src\bca\plugin_sdk\interfaces\__init__.py -> build\lib\bca\plugin_sdk\interfaces
+creating build\lib\bca\plugin_sdk\vision
+copying src\bca\plugin_sdk\vision\decode.py -> build\lib\bca\plugin_sdk\vision
+copying src\bca\plugin_sdk\vision\errors.py -> build\lib\bca\plugin_sdk\vision
+copying src\bca\plugin_sdk\vision\matching.py -> build\lib\bca\plugin_sdk\vision
+copying src\bca\plugin_sdk\vision\models.py -> build\lib\bca\plugin_sdk\vision
+copying src\bca\plugin_sdk\vision\preprocess.py -> build\lib\bca\plugin_sdk\vision
+copying src\bca\plugin_sdk\vision\__init__.py -> build\lib\bca\plugin_sdk\vision
+running egg_info
+writing src\browser_cli_agent.egg-info\PKG-INFO
+writing dependency_links to src\browser_cli_agent.egg-info\dependency_links.txt
+writing requirements to src\browser_cli_agent.egg-info\requires.txt
+writing top-level names to src\browser_cli_agent.egg-info\top_level.txt
+reading manifest file 'src\browser_cli_agent.egg-info\SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+writing manifest file 'src\browser_cli_agent.egg-info\SOURCES.txt'
+copying src\bca\py.typed -> build\lib\bca
+creating build\lib\bca\lite\resources\fixture
+copying src\bca\lite\resources\fixture\page.html -> build\lib\bca\lite\resources\fixture
+copying src\bca\lite\resources\fixture\README.md -> build\lib\bca\lite\resources\fixture
+creating build\lib\bca\lite\resources\fixture\image
+copying src\bca\lite\resources\fixture\image\marker.png -> build\lib\bca\lite\resources\fixture\image
+creating build\lib\bca\lite\resources\fixture\pipeline
+copying src\bca\lite\resources\fixture\pipeline\fixture.json -> build\lib\bca\lite\resources\fixture\pipeline
+installing to build\bdist.win-amd64\wheel
+running install
+running install_lib
+creating build\bdist.win-amd64\wheel
+creating build\bdist.win-amd64\wheel\bca
+creating build\bdist.win-amd64\wheel\bca\app
+creating build\bdist.win-amd64\wheel\bca\app\cli
+copying build\lib\bca\app\cli\__init__.py -> build\bdist.win-amd64\wheel\.\bca\app\cli
+copying build\lib\bca\app\logging.py -> build\bdist.win-amd64\wheel\.\bca\app
+copying build\lib\bca\app\__init__.py -> build\bdist.win-amd64\wheel\.\bca\app
+creating build\bdist.win-amd64\wheel\bca\core
+creating build\bdist.win-amd64\wheel\bca\core\browser
+copying build\lib\bca\core\browser\capture.py -> build\bdist.win-amd64\wheel\.\bca\core\browser
+copying build\lib\bca\core\browser\connection.py -> build\bdist.win-amd64\wheel\.\bca\core\browser
+copying build\lib\bca\core\browser\endpoint.py -> build\bdist.win-amd64\wheel\.\bca\core\browser
+copying build\lib\bca\core\browser\errors.py -> build\bdist.win-amd64\wheel\.\bca\core\browser
+copying build\lib\bca\core\browser\geometry.py -> build\bdist.win-amd64\wheel\.\bca\core\browser
+copying build\lib\bca\core\browser\input.py -> build\bdist.win-amd64\wheel\.\bca\core\browser
+copying build\lib\bca\core\browser\keys.py -> build\bdist.win-amd64\wheel\.\bca\core\browser
+copying build\lib\bca\core\browser\models.py -> build\bdist.win-amd64\wheel\.\bca\core\browser
+copying build\lib\bca\core\browser\session.py -> build\bdist.win-amd64\wheel\.\bca\core\browser
+copying build\lib\bca\core\browser\targets.py -> build\bdist.win-amd64\wheel\.\bca\core\browser
+copying build\lib\bca\core\browser\__init__.py -> build\bdist.win-amd64\wheel\.\bca\core\browser
+copying build\lib\bca\core\errors.py -> build\bdist.win-amd64\wheel\.\bca\core
+creating build\bdist.win-amd64\wheel\bca\core\plugins
+copying build\lib\bca\core\plugins\capture_adapter.py -> build\bdist.win-amd64\wheel\.\bca\core\plugins
+copying build\lib\bca\core\plugins\catalog.py -> build\bdist.win-amd64\wheel\.\bca\core\plugins
+copying build\lib\bca\core\plugins\contracts.py -> build\bdist.win-amd64\wheel\.\bca\core\plugins
+copying build\lib\bca\core\plugins\errors.py -> build\bdist.win-amd64\wheel\.\bca\core\plugins
+copying build\lib\bca\core\plugins\host.py -> build\bdist.win-amd64\wheel\.\bca\core\plugins
+copying build\lib\bca\core\plugins\loader.py -> build\bdist.win-amd64\wheel\.\bca\core\plugins
+copying build\lib\bca\core\plugins\lookup.py -> build\bdist.win-amd64\wheel\.\bca\core\plugins
+copying build\lib\bca\core\plugins\manager.py -> build\bdist.win-amd64\wheel\.\bca\core\plugins
+copying build\lib\bca\core\plugins\models.py -> build\bdist.win-amd64\wheel\.\bca\core\plugins
+copying build\lib\bca\core\plugins\validation.py -> build\bdist.win-amd64\wheel\.\bca\core\plugins
+copying build\lib\bca\core\plugins\__init__.py -> build\bdist.win-amd64\wheel\.\bca\core\plugins
+creating build\bdist.win-amd64\wheel\bca\core\protocol
+copying build\lib\bca\core\protocol\codec.py -> build\bdist.win-amd64\wheel\.\bca\core\protocol
+copying build\lib\bca\core\protocol\models.py -> build\bdist.win-amd64\wheel\.\bca\core\protocol
+copying build\lib\bca\core\protocol\validation.py -> build\bdist.win-amd64\wheel\.\bca\core\protocol
+copying build\lib\bca\core\protocol\__init__.py -> build\bdist.win-amd64\wheel\.\bca\core\protocol
+creating build\bdist.win-amd64\wheel\bca\core\providers
+copying build\lib\bca\core\providers\base.py -> build\bdist.win-amd64\wheel\.\bca\core\providers
+copying build\lib\bca\core\providers\registry.py -> build\bdist.win-amd64\wheel\.\bca\core\providers
+copying build\lib\bca\core\providers\__init__.py -> build\bdist.win-amd64\wheel\.\bca\core\providers
+creating build\bdist.win-amd64\wheel\bca\core\runtime
+copying build\lib\bca\core\runtime\action_models.py -> build\bdist.win-amd64\wheel\.\bca\core\runtime
+copying build\lib\bca\core\runtime\action_pipeline.py -> build\bdist.win-amd64\wheel\.\bca\core\runtime
+copying build\lib\bca\core\runtime\browser_freshness.py -> build\bdist.win-amd64\wheel\.\bca\core\runtime
+copying build\lib\bca\core\runtime\controller.py -> build\bdist.win-amd64\wheel\.\bca\core\runtime
+copying build\lib\bca\core\runtime\diagnostics.py -> build\bdist.win-amd64\wheel\.\bca\core\runtime
+copying build\lib\bca\core\runtime\event_bus.py -> build\bdist.win-amd64\wheel\.\bca\core\runtime
+copying build\lib\bca\core\runtime\observation.py -> build\bdist.win-amd64\wheel\.\bca\core\runtime
+copying build\lib\bca\core\runtime\ports.py -> build\bdist.win-amd64\wheel\.\bca\core\runtime
+copying build\lib\bca\core\runtime\scheduler.py -> build\bdist.win-amd64\wheel\.\bca\core\runtime
+copying build\lib\bca\core\runtime\state_store.py -> build\bdist.win-amd64\wheel\.\bca\core\runtime
+copying build\lib\bca\core\runtime\__init__.py -> build\bdist.win-amd64\wheel\.\bca\core\runtime
+copying build\lib\bca\core\__init__.py -> build\bdist.win-amd64\wheel\.\bca\core
+creating build\bdist.win-amd64\wheel\bca\lite
+copying build\lib\bca\lite\bridge.py -> build\bdist.win-amd64\wheel\.\bca\lite
+copying build\lib\bca\lite\fixture.py -> build\bdist.win-amd64\wheel\.\bca\lite
+copying build\lib\bca\lite\maa_controller.py -> build\bdist.win-amd64\wheel\.\bca\lite
+copying build\lib\bca\lite\observation.py -> build\bdist.win-amd64\wheel\.\bca\lite
+copying build\lib\bca\lite\plugin.py -> build\bdist.win-amd64\wheel\.\bca\lite
+creating build\bdist.win-amd64\wheel\bca\lite\resources
+creating build\bdist.win-amd64\wheel\bca\lite\resources\fixture
+creating build\bdist.win-amd64\wheel\bca\lite\resources\fixture\image
+copying build\lib\bca\lite\resources\fixture\image\marker.png -> build\bdist.win-amd64\wheel\.\bca\lite\resources\fixture\image
+copying build\lib\bca\lite\resources\fixture\page.html -> build\bdist.win-amd64\wheel\.\bca\lite\resources\fixture
+creating build\bdist.win-amd64\wheel\bca\lite\resources\fixture\pipeline
+copying build\lib\bca\lite\resources\fixture\pipeline\fixture.json -> build\bdist.win-amd64\wheel\.\bca\lite\resources\fixture\pipeline
+copying build\lib\bca\lite\resources\fixture\README.md -> build\bdist.win-amd64\wheel\.\bca\lite\resources\fixture
+copying build\lib\bca\lite\vision.py -> build\bdist.win-amd64\wheel\.\bca\lite
+copying build\lib\bca\lite\vision_resources.py -> build\bdist.win-amd64\wheel\.\bca\lite
+copying build\lib\bca\lite\vision_types.py -> build\bdist.win-amd64\wheel\.\bca\lite
+copying build\lib\bca\lite\_native_vision.py -> build\bdist.win-amd64\wheel\.\bca\lite
+copying build\lib\bca\lite\__init__.py -> build\bdist.win-amd64\wheel\.\bca\lite
+creating build\bdist.win-amd64\wheel\bca\plugin_sdk
+creating build\bdist.win-amd64\wheel\bca\plugin_sdk\assets
+copying build\lib\bca\plugin_sdk\assets\cache.py -> build\bdist.win-amd64\wheel\.\bca\plugin_sdk\assets
+copying build\lib\bca\plugin_sdk\assets\errors.py -> build\bdist.win-amd64\wheel\.\bca\plugin_sdk\assets
+copying build\lib\bca\plugin_sdk\assets\loader.py -> build\bdist.win-amd64\wheel\.\bca\plugin_sdk\assets
+copying build\lib\bca\plugin_sdk\assets\manifest.py -> build\bdist.win-amd64\wheel\.\bca\plugin_sdk\assets
+copying build\lib\bca\plugin_sdk\assets\models.py -> build\bdist.win-amd64\wheel\.\bca\plugin_sdk\assets
+copying build\lib\bca\plugin_sdk\assets\paths.py -> build\bdist.win-amd64\wheel\.\bca\plugin_sdk\assets
+copying build\lib\bca\plugin_sdk\assets\profile.py -> build\bdist.win-amd64\wheel\.\bca\plugin_sdk\assets
+copying build\lib\bca\plugin_sdk\assets\store.py -> build\bdist.win-amd64\wheel\.\bca\plugin_sdk\assets
+copying build\lib\bca\plugin_sdk\assets\__init__.py -> build\bdist.win-amd64\wheel\.\bca\plugin_sdk\assets
+creating build\bdist.win-amd64\wheel\bca\plugin_sdk\interfaces
+copying build\lib\bca\plugin_sdk\interfaces\__init__.py -> build\bdist.win-amd64\wheel\.\bca\plugin_sdk\interfaces
+creating build\bdist.win-amd64\wheel\bca\plugin_sdk\vision
+copying build\lib\bca\plugin_sdk\vision\decode.py -> build\bdist.win-amd64\wheel\.\bca\plugin_sdk\vision
+copying build\lib\bca\plugin_sdk\vision\errors.py -> build\bdist.win-amd64\wheel\.\bca\plugin_sdk\vision
+copying build\lib\bca\plugin_sdk\vision\matching.py -> build\bdist.win-amd64\wheel\.\bca\plugin_sdk\vision
+copying build\lib\bca\plugin_sdk\vision\models.py -> build\bdist.win-amd64\wheel\.\bca\plugin_sdk\vision
+copying build\lib\bca\plugin_sdk\vision\preprocess.py -> build\bdist.win-amd64\wheel\.\bca\plugin_sdk\vision
+copying build\lib\bca\plugin_sdk\vision\__init__.py -> build\bdist.win-amd64\wheel\.\bca\plugin_sdk\vision
+copying build\lib\bca\plugin_sdk\__init__.py -> build\bdist.win-amd64\wheel\.\bca\plugin_sdk
+copying build\lib\bca\py.typed -> build\bdist.win-amd64\wheel\.\bca
+copying build\lib\bca\__init__.py -> build\bdist.win-amd64\wheel\.\bca
+running install_egg_info
+Copying src\browser_cli_agent.egg-info to build\bdist.win-amd64\wheel\.\browser_cli_agent-0.2.0-py3.14.egg-info
+running install_scripts
+creating build\bdist.win-amd64\wheel\browser_cli_agent-0.2.0.dist-info\WHEEL
+creating 'D:\\Project\\BCA-lite\\dist\\.tmp-ix8pc2pn\\browser_cli_agent-0.2.0-py3-none-any.whl' and adding 'build\\bdist.win-amd64\\wheel' to it
+adding 'bca/__init__.py'
+adding 'bca/py.typed'
+adding 'bca/app/__init__.py'
+adding 'bca/app/logging.py'
+adding 'bca/app/cli/__init__.py'
+adding 'bca/core/__init__.py'
+adding 'bca/core/errors.py'
+adding 'bca/core/browser/__init__.py'
+adding 'bca/core/browser/capture.py'
+adding 'bca/core/browser/connection.py'
+adding 'bca/core/browser/endpoint.py'
+adding 'bca/core/browser/errors.py'
+adding 'bca/core/browser/geometry.py'
+adding 'bca/core/browser/input.py'
+adding 'bca/core/browser/keys.py'
+adding 'bca/core/browser/models.py'
+adding 'bca/core/browser/session.py'
+adding 'bca/core/browser/targets.py'
+adding 'bca/core/plugins/__init__.py'
+adding 'bca/core/plugins/capture_adapter.py'
+adding 'bca/core/plugins/catalog.py'
+adding 'bca/core/plugins/contracts.py'
+adding 'bca/core/plugins/errors.py'
+adding 'bca/core/plugins/host.py'
+adding 'bca/core/plugins/loader.py'
+adding 'bca/core/plugins/lookup.py'
+adding 'bca/core/plugins/manager.py'
+adding 'bca/core/plugins/models.py'
+adding 'bca/core/plugins/validation.py'
+adding 'bca/core/protocol/__init__.py'
+adding 'bca/core/protocol/codec.py'
+adding 'bca/core/protocol/models.py'
+adding 'bca/core/protocol/validation.py'
+adding 'bca/core/providers/__init__.py'
+adding 'bca/core/providers/base.py'
+adding 'bca/core/providers/registry.py'
+adding 'bca/core/runtime/__init__.py'
+adding 'bca/core/runtime/action_models.py'
+adding 'bca/core/runtime/action_pipeline.py'
+adding 'bca/core/runtime/browser_freshness.py'
+adding 'bca/core/runtime/controller.py'
+adding 'bca/core/runtime/diagnostics.py'
+adding 'bca/core/runtime/event_bus.py'
+adding 'bca/core/runtime/observation.py'
+adding 'bca/core/runtime/ports.py'
+adding 'bca/core/runtime/scheduler.py'
+adding 'bca/core/runtime/state_store.py'
+adding 'bca/lite/__init__.py'
+adding 'bca/lite/_native_vision.py'
+adding 'bca/lite/bridge.py'
+adding 'bca/lite/fixture.py'
+adding 'bca/lite/maa_controller.py'
+adding 'bca/lite/observation.py'
+adding 'bca/lite/plugin.py'
+adding 'bca/lite/vision.py'
+adding 'bca/lite/vision_resources.py'
+adding 'bca/lite/vision_types.py'
+adding 'bca/lite/resources/fixture/README.md'
+adding 'bca/lite/resources/fixture/page.html'
+adding 'bca/lite/resources/fixture/image/marker.png'
+adding 'bca/lite/resources/fixture/pipeline/fixture.json'
+adding 'bca/plugin_sdk/__init__.py'
+adding 'bca/plugin_sdk/assets/__init__.py'
+adding 'bca/plugin_sdk/assets/cache.py'
+adding 'bca/plugin_sdk/assets/errors.py'
+adding 'bca/plugin_sdk/assets/loader.py'
+adding 'bca/plugin_sdk/assets/manifest.py'
+adding 'bca/plugin_sdk/assets/models.py'
+adding 'bca/plugin_sdk/assets/paths.py'
+adding 'bca/plugin_sdk/assets/profile.py'
+adding 'bca/plugin_sdk/assets/store.py'
+adding 'bca/plugin_sdk/interfaces/__init__.py'
+adding 'bca/plugin_sdk/vision/__init__.py'
+adding 'bca/plugin_sdk/vision/decode.py'
+adding 'bca/plugin_sdk/vision/errors.py'
+adding 'bca/plugin_sdk/vision/matching.py'
+adding 'bca/plugin_sdk/vision/models.py'
+adding 'bca/plugin_sdk/vision/preprocess.py'
+adding 'browser_cli_agent-0.2.0.dist-info/METADATA'
+adding 'browser_cli_agent-0.2.0.dist-info/WHEEL'
+adding 'browser_cli_agent-0.2.0.dist-info/top_level.txt'
+adding 'browser_cli_agent-0.2.0.dist-info/RECORD'
+removing build\bdist.win-amd64\wheel
+Successfully built browser_cli_agent-0.2.0.tar.gz and browser_cli_agent-0.2.0-py3-none-any.whl

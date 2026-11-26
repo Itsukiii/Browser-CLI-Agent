@@ -1,0 +1,341 @@
+{
+  "command": [
+    ".venv/Scripts/python.exe",
+    "-X",
+    "faulthandler",
+    "-m",
+    "pytest",
+    "tests/lite/test_real_vision.py",
+    "-k",
+    "matrix",
+    "-x",
+    "-q"
+  ],
+  "start": "2026-11-26T03:42:34.864870+00:00",
+  "monitor_psutil": "7.2.2",
+  "cwd": "D:\\Project\\BCA-lite",
+  "samples": [
+    {
+      "monotonic": 435125.6003442,
+      "processes": [
+        {
+          "monotonic": 435125.5897635,
+          "pid": 33648,
+          "rss": 4071424,
+          "private_bytes": 823296,
+          "cpu_seconds": 0.0,
+          "threads": 2,
+          "handles": 52,
+          "system_available": 2432794624,
+          "system_commit": 27675414528,
+          "system_commit_limit": 37039616000
+        },
+        {
+          "monotonic": 435125.5955827,
+          "pid": 30824,
+          "rss": 1957888,
+          "private_bytes": 372736,
+          "cpu_seconds": 0.0,
+          "threads": 1,
+          "handles": 7,
+          "system_available": 2432348160,
+          "system_commit": 27675279360,
+          "system_commit_limit": 37039616000
+        }
+      ]
+    },
+    {
+      "monotonic": 435125.87011,
+      "processes": [
+        {
+          "monotonic": 435125.8590233,
+          "pid": 33648,
+          "rss": 4186112,
+          "private_bytes": 823296,
+          "cpu_seconds": 0.0,
+          "threads": 2,
+          "handles": 55,
+          "system_available": 2394243072,
+          "system_commit": 27715637248,
+          "system_commit_limit": 37039616000
+        },
+        {
+          "monotonic": 435125.8648754,
+          "pid": 30824,
+          "rss": 44584960,
+          "private_bytes": 34779136,
+          "cpu_seconds": 0.265625,
+          "threads": 4,
+          "handles": 143,
+          "system_available": 2393944064,
+          "system_commit": 27717320704,
+          "system_commit_limit": 37039616000
+        }
+      ]
+    },
+    {
+      "monotonic": 435126.1387402,
+      "processes": [
+        {
+          "monotonic": 435126.1285565,
+          "pid": 33648,
+          "rss": 4186112,
+          "private_bytes": 823296,
+          "cpu_seconds": 0.0,
+          "threads": 2,
+          "handles": 55,
+          "system_available": 2376192000,
+          "system_commit": 28234338304,
+          "system_commit_limit": 37039616000
+        },
+        {
+          "monotonic": 435126.1338184,
+          "pid": 30824,
+          "rss": 60960768,
+          "private_bytes": 550952960,
+          "cpu_seconds": 0.421875,
+          "threads": 22,
+          "handles": 190,
+          "system_available": 2376359936,
+          "system_commit": 28233334784,
+          "system_commit_limit": 37039616000
+        }
+      ]
+    },
+    {
+      "monotonic": 435126.420689,
+      "processes": [
+        {
+          "monotonic": 435126.4075163,
+          "pid": 33648,
+          "rss": 4186112,
+          "private_bytes": 823296,
+          "cpu_seconds": 0.0,
+          "threads": 2,
+          "handles": 55,
+          "system_available": 2377621504,
+          "system_commit": 28238286848,
+          "system_commit_limit": 37039616000
+        },
+        {
+          "monotonic": 435126.4145517,
+          "pid": 30824,
+          "rss": 64335872,
+          "private_bytes": 554094592,
+          "cpu_seconds": 0.46875,
+          "threads": 23,
+          "handles": 200,
+          "system_available": 2376458240,
+          "system_commit": 28238303232,
+          "system_commit_limit": 37039616000
+        }
+      ]
+    },
+    {
+      "monotonic": 435126.698292,
+      "processes": [
+        {
+          "monotonic": 435126.6861611,
+          "pid": 33648,
+          "rss": 4186112,
+          "private_bytes": 823296,
+          "cpu_seconds": 0.0,
+          "threads": 2,
+          "handles": 55,
+          "system_available": 2377875456,
+          "system_commit": 28239630336,
+          "system_commit_limit": 37039616000
+        },
+        {
+          "monotonic": 435126.6924391,
+          "pid": 30824,
+          "rss": 64335872,
+          "private_bytes": 554094592,
+          "cpu_seconds": 0.46875,
+          "threads": 23,
+          "handles": 200,
+          "system_available": 2377908224,
+          "system_commit": 28238385152,
+          "system_commit_limit": 37039616000
+        }
+      ]
+    },
+    {
+      "monotonic": 435126.9709032,
+      "processes": [
+        {
+          "monotonic": 435126.9607285,
+          "pid": 33648,
+          "rss": 4186112,
+          "private_bytes": 823296,
+          "cpu_seconds": 0.0,
+          "threads": 2,
+          "handles": 55,
+          "system_available": 2380136448,
+          "system_commit": 28237631488,
+          "system_commit_limit": 37039616000
+        },
+        {
+          "monotonic": 435126.9660235,
+          "pid": 30824,
+          "rss": 64335872,
+          "private_bytes": 554094592,
+          "cpu_seconds": 0.46875,
+          "threads": 23,
+          "handles": 200,
+          "system_available": 2380132352,
+          "system_commit": 28237615104,
+          "system_commit_limit": 37039616000
+        }
+      ]
+    },
+    {
+      "monotonic": 435127.2518307,
+      "processes": [
+        {
+          "monotonic": 435127.2376286,
+          "pid": 33648,
+          "rss": 4186112,
+          "private_bytes": 823296,
+          "cpu_seconds": 0.0,
+          "threads": 2,
+          "handles": 55,
+          "system_available": 2390511616,
+          "system_commit": 28239437824,
+          "system_commit_limit": 37039616000
+        },
+        {
+          "monotonic": 435127.2446101,
+          "pid": 30824,
+          "rss": 64335872,
+          "private_bytes": 554094592,
+          "cpu_seconds": 0.46875,
+          "threads": 23,
+          "handles": 200,
+          "system_available": 2390507520,
+          "system_commit": 28238467072,
+          "system_commit_limit": 37039616000
+        }
+      ]
+    },
+    {
+      "monotonic": 435127.5279886,
+      "processes": [
+        {
+          "monotonic": 435127.5180313,
+          "pid": 33648,
+          "rss": 4186112,
+          "private_bytes": 823296,
+          "cpu_seconds": 0.0,
+          "threads": 2,
+          "handles": 55,
+          "system_available": 2390294528,
+          "system_commit": 28240359424,
+          "system_commit_limit": 37039616000
+        },
+        {
+          "monotonic": 435127.5231606,
+          "pid": 30824,
+          "rss": 64335872,
+          "private_bytes": 554094592,
+          "cpu_seconds": 0.46875,
+          "threads": 23,
+          "handles": 200,
+          "system_available": 2390294528,
+          "system_commit": 28240359424,
+          "system_commit_limit": 37039616000
+        }
+      ]
+    },
+    {
+      "monotonic": 435127.8077013,
+      "processes": [
+        {
+          "monotonic": 435127.7927903,
+          "pid": 33648,
+          "rss": 4186112,
+          "private_bytes": 823296,
+          "cpu_seconds": 0.0,
+          "threads": 2,
+          "handles": 55,
+          "system_available": 2390183936,
+          "system_commit": 28239257600,
+          "system_commit_limit": 37039616000
+        },
+        {
+          "monotonic": 435127.8018138,
+          "pid": 30824,
+          "rss": 64335872,
+          "private_bytes": 554094592,
+          "cpu_seconds": 0.46875,
+          "threads": 23,
+          "handles": 200,
+          "system_available": 2390179840,
+          "system_commit": 28239257600,
+          "system_commit_limit": 37039616000
+        }
+      ]
+    },
+    {
+      "monotonic": 435128.0929229,
+      "processes": [
+        {
+          "monotonic": 435128.0780574,
+          "pid": 33648,
+          "rss": 4186112,
+          "private_bytes": 823296,
+          "cpu_seconds": 0.0,
+          "threads": 2,
+          "handles": 55,
+          "system_available": 2390515712,
+          "system_commit": 28236283904,
+          "system_commit_limit": 37039616000
+        },
+        {
+          "monotonic": 435128.0867026,
+          "pid": 30824,
+          "rss": 64335872,
+          "private_bytes": 554094592,
+          "cpu_seconds": 0.46875,
+          "threads": 23,
+          "handles": 200,
+          "system_available": 2390515712,
+          "system_commit": 28236283904,
+          "system_commit_limit": 37039616000
+        }
+      ]
+    },
+    {
+      "monotonic": 435128.3622184,
+      "processes": [
+        {
+          "monotonic": 435128.3522937,
+          "pid": 33648,
+          "rss": 4186112,
+          "private_bytes": 823296,
+          "cpu_seconds": 0.0,
+          "threads": 2,
+          "handles": 55,
+          "system_available": 2387550208,
+          "system_commit": 28247355392,
+          "system_commit_limit": 37039616000
+        },
+        {
+          "monotonic": 435128.3574545,
+          "pid": 30824,
+          "rss": 74612736,
+          "private_bytes": 564559872,
+          "cpu_seconds": 0.609375,
+          "threads": 23,
+          "handles": 197,
+          "system_available": 2387439616,
+          "system_commit": 28248326144,
+          "system_commit_limit": 37039616000
+        }
+      ]
+    }
+  ],
+  "pid": 33648,
+  "exit_code": 1,
+  "end": "2026-11-26T03:42:37.903118+00:00"
+}

@@ -14,13 +14,14 @@ dependencies = ["websockets>=15,<16", "Pillow>=12,<13"]
 assets = ["numpy>=2.4,<3"]
 vision = ["numpy>=2.4,<3", "opencv-python-headless>=4.14,<5"]
 lite = ["maafw==5.16.1", "numpy>=2.4,<3"]
-dev = ["pytest>=8,<10", "mypy>=1.14,<3", "ruff>=0.9,<1", "build>=1.2,<2"]
+dev = ["pytest>=8,<10", "mypy>=1.14,<3", "ruff>=0.9,<1", "build>=1.2,<2", "psutil>=7,<8"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
 bca = ["py.typed"]
+"bca.lite" = ["resources/fixture/*.html", "resources/fixture/*.md", "resources/fixture/image/*.png", "resources/fixture/pipeline/*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

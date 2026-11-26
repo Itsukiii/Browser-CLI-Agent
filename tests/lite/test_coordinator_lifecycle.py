@@ -143,6 +143,38 @@ def test_stop_failure_never_calls_destroy(monkeypatch, failure):
     )
 
 
+def test_successful_stop_waits_for_idle_before_destroy(monkeypatch):
+    from maa.library import Library
+
+    from bca.lite._native_vision import NativeVision
+
+    owner = NativeVision(None, None, True)
+    reads = []
+
+    class SettlingTasker:
+        _handle = 11
+        inited = True
+
+        @property
+        def running(self):
+            reads.append(len(reads))
+            return len(reads) <= 3
+
+        def post_stop(self):
+            return SimpleNamespace(wait=lambda: SimpleNamespace(succeeded=True))
+
+    owner.tasker = SettlingTasker()
+    calls = []
+
+    def destroy(handle):
+        assert not owner.tasker.running
+        calls.append(handle)
+
+    monkeypatch.setattr(Library.framework(), "MaaTaskerDestroy", destroy)
+    report = owner.close()
+    assert report.released and calls == [11] and len(reads) >= 4
+
+
 def test_plugin_close_error_report_and_retry(tmp_path, monkeypatch):
     async def run():
         c, f, p, b, _, _, _ = setup(tmp_path, monkeypatch)

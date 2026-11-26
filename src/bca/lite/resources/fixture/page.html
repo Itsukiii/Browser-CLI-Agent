@@ -1,0 +1,23 @@
+<!doctype html><meta charset="utf-8"><title>BCAZoomFixture_92741</title>
+<style>
+html,body{margin:0;background:white;overflow:hidden}
+img{position:absolute;width:96px;height:64px;left:60px;top:50px}
+#second{left:250px;display:none}
+#round{position:absolute;left:80px;top:60vh;font:48px Arial;color:black}
+</style>
+<img id="button" src="MARKER_DATA"><img id="second" src="MARKER_DATA">
+<div id="round">123</div>
+<script>
+window.hits=[];
+for(const id of ['button','second']) document.getElementById(id).onclick=e=>{
+  hits.push({id,x:e.clientX,y:e.clientY,round:document.getElementById('round').textContent});
+  document.getElementById('round').textContent=String(Number(document.getElementById('round').textContent)+1);
+};
+window.configure=(text='123',count=1,font='Arial',size=48,x=60)=>{
+  document.getElementById('round').textContent=text;
+  document.getElementById('round').style.font=`${size}px ${font}`;
+  document.getElementById('button').style.display=count?'block':'none';
+  document.getElementById('button').style.left=x+'px';
+  document.getElementById('second').style.display=count===2?'block':'none';
+};
+</script>

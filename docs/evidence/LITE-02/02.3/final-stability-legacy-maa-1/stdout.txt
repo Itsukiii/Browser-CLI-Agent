@@ -1,0 +1,11 @@
+{"python": "3.14.7", "pid": 29376, "mode": "legacy-maa", "packages": {"maafw": "v5.16.1", "numpy": "2.5.5", "opencv-python-headless": "4.14.0.94", "Pillow": "12.3.0"}}
+{"phase": "legacy-before", "monotonic": 435323.8141742, "pid": 29376, "rss": 39030784, "private_bytes": 28528640, "cpu_seconds": 0.203125, "threads": 4, "handles": 153, "system_available": 2044276736, "system_commit": 28525654016, "system_commit_limit": 37039616000}
+........................................................................ [ 78%]
+....................                                                     [100%]
+92 passed in 7.75s
+{"phase": "legacy-after", "exit_code": 0, "cv2_loaded": true, "legacy_loaded": true, "monotonic": 435331.7986692, "pid": 29376, "rss": 71778304, "private_bytes": 560799744, "cpu_seconds": 8.09375, "threads": 35, "handles": 239, "system_available": 2253033472, "system_commit": 28852260864, "system_commit_limit": 37039616000}
+{"phase": "maa-before", "monotonic": 435332.3655195, "pid": 29376, "rss": 71880704, "private_bytes": 560799744, "cpu_seconds": 8.109375, "threads": 35, "handles": 239, "system_available": 2277281792, "system_commit": 28837793792, "system_commit_limit": 37039616000}
+......................................................................   [100%]
+70 passed in 22.07s
+{"native_maa": "v5.16.1"}
+{"phase": "maa-after", "exit_code": 0, "cv2_loaded": true, "legacy_loaded": true, "monotonic": 435354.5279596, "pid": 29376, "rss": 137867264, "private_bytes": 607002624, "cpu_seconds": 63.9375, "threads": 39, "handles": 319, "system_available": 2348351488, "system_commit": 28728557568, "system_commit_limit": 37039616000}

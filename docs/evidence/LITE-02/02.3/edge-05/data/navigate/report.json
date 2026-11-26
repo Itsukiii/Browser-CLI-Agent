@@ -1,0 +1,200 @@
+{
+  "fault": "navigate",
+  "outcome": "rejected_by_exception",
+  "status": "NOT_FOUND",
+  "input_outcome": "not_attempted",
+  "records": [
+    {
+      "started": 435553.2430747,
+      "completed": 435554.1606412,
+      "total": 0.9175902999704704,
+      "capture": 0.11542849999386817,
+      "native": 0.8018367000040598,
+      "parse": 3.5800039768218994e-05,
+      "sequence": 1,
+      "status": "MATCHED",
+      "revision": "123",
+      "expired": false,
+      "batch": {
+        "frame_id": "caca166f-8bc8-4f65-ae7b-1efded6e3f42",
+        "binding": [
+          "880B44087F163849F4690BA1952C5E04",
+          "FEC986258C9235A825F2A8F31F553460",
+          2
+        ],
+        "size": [
+          640,
+          400
+        ],
+        "source_current": true,
+        "expired": false,
+        "results": [
+          {
+            "request_key": "button",
+            "algorithm": "TemplateMatch",
+            "status": "MATCHED",
+            "candidates": [
+              {
+                "box": [
+                  60,
+                  50,
+                  96,
+                  64
+                ],
+                "score": 1.0,
+                "text": null
+              }
+            ],
+            "all_candidates": [
+              {
+                "box": [
+                  60,
+                  50,
+                  96,
+                  64
+                ],
+                "score": 1.0,
+                "text": null
+              }
+            ],
+            "best": {
+              "box": [
+                60,
+                50,
+                96,
+                64
+              ],
+              "score": 1.0,
+              "text": null
+            },
+            "job_id": 200000351,
+            "job_status": "succeeded",
+            "reco_id": 400000339,
+            "hit": true,
+            "raw_detail_json": "{\"all\": [{\"box\": [60, 50, 96, 64], \"score\": 1.0}], \"best\": {\"box\": [60, 50, 96, 64], \"score\": 1.0}, \"filtered\": [{\"box\": [60, 50, 96, 64], \"score\": 1.0}]}",
+            "diagnostic": null
+          },
+          {
+            "request_key": "round",
+            "algorithm": "OCR",
+            "status": "MATCHED",
+            "candidates": [
+              {
+                "box": [
+                  80,
+                  244,
+                  81,
+                  44
+                ],
+                "score": 0.999838,
+                "text": "123"
+              }
+            ],
+            "all_candidates": [
+              {
+                "box": [
+                  80,
+                  244,
+                  81,
+                  44
+                ],
+                "score": 0.999838,
+                "text": "123"
+              }
+            ],
+            "best": {
+              "box": [
+                80,
+                244,
+                81,
+                44
+              ],
+              "score": 0.999838,
+              "text": "123"
+            },
+            "job_id": 200000352,
+            "job_status": "succeeded",
+            "reco_id": 400000340,
+            "hit": true,
+            "raw_detail_json": "{\"all\": [{\"box\": [80, 244, 81, 44], \"score\": 0.999838, \"text\": \"123\"}], \"best\": {\"box\": [80, 244, 81, 44], \"score\": 0.999838, \"text\": \"123\"}, \"filtered\": [{\"box\": [80, 244, 81, 44], \"score\": 0.999838, \"text\": \"123\"}]}",
+            "diagnostic": null
+          }
+        ]
+      }
+    },
+    {
+      "started": 435554.2929519,
+      "completed": 435554.6373583,
+      "total": 0.3444255000213161,
+      "capture": 0.10843589995056391,
+      "native": 0.23574430000735447,
+      "parse": 2.3600005079060793e-05,
+      "sequence": 2,
+      "status": "NOT_FOUND",
+      "revision": null,
+      "expired": false,
+      "batch": {
+        "frame_id": "11a90a1a-a4c7-44a1-a42c-10c506086563",
+        "binding": [
+          "880B44087F163849F4690BA1952C5E04",
+          "FEC986258C9235A825F2A8F31F553460",
+          2
+        ],
+        "size": [
+          640,
+          400
+        ],
+        "source_current": true,
+        "expired": false,
+        "results": [
+          {
+            "request_key": "button",
+            "algorithm": "TemplateMatch",
+            "status": "NOT_FOUND",
+            "candidates": [],
+            "all_candidates": [],
+            "best": null,
+            "job_id": 200000353,
+            "job_status": "succeeded",
+            "reco_id": 400000341,
+            "hit": false,
+            "raw_detail_json": "{\"all\": [], \"best\": null, \"filtered\": []}",
+            "diagnostic": null
+          },
+          {
+            "request_key": "round",
+            "algorithm": "OCR",
+            "status": "NOT_FOUND",
+            "candidates": [],
+            "all_candidates": [],
+            "best": null,
+            "job_id": 200000354,
+            "job_status": "succeeded",
+            "reco_id": 400000342,
+            "hit": false,
+            "raw_detail_json": "{\"all\": [], \"best\": null, \"filtered\": []}",
+            "diagnostic": null
+          }
+        ]
+      }
+    }
+  ],
+  "close": {
+    "released": true,
+    "worker_thread": 14756,
+    "destroyed": [
+      "tasker",
+      "controller",
+      "resource"
+    ],
+    "errors": [],
+    "stop_status": "succeeded"
+  },
+  "owned_targets_remaining": [],
+  "preexisting_targets_preserved": true,
+  "cleanup": {
+    "pending": 0,
+    "reader": false,
+    "connected": false
+  }
+}

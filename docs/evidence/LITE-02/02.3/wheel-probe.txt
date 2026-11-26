@@ -1,0 +1,131 @@
+Exception ignored while calling ctypes callback function <function CustomController._c_request_uuid_agent at 0x000001D9FE4CAC40>:
+Traceback (most recent call last):
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\maa\controller.py", line 1635, in _c_request_uuid_agent
+    uuid = self.request_uuid()
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\bca\lite\maa_controller.py", line 62, in request_uuid
+    return f"bca-cdp:{self._bridge.bound_page_id or 'unbound'}"
+AttributeError: 'StaticBridge' object has no attribute 'bound_page_id'
+Exception ignored while calling ctypes callback function <function CustomController._c_request_uuid_agent at 0x000001D9FE4CAC40>:
+Traceback (most recent call last):
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\maa\controller.py", line 1635, in _c_request_uuid_agent
+    uuid = self.request_uuid()
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\bca\lite\maa_controller.py", line 62, in request_uuid
+    return f"bca-cdp:{self._bridge.bound_page_id or 'unbound'}"
+AttributeError: 'StaticBridge' object has no attribute 'bound_page_id'
+Exception ignored while calling ctypes callback function <function CustomController._c_request_uuid_agent at 0x000001D9FE4CAC40>:
+Traceback (most recent call last):
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\maa\controller.py", line 1635, in _c_request_uuid_agent
+    uuid = self.request_uuid()
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\bca\lite\maa_controller.py", line 62, in request_uuid
+    return f"bca-cdp:{self._bridge.bound_page_id or 'unbound'}"
+AttributeError: 'StaticBridge' object has no attribute 'bound_page_id'
+Exception ignored while calling ctypes callback function <function CustomController._c_request_uuid_agent at 0x000001D9FE4CAC40>:
+Traceback (most recent call last):
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\maa\controller.py", line 1635, in _c_request_uuid_agent
+    uuid = self.request_uuid()
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\bca\lite\maa_controller.py", line 62, in request_uuid
+    return f"bca-cdp:{self._bridge.bound_page_id or 'unbound'}"
+AttributeError: 'StaticBridge' object has no attribute 'bound_page_id'
+Exception ignored while calling ctypes callback function <function CustomController._c_request_uuid_agent at 0x000001D9FE4CAC40>:
+Traceback (most recent call last):
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\maa\controller.py", line 1635, in _c_request_uuid_agent
+    uuid = self.request_uuid()
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\bca\lite\maa_controller.py", line 62, in request_uuid
+    return f"bca-cdp:{self._bridge.bound_page_id or 'unbound'}"
+AttributeError: 'StaticBridge' object has no attribute 'bound_page_id'
+Exception ignored while calling ctypes callback function <function CustomController._c_request_uuid_agent at 0x000001D9FE4CAC40>:
+Traceback (most recent call last):
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\maa\controller.py", line 1635, in _c_request_uuid_agent
+    uuid = self.request_uuid()
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\bca\lite\maa_controller.py", line 62, in request_uuid
+    return f"bca-cdp:{self._bridge.bound_page_id or 'unbound'}"
+AttributeError: 'StaticBridge' object has no attribute 'bound_page_id'
+Exception ignored while calling ctypes callback function <function CustomController._c_request_uuid_agent at 0x000001D9FE4CAC40>:
+Traceback (most recent call last):
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\maa\controller.py", line 1635, in _c_request_uuid_agent
+    uuid = self.request_uuid()
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\bca\lite\maa_controller.py", line 62, in request_uuid
+    return f"bca-cdp:{self._bridge.bound_page_id or 'unbound'}"
+AttributeError: 'StaticBridge' object has no attribute 'bound_page_id'
+Exception ignored while calling ctypes callback function <function CustomController._c_request_uuid_agent at 0x000001D9FE4CAC40>:
+Traceback (most recent call last):
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\maa\controller.py", line 1635, in _c_request_uuid_agent
+    uuid = self.request_uuid()
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\bca\lite\maa_controller.py", line 62, in request_uuid
+    return f"bca-cdp:{self._bridge.bound_page_id or 'unbound'}"
+AttributeError: 'StaticBridge' object has no attribute 'bound_page_id'
+Exception ignored while calling ctypes callback function <function CustomController._c_request_uuid_agent at 0x000001D9FE4CAC40>:
+Traceback (most recent call last):
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\maa\controller.py", line 1635, in _c_request_uuid_agent
+    uuid = self.request_uuid()
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\bca\lite\maa_controller.py", line 62, in request_uuid
+    return f"bca-cdp:{self._bridge.bound_page_id or 'unbound'}"
+AttributeError: 'StaticBridge' object has no attribute 'bound_page_id'
+Exception ignored while calling ctypes callback function <function CustomController._c_request_uuid_agent at 0x000001D9FE4CAC40>:
+Traceback (most recent call last):
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\maa\controller.py", line 1635, in _c_request_uuid_agent
+    uuid = self.request_uuid()
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\bca\lite\maa_controller.py", line 62, in request_uuid
+    return f"bca-cdp:{self._bridge.bound_page_id or 'unbound'}"
+AttributeError: 'StaticBridge' object has no attribute 'bound_page_id'
+Exception ignored while calling ctypes callback function <function CustomController._c_request_uuid_agent at 0x000001D9FE4CAC40>:
+Traceback (most recent call last):
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\maa\controller.py", line 1635, in _c_request_uuid_agent
+    uuid = self.request_uuid()
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\bca\lite\maa_controller.py", line 62, in request_uuid
+    return f"bca-cdp:{self._bridge.bound_page_id or 'unbound'}"
+AttributeError: 'StaticBridge' object has no attribute 'bound_page_id'
+Exception ignored while calling ctypes callback function <function CustomController._c_request_uuid_agent at 0x000001D9FE4CAC40>:
+Traceback (most recent call last):
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\maa\controller.py", line 1635, in _c_request_uuid_agent
+    uuid = self.request_uuid()
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\bca\lite\maa_controller.py", line 62, in request_uuid
+    return f"bca-cdp:{self._bridge.bound_page_id or 'unbound'}"
+AttributeError: 'StaticBridge' object has no attribute 'bound_page_id'
+Exception ignored while calling ctypes callback function <function CustomController._c_request_uuid_agent at 0x000001D9FE4CAC40>:
+Traceback (most recent call last):
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\maa\controller.py", line 1635, in _c_request_uuid_agent
+    uuid = self.request_uuid()
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\bca\lite\maa_controller.py", line 62, in request_uuid
+    return f"bca-cdp:{self._bridge.bound_page_id or 'unbound'}"
+AttributeError: 'StaticBridge' object has no attribute 'bound_page_id'
+Exception ignored while calling ctypes callback function <function CustomController._c_request_uuid_agent at 0x000001D9FE4CAC40>:
+Traceback (most recent call last):
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\maa\controller.py", line 1635, in _c_request_uuid_agent
+    uuid = self.request_uuid()
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\bca\lite\maa_controller.py", line 62, in request_uuid
+    return f"bca-cdp:{self._bridge.bound_page_id or 'unbound'}"
+AttributeError: 'StaticBridge' object has no attribute 'bound_page_id'
+Exception ignored while calling ctypes callback function <function CustomController._c_request_uuid_agent at 0x000001D9FE4CAC40>:
+Traceback (most recent call last):
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\maa\controller.py", line 1635, in _c_request_uuid_agent
+    uuid = self.request_uuid()
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\bca\lite\maa_controller.py", line 62, in request_uuid
+    return f"bca-cdp:{self._bridge.bound_page_id or 'unbound'}"
+AttributeError: 'StaticBridge' object has no attribute 'bound_page_id'
+Exception ignored while calling ctypes callback function <function CustomController._c_request_uuid_agent at 0x000001D9FE4CAC40>:
+Traceback (most recent call last):
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\maa\controller.py", line 1635, in _c_request_uuid_agent
+    uuid = self.request_uuid()
+  File "D:\Project\BCA-lite\.test-artifacts\lite023-clean\Lib\site-packages\bca\lite\maa_controller.py", line 62, in request_uuid
+    return f"bca-cdp:{self._bridge.bound_page_id or 'unbound'}"
+AttributeError: 'StaticBridge' object has no attribute 'bound_page_id'
+{
+  "cwd": "C:\\Users\\wutong\\AppData\\Local\\Temp",
+  "bca": "D:\\Project\\BCA-lite\\.test-artifacts\\lite023-clean\\Lib\\site-packages\\bca\\__init__.py",
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "maa": "v5.16.1",
+  "distribution": "v5.16.1",
+  "bundle": "D:\\Project\\BCA-lite\\.test-artifacts\\lite023-clean\\Lib\\site-packages\\bca\\lite\\resources\\fixture",
+  "True": {
+    "template": "{\"all\": [{\"box\": [60, 50, 96, 64], \"score\": 1.0}], \"best\": {\"box\": [60, 50, 96, 64], \"score\": 1.0}, \"filtered\": [{\"box\": [60, 50, 96, 64], \"score\": 1.0}]}",
+    "ocr": "{\"all\": [{\"box\": [81, 248, 84, 43], \"score\": 0.999926, \"text\": \"123\"}], \"best\": {\"box\": [81, 248, 84, 43], \"score\": 0.999926, \"text\": \"123\"}, \"filtered\": [{\"box\": [81, 248, 84, 43], \"score\": 0.999926, \"text\": \"123\"}]}",
+    "diagnostic": null
+  },
+  "False": {
+    "template": "{\"all\": [{\"box\": [60, 50, 96, 64], \"score\": 1.0}], \"best\": {\"box\": [60, 50, 96, 64], \"score\": 1.0}, \"filtered\": [{\"box\": [60, 50, 96, 64], \"score\": 1.0}]}",
+    "ocr": null,
+    "diagnostic": "OCR model not explicitly loaded"
+  },
+  "missing_model_rejected": true
+}

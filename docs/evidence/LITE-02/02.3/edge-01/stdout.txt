@@ -1,0 +1,101 @@
+F
+================================== FAILURES ===================================
+___________________________ test_edge_visual_matrix ___________________________
+
+endpoint = 'http://127.0.0.1:9341'
+
+    async def discover_websocket(endpoint: str) -> str:
+        """Called inside the connection's timeout; no proxies, redirects or remote DNS."""
+        parsed = _url(endpoint, "http")
+        if parsed.path not in ("", "/"):
+            raise EndpointError("HTTP endpoint must be an origin, without a path")
+        assert parsed.hostname is not None
+        port = parsed.port or 80
+        addresses = await _addresses(parsed.hostname, port)
+        writer: asyncio.StreamWriter | None = None
+        last_error: OSError | None = None
+        for address in addresses:
+            try:
+>               reader, writer = await asyncio.open_connection(address, port, limit=32768)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src\bca\core\browser\endpoint.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\streams.py:48: in open_connection
+    transport, _ = await loop.create_connection(
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:1169: in create_connection
+    raise exceptions[0]
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:1144: in create_connection
+    sock = await self._connect_sock(
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:1043: in _connect_sock
+    await self.sock_connect(sock, address)
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\proactor_events.py:724: in sock_connect
+    return await self._proactor.connect(sock, address)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\windows_events.py:807: in _poll
+    value = callback(transferred, key, ov)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+trans = 0, key = 0, ov = <_overlapped.Overlapped object at 0x0000012606063030>
+
+    def finish_connect(trans, key, ov):
+>       ov.getresult()
+E       ConnectionRefusedError: [WinError 1225] 远程计算机拒绝网络连接。
+
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\windows_events.py:600: ConnectionRefusedError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Users/wutong/AppData/Local/Temp/pytest-of-wutong/pytest-8/test_edge_visual_matrix0')
+
+    def test_edge_visual_matrix(tmp_path):
+>       asyncio.run(run_matrix(tmp_path, output(tmp_path, "matrix")))
+
+tests\lite\test_real_vision.py:260: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_real_vision.py:151: in run_matrix
+    await session.connect()
+src\bca\core\browser\session.py:188: in connect
+    await self._connection.connect(self._endpoint)
+src\bca\core\browser\connection.py:136: in connect
+    url = await discover_websocket(endpoint)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+endpoint = 'http://127.0.0.1:9341'
+
+    async def discover_websocket(endpoint: str) -> str:
+        """Called inside the connection's timeout; no proxies, redirects or remote DNS."""
+        parsed = _url(endpoint, "http")
+        if parsed.path not in ("", "/"):
+            raise EndpointError("HTTP endpoint must be an origin, without a path")
+        assert parsed.hostname is not None
+        port = parsed.port or 80
+        addresses = await _addresses(parsed.hostname, port)
+        writer: asyncio.StreamWriter | None = None
+        last_error: OSError | None = None
+        for address in addresses:
+            try:
+                reader, writer = await asyncio.open_connection(address, port, limit=32768)
+                break
+            except OSError as exc:
+                last_error = exc
+        if writer is None:
+>           raise CDPConnectionError("cannot connect to local discovery endpoint") from last_error
+E           bca.core.browser.errors.CDPConnectionError: cannot connect to local discovery endpoint
+
+src\bca\core\browser\endpoint.py:71: CDPConnectionError
+=========================== short test summary info ===========================
+FAILED tests/lite/test_real_vision.py::test_edge_visual_matrix - bca.core.bro...
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed, 6 deselected in 2.56s

@@ -1,0 +1,25 @@
+{
+  "artifacts": {
+    "dist\\browser_cli_agent-0.2.0-py3-none-any.whl": "da85acb119c6454ba4cc5f86207ff846f84b3ad33bb087d4c935f41e0e931c19",
+    "dist\\browser_cli_agent-0.2.0.tar.gz": "c05d3ed5f37eb569096a7a471523cba6af52142d5527aa3213edb94a30fe0591"
+  },
+  "installed_lite_payload_matches_final_wheel": true,
+  "verified_members": [
+    "bca/lite/__init__.py",
+    "bca/lite/_native_vision.py",
+    "bca/lite/bridge.py",
+    "bca/lite/fixture.py",
+    "bca/lite/maa_controller.py",
+    "bca/lite/observation.py",
+    "bca/lite/plugin.py",
+    "bca/lite/vision.py",
+    "bca/lite/vision_resources.py",
+    "bca/lite/vision_types.py",
+    "bca/lite/resources/fixture/README.md",
+    "bca/lite/resources/fixture/page.html",
+    "bca/lite/resources/fixture/image/marker.png",
+    "bca/lite/resources/fixture/pipeline/fixture.json"
+  ],
+  "sdist_model_manifest_and_licenses": true,
+  "models_bundled": false
+}

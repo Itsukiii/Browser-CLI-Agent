@@ -1,0 +1,868 @@
+{
+  "processes": {
+    "edge-01": {
+      "exit_code": 1,
+      "scopes": {
+        "workload": {
+          "seconds": 2.7618742000195198,
+          "cpu_core_percent": 22.063821733650766,
+          "first": {
+            "time": 435125.6003442,
+            "rss": 6029312,
+            "private_bytes": 1196032,
+            "cpu_seconds": 0.0,
+            "threads": 3,
+            "handles": 59
+          },
+          "last": {
+            "time": 435128.3622184,
+            "rss": 78798848,
+            "private_bytes": 565383168,
+            "cpu_seconds": 0.609375,
+            "threads": 25,
+            "handles": 252
+          },
+          "peak": {
+            "rss": 78798848,
+            "private_bytes": 565383168,
+            "threads": 25,
+            "handles": 255
+          }
+        }
+      },
+      "min_system_available": 2376192000,
+      "peak_system_commit": 28248326144,
+      "system_commit_limit": 37039616000
+    },
+    "edge-02": {
+      "exit_code": 1,
+      "scopes": {
+        "workload": {
+          "seconds": 4.9601606000214815,
+          "cpu_core_percent": 447.62915539274763,
+          "first": {
+            "time": 435221.6347382,
+            "rss": 13393920,
+            "private_bytes": 5898240,
+            "cpu_seconds": 0.015625,
+            "threads": 6,
+            "handles": 131
+          },
+          "last": {
+            "time": 435226.5948988,
+            "rss": 4182016,
+            "private_bytes": 815104,
+            "cpu_seconds": 0.0,
+            "threads": 2,
+            "handles": 55
+          },
+          "peak": {
+            "rss": 216403968,
+            "private_bytes": 752984064,
+            "threads": 42,
+            "handles": 356
+          }
+        }
+      },
+      "min_system_available": 2261725184,
+      "peak_system_commit": 28362297344,
+      "system_commit_limit": 37039616000
+    },
+    "edge-03": {
+      "exit_code": 1,
+      "scopes": {
+        "workload": {
+          "seconds": 24.210723800002597,
+          "cpu_core_percent": 529.0140272468279,
+          "first": {
+            "time": 435257.3221896,
+            "rss": 13393920,
+            "private_bytes": 5898240,
+            "cpu_seconds": 0.015625,
+            "threads": 6,
+            "handles": 131
+          },
+          "last": {
+            "time": 435281.5329134,
+            "rss": 112312320,
+            "private_bytes": 582733824,
+            "cpu_seconds": 128.09375,
+            "threads": 25,
+            "handles": 306
+          },
+          "peak": {
+            "rss": 237228032,
+            "private_bytes": 773218304,
+            "threads": 52,
+            "handles": 378
+          }
+        }
+      },
+      "min_system_available": 2168893440,
+      "peak_system_commit": 29160722432,
+      "system_commit_limit": 37039616000
+    },
+    "edge-04": {
+      "exit_code": 1,
+      "scopes": {
+        "workload": {
+          "seconds": 67.35179370001424,
+          "cpu_core_percent": 478.643525717908,
+          "first": {
+            "time": 435307.8016007,
+            "rss": 13586432,
+            "private_bytes": 5881856,
+            "cpu_seconds": 0.015625,
+            "threads": 6,
+            "handles": 132
+          },
+          "last": {
+            "time": 435375.1533944,
+            "rss": 126361600,
+            "private_bytes": 599465984,
+            "cpu_seconds": 322.390625,
+            "threads": 21,
+            "handles": 302
+          },
+          "peak": {
+            "rss": 359366656,
+            "private_bytes": 931864576,
+            "threads": 52,
+            "handles": 379
+          }
+        }
+      },
+      "min_system_available": 1826443264,
+      "peak_system_commit": 29388738560,
+      "system_commit_limit": 37039616000
+    },
+    "edge-05": {
+      "exit_code": 0,
+      "scopes": {
+        "workload": {
+          "seconds": 146.94798129994888,
+          "cpu_core_percent": 383.07560949134034,
+          "first": {
+            "time": 435413.697632,
+            "rss": 13033472,
+            "private_bytes": 4689920,
+            "cpu_seconds": 0.015625,
+            "threads": 6,
+            "handles": 131
+          },
+          "last": {
+            "time": 435560.6456133,
+            "rss": 108916736,
+            "private_bytes": 579674112,
+            "cpu_seconds": 562.9375,
+            "threads": 19,
+            "handles": 289
+          },
+          "peak": {
+            "rss": 354549760,
+            "private_bytes": 939556864,
+            "threads": 52,
+            "handles": 379
+          }
+        }
+      },
+      "min_system_available": 1706770432,
+      "peak_system_commit": 29760806912,
+      "system_commit_limit": 37039616000
+    },
+    "final-edge": {
+      "exit_code": 0,
+      "scopes": {
+        "workload": {
+          "seconds": 88.24608819995774,
+          "cpu_core_percent": 539.1882061920427,
+          "first": {
+            "time": 435715.8806208,
+            "rss": 18350080,
+            "private_bytes": 10039296,
+            "cpu_seconds": 0.03125,
+            "threads": 6,
+            "handles": 131
+          },
+          "last": {
+            "time": 435804.126709,
+            "rss": 125628416,
+            "private_bytes": 596078592,
+            "cpu_seconds": 475.84375,
+            "threads": 21,
+            "handles": 304
+          },
+          "peak": {
+            "rss": 354455552,
+            "private_bytes": 934670336,
+            "threads": 52,
+            "handles": 379
+          }
+        },
+        "isolated_edge": {
+          "seconds": 88.24608819995774,
+          "cpu_core_percent": 14.235758497911544,
+          "first": {
+            "time": 435715.8806208,
+            "rss": 540594176,
+            "private_bytes": 277151744,
+            "cpu_seconds": 38.25,
+            "threads": 177,
+            "handles": 4234
+          },
+          "last": {
+            "time": 435804.126709,
+            "rss": 620195840,
+            "private_bytes": 356696064,
+            "cpu_seconds": 49.34375,
+            "threads": 187,
+            "handles": 4244
+          },
+          "peak": {
+            "rss": 674340864,
+            "private_bytes": 378142720,
+            "threads": 203,
+            "handles": 4576
+          }
+        }
+      },
+      "min_system_available": 2577285120,
+      "peak_system_commit": 28402458624,
+      "system_commit_limit": 37039616000
+    },
+    "final-offline": {
+      "exit_code": 0,
+      "scopes": {
+        "workload": {
+          "seconds": 91.84068810002645,
+          "cpu_core_percent": 148.09952735966144,
+          "first": {
+            "time": 455761.9329586,
+            "rss": 13611008,
+            "private_bytes": 5898240,
+            "cpu_seconds": 0.015625,
+            "threads": 6,
+            "handles": 131
+          },
+          "last": {
+            "time": 455853.7736467,
+            "rss": 131862528,
+            "private_bytes": 595795968,
+            "cpu_seconds": 136.03125,
+            "threads": 2,
+            "handles": 354
+          },
+          "peak": {
+            "rss": 284766208,
+            "private_bytes": 750989312,
+            "threads": 41,
+            "handles": 448
+          }
+        }
+      },
+      "min_system_available": 1553346560,
+      "peak_system_commit": 30664359936,
+      "system_commit_limit": 37039616000
+    },
+    "final-stability-legacy-1": {
+      "exit_code": 0,
+      "scopes": {
+        "workload": {
+          "seconds": 13.395294599991757,
+          "cpu_core_percent": 95.06603161984833,
+          "first": {
+            "time": 435277.9600658,
+            "rss": 13307904,
+            "private_bytes": 4796416,
+            "cpu_seconds": 0.03125,
+            "threads": 6,
+            "handles": 131
+          },
+          "last": {
+            "time": 435291.3553604,
+            "rss": 77209600,
+            "private_bytes": 562716672,
+            "cpu_seconds": 12.765625,
+            "threads": 41,
+            "handles": 302
+          },
+          "peak": {
+            "rss": 208867328,
+            "private_bytes": 696336384,
+            "threads": 41,
+            "handles": 310
+          }
+        }
+      },
+      "min_system_available": 2109980672,
+      "peak_system_commit": 29160951808,
+      "system_commit_limit": 37039616000
+    },
+    "final-stability-legacy-2": {
+      "exit_code": 0,
+      "scopes": {
+        "workload": {
+          "seconds": 9.67507719999412,
+          "cpu_core_percent": 89.95406258882656,
+          "first": {
+            "time": 435402.0405945,
+            "rss": 12218368,
+            "private_bytes": 4612096,
+            "cpu_seconds": 0.046875,
+            "threads": 6,
+            "handles": 130
+          },
+          "last": {
+            "time": 435411.7156717,
+            "rss": 76603392,
+            "private_bytes": 561668096,
+            "cpu_seconds": 8.75,
+            "threads": 39,
+            "handles": 298
+          },
+          "peak": {
+            "rss": 210620416,
+            "private_bytes": 696152064,
+            "threads": 39,
+            "handles": 306
+          }
+        }
+      },
+      "min_system_available": 2443005952,
+      "peak_system_commit": 27944427520,
+      "system_commit_limit": 37039616000
+    },
+    "final-stability-legacy-3": {
+      "exit_code": 0,
+      "scopes": {
+        "workload": {
+          "seconds": 10.006414799951017,
+          "cpu_core_percent": 91.03535264243285,
+          "first": {
+            "time": 435577.5272553,
+            "rss": 13660160,
+            "private_bytes": 5902336,
+            "cpu_seconds": 0.046875,
+            "threads": 6,
+            "handles": 131
+          },
+          "last": {
+            "time": 435587.5336701,
+            "rss": 75771904,
+            "private_bytes": 560852992,
+            "cpu_seconds": 9.15625,
+            "threads": 37,
+            "handles": 292
+          },
+          "peak": {
+            "rss": 210194432,
+            "private_bytes": 695754752,
+            "threads": 37,
+            "handles": 302
+          }
+        }
+      },
+      "min_system_available": 3184316416,
+      "peak_system_commit": 28113956864,
+      "system_commit_limit": 37039616000
+    },
+    "final-stability-legacy-maa-1": {
+      "exit_code": 0,
+      "scopes": {
+        "workload": {
+          "seconds": 31.415109699999448,
+          "cpu_core_percent": 203.57441247452059,
+          "first": {
+            "time": 435323.6088498,
+            "rss": 12713984,
+            "private_bytes": 4665344,
+            "cpu_seconds": 0.0,
+            "threads": 6,
+            "handles": 131
+          },
+          "last": {
+            "time": 435355.0239595,
+            "rss": 125263872,
+            "private_bytes": 590446592,
+            "cpu_seconds": 63.953125,
+            "threads": 40,
+            "handles": 374
+          },
+          "peak": {
+            "rss": 209387520,
+            "private_bytes": 696102912,
+            "threads": 55,
+            "handles": 415
+          }
+        }
+      },
+      "min_system_available": 1822203904,
+      "peak_system_commit": 29351137280,
+      "system_commit_limit": 37039616000
+    },
+    "final-stability-legacy-maa-2": {
+      "exit_code": 0,
+      "scopes": {
+        "workload": {
+          "seconds": 45.186292200000025,
+          "cpu_core_percent": 212.626706733862,
+          "first": {
+            "time": 435465.5800573,
+            "rss": 13438976,
+            "private_bytes": 4812800,
+            "cpu_seconds": 0.03125,
+            "threads": 6,
+            "handles": 131
+          },
+          "last": {
+            "time": 435510.7663495,
+            "rss": 144674816,
+            "private_bytes": 609669120,
+            "cpu_seconds": 96.109375,
+            "threads": 42,
+            "handles": 378
+          },
+          "peak": {
+            "rss": 206770176,
+            "private_bytes": 696184832,
+            "threads": 57,
+            "handles": 422
+          }
+        }
+      },
+      "min_system_available": 2205159424,
+      "peak_system_commit": 29425213440,
+      "system_commit_limit": 37039616000
+    },
+    "final-stability-legacy-maa-3": {
+      "exit_code": 0,
+      "scopes": {
+        "workload": {
+          "seconds": 51.124382700014394,
+          "cpu_core_percent": 226.28635083738124,
+          "first": {
+            "time": 435625.7260484,
+            "rss": 13463552,
+            "private_bytes": 5890048,
+            "cpu_seconds": 0.015625,
+            "threads": 6,
+            "handles": 131
+          },
+          "last": {
+            "time": 435676.8504311,
+            "rss": 131682304,
+            "private_bytes": 599429120,
+            "cpu_seconds": 115.703125,
+            "threads": 41,
+            "handles": 374
+          },
+          "peak": {
+            "rss": 201969664,
+            "private_bytes": 696209408,
+            "threads": 58,
+            "handles": 424
+          }
+        }
+      },
+      "min_system_available": 2315522048,
+      "peak_system_commit": 29437476864,
+      "system_commit_limit": 37039616000
+    },
+    "final-stability-maa-1": {
+      "exit_code": 0,
+      "scopes": {
+        "workload": {
+          "seconds": 31.432518500019796,
+          "cpu_core_percent": 288.51490217032045,
+          "first": {
+            "time": 435291.7747599,
+            "rss": 13410304,
+            "private_bytes": 5869568,
+            "cpu_seconds": 0.03125,
+            "threads": 6,
+            "handles": 132
+          },
+          "last": {
+            "time": 435323.2072784,
+            "rss": 130719744,
+            "private_bytes": 599384064,
+            "cpu_seconds": 90.71875,
+            "threads": 24,
+            "handles": 295
+          },
+          "peak": {
+            "rss": 182038528,
+            "private_bytes": 656715776,
+            "threads": 39,
+            "handles": 344
+          }
+        }
+      },
+      "min_system_available": 1869398016,
+      "peak_system_commit": 29305757696,
+      "system_commit_limit": 37039616000
+    },
+    "final-stability-maa-2": {
+      "exit_code": 0,
+      "scopes": {
+        "workload": {
+          "seconds": 52.71635810000589,
+          "cpu_core_percent": 239.01499371593715,
+          "first": {
+            "time": 435412.4136207,
+            "rss": 12832768,
+            "private_bytes": 4673536,
+            "cpu_seconds": 0.03125,
+            "threads": 6,
+            "handles": 130
+          },
+          "last": {
+            "time": 435465.1299788,
+            "rss": 106491904,
+            "private_bytes": 576352256,
+            "cpu_seconds": 126.03125,
+            "threads": 2,
+            "handles": 184
+          },
+          "peak": {
+            "rss": 183312384,
+            "private_bytes": 657571840,
+            "threads": 41,
+            "handles": 348
+          }
+        }
+      },
+      "min_system_available": 1749766144,
+      "peak_system_commit": 29733425152,
+      "system_commit_limit": 37039616000
+    },
+    "final-stability-maa-3": {
+      "exit_code": 0,
+      "scopes": {
+        "workload": {
+          "seconds": 37.399941199983004,
+          "cpu_core_percent": 328.66863170377354,
+          "first": {
+            "time": 435587.9144897,
+            "rss": 4165632,
+            "private_bytes": 823296,
+            "cpu_seconds": 0.0,
+            "threads": 2,
+            "handles": 58
+          },
+          "last": {
+            "time": 435625.3144309,
+            "rss": 4268032,
+            "private_bytes": 794624,
+            "cpu_seconds": 0.0,
+            "threads": 1,
+            "handles": 55
+          },
+          "peak": {
+            "rss": 184569856,
+            "private_bytes": 659107840,
+            "threads": 39,
+            "handles": 344
+          }
+        }
+      },
+      "min_system_available": 3135221760,
+      "peak_system_commit": 28054548480,
+      "system_commit_limit": 37039616000
+    },
+    "final-stability-maa-legacy-1": {
+      "exit_code": 0,
+      "scopes": {
+        "workload": {
+          "seconds": 46.221246400033124,
+          "cpu_core_percent": 233.18551184704265,
+          "first": {
+            "time": 435355.3992992,
+            "rss": 12271616,
+            "private_bytes": 4636672,
+            "cpu_seconds": 0.015625,
+            "threads": 6,
+            "handles": 130
+          },
+          "last": {
+            "time": 435401.6205456,
+            "rss": 141434880,
+            "private_bytes": 607408128,
+            "cpu_seconds": 107.796875,
+            "threads": 40,
+            "handles": 358
+          },
+          "peak": {
+            "rss": 271351808,
+            "private_bytes": 741896192,
+            "threads": 40,
+            "handles": 368
+          }
+        }
+      },
+      "min_system_available": 1855528960,
+      "peak_system_commit": 29336399872,
+      "system_commit_limit": 37039616000
+    },
+    "final-stability-maa-legacy-2": {
+      "exit_code": 0,
+      "scopes": {
+        "workload": {
+          "seconds": 65.7324399999925,
+          "cpu_core_percent": 243.79134564306196,
+          "first": {
+            "time": 435511.4056174,
+            "rss": 12910592,
+            "private_bytes": 4669440,
+            "cpu_seconds": 0.0,
+            "threads": 6,
+            "handles": 130
+          },
+          "last": {
+            "time": 435577.1380574,
+            "rss": 126824448,
+            "private_bytes": 592789504,
+            "cpu_seconds": 160.25,
+            "threads": 39,
+            "handles": 354
+          },
+          "peak": {
+            "rss": 260083712,
+            "private_bytes": 725213184,
+            "threads": 42,
+            "handles": 369
+          }
+        }
+      },
+      "min_system_available": 2269093888,
+      "peak_system_commit": 29325758464,
+      "system_commit_limit": 37039616000
+    },
+    "final-stability-maa-legacy-3": {
+      "exit_code": 0,
+      "scopes": {
+        "workload": {
+          "seconds": 32.672363799996674,
+          "cpu_core_percent": 174.88977947780387,
+          "first": {
+            "time": 435677.2672392,
+            "rss": 12566528,
+            "private_bytes": 4640768,
+            "cpu_seconds": 0.0,
+            "threads": 6,
+            "handles": 130
+          },
+          "last": {
+            "time": 435709.939603,
+            "rss": 128376832,
+            "private_bytes": 594878464,
+            "cpu_seconds": 57.140625,
+            "threads": 41,
+            "handles": 362
+          },
+          "peak": {
+            "rss": 258822144,
+            "private_bytes": 729362432,
+            "threads": 42,
+            "handles": 371
+          }
+        }
+      },
+      "min_system_available": 2707005440,
+      "peak_system_commit": 28711194624,
+      "system_commit_limit": 37039616000
+    },
+    "sustained-01": {
+      "exit_code": 0,
+      "scopes": {
+        "workload": {
+          "seconds": 185.97195660002762,
+          "cpu_core_percent": 325.62873245584274,
+          "first": {
+            "time": 435848.434202,
+            "rss": 13713408,
+            "private_bytes": 5902336,
+            "cpu_seconds": 0.0,
+            "threads": 6,
+            "handles": 131
+          },
+          "last": {
+            "time": 436034.4061586,
+            "rss": 109121536,
+            "private_bytes": 581754880,
+            "cpu_seconds": 605.578125,
+            "threads": 19,
+            "handles": 294
+          },
+          "peak": {
+            "rss": 172597248,
+            "private_bytes": 649211904,
+            "threads": 38,
+            "handles": 352
+          }
+        },
+        "isolated_edge": {
+          "seconds": 185.97195660002762,
+          "cpu_core_percent": 5.637610740714464,
+          "first": {
+            "time": 435848.434202,
+            "rss": 546148352,
+            "private_bytes": 282431488,
+            "cpu_seconds": 50.109375,
+            "threads": 189,
+            "handles": 4242
+          },
+          "last": {
+            "time": 436034.4061586,
+            "rss": 551862272,
+            "private_bytes": 302743552,
+            "cpu_seconds": 59.171875,
+            "threads": 180,
+            "handles": 4258
+          },
+          "peak": {
+            "rss": 649822208,
+            "private_bytes": 354578432,
+            "threads": 206,
+            "handles": 4593
+          }
+        }
+      },
+      "min_system_available": 2835296256,
+      "peak_system_commit": 28532801536,
+      "system_commit_limit": 37039616000
+    },
+    "zoom-02": {
+      "exit_code": 0,
+      "scopes": {
+        "workload": {
+          "seconds": 37.70069189998321,
+          "cpu_core_percent": 342.8733492290564,
+          "first": {
+            "time": 435637.0798637,
+            "rss": 18399232,
+            "private_bytes": 9973760,
+            "cpu_seconds": 0.03125,
+            "threads": 6,
+            "handles": 131
+          },
+          "last": {
+            "time": 435674.7805556,
+            "rss": 107995136,
+            "private_bytes": 582541312,
+            "cpu_seconds": 129.296875,
+            "threads": 24,
+            "handles": 299
+          },
+          "peak": {
+            "rss": 471052288,
+            "private_bytes": 987602944,
+            "threads": 52,
+            "handles": 380
+          }
+        },
+        "isolated_edge": {
+          "seconds": 37.70069189998321,
+          "cpu_core_percent": 11.687451285216232,
+          "first": {
+            "time": 435637.0798637,
+            "rss": 520884224,
+            "private_bytes": 260460544,
+            "cpu_seconds": 32.796875,
+            "threads": 178,
+            "handles": 4090
+          },
+          "last": {
+            "time": 435674.7805556,
+            "rss": 610906112,
+            "private_bytes": 348450816,
+            "cpu_seconds": 36.953125,
+            "threads": 175,
+            "handles": 4233
+          },
+          "peak": {
+            "rss": 706662400,
+            "private_bytes": 404541440,
+            "threads": 195,
+            "handles": 4607
+          }
+        }
+      },
+      "min_system_available": 2300473344,
+      "peak_system_commit": 29445181440,
+      "system_commit_limit": 37039616000
+    }
+  },
+  "sustained": {
+    "sustained-01": {
+      "status": "passed",
+      "duration": 185.01280139997834,
+      "stats": {
+        "completed": 245,
+        "valid": 239,
+        "dropped_notifications": 0,
+        "skipped_ticks": 0,
+        "last_duration": 0.12256980000529438
+      },
+      "effective_hz": 1.291802503348441,
+      "close": {
+        "released": true,
+        "worker_thread": 21296,
+        "destroyed": [
+          "tasker",
+          "controller",
+          "resource"
+        ],
+        "errors": [],
+        "stop_status": "succeeded"
+      },
+      "cleanup": {
+        "pending": 0,
+        "reader": false,
+        "connected": false
+      },
+      "handles_after": {
+        "tasker": false,
+        "controller": false,
+        "resource": false
+      },
+      "timing_seconds": {
+        "capture": {
+          "n": 245,
+          "median": 0.0769328000023961,
+          "p95": 0.09539179998682812,
+          "min": 0.05532909999601543,
+          "max": 0.11505790002411231
+        },
+        "native": {
+          "n": 245,
+          "median": 0.06174999999348074,
+          "p95": 0.10495209996588528,
+          "min": 0.04013459995621815,
+          "max": 0.17443469999125227
+        },
+        "parse": {
+          "n": 245,
+          "median": 1.7300015315413475e-05,
+          "p95": 3.100000321865082e-05,
+          "min": 1.0599964298307896e-05,
+          "max": 4.8600020818412304e-05
+        },
+        "total": {
+          "n": 245,
+          "median": 0.13970560004236177,
+          "p95": 0.1873247000039555,
+          "min": 0.09828340000240132,
+          "max": 0.25244349997956306
+        }
+      },
+      "completion_interval_seconds": {
+        "n": 244,
+        "median": 0.761261999985436,
+        "p95": 0.8054378999513574,
+        "min": 0.14043909998144954,
+        "max": 0.8550560000003316
+      }
+    }
+  }
+}

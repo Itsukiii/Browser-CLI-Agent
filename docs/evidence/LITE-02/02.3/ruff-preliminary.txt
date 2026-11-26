@@ -1,0 +1,21 @@
+B905 `zip()` without an explicit `strict=` parameter
+  --> tests\lite\summarize_stability.py:95:58
+   |
+93 |         }
+94 |         row["completion_interval_seconds"] = distribution(
+95 |             [b["completed"] - a["completed"] for a, b in zip(records, records[1:])]
+   |                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^
+96 |         )
+97 |         summary["sustained"][file.parents[2].name] = row
+   |
+help: Add explicit value for parameter `strict=`
+   |
+94 |         row["completion_interval_seconds"] = distribution(
+   -             [b["completed"] - a["completed"] for a, b in zip(records, records[1:])]
+95 +             [b["completed"] - a["completed"] for a, b in zip(records, records[1:], strict=False)]
+96 |         )
+   |
+note: This is an unsafe fix and may change runtime behavior
+
+Found 1 error.
+1 unsafe fix available with `--fix --unsafe-fixes`.
