@@ -7,7 +7,7 @@
 - `docs/md/BCA-LITE_MASTER_HANDOFF.md` 第9节（9.1～9.3）是**业务规格权威**，本文件是实施/验收分解，不能擅自缩减业务。
 - `docs/lite/LITE-03_ACCEPTANCE_2026-11-26.md`、`docs/lite/LITE-03_HANDOFF.md`、`docs/lite/CLI.md`、`docs/lite/PLUGIN_CONTRACT.md`、`docs/md/BCA_PROJECT_CONTEXT.md` 第0节。
 - 必读源代码：`src/bca/lite/{observation.py,plugin.py,vision.py,bridge.py,cli_session.py,interactive.py,fixture.py}` 和 `tests/lite/test_real_cli.py`、`tests/lite/test_real_vision.py`。
-- Codex负责本地 `lite` 设计、实现、实测与归档；主会话先审 `docs/lite/LITE-04_DESIGN.md`，再批准功能实现。确认分支、工作区与最新验收提交；别提前标记 Accepted。
+- **本阶段架构方案由主会话设计并已定稿**：`docs/lite/LITE-04_DESIGN.md`。Codex 负责本地 `lite` 实现、实测、证据及归档；遇到实际 API / OCR / race 约束时提交最小偏差说明，主会话审核调整。确认分支、工作区与最新提交；别提前标记 Accepted。
 
 ## 1. 产品需求（必须逐项满足）
 
@@ -15,9 +15,9 @@
 
 **终端：** 至少1Hz真实完成的题目/四选项识别；题目发生变化时只打印一次`【题目已更新】`及完整题目选项；输入 `A/B/C/D`（大小写兼容）回车后完成选择+确认；点击目标必须来自新视觉唯一候选与每步精确授权。`?` 在任何时刻请求新截图读取**当前分数**。提交前后可见分数差+1/-1分别提示正确/错误；差0标记待结算/未知并限时观察，不得判为错误；更大差值、题目刷新/歧义、输入不确定时保守拒绝或说明无法归属。提交后验证新题确实出现，不用native `succeeded`冒充结算。
 
-## 2. 必先完成 LITE-04_DESIGN.md（主会话设计关）
+## 2. 设计执行检查项（以主会话已归档的 LITE-04_DESIGN.md 为准）
 
-请在写完整功能前提出**最小多步骤动作协调**的精确接口方案：
+正式方案已由主会话写入 `LITE-04_DESIGN.md`。以下列举的原问题现在作为 Codex **实施自检与偏差报告** 的检查项：
 
 1. `BusinessPlugin` 可以怎样表示Quiz的 `question`、四选项 `A/B/C/D`、`score`、`selected_option`（视觉可证）、当前回合依据，以及`signature`和`interaction_revision`；是否需要安全兼容扩展，保证旧fixture测试仍完整通过。
 2. 原 `ObservationCoordinator.execute_intent` 是**一次新观察→一笔点击→后置观察**。两步操作必须先完成**选项点击并视觉验证选中态与同一回合**，再取得另一张新图、唯一确认按钮候选及新的`ObservationRef`，执行第二笔点击；不允许重用第一次点击授权、直接绕过Coordinator、缓存坐标或把两个点击打包为不可观察的宏。
@@ -25,7 +25,7 @@
 4. 分数读数失败、先后读数0、负数、多位数、偶发OCR歧义、计时已换题、两个选项重复或缺失时分别是什么失败/待定状态；在哪一层实现有限重观测、超时和状态通知，避免再次搭建通用任务调度器。
 5. CLI如何选择`--plugin quiz`、配置其自制页面/Bundle/ROI，保持原有fixture无需变更；命令忙时如何定义`?`与A/B/C/D的顺序；怎样让人类读到题目更新而不破坏编辑输入缓冲。
 
-**设计关出口：** `docs/lite/LITE-04_DESIGN.md` 包含可运行的主要数据结构/方法签名草案、状态转移表、两个点击间隔失效图、测试矩阵、对既有协议影响清单、与Maa限制及原生资源的关系。先提交设计给主会话审查；不必等待设计阶段就重构其它产品模块。
+**设计关已完成：** `LITE-04_DESIGN.md` 是当前执行规范。Codex 可立即开始 04.1，但遇到真实接口与设计不一致时需提交实测证据与差异，不自行改写本规范。
 
 ## 3. 实施阶段（设计批准后分步）
 
@@ -48,4 +48,4 @@
 
 每子阶段提交代码/测试/原始证据，`docs/lite/LITE-04_HANDOFF.md` 引用可复现命令、Git SHA、模型/素材版权、Windows/Edge版本；失败轮次保留。按 LITE-04 总交接规格的 9.3 测试矩阵逐项附证据；不得把单次模拟输出当成真实用户闭环。主会话审计通过才更新 README/PROJECT_CONTEXT 的 LITE-04 Accepted 状态。
 
-**启动指令：先输出 `LITE-04_DESIGN.md` 给主会话审查。**
+**启动指令：阅读主会话完成的 `LITE-04_DESIGN.md`，确认契约后从 04.1 页面与受控资源开始实施。**
