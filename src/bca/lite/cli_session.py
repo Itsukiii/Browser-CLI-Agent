@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import sys
 from contextlib import ExitStack
 from typing import TYPE_CHECKING
 from urllib.parse import quote, urlsplit
@@ -68,12 +69,24 @@ async def run(settings: Settings, *, check: bool, once: bool, create_fixture: bo
         if check:
             print("Config and fixture resources valid; OCR provenance and SHA256 verified.")
             return
+        terminal = None
         if not once:
-            raise ValueError("interactive input is introduced in LITE-03.2; use --once")
-        if not settings.target and not create_fixture:
+            if not sys.stdin.isatty() or not sys.stdout.isatty():
+                raise ValueError("interactive mode requires a terminal; use --once/--check")
+            from .terminal import PromptTerminal
+
+            terminal = PromptTerminal()
+        if not settings.target and not create_fixture and terminal is None:
             raise ValueError("select an exact --target from --list-targets, or --create-fixture")
         await session.connect()
         target = settings.target
+        if target is None and not create_fixture and terminal is not None:
+            pages = [t for t in await session.list_targets() if t.type == "page"]
+            for page in pages:
+                await terminal.write(f"Target {page.target_id} host={urlsplit(page.url).hostname}")
+            target = (await terminal.read("Exact Target ID (blank cancels): ")).strip()
+            if target not in {t.target_id for t in pages}:
+                raise ValueError("no exact Target selected; no fallback")
         if create_fixture:
             result = await session.connection.send(
                 "Target.createTarget",
@@ -111,13 +124,20 @@ async def run(settings: Settings, *, check: bool, once: bool, create_fixture: bo
             MaaVisionFacade(bridge, plugin.resources), plugin, interval=settings.interval
         )
         await coordinator.start()
-        observation = await coordinator.refresh()
-        print(f"{plugin.format_state(observation.state)} expired={observation.expired}")
+        if terminal is None:
+            observation = await coordinator.refresh()
+            print(f"{plugin.format_state(observation.state)} expired={observation.expired}")
+        else:
+            from .interactive import interact
+
+            await terminal.write(f"Bound Target {target}; plugin=fixture roi={settings.roi}")
+            await interact(coordinator, terminal, lambda: bridge.connected)
     finally:
         # Cancellation of the caller cannot unwind dependencies while native work
         # is still draining. Keep resources alive if release cannot be established.
         async def close() -> None:
             nonlocal released
+            close_errors: tuple[str, ...] = ()
             if coordinator is not None:
                 report = await coordinator.aclose()
                 for _ in range(2):
@@ -126,16 +146,33 @@ async def run(settings: Settings, *, check: bool, once: bool, create_fixture: bo
                     await asyncio.sleep(0.1)
                     report = await coordinator.aclose()
                 released = report.released
+                close_errors = report.errors
                 print(f"Close: released={report.released} errors={report.errors}")
                 if not released:
                     _RETAINED.extend((stack, session, capture, inputs, coordinator))
                     raise UnreleasedNativeError("native release unconfirmed; dependencies retained")
-            await inputs.close()
-            await capture.close()
-            if owned and session.connected:
-                await session.connection.send("Target.closeTarget", {"targetId": owned})
-            await session.close()
-            stack.close()
+            # Once native released, each remaining owner gets a cleanup attempt
+            # even if another provider/Target is already gone.
+            errors = list(close_errors)
+            for operation in (inputs.close, capture.close):
+                try:
+                    await operation()
+                except Exception as exc:
+                    errors.append(f"{type(exc).__name__}: {exc}")
+            try:
+                if owned and session.connected:
+                    await session.connection.send("Target.closeTarget", {"targetId": owned})
+            except Exception as exc:
+                errors.append(f"Target cleanup: {type(exc).__name__}")
+            finally:
+                await session.close()
+                stack.close()
+            print(
+                f"CDP closed: pending={session.connection.pending_count} "
+                f"reader={session.connection.reader_running}"
+            )
+            if errors:
+                raise RuntimeError("cleanup diagnostics: " + "; ".join(errors))
 
         task = asyncio.create_task(close())
         cancelled = False
