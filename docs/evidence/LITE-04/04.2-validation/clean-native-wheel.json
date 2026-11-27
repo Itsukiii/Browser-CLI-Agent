@@ -1,0 +1,43 @@
+{
+  "module": "D:\\Project\\BCA-lite\\.test-artifacts\\lite04-validation-clean\\Lib\\site-packages\\bca\\lite\\quiz.py",
+  "python": "3.14.7 (tags/v3.14.7:823f032, Aug  5 2026, 10:51:32) [MSC v.1944 64 bit (AMD64)]",
+  "maa": "v5.16.1",
+  "templates": 2524,
+  "model_verified": true,
+  "assets": {
+    "neutral.png": "1a3714b9f644eadfca26f2f2387817bbbafb2cb1145214f66260cf23ecb25fa4",
+    "selected.png": "9c1456c6b7ec447c7b1ccf98f534075e4342aeaa10d2707f8ddc02e4ee6b967a"
+  },
+  "native": {
+    "snapshot": {
+      "round_mark": "000001",
+      "question": 5,
+      "options": [
+        1,
+        5,
+        9,
+        4
+      ],
+      "score": 0,
+      "selected": null,
+      "time_left": 10.0
+    },
+    "frame": "f446ddd4-ee77-405f-99aa-f01118bd5239",
+    "expired": false,
+    "bad_model_rejected": "VisionError",
+    "close": {
+      "released": true,
+      "worker_thread": 25692,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    },
+    "pending": 0,
+    "reader": false
+  },
+  "temporary_resources_removed": true
+}

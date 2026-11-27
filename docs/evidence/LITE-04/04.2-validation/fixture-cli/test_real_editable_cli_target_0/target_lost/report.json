@@ -1,0 +1,28 @@
+{
+  "command": [
+    "D:\\Project\\BCA-lite\\.venv\\Scripts\\python.exe",
+    "-m",
+    "bca.lite",
+    "--config",
+    "D:\\Project\\BCA-lite\\configs\\lite.example.toml",
+    "--endpoint",
+    "http://127.0.0.1:9341",
+    "--create-fixture"
+  ],
+  "ending": "target_lost",
+  "start": 1795762126.9985235,
+  "stimuli": [],
+  "target": "879238B5FEBAD33764B8FCA466211CE5",
+  "dom": [
+    {
+      "id": "button",
+      "x": 107,
+      "y": 81,
+      "round": "456"
+    }
+  ],
+  "exit_code": 0,
+  "transcript": "Bound Target 879238B5FEBAD33764B8FCA466211CE5; plugin=fixture roi=True\nhelp | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits\nbca-lite>State: MATCHED revision=123 expired=False frame=b7bd03c4-4c76-42cc-a05a-3af706d23e24 diagnostic=none\nbca-lite>bca-lite> ?\nbca-lite>Result: read MATCHED revision=123 expired=False frame=665f744f-8f67-4a7f-ade3-5dda68d6e635 diagnostic=none\nbca-lite>bca-lite> click 45State: MATCHED revision=456 expired=False frame=ce3ebf6b-d6f4-4175-95e8-6a469413fc45 diagnostic=none\nbca-lite> click 456\nbca-lite>Result: confirmed MATCHED revision=457 expired=False frame=38383aac-e6f1-4133-91b7-fdb63d52f2d2 diagnostic=none\nbca-lite>State: MATCHED revision=457 expired=False frame=38383aac-e6f1-4133-91b7-fdb63d52f2d2 diagnostic=none\nbca-lite>Target/transport lost or session retired; no reconnect/replay.\nbca-lite>bca-lite> click 457\nRejected: VisionError: coordinator is stopped, closed or retired\nbca-lite>State: ERROR revision=None expired=True frame=none diagnostic=VisionError\nbca-lite>bca-lite> quit\nClose: released=True errors=()\nCDP closed: pending=0 reader=False\n",
+  "original_preserved": true,
+  "end": 1795762130.9106848
+}

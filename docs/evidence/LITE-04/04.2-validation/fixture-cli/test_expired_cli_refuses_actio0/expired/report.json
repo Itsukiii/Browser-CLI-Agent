@@ -1,0 +1,17 @@
+{
+  "command": [
+    "D:\\Project\\BCA-lite\\.venv\\Scripts\\python.exe",
+    "-m",
+    "bca.lite",
+    "--config",
+    "D:\\Project\\BCA-lite\\configs\\lite.example.toml",
+    "--endpoint",
+    "http://127.0.0.1:9341",
+    "--create-fixture",
+    "--max-frame-age",
+    "0.000001"
+  ],
+  "dom": [],
+  "exit_code": 0,
+  "transcript": "Bound Target 9A93B1CAB33516EA3FEFCCE1FB481C2F; plugin=fixture roi=True\nhelp | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits\nbca-lite>State: ERROR revision=None expired=True frame=none diagnostic=VisionError\nbca-lite>bca-lite> click 123\nbca-lite>Rejected: VisionError: intent expired, revision changed or observation invalid\nbca-lite>bca-lite> quit\nClose: released=True errors=()\nCDP closed: pending=0 reader=False\n"
+}

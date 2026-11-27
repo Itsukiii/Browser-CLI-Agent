@@ -40,7 +40,13 @@ async def run(output, mode, bundle):
     session = BrowserSession(os.environ["BCA_CDP_ENDPOINT"])
     capture, inputs = BrowserCaptureProvider(session), BrowserInputProvider(session)
     target = facade = None
-    report = dict(mode=mode, rows=[], shortcuts=[])
+    report = dict(
+        mode=mode,
+        rows=[],
+        shortcuts=[],
+        viewport=os.environ.get("BCA_QUIZ_VIEWPORT", "native-window"),
+        raw=not bool(os.environ.get("BCA_QUIZ_NONRAW")),
+    )
     await session.connect()
     original = {t.target_id for t in await session.list_targets()}
     capture_times, native_times = [], []
@@ -61,6 +67,11 @@ async def run(output, mode, bundle):
             )
         )["targetId"]
         await session.bind(target)
+        if os.environ.get("BCA_QUIZ_VIEWPORT") == "960x640":
+            await session.send(
+                "Emulation.setDeviceMetricsOverride",
+                {"width": 960, "height": 640, "deviceScaleFactor": 1, "mobile": False},
+            )
         await session.send("Page.bringToFront")
         async with asyncio.timeout(10):
             while not await evaluate(session, "document.querySelector('#question img')!==null"):
@@ -76,7 +87,7 @@ async def run(output, mode, bundle):
             max_frame_age=2,
         )
         plugin = QuizPlugin(ResourceSpec(bundle, model_spec()))
-        facade = MaaVisionFacade(bridge, plugin.resources)
+        facade = MaaVisionFacade(bridge, plugin.resources, raw_size=report["raw"])
         await facade.start()
         native = facade._native
         capture_original, recognize_original = native.capture, native.recognize
@@ -130,6 +141,7 @@ async def run(output, mode, bundle):
                 valid=correct and batch.source_current and not batch.expired,
                 capture=capture_times[-1],
                 native=sum(native_times[n:]),
+                native_per_request=native_times[n:],
                 parse=end - parse,
                 total=end - start,
                 requests=[
@@ -229,5 +241,13 @@ async def run(output, mode, bundle):
 
 
 if __name__ == "__main__":
+    if os.environ.get("BCA_QUIZ_AFFINITY"):
+        import psutil
+
+        process = psutil.Process()
+        permitted = process.cpu_affinity()
+        selected = permitted[: int(os.environ["BCA_QUIZ_AFFINITY"])]
+        process.cpu_affinity(selected)
+        print(json.dumps({"actual_pid": process.pid, "test_only_cpu_affinity": selected}))
     with quiz_vision_bundle() as bundle:
         asyncio.run(run(Path(sys.argv[1]), sys.argv[2], bundle))

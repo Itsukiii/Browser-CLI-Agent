@@ -1,0 +1,222 @@
+[
+  {
+    "elapsed": 60.77750990004279,
+    "valid_hz": 0.9707538215539572,
+    "valid_count": 59,
+    "wrong_matched": 0,
+    "capture": {
+      "median": 0.14998920005746186,
+      "p95": 0.2171741999918595
+    },
+    "native": {
+      "median": 0.6714818999171257,
+      "p95": 1.232010000036098
+    },
+    "parse": {
+      "median": 0.00010659999679774046,
+      "p95": 0.0005172999808564782
+    },
+    "total": {
+      "median": 0.8303992000874132,
+      "p95": 1.4568739000242203
+    },
+    "close": {
+      "released": true,
+      "worker_thread": 39232,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    },
+    "cleanup": {
+      "pending": 0,
+      "reader": false,
+      "connected": false
+    },
+    "name": "c-performance",
+    "count": 61,
+    "expired": 2,
+    "not_matched": 0,
+    "size": [
+      1386,
+      1562
+    ],
+    "process": {
+      "pid": 9156,
+      "scope": "workload",
+      "sampled_seconds": 67.08856159995776,
+      "cpu_seconds": 320.921875,
+      "mean_cores": 4.783555755951728,
+      "peak_rss": 193011712,
+      "peak_private": 671416320
+    }
+  },
+  {
+    "elapsed": 61.54607839998789,
+    "valid_hz": 0.0,
+    "valid_count": 0,
+    "wrong_matched": 0,
+    "capture": {
+      "median": 0.18047489994205534,
+      "p95": 0.20902249997016042
+    },
+    "native": {
+      "median": 2.2589499998721294,
+      "p95": 2.4944174997508526
+    },
+    "parse": {
+      "median": 0.0004652500501833856,
+      "p95": 0.0006169000407680869
+    },
+    "total": {
+      "median": 2.4417624000343494,
+      "p95": 2.7247397999744862
+    },
+    "close": {
+      "released": true,
+      "worker_thread": 30752,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    },
+    "cleanup": {
+      "pending": 0,
+      "reader": false,
+      "connected": false
+    },
+    "name": "c-960",
+    "count": 24,
+    "expired": 24,
+    "not_matched": 0,
+    "size": [
+      960,
+      640
+    ],
+    "process": {
+      "pid": 34548,
+      "scope": "workload",
+      "sampled_seconds": 70.10878110001795,
+      "cpu_seconds": 292.390625,
+      "mean_cores": 4.170527862734803,
+      "peak_rss": 146960384,
+      "peak_private": 623521792
+    }
+  },
+  {
+    "elapsed": 61.51841459993739,
+    "valid_hz": 0.0,
+    "valid_count": 0,
+    "wrong_matched": 0,
+    "capture": {
+      "median": 0.29150995006784797,
+      "p95": 0.3221987000433728
+    },
+    "native": {
+      "median": 2.217008850071579,
+      "p95": 2.3763633999042213
+    },
+    "parse": {
+      "median": 0.0001440499909222126,
+      "p95": 0.00019639998208731413
+    },
+    "total": {
+      "median": 2.485277900006622,
+      "p95": 2.6683120999950916
+    },
+    "close": {
+      "released": true,
+      "worker_thread": 30872,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    },
+    "cleanup": {
+      "pending": 0,
+      "reader": false,
+      "connected": false
+    },
+    "name": "c-nonraw",
+    "count": 24,
+    "expired": 24,
+    "not_matched": 24,
+    "size": [
+      720,
+      811
+    ],
+    "process": {
+      "pid": 34884,
+      "scope": "workload",
+      "sampled_seconds": 70.7669211999746,
+      "cpu_seconds": 287.640625,
+      "mean_cores": 4.0646197421416606,
+      "peak_rss": 157364224,
+      "peak_private": 635895808
+    }
+  },
+  {
+    "elapsed": 60.58914580009878,
+    "valid_hz": 0.0,
+    "valid_count": 0,
+    "wrong_matched": 0,
+    "capture": {
+      "median": 0.12097369995899498,
+      "p95": 0.1498950000386685
+    },
+    "native": {
+      "median": 2.0274183994624764,
+      "p95": 2.100911400048062
+    },
+    "parse": {
+      "median": 0.00018190010450780392,
+      "p95": 0.00021740002557635307
+    },
+    "total": {
+      "median": 2.159465500037186,
+      "p95": 2.2283140000654384
+    },
+    "close": {
+      "released": true,
+      "worker_thread": 35160,
+      "destroyed": [
+        "tasker",
+        "controller",
+        "resource"
+      ],
+      "errors": [],
+      "stop_status": "succeeded"
+    },
+    "cleanup": {
+      "pending": 0,
+      "reader": false,
+      "connected": false
+    },
+    "name": "c-affinity",
+    "count": 27,
+    "expired": 27,
+    "not_matched": 0,
+    "size": [
+      960,
+      640
+    ],
+    "process": {
+      "pid": 2016,
+      "scope": "workload",
+      "sampled_seconds": 66.81468870001845,
+      "cpu_seconds": 119.640625,
+      "mean_cores": 1.7906335766549333,
+      "peak_rss": 148668416,
+      "peak_private": 624631808
+    }
+  }
+]

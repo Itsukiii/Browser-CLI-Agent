@@ -1,0 +1,1 @@
+{"actual_pid": 2016, "test_only_cpu_affinity": [0, 1]}

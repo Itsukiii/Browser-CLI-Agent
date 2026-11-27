@@ -1,0 +1,14 @@
+{
+  "target_preserved": true,
+  "exit_code": 0,
+  "transcript": "Target 5D0AA53E64C433161D9B76C4F573C7DF host=None\nTarget CDCC825D6CEEB074B00A27724315A7D3 host=None\nExact Target ID (blank cancels):Exact Target ID (blank cancels): CDCC825D6CEEB074B00A27724315A7D3\nBound Target CDCC825D6CEEB074B00A27724315A7D3; plugin=fixture roi=True\nhelp | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits\nbca-lite>State: NOT_FOUND revision=123 expired=False frame=d9689714-f53d-4085-b295-cc6fe0305a3b diagnostic=none\nbca-lite>bca-lite> ?\nbca-lite>Result: read NOT_FOUND revision=123 expired=False frame=4b893520-2129-4a24-84f2-87c1685521ce diagnostic=none\nbca-lite>bca-lite> quit\nClose: released=True errors=()\nCDP closed: pending=0 reader=False\n",
+  "command": [
+    "D:\\Project\\BCA-lite\\.venv\\Scripts\\python.exe",
+    "-m",
+    "bca.lite",
+    "--config",
+    "D:\\Project\\BCA-lite\\configs\\lite.example.toml",
+    "--endpoint",
+    "http://127.0.0.1:9341"
+  ]
+}

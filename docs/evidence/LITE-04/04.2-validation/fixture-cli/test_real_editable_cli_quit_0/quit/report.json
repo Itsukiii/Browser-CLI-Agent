@@ -1,0 +1,28 @@
+{
+  "command": [
+    "D:\\Project\\BCA-lite\\.venv\\Scripts\\python.exe",
+    "-m",
+    "bca.lite",
+    "--config",
+    "D:\\Project\\BCA-lite\\configs\\lite.example.toml",
+    "--endpoint",
+    "http://127.0.0.1:9341",
+    "--create-fixture"
+  ],
+  "ending": "quit",
+  "start": 1795762110.5383704,
+  "stimuli": [],
+  "target": "A9813E74505B861E70E90451FFAF981D",
+  "dom": [
+    {
+      "id": "button",
+      "x": 107,
+      "y": 81,
+      "round": "456"
+    }
+  ],
+  "exit_code": 0,
+  "transcript": "Bound Target A9813E74505B861E70E90451FFAF981D; plugin=fixture roi=True\nhelp | ? (fresh screenshot) | click <visible-round> | stop | resume | quit; Ctrl+C/EOF exits\nbca-lite>State: MATCHED revision=123 expired=False frame=fe63874e-e2b6-4dbf-b9b3-7cda06299c13 diagnostic=none\nbca-lite>bca-lite> ?\nbca-lite>Result: read MATCHED revision=123 expired=False frame=b703e35a-90ae-496c-95a7-fefd548851d6 diagnostic=none\nbca-lite>bca-lite> click 45State: MATCHED revision=456 expired=False frame=8f2121ca-1865-40ca-bab7-667ecb5aebb8 diagnostic=none\nbca-lite> click 456\nbca-lite>Result: confirmed MATCHED revision=457 expired=False frame=923d4db2-c5d8-41fa-847a-6ff54c6ecc34 diagnostic=none\nbca-lite>State: MATCHED revision=457 expired=False frame=923d4db2-c5d8-41fa-847a-6ff54c6ecc34 diagnostic=none\nbca-lite>bca-lite> click 456\nbca-lite>Rejected: VisionError: intent expired, revision changed or observation invalid\nbca-lite> stop\nStopped; resources retained. Use resume.\nbca-lite>bca-lite> stop\nStopped; resources retained. Use resume.\nbca-lite>bca-lite> resume\nObservation resumed.\nbca-lite>State: NOT_FOUND revision=457 expired=False frame=c761f52e-d71c-4045-905a-ae3a7f14c74e diagnostic=none\nbca-lite>State: AMBIGUOUS revision=457 expired=False frame=31fd20b5-51eb-499e-8755-cca111129391 diagnostic=none\nbca-lite>State: MATCHED revision=457 expired=False frame=3186cc0e-fe54-48da-b93d-bf37338e7c20 diagnostic=none\nbca-lite>bca-lite> \u4e2d\u6587\u975e\u6cd5\u547d\u4ee4\nbca-lite> xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxRejected: ValueError: expected '?' or 'click <visible-round>'\nbca-lite> xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\nRejected: command exceeds 1024 characters.\nbca-lite>bca-lite> ?\nbca-lite> ?\nBusy: command rejected, not queued; submit again after result.\nbca-lite> ?\nBusy: command rejected, not queued; submit again after result.\nbca-lite>Result: read MATCHED revision=457 expired=False frame=be7668c0-2b35-4a5a-9777-b50bb8e389a6 diagnostic=none\nbca-lite>bca-lite> quit\nClose: released=True errors=()\nCDP closed: pending=0 reader=False\n",
+  "original_preserved": true,
+  "end": 1795762119.1265306
+}

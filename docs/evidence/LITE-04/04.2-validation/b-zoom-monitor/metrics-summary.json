@@ -1,0 +1,114 @@
+{
+  "source": "docs\\evidence\\LITE-04\\04.2-validation\\b-zoom-monitor\\process.json",
+  "exit_code": 0,
+  "processes": [
+    {
+      "pid": 35632,
+      "scope": "workload",
+      "sampled_seconds": 39.11668880004436,
+      "cpu_seconds": 0.0,
+      "mean_cores": 0.0,
+      "peak_rss": 4579328,
+      "peak_private": 819200
+    },
+    {
+      "pid": 38836,
+      "scope": "workload",
+      "sampled_seconds": 39.1197269000113,
+      "cpu_seconds": 159.453125,
+      "mean_cores": 4.076028582907973,
+      "peak_rss": 184328192,
+      "peak_private": 660811776
+    },
+    {
+      "pid": 4676,
+      "scope": "isolated_edge",
+      "sampled_seconds": 39.121267599985,
+      "cpu_seconds": 2.171875,
+      "mean_cores": 0.055516478203299136,
+      "peak_rss": 232210432,
+      "peak_private": 111235072
+    },
+    {
+      "pid": 12292,
+      "scope": "isolated_edge",
+      "sampled_seconds": 39.11991360003594,
+      "cpu_seconds": 0.0,
+      "mean_cores": 0.0,
+      "peak_rss": 13893632,
+      "peak_private": 3170304
+    },
+    {
+      "pid": 37028,
+      "scope": "isolated_edge",
+      "sampled_seconds": 39.11920340009965,
+      "cpu_seconds": 0.71875,
+      "mean_cores": 0.018373329146016533,
+      "peak_rss": 195780608,
+      "peak_private": 231010304
+    },
+    {
+      "pid": 6356,
+      "scope": "isolated_edge",
+      "sampled_seconds": 39.123257100000046,
+      "cpu_seconds": 0.078125,
+      "mean_cores": 0.0019968940673909257,
+      "peak_rss": 43794432,
+      "peak_private": 13438976
+    },
+    {
+      "pid": 27652,
+      "scope": "isolated_edge",
+      "sampled_seconds": 39.12498670001514,
+      "cpu_seconds": 0.0,
+      "mean_cores": 0.0,
+      "peak_rss": 20643840,
+      "peak_private": 8183808
+    },
+    {
+      "pid": 30120,
+      "scope": "isolated_edge",
+      "sampled_seconds": 39.12674930004869,
+      "cpu_seconds": 0.0,
+      "mean_cores": 0.0,
+      "peak_rss": 23019520,
+      "peak_private": 27947008
+    },
+    {
+      "pid": 28824,
+      "scope": "isolated_edge",
+      "sampled_seconds": 39.128915799898095,
+      "cpu_seconds": 0.015625,
+      "mean_cores": 0.0003993210565788458,
+      "peak_rss": 32120832,
+      "peak_private": 9957376
+    },
+    {
+      "pid": 38736,
+      "scope": "isolated_edge",
+      "sampled_seconds": 5.131120199919678,
+      "cpu_seconds": 0.0,
+      "mean_cores": 0.0,
+      "peak_rss": 35512320,
+      "peak_private": 17629184
+    },
+    {
+      "pid": 23180,
+      "scope": "isolated_edge",
+      "sampled_seconds": 32.802374799968675,
+      "cpu_seconds": 0.421875,
+      "mean_cores": 0.012861111507097433,
+      "peak_rss": 68730880,
+      "peak_private": 30453760
+    },
+    {
+      "pid": 24340,
+      "scope": "isolated_edge",
+      "sampled_seconds": 33.55923969997093,
+      "cpu_seconds": 0.0,
+      "mean_cores": 0.0,
+      "peak_rss": 36065280,
+      "peak_private": 18137088
+    }
+  ]
+}
