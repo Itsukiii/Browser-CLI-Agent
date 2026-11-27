@@ -28,6 +28,19 @@ def batch(**changes):
         RecognitionResult(k, "OCR", S.MATCHED, (Candidate((1, 2, 3, 4), 0.99, v),))
         for k, v in fields.items()
     ]
+    for key in ("question", "digit_A", "digit_B", "digit_C", "digit_D"):
+        for digit in range(10):
+            candidate = Candidate((1, 2, 3, 4), 0.99 if str(digit) == fields[key] else 0.5)
+            hit = str(digit) == fields[key]
+            rows.append(
+                RecognitionResult(
+                    f"{key}_tpl_{digit}",
+                    "TemplateMatch",
+                    S.MATCHED if hit else S.NOT_FOUND,
+                    (candidate,) if hit else (),
+                    (candidate,),
+                )
+            )
     rows += [
         RecognitionResult(
             f"{letter}_{style}",
@@ -113,7 +126,29 @@ def test_multiple_selected_and_generic_writes_rejected(plugin):
 
 def test_plan_geometry_and_confidence(plugin):
     assert quiz_roi((1920, 1280), (80, 45, 400, 65)) == (160, 90, 800, 130)
-    assert len(plugin.plan((960, 640))) == 17
-    assert all(r.threshold == 0.9 for r in plugin.plan((960, 640)))
+    assert len(plugin.plan((960, 640))) == 67
     with pytest.raises(ValueError):
         plugin.plan((10, 10))
+
+
+@pytest.mark.parametrize("kind", ["conflict", "near", "duplicate", "absent"])
+def test_digit_evidence_rejects_uncertainty(plugin, kind):
+    current = batch()
+    rows = []
+    for r in current.results:
+        if kind == "conflict" and r.request_key == "question":
+            r = replace(r, candidates=(Candidate((1, 2, 3, 4), 0.1, "7"),))
+        if r.request_key == "question_tpl_7" and kind in ("near", "duplicate"):
+            c = Candidate((1, 2, 3, 4), 0.95)
+            r = replace(
+                r,
+                all_candidates=(c,),
+                status=S.MATCHED if kind == "duplicate" else S.NOT_FOUND,
+                candidates=(c,) if kind == "duplicate" else (),
+            )
+        if kind == "absent" and r.request_key == "question_tpl_3":
+            r = replace(r, status=S.NOT_FOUND, candidates=())
+        rows.append(r)
+    current.results = tuple(rows)
+    result = plugin.observe(current)
+    assert result.status != S.MATCHED and not result.targets

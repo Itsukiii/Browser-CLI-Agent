@@ -12,6 +12,8 @@ font-family:Arial,sans-serif;color:#15243d}
 background:#eef3fa;border-radius:8px;color:#15243d;cursor:pointer}
 .option.selected{border:8px double #147342;background:#c9f4d9}
 .letter{position:absolute;left:8px;top:6px;font-size:22px}.value{font-size:56px}
+.value{position:absolute;left:50%;top:28px;transform:translateX(-50%)}
+.glyph{width:40px;height:60px;vertical-align:top}
 .selection{position:absolute;right:8px;top:4px;font-size:24px;font-weight:bold;color:#147342}
 .anchor{position:absolute;right:8px;bottom:8px;width:32px;height:32px;pointer-events:none}
 #score{position:absolute;left:90px;top:520px;width:360px;overflow:auto;white-space:nowrap}
@@ -45,11 +47,21 @@ button:focus-visible{outline:3px solid #e5a400;outline-offset:4px}
     image.src='image/neutral.png';button.appendChild(image);
   }
   let engine;
+  const glyphs = {
+    normal: ['image/glyph-normal-0.png','image/glyph-normal-1.png','image/glyph-normal-2.png','image/glyph-normal-3.png','image/glyph-normal-4.png','image/glyph-normal-5.png','image/glyph-normal-6.png','image/glyph-normal-7.png','image/glyph-normal-8.png','image/glyph-normal-9.png'],
+    bold: ['image/glyph-bold-0.png','image/glyph-bold-1.png','image/glyph-bold-2.png','image/glyph-bold-3.png','image/glyph-bold-4.png','image/glyph-bold-5.png','image/glyph-bold-6.png','image/glyph-bold-7.png','image/glyph-bold-8.png','image/glyph-bold-9.png']
+  };
+  const glyphWeight=params.get('glyph')==='bold'?'bold':'normal';
+  function displayDigit(element, digit) {
+    const image=document.createElement('img');image.className='glyph';
+    image.alt=String(digit);image.src=glyphs[glyphWeight][digit];element.replaceChildren(image);
+  }
   function render(state) {
-    for (const name of ['round','question','score']) document.getElementById(name).textContent=state[name];
+    for (const name of ['round','score']) document.getElementById(name).textContent=state[name];
+    displayDigit(document.getElementById('question'),state.question);
     document.getElementById('time').textContent=state.timeLeft.toFixed(1);
     buttons.forEach((button,i)=>{
-      button.querySelector('.value').textContent=state.options[i];
+      displayDigit(button.querySelector('.value'),state.options[i]);
       button.classList.toggle('selected',state.selected===i);
       button.querySelector('.selection').textContent=state.selected===i?'✓':'';
       button.setAttribute('aria-pressed',String(state.selected===i));

@@ -118,7 +118,9 @@ def test_quiz_page_rounds_and_races(tmp_path):
                 rounds.append(
                     await evaluate(
                         session,
-                        "({round:document.getElementById('round').textContent,question:document.getElementById('question').textContent,at:performance.now()})",
+                        "({round:document.getElementById('round').textContent,"
+                        "question:document.querySelector('#question img').alt,"
+                        "at:performance.now()})",
                     )
                 )
                 if len(rounds) < 3:

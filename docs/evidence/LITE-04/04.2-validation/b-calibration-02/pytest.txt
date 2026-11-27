@@ -1,0 +1,613 @@
+.FF.FF                                                                   [100%]
+================================== FAILURES ===================================
+______________________ test_quiz_native_fields[1.5-True] ______________________
+
+tmp_path = WindowsPath('C:/Users/wutong/AppData/Local/Temp/pytest-of-wutong/pytest-55/test_quiz_native_fields_1_5_Tr0')
+dpr = 1.5, raw = True
+
+    @pytest.mark.parametrize(
+        "dpr,raw", [(1, True), (1.5, True), (2, True), (1, False), (1.5, False), (2, False)]
+    )
+    def test_quiz_native_fields(tmp_path, dpr, raw):
+        output = Path(os.environ.get("BCA_QUIZ_EVIDENCE", str(tmp_path))) / f"dpr-{dpr}-raw-{raw}"
+        output.mkdir(parents=True, exist_ok=False)
+        report = {
+            "dpr": dpr,
+            "raw": raw,
+            "rows": [],
+            "probe_font": os.environ.get("BCA_QUIZ_PROBE_FONT"),
+            "ocr_threshold": 0.9,
+        }
+    
+        async def run(bundle):
+            session = BrowserSession(os.environ["BCA_CDP_ENDPOINT"])
+            capture, inputs = BrowserCaptureProvider(session), BrowserInputProvider(session)
+            target = facade = None
+            await session.connect()
+            original = {t.target_id for t in await session.list_targets()}
+            try:
+                target = (
+                    await session.connection.send(
+                        "Target.createTarget",
+                        {
+                            "url": "data:text/html;charset=utf-8,"
+                            + quote(quiz_html(bundle))
+                            + "#test=1&seed=20261127"
+                        },
+                    )
+                )["targetId"]
+                await session.bind(target)
+                await session.send(
+                    "Emulation.setDeviceMetricsOverride",
+                    {"width": 960, "height": 640, "deviceScaleFactor": dpr, "mobile": False},
+                )
+                await session.send("Page.bringToFront")
+                async with asyncio.timeout(5):
+                    while not await evaluate(session, "typeof quizTest==='object'"):
+                        await asyncio.sleep(0.02)
+                await capture.start()
+                if os.environ.get("BCA_QUIZ_PROBE_FONT"):
+                    await evaluate(
+                        session,
+                        "document.getElementById('question').style.fontSize='56px'",
+                    )
+                await inputs.start()
+                bridge = CDPBridge(
+                    loop=asyncio.get_running_loop(),
+                    session=session,
+                    capture=capture,
+                    input_provider=inputs,
+                    require_authorization=True,
+                    max_frame_age=3,
+                )
+                plugin = QuizPlugin(ResourceSpec(bundle, model_spec()))
+                facade = MaaVisionFacade(bridge, plugin.resources, raw_size=raw)
+                await facade.start()
+                for i, score in enumerate(["0", "-1", "-20", "-305", "12", "345", "6789"]):
+                    await evaluate(
+                        session,
+                        f"quizTest.advance(10000);quizTest.set({{newScore:{json.dumps(score)}}})",
+                    )
+                    if i % 2:
+                        await evaluate(
+                            session, f"document.getElementById('option_{'ABCD'[i % 4]}').click()"
+                        )
+                    expected = await evaluate(session, "quizTest.snapshot()")
+                    started = time.monotonic()
+                    batch = await facade.recognize(plugin.plan)
+                    state = plugin.observe(batch)
+                    report["rows"].append(
+                        {
+                            "seconds": time.monotonic() - started,
+                            "expected": expected,
+                            "state": dataclasses.asdict(state),
+                            **result_record(batch),
+                        }
+                    )
+                    (output / f"input-{i}.png").write_bytes(batch.capture.source_ref.frame.data)
+                    Image.fromarray(batch.capture.image[:, :, ::-1]).save(output / f"maa-{i}.png")
+                    assert state.status == RecognitionStatus.MATCHED, report["rows"][-1]
+                    data = decode_quiz_state(state)
+                    assert (
+                        data.round_mark,
+                        data.question,
+                        list(data.options),
+                        data.score,
+                        data.selected,
+                    ) == (
+                        expected["round"],
+                        expected["question"],
+                        expected["options"],
+                        int(score),
+                        None if expected["selected"] is None else "ABCD"[expected["selected"]],
+                    )
+                report["status"] = "passed"
+            finally:
+                if facade:
+                    report["close"] = dataclasses.asdict(await facade.aclose())
+                    assert report["close"]["released"]
+                await finish(session, capture, inputs, target, original, report)
+                (output / "report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    
+        with quiz_vision_bundle() as bundle:
+>           asyncio.run(run(bundle))
+
+tests\lite\test_quiz_vision.py:139: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+bundle = WindowsPath('C:/Users/wutong/AppData/Local/Temp/bca-quiz-b3waa2jr/quiz')
+
+    async def run(bundle):
+        session = BrowserSession(os.environ["BCA_CDP_ENDPOINT"])
+        capture, inputs = BrowserCaptureProvider(session), BrowserInputProvider(session)
+        target = facade = None
+        await session.connect()
+        original = {t.target_id for t in await session.list_targets()}
+        try:
+            target = (
+                await session.connection.send(
+                    "Target.createTarget",
+                    {
+                        "url": "data:text/html;charset=utf-8,"
+                        + quote(quiz_html(bundle))
+                        + "#test=1&seed=20261127"
+                    },
+                )
+            )["targetId"]
+            await session.bind(target)
+            await session.send(
+                "Emulation.setDeviceMetricsOverride",
+                {"width": 960, "height": 640, "deviceScaleFactor": dpr, "mobile": False},
+            )
+            await session.send("Page.bringToFront")
+            async with asyncio.timeout(5):
+                while not await evaluate(session, "typeof quizTest==='object'"):
+                    await asyncio.sleep(0.02)
+            await capture.start()
+            if os.environ.get("BCA_QUIZ_PROBE_FONT"):
+                await evaluate(
+                    session,
+                    "document.getElementById('question').style.fontSize='56px'",
+                )
+            await inputs.start()
+            bridge = CDPBridge(
+                loop=asyncio.get_running_loop(),
+                session=session,
+                capture=capture,
+                input_provider=inputs,
+                require_authorization=True,
+                max_frame_age=3,
+            )
+            plugin = QuizPlugin(ResourceSpec(bundle, model_spec()))
+            facade = MaaVisionFacade(bridge, plugin.resources, raw_size=raw)
+            await facade.start()
+            for i, score in enumerate(["0", "-1", "-20", "-305", "12", "345", "6789"]):
+                await evaluate(
+                    session,
+                    f"quizTest.advance(10000);quizTest.set({{newScore:{json.dumps(score)}}})",
+                )
+                if i % 2:
+                    await evaluate(
+                        session, f"document.getElementById('option_{'ABCD'[i % 4]}').click()"
+                    )
+                expected = await evaluate(session, "quizTest.snapshot()")
+                started = time.monotonic()
+                batch = await facade.recognize(plugin.plan)
+                state = plugin.observe(batch)
+                report["rows"].append(
+                    {
+                        "seconds": time.monotonic() - started,
+                        "expected": expected,
+                        "state": dataclasses.asdict(state),
+                        **result_record(batch),
+                    }
+                )
+                (output / f"input-{i}.png").write_bytes(batch.capture.source_ref.frame.data)
+                Image.fromarray(batch.capture.image[:, :, ::-1]).save(output / f"maa-{i}.png")
+>               assert state.status == RecognitionStatus.MATCHED, report["rows"][-1]
+E               AssertionError: {'seconds': 1.832798899966292, 'expected': {'round': '000002', 'question': 1, 'options': [8, 4, 7, 1], 'score': '0', ....: None, 'signature': None, 'interaction_revision': None, ...}, 'frame_id': '5f18ff9c-9af4-4cee-a8b3-216ea5f6cdea', ...}
+E               assert <RecognitionS...: 'AMBIGUOUS'> == <RecognitionS...ED: 'MATCHED'>
+E                 
+E                 - MATCHED
+E                 + AMBIGUOUS
+
+tests\lite\test_quiz_vision.py:115: AssertionError
+_______________________ test_quiz_native_fields[2-True] _______________________
+
+tmp_path = WindowsPath('C:/Users/wutong/AppData/Local/Temp/pytest-of-wutong/pytest-55/test_quiz_native_fields_2_True0')
+dpr = 2, raw = True
+
+    @pytest.mark.parametrize(
+        "dpr,raw", [(1, True), (1.5, True), (2, True), (1, False), (1.5, False), (2, False)]
+    )
+    def test_quiz_native_fields(tmp_path, dpr, raw):
+        output = Path(os.environ.get("BCA_QUIZ_EVIDENCE", str(tmp_path))) / f"dpr-{dpr}-raw-{raw}"
+        output.mkdir(parents=True, exist_ok=False)
+        report = {
+            "dpr": dpr,
+            "raw": raw,
+            "rows": [],
+            "probe_font": os.environ.get("BCA_QUIZ_PROBE_FONT"),
+            "ocr_threshold": 0.9,
+        }
+    
+        async def run(bundle):
+            session = BrowserSession(os.environ["BCA_CDP_ENDPOINT"])
+            capture, inputs = BrowserCaptureProvider(session), BrowserInputProvider(session)
+            target = facade = None
+            await session.connect()
+            original = {t.target_id for t in await session.list_targets()}
+            try:
+                target = (
+                    await session.connection.send(
+                        "Target.createTarget",
+                        {
+                            "url": "data:text/html;charset=utf-8,"
+                            + quote(quiz_html(bundle))
+                            + "#test=1&seed=20261127"
+                        },
+                    )
+                )["targetId"]
+                await session.bind(target)
+                await session.send(
+                    "Emulation.setDeviceMetricsOverride",
+                    {"width": 960, "height": 640, "deviceScaleFactor": dpr, "mobile": False},
+                )
+                await session.send("Page.bringToFront")
+                async with asyncio.timeout(5):
+                    while not await evaluate(session, "typeof quizTest==='object'"):
+                        await asyncio.sleep(0.02)
+                await capture.start()
+                if os.environ.get("BCA_QUIZ_PROBE_FONT"):
+                    await evaluate(
+                        session,
+                        "document.getElementById('question').style.fontSize='56px'",
+                    )
+                await inputs.start()
+                bridge = CDPBridge(
+                    loop=asyncio.get_running_loop(),
+                    session=session,
+                    capture=capture,
+                    input_provider=inputs,
+                    require_authorization=True,
+                    max_frame_age=3,
+                )
+                plugin = QuizPlugin(ResourceSpec(bundle, model_spec()))
+                facade = MaaVisionFacade(bridge, plugin.resources, raw_size=raw)
+                await facade.start()
+                for i, score in enumerate(["0", "-1", "-20", "-305", "12", "345", "6789"]):
+                    await evaluate(
+                        session,
+                        f"quizTest.advance(10000);quizTest.set({{newScore:{json.dumps(score)}}})",
+                    )
+                    if i % 2:
+                        await evaluate(
+                            session, f"document.getElementById('option_{'ABCD'[i % 4]}').click()"
+                        )
+                    expected = await evaluate(session, "quizTest.snapshot()")
+                    started = time.monotonic()
+                    batch = await facade.recognize(plugin.plan)
+                    state = plugin.observe(batch)
+                    report["rows"].append(
+                        {
+                            "seconds": time.monotonic() - started,
+                            "expected": expected,
+                            "state": dataclasses.asdict(state),
+                            **result_record(batch),
+                        }
+                    )
+                    (output / f"input-{i}.png").write_bytes(batch.capture.source_ref.frame.data)
+                    Image.fromarray(batch.capture.image[:, :, ::-1]).save(output / f"maa-{i}.png")
+                    assert state.status == RecognitionStatus.MATCHED, report["rows"][-1]
+                    data = decode_quiz_state(state)
+                    assert (
+                        data.round_mark,
+                        data.question,
+                        list(data.options),
+                        data.score,
+                        data.selected,
+                    ) == (
+                        expected["round"],
+                        expected["question"],
+                        expected["options"],
+                        int(score),
+                        None if expected["selected"] is None else "ABCD"[expected["selected"]],
+                    )
+                report["status"] = "passed"
+            finally:
+                if facade:
+                    report["close"] = dataclasses.asdict(await facade.aclose())
+                    assert report["close"]["released"]
+                await finish(session, capture, inputs, target, original, report)
+                (output / "report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    
+        with quiz_vision_bundle() as bundle:
+>           asyncio.run(run(bundle))
+
+tests\lite\test_quiz_vision.py:139: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+bundle = WindowsPath('C:/Users/wutong/AppData/Local/Temp/bca-quiz-hs6qptcf/quiz')
+
+    async def run(bundle):
+        session = BrowserSession(os.environ["BCA_CDP_ENDPOINT"])
+        capture, inputs = BrowserCaptureProvider(session), BrowserInputProvider(session)
+        target = facade = None
+        await session.connect()
+        original = {t.target_id for t in await session.list_targets()}
+        try:
+            target = (
+                await session.connection.send(
+                    "Target.createTarget",
+                    {
+                        "url": "data:text/html;charset=utf-8,"
+                        + quote(quiz_html(bundle))
+                        + "#test=1&seed=20261127"
+                    },
+                )
+            )["targetId"]
+            await session.bind(target)
+            await session.send(
+                "Emulation.setDeviceMetricsOverride",
+                {"width": 960, "height": 640, "deviceScaleFactor": dpr, "mobile": False},
+            )
+            await session.send("Page.bringToFront")
+            async with asyncio.timeout(5):
+                while not await evaluate(session, "typeof quizTest==='object'"):
+                    await asyncio.sleep(0.02)
+            await capture.start()
+            if os.environ.get("BCA_QUIZ_PROBE_FONT"):
+                await evaluate(
+                    session,
+                    "document.getElementById('question').style.fontSize='56px'",
+                )
+            await inputs.start()
+            bridge = CDPBridge(
+                loop=asyncio.get_running_loop(),
+                session=session,
+                capture=capture,
+                input_provider=inputs,
+                require_authorization=True,
+                max_frame_age=3,
+            )
+            plugin = QuizPlugin(ResourceSpec(bundle, model_spec()))
+            facade = MaaVisionFacade(bridge, plugin.resources, raw_size=raw)
+            await facade.start()
+            for i, score in enumerate(["0", "-1", "-20", "-305", "12", "345", "6789"]):
+                await evaluate(
+                    session,
+                    f"quizTest.advance(10000);quizTest.set({{newScore:{json.dumps(score)}}})",
+                )
+                if i % 2:
+                    await evaluate(
+                        session, f"document.getElementById('option_{'ABCD'[i % 4]}').click()"
+                    )
+                expected = await evaluate(session, "quizTest.snapshot()")
+                started = time.monotonic()
+                batch = await facade.recognize(plugin.plan)
+                state = plugin.observe(batch)
+                report["rows"].append(
+                    {
+                        "seconds": time.monotonic() - started,
+                        "expected": expected,
+                        "state": dataclasses.asdict(state),
+                        **result_record(batch),
+                    }
+                )
+                (output / f"input-{i}.png").write_bytes(batch.capture.source_ref.frame.data)
+                Image.fromarray(batch.capture.image[:, :, ::-1]).save(output / f"maa-{i}.png")
+>               assert state.status == RecognitionStatus.MATCHED, report["rows"][-1]
+E               AssertionError: {'seconds': 1.372318800073117, 'expected': {'round': '000002', 'question': 1, 'options': [8, 4, 7, 1], 'score': '0', ....: None, 'signature': None, 'interaction_revision': None, ...}, 'frame_id': '4d4c2fb1-fc7e-45c4-9949-15bd87793bbf', ...}
+E               assert <RecognitionS...: 'AMBIGUOUS'> == <RecognitionS...ED: 'MATCHED'>
+E                 
+E                 - MATCHED
+E                 + AMBIGUOUS
+
+tests\lite\test_quiz_vision.py:115: AssertionError
+_____________________ test_quiz_native_fields[1.5-False] ______________________
+
+tmp_path = WindowsPath('C:/Users/wutong/AppData/Local/Temp/pytest-of-wutong/pytest-55/test_quiz_native_fields_1_5_Fa0')
+dpr = 1.5, raw = False
+
+    @pytest.mark.parametrize(
+        "dpr,raw", [(1, True), (1.5, True), (2, True), (1, False), (1.5, False), (2, False)]
+    )
+    def test_quiz_native_fields(tmp_path, dpr, raw):
+        output = Path(os.environ.get("BCA_QUIZ_EVIDENCE", str(tmp_path))) / f"dpr-{dpr}-raw-{raw}"
+        output.mkdir(parents=True, exist_ok=False)
+        report = {
+            "dpr": dpr,
+            "raw": raw,
+            "rows": [],
+            "probe_font": os.environ.get("BCA_QUIZ_PROBE_FONT"),
+            "ocr_threshold": 0.9,
+        }
+    
+        async def run(bundle):
+            session = BrowserSession(os.environ["BCA_CDP_ENDPOINT"])
+            capture, inputs = BrowserCaptureProvider(session), BrowserInputProvider(session)
+            target = facade = None
+            await session.connect()
+            original = {t.target_id for t in await session.list_targets()}
+            try:
+                target = (
+                    await session.connection.send(
+                        "Target.createTarget",
+                        {
+                            "url": "data:text/html;charset=utf-8,"
+                            + quote(quiz_html(bundle))
+                            + "#test=1&seed=20261127"
+                        },
+                    )
+                )["targetId"]
+                await session.bind(target)
+                await session.send(
+                    "Emulation.setDeviceMetricsOverride",
+                    {"width": 960, "height": 640, "deviceScaleFactor": dpr, "mobile": False},
+                )
+                await session.send("Page.bringToFront")
+                async with asyncio.timeout(5):
+                    while not await evaluate(session, "typeof quizTest==='object'"):
+                        await asyncio.sleep(0.02)
+                await capture.start()
+                if os.environ.get("BCA_QUIZ_PROBE_FONT"):
+                    await evaluate(
+                        session,
+                        "document.getElementById('question').style.fontSize='56px'",
+                    )
+                await inputs.start()
+                bridge = CDPBridge(
+                    loop=asyncio.get_running_loop(),
+                    session=session,
+                    capture=capture,
+                    input_provider=inputs,
+                    require_authorization=True,
+                    max_frame_age=3,
+                )
+                plugin = QuizPlugin(ResourceSpec(bundle, model_spec()))
+                facade = MaaVisionFacade(bridge, plugin.resources, raw_size=raw)
+                await facade.start()
+                for i, score in enumerate(["0", "-1", "-20", "-305", "12", "345", "6789"]):
+                    await evaluate(
+                        session,
+                        f"quizTest.advance(10000);quizTest.set({{newScore:{json.dumps(score)}}})",
+                    )
+                    if i % 2:
+                        await evaluate(
+                            session, f"document.getElementById('option_{'ABCD'[i % 4]}').click()"
+                        )
+                    expected = await evaluate(session, "quizTest.snapshot()")
+                    started = time.monotonic()
+                    batch = await facade.recognize(plugin.plan)
+                    state = plugin.observe(batch)
+                    report["rows"].append(
+                        {
+                            "seconds": time.monotonic() - started,
+                            "expected": expected,
+                            "state": dataclasses.asdict(state),
+                            **result_record(batch),
+                        }
+                    )
+                    (output / f"input-{i}.png").write_bytes(batch.capture.source_ref.frame.data)
+                    Image.fromarray(batch.capture.image[:, :, ::-1]).save(output / f"maa-{i}.png")
+                    assert state.status == RecognitionStatus.MATCHED, report["rows"][-1]
+                    data = decode_quiz_state(state)
+                    assert (
+                        data.round_mark,
+                        data.question,
+                        list(data.options),
+                        data.score,
+                        data.selected,
+                    ) == (
+                        expected["round"],
+                        expected["question"],
+                        expected["options"],
+                        int(score),
+                        None if expected["selected"] is None else "ABCD"[expected["selected"]],
+                    )
+                report["status"] = "passed"
+            finally:
+                if facade:
+                    report["close"] = dataclasses.asdict(await facade.aclose())
+                    assert report["close"]["released"]
+                await finish(session, capture, inputs, target, original, report)
+                (output / "report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+    
+        with quiz_vision_bundle() as bundle:
+>           asyncio.run(run(bundle))
+
+tests\lite\test_quiz_vision.py:139: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_quiz_vision.py:135: in run
+    await finish(session, capture, inputs, target, original, report)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+session = <bca.core.browser.session.BrowserSession object at 0x00000269DAAADE00>
+capture = <bca.core.browser.capture.BrowserCaptureProvider object at 0x00000269DAAADF30>
+inputs = <bca.core.browser.input.BrowserInputProvider object at 0x00000269DAAAF100>
+target = 'FE013DF495919C0C43EC290DB18E52DC'
+original = {'5D0AA53E64C433161D9B76C4F573C7DF', 'EF8AE90379BE6229BD2E54E1690B540F'}
+report = {'dpr': 1.5, 'raw': False, 'rows': [{'seconds': 1.3437332999892533, 'expected': {'round': '000002', 'question': 1, 'op...ion_revision': '000007', ...}, 'frame_id': '3150547b-648f-4cf4-bd14-3ceab794ff2d', ...}, ...], 'probe_font': None, ...}
+
+    async def finish(session, capture, inputs, target, original, report):
+        await inputs.close()
+        await capture.close()
+        if target:
+            await session.connection.send("Target.closeTarget", {"targetId": target})
+        remaining = await remaining_after_close(session, target)
+        report["owned_targets_remaining"] = sorted(remaining & {target})
+        report["preexisting_targets_preserved"] = original.issubset(remaining)
+        await session.close()
+        report["cleanup"] = {
+            "pending": session.connection.pending_count,
+            "reader": session.connection.reader_running,
+            "connected": session.connected,
+        }
+        assert report["cleanup"] == {"pending": 0, "reader": False, "connected": False}
+>       assert not report["owned_targets_remaining"] and report["preexisting_targets_preserved"]
+E       assert (not [] and False)
+
+tests\lite\test_real_addendum.py:133: AssertionError
+______________________ test_quiz_native_fields[2-False] _______________________
+
+tmp_path = WindowsPath('C:/Users/wutong/AppData/Local/Temp/pytest-of-wutong/pytest-55/test_quiz_native_fields_2_Fals0')
+dpr = 2, raw = False
+
+>   ???
+
+tests\lite\test_quiz_vision.py:139: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\wutong\AppData\Local\Python\pythoncore-3.14-64\Lib\asyncio\base_events.py:720: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+tests\lite\test_quiz_vision.py:135: in run
+    report["close"] = dataclasses.asdict(await facade.aclose())
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+session = <bca.core.browser.session.BrowserSession object at 0x00000269DABA28D0>
+capture = <bca.core.browser.capture.BrowserCaptureProvider object at 0x00000269DABA2B10>
+inputs = <bca.core.browser.input.BrowserInputProvider object at 0x00000269DABA2C30>
+target = 'E4ACE9A22887E0CEF3EA8103B8A56277'
+original = {'5D0AA53E64C433161D9B76C4F573C7DF', 'BC590D0021E3A42B20BFE3CDD8C81AB7'}
+report = {'dpr': 2, 'raw': False, 'rows': [{'seconds': 1.6777424999745563, 'expected': {'round': '000002', 'question': 1, 'opti...ion_revision': '000007', ...}, 'frame_id': '196e5fe0-ad88-4faa-bbea-da7bad693cf7', ...}, ...], 'probe_font': None, ...}
+
+    async def finish(session, capture, inputs, target, original, report):
+        await inputs.close()
+        await capture.close()
+        if target:
+            await session.connection.send("Target.closeTarget", {"targetId": target})
+        remaining = await remaining_after_close(session, target)
+        report["owned_targets_remaining"] = sorted(remaining & {target})
+        report["preexisting_targets_preserved"] = original.issubset(remaining)
+        await session.close()
+        report["cleanup"] = {
+            "pending": session.connection.pending_count,
+            "reader": session.connection.reader_running,
+            "connected": session.connected,
+        }
+        assert report["cleanup"] == {"pending": 0, "reader": False, "connected": False}
+>       assert not report["owned_targets_remaining"] and report["preexisting_targets_preserved"]
+E       assert (not [] and False)
+
+tests\lite\test_real_addendum.py:133: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/lite/test_quiz_vision.py::test_quiz_native_fields[1.5-True] - As...
+FAILED tests/lite/test_quiz_vision.py::test_quiz_native_fields[2-True] - Asse...
+FAILED tests/lite/test_quiz_vision.py::test_quiz_native_fields[1.5-False] - a...
+FAILED tests/lite/test_quiz_vision.py::test_quiz_native_fields[2-False] - ass...
+4 failed, 2 passed in 69.77s (0:01:09)

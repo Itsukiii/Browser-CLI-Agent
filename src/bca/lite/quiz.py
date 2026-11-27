@@ -70,15 +70,25 @@ class QuizPlugin:
         fields = {
             "round": (80, 45, 400, 65),
             "time": (720, 45, 180, 65),
-            "question": (380, 145, 200, 90),
             "score": (80, 515, 380, 70),
         }
-        fields.update(
-            {f"digit_{letter}": (100 + i * 220, 335, 100, 80) for i, letter in enumerate("ABCD")}
-        )
         requests: list[RecognitionRequest] = [
-            OCRRequest(key, quiz_roi(image_size, box), threshold=0.9) for key, box in fields.items()
+            OCRRequest(key, quiz_roi(image_size, box), threshold=0.7) for key, box in fields.items()
         ]
+        digits = {"question": (455, 141, 50, 68)}
+        digits.update(
+            {f"digit_{letter}": (125 + i * 220, 328, 50, 72) for i, letter in enumerate("ABCD")}
+        )
+        height = round(60 * min(image_size[0] / 960, image_size[1] / 640))
+        for key, box in digits.items():
+            roi = quiz_roi(image_size, box)
+            requests.append(OCRRequest(key, roi, threshold=0, only_rec=True))
+            requests.extend(
+                TemplateRequest(
+                    f"{key}_tpl_{digit}", f"digit-{digit}-{height}.png", roi, threshold=0.9
+                )
+                for digit in range(10)
+            )
         for i, letter in enumerate("ABCD"):
             for style in ("neutral", "selected"):
                 requests.append(
@@ -122,6 +132,29 @@ class QuizPlugin:
             return failed(RecognitionStatus.NOT_FOUND, "missing_quiz_field")
         try:
             text = {key: results[key].candidates[0].text for key in required[:-1]}
+            for key in ("question", "digit_A", "digit_B", "digit_C", "digit_D"):
+                numeric = text[key]
+                templates = [results[f"{key}_tpl_{n}"] for n in range(10)]
+                matched = [
+                    n
+                    for n, r in enumerate(templates)
+                    if r.status == RecognitionStatus.MATCHED and len(r.candidates) == 1
+                ]
+                if len(matched) != 1 or str(matched[0]) != numeric:
+                    raise ValueError("digit template/OCR conflict or nonunique template")
+                winner = matched[0]
+                score = templates[winner].candidates[0].score
+                rival = max(
+                    (
+                        c.score
+                        for n, r in enumerate(templates)
+                        if n != winner
+                        for c in r.all_candidates
+                    ),
+                    default=0,
+                )
+                if score - rival < 0.15:
+                    raise ValueError("insufficient digit margin")
             mark = text["round"] or ""
             if not re.fullmatch(r"[0-9]{6,}", mark) or int(mark) <= 0:
                 raise ValueError("invalid round")

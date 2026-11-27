@@ -1,0 +1,509 @@
+{
+  "total": 180,
+  "matched": 180,
+  "wrong_matched": 0,
+  "valid": 180,
+  "correct_rate": 1.0,
+  "confusion": {
+    "question": {
+      "1->1": 18,
+      "6->6": 18,
+      "7->7": 18,
+      "4->4": 18,
+      "2->2": 18,
+      "0->0": 18,
+      "9->9": 18,
+      "3->3": 18,
+      "5->5": 18,
+      "8->8": 18
+    },
+    "digit_A": {
+      "1->1": 12,
+      "4->4": 30,
+      "6->6": 12,
+      "2->2": 6,
+      "7->7": 30,
+      "9->9": 12,
+      "3->3": 24,
+      "5->5": 24,
+      "8->8": 24,
+      "0->0": 6
+    },
+    "digit_B": {
+      "8->8": 36,
+      "1->1": 18,
+      "4->4": 18,
+      "0->0": 30,
+      "3->3": 6,
+      "6->6": 6,
+      "5->5": 18,
+      "7->7": 24,
+      "2->2": 24
+    },
+    "digit_C": {
+      "9->9": 42,
+      "6->6": 24,
+      "1->1": 18,
+      "0->0": 12,
+      "8->8": 18,
+      "7->7": 12,
+      "5->5": 24,
+      "2->2": 12,
+      "4->4": 6,
+      "3->3": 12
+    },
+    "digit_D": {
+      "0->0": 18,
+      "3->3": 18,
+      "7->7": 18,
+      "2->2": 30,
+      "5->5": 18,
+      "6->6": 24,
+      "1->1": 12,
+      "4->4": 12,
+      "9->9": 24,
+      "8->8": 6
+    }
+  },
+  "template_confusion": {
+    "question": {
+      "1->1": 18,
+      "6->6": 18,
+      "7->7": 18,
+      "4->4": 18,
+      "2->2": 18,
+      "0->0": 18,
+      "9->9": 18,
+      "3->3": 18,
+      "5->5": 18,
+      "8->8": 18
+    },
+    "digit_A": {
+      "1->1": 12,
+      "4->4": 30,
+      "6->6": 12,
+      "2->2": 6,
+      "7->7": 30,
+      "9->9": 12,
+      "3->3": 24,
+      "5->5": 24,
+      "8->8": 24,
+      "0->0": 6
+    },
+    "digit_B": {
+      "8->8": 36,
+      "1->1": 18,
+      "4->4": 18,
+      "0->0": 30,
+      "3->3": 6,
+      "6->6": 6,
+      "5->5": 18,
+      "7->7": 24,
+      "2->2": 24
+    },
+    "digit_C": {
+      "9->9": 42,
+      "6->6": 24,
+      "1->1": 18,
+      "0->0": 12,
+      "8->8": 18,
+      "7->7": 12,
+      "5->5": 24,
+      "2->2": 12,
+      "4->4": 6,
+      "3->3": 12
+    },
+    "digit_D": {
+      "0->0": 18,
+      "3->3": 18,
+      "7->7": 18,
+      "2->2": 30,
+      "5->5": 18,
+      "6->6": 24,
+      "1->1": 12,
+      "4->4": 12,
+      "9->9": 24,
+      "8->8": 6
+    }
+  },
+  "groups": [
+    {
+      "group": "dpr-1-raw-False-seed-60127",
+      "total": 10,
+      "correct": 10,
+      "close": {
+        "released": true,
+        "worker_thread": 14500,
+        "destroyed": [
+          "tasker",
+          "controller",
+          "resource"
+        ],
+        "errors": [],
+        "stop_status": "succeeded"
+      },
+      "cleanup": {
+        "pending": 0,
+        "reader": false,
+        "connected": false
+      }
+    },
+    {
+      "group": "dpr-1-raw-False-seed-88219",
+      "total": 10,
+      "correct": 10,
+      "close": {
+        "released": true,
+        "worker_thread": 18764,
+        "destroyed": [
+          "tasker",
+          "controller",
+          "resource"
+        ],
+        "errors": [],
+        "stop_status": "succeeded"
+      },
+      "cleanup": {
+        "pending": 0,
+        "reader": false,
+        "connected": false
+      }
+    },
+    {
+      "group": "dpr-1-raw-False-seed-9173",
+      "total": 10,
+      "correct": 10,
+      "close": {
+        "released": true,
+        "worker_thread": 9592,
+        "destroyed": [
+          "tasker",
+          "controller",
+          "resource"
+        ],
+        "errors": [],
+        "stop_status": "succeeded"
+      },
+      "cleanup": {
+        "pending": 0,
+        "reader": false,
+        "connected": false
+      }
+    },
+    {
+      "group": "dpr-1-raw-True-seed-60127",
+      "total": 10,
+      "correct": 10,
+      "close": {
+        "released": true,
+        "worker_thread": 11912,
+        "destroyed": [
+          "tasker",
+          "controller",
+          "resource"
+        ],
+        "errors": [],
+        "stop_status": "succeeded"
+      },
+      "cleanup": {
+        "pending": 0,
+        "reader": false,
+        "connected": false
+      }
+    },
+    {
+      "group": "dpr-1-raw-True-seed-88219",
+      "total": 10,
+      "correct": 10,
+      "close": {
+        "released": true,
+        "worker_thread": 29456,
+        "destroyed": [
+          "tasker",
+          "controller",
+          "resource"
+        ],
+        "errors": [],
+        "stop_status": "succeeded"
+      },
+      "cleanup": {
+        "pending": 0,
+        "reader": false,
+        "connected": false
+      }
+    },
+    {
+      "group": "dpr-1-raw-True-seed-9173",
+      "total": 10,
+      "correct": 10,
+      "close": {
+        "released": true,
+        "worker_thread": 30424,
+        "destroyed": [
+          "tasker",
+          "controller",
+          "resource"
+        ],
+        "errors": [],
+        "stop_status": "succeeded"
+      },
+      "cleanup": {
+        "pending": 0,
+        "reader": false,
+        "connected": false
+      }
+    },
+    {
+      "group": "dpr-1.5-raw-False-seed-60127",
+      "total": 10,
+      "correct": 10,
+      "close": {
+        "released": true,
+        "worker_thread": 9076,
+        "destroyed": [
+          "tasker",
+          "controller",
+          "resource"
+        ],
+        "errors": [],
+        "stop_status": "succeeded"
+      },
+      "cleanup": {
+        "pending": 0,
+        "reader": false,
+        "connected": false
+      }
+    },
+    {
+      "group": "dpr-1.5-raw-False-seed-88219",
+      "total": 10,
+      "correct": 10,
+      "close": {
+        "released": true,
+        "worker_thread": 30332,
+        "destroyed": [
+          "tasker",
+          "controller",
+          "resource"
+        ],
+        "errors": [],
+        "stop_status": "succeeded"
+      },
+      "cleanup": {
+        "pending": 0,
+        "reader": false,
+        "connected": false
+      }
+    },
+    {
+      "group": "dpr-1.5-raw-False-seed-9173",
+      "total": 10,
+      "correct": 10,
+      "close": {
+        "released": true,
+        "worker_thread": 21912,
+        "destroyed": [
+          "tasker",
+          "controller",
+          "resource"
+        ],
+        "errors": [],
+        "stop_status": "succeeded"
+      },
+      "cleanup": {
+        "pending": 0,
+        "reader": false,
+        "connected": false
+      }
+    },
+    {
+      "group": "dpr-1.5-raw-True-seed-60127",
+      "total": 10,
+      "correct": 10,
+      "close": {
+        "released": true,
+        "worker_thread": 1076,
+        "destroyed": [
+          "tasker",
+          "controller",
+          "resource"
+        ],
+        "errors": [],
+        "stop_status": "succeeded"
+      },
+      "cleanup": {
+        "pending": 0,
+        "reader": false,
+        "connected": false
+      }
+    },
+    {
+      "group": "dpr-1.5-raw-True-seed-88219",
+      "total": 10,
+      "correct": 10,
+      "close": {
+        "released": true,
+        "worker_thread": 12508,
+        "destroyed": [
+          "tasker",
+          "controller",
+          "resource"
+        ],
+        "errors": [],
+        "stop_status": "succeeded"
+      },
+      "cleanup": {
+        "pending": 0,
+        "reader": false,
+        "connected": false
+      }
+    },
+    {
+      "group": "dpr-1.5-raw-True-seed-9173",
+      "total": 10,
+      "correct": 10,
+      "close": {
+        "released": true,
+        "worker_thread": 33692,
+        "destroyed": [
+          "tasker",
+          "controller",
+          "resource"
+        ],
+        "errors": [],
+        "stop_status": "succeeded"
+      },
+      "cleanup": {
+        "pending": 0,
+        "reader": false,
+        "connected": false
+      }
+    },
+    {
+      "group": "dpr-2-raw-False-seed-60127",
+      "total": 10,
+      "correct": 10,
+      "close": {
+        "released": true,
+        "worker_thread": 14700,
+        "destroyed": [
+          "tasker",
+          "controller",
+          "resource"
+        ],
+        "errors": [],
+        "stop_status": "succeeded"
+      },
+      "cleanup": {
+        "pending": 0,
+        "reader": false,
+        "connected": false
+      }
+    },
+    {
+      "group": "dpr-2-raw-False-seed-88219",
+      "total": 10,
+      "correct": 10,
+      "close": {
+        "released": true,
+        "worker_thread": 8556,
+        "destroyed": [
+          "tasker",
+          "controller",
+          "resource"
+        ],
+        "errors": [],
+        "stop_status": "succeeded"
+      },
+      "cleanup": {
+        "pending": 0,
+        "reader": false,
+        "connected": false
+      }
+    },
+    {
+      "group": "dpr-2-raw-False-seed-9173",
+      "total": 10,
+      "correct": 10,
+      "close": {
+        "released": true,
+        "worker_thread": 24368,
+        "destroyed": [
+          "tasker",
+          "controller",
+          "resource"
+        ],
+        "errors": [],
+        "stop_status": "succeeded"
+      },
+      "cleanup": {
+        "pending": 0,
+        "reader": false,
+        "connected": false
+      }
+    },
+    {
+      "group": "dpr-2-raw-True-seed-60127",
+      "total": 10,
+      "correct": 10,
+      "close": {
+        "released": true,
+        "worker_thread": 36464,
+        "destroyed": [
+          "tasker",
+          "controller",
+          "resource"
+        ],
+        "errors": [],
+        "stop_status": "succeeded"
+      },
+      "cleanup": {
+        "pending": 0,
+        "reader": false,
+        "connected": false
+      }
+    },
+    {
+      "group": "dpr-2-raw-True-seed-88219",
+      "total": 10,
+      "correct": 10,
+      "close": {
+        "released": true,
+        "worker_thread": 29640,
+        "destroyed": [
+          "tasker",
+          "controller",
+          "resource"
+        ],
+        "errors": [],
+        "stop_status": "succeeded"
+      },
+      "cleanup": {
+        "pending": 0,
+        "reader": false,
+        "connected": false
+      }
+    },
+    {
+      "group": "dpr-2-raw-True-seed-9173",
+      "total": 10,
+      "correct": 10,
+      "close": {
+        "released": true,
+        "worker_thread": 37412,
+        "destroyed": [
+          "tasker",
+          "controller",
+          "resource"
+        ],
+        "errors": [],
+        "stop_status": "succeeded"
+      },
+      "cleanup": {
+        "pending": 0,
+        "reader": false,
+        "connected": false
+      }
+    }
+  ]
+}

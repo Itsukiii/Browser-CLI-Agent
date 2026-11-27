@@ -24,7 +24,7 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 bca = ["py.typed"]
-"bca.lite" = ["resources/fixture/*.html", "resources/fixture/*.md", "resources/fixture/image/*.png", "resources/fixture/pipeline/*.json", "resources/quiz/*.html", "resources/quiz/*.js", "resources/quiz/*.md", "resources/quiz/image/*.png", "resources/quiz/pipeline/*.json"]
+"bca.lite" = ["resources/fixture/*.html", "resources/fixture/*.md", "resources/fixture/image/*.png", "resources/fixture/pipeline/*.json", "resources/quiz/*.html", "resources/quiz/*.js", "resources/quiz/*.md", "resources/quiz/*.json", "resources/quiz/image/*.png", "resources/quiz/pipeline/*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

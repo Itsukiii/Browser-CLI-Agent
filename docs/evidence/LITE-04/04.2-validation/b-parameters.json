@@ -1,0 +1,23 @@
+{
+  "stage": "Parameters fixed at blind-run launch; manifest recorded during run after first seven groups. No recognition parameters changed in response to blind results.",
+  "seeds": [
+    9173,
+    60127,
+    88219
+  ],
+  "glyphs": {
+    "9173": "normal",
+    "60127": "bold",
+    "88219": "normal"
+  },
+  "digit_ocr": "only_rec, threshold=0 retains explicit conflict",
+  "template_threshold": 0.9,
+  "margin": 0.15,
+  "text_threshold": 0.7,
+  "template_only_fallback": false,
+  "native_requests": 67,
+  "source_sha256": {
+    "src\\bca\\lite\\quiz.py": "f9b8350ffc386115afe26a9631570ac7481d54d8d12f7ac143f807ad4d7d86e3",
+    "src\\bca\\lite\\resources\\quiz\\page.html": "b5c426177cd3a35c333266d1d96ff1843ce61347ca368b38f0dd73491888faff"
+  }
+}

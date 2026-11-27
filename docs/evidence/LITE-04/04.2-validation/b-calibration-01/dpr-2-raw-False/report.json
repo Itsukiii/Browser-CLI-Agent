@@ -1,0 +1,2327 @@
+{
+  "dpr": 2,
+  "raw": false,
+  "rows": [
+    {
+      "seconds": 1.3502207999117672,
+      "expected": {
+        "round": "000002",
+        "question": 1,
+        "options": [
+          8,
+          4,
+          7,
+          1
+        ],
+        "score": "0",
+        "selected": null,
+        "selectedRound": null,
+        "submitted": false,
+        "started": 10000,
+        "timeLeft": 10
+      },
+      "state": {
+        "status": "AMBIGUOUS",
+        "payload": null,
+        "signature": null,
+        "interaction_revision": null,
+        "targets": [],
+        "diagnostic": "inconsistent_quiz_fields"
+      },
+      "frame_id": "a801e284-0bd4-4c50-aeab-d8147db09aae",
+      "binding": [
+        "1CF652998BF3B8DBA236F8B59A7FA15C",
+        "EA062D559CB40D215EB31638F404C624",
+        2
+      ],
+      "size": [
+        1080,
+        720
+      ],
+      "source_current": true,
+      "expired": false,
+      "results": [
+        {
+          "request_key": "round",
+          "algorithm": "OCR",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                102,
+                65,
+                177,
+                43
+              ],
+              "score": 0.999804,
+              "text": "000002"
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                102,
+                65,
+                177,
+                43
+              ],
+              "score": 0.999804,
+              "text": "000002"
+            }
+          ],
+          "best": {
+            "box": [
+              102,
+              65,
+              177,
+              43
+            ],
+            "score": 0.999804,
+            "text": "000002"
+          },
+          "job_id": 200000366,
+          "job_status": "succeeded",
+          "reco_id": 400000361,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [102, 65, 177, 43], \"score\": 0.999804, \"text\": \"000002\"}], \"best\": {\"box\": [102, 65, 177, 43], \"score\": 0.999804, \"text\": \"000002\"}, \"filtered\": [{\"box\": [102, 65, 177, 43], \"score\": 0.999804, \"text\": \"000002\"}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "time",
+          "algorithm": "OCR",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                858,
+                62,
+                106,
+                51
+              ],
+              "score": 0.999943,
+              "text": "10.0"
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                858,
+                62,
+                106,
+                51
+              ],
+              "score": 0.999943,
+              "text": "10.0"
+            }
+          ],
+          "best": {
+            "box": [
+              858,
+              62,
+              106,
+              51
+            ],
+            "score": 0.999943,
+            "text": "10.0"
+          },
+          "job_id": 200000367,
+          "job_status": "succeeded",
+          "reco_id": 400000362,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [858, 62, 106, 51], \"score\": 0.999943, \"text\": \"10.0\"}], \"best\": {\"box\": [858, 62, 106, 51], \"score\": 0.999943, \"text\": \"10.0\"}, \"filtered\": [{\"box\": [858, 62, 106, 51], \"score\": 0.999943, \"text\": \"10.0\"}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "score",
+          "algorithm": "OCR",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                95,
+                590,
+                40,
+                53
+              ],
+              "score": 0.999703,
+              "text": "0"
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                95,
+                590,
+                40,
+                53
+              ],
+              "score": 0.999703,
+              "text": "0"
+            }
+          ],
+          "best": {
+            "box": [
+              95,
+              590,
+              40,
+              53
+            ],
+            "score": 0.999703,
+            "text": "0"
+          },
+          "job_id": 200000368,
+          "job_status": "succeeded",
+          "reco_id": 400000363,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [95, 590, 40, 53], \"score\": 0.999703, \"text\": \"0\"}], \"best\": {\"box\": [95, 590, 40, 53], \"score\": 0.999703, \"text\": \"0\"}, \"filtered\": [{\"box\": [95, 590, 40, 53], \"score\": 0.999703, \"text\": \"0\"}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "question",
+          "algorithm": "OCR",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                517,
+                166,
+                42,
+                63
+              ],
+              "score": 0.778791,
+              "text": "1"
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                517,
+                166,
+                42,
+                63
+              ],
+              "score": 0.778791,
+              "text": "1"
+            }
+          ],
+          "best": {
+            "box": [
+              517,
+              166,
+              42,
+              63
+            ],
+            "score": 0.778791,
+            "text": "1"
+          },
+          "job_id": 200000369,
+          "job_status": "succeeded",
+          "reco_id": 400000364,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [517, 166, 42, 63], \"score\": 0.778791, \"text\": \"1\"}], \"best\": {\"box\": [517, 166, 42, 63], \"score\": 0.778791, \"text\": \"1\"}, \"filtered\": [{\"box\": [517, 166, 42, 63], \"score\": 0.778791, \"text\": \"1\"}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "question_rec",
+          "algorithm": "OCR",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                495,
+                157,
+                90,
+                85
+              ],
+              "score": 0.825144,
+              "text": "\"1"
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                495,
+                157,
+                90,
+                85
+              ],
+              "score": 0.825144,
+              "text": "\"1"
+            }
+          ],
+          "best": {
+            "box": [
+              495,
+              157,
+              90,
+              85
+            ],
+            "score": 0.825144,
+            "text": "\"1"
+          },
+          "job_id": 200000370,
+          "job_status": "succeeded",
+          "reco_id": 400000365,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [495, 157, 90, 85], \"score\": 0.825144, \"text\": \"\\\"1\"}], \"best\": {\"box\": [495, 157, 90, 85], \"score\": 0.825144, \"text\": \"\\\"1\"}, \"filtered\": [{\"box\": [495, 157, 90, 85], \"score\": 0.825144, \"text\": \"\\\"1\"}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "question_tpl_0",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                505,
+                165,
+                45,
+                68
+              ],
+              "score": 0.389691,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000371,
+          "job_status": "succeeded",
+          "reco_id": 400000366,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [505, 165, 45, 68], \"score\": 0.389691}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "question_tpl_1",
+          "algorithm": "TemplateMatch",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                518,
+                163,
+                45,
+                68
+              ],
+              "score": 0.970111,
+              "text": null
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                518,
+                163,
+                45,
+                68
+              ],
+              "score": 0.970111,
+              "text": null
+            }
+          ],
+          "best": {
+            "box": [
+              518,
+              163,
+              45,
+              68
+            ],
+            "score": 0.970111,
+            "text": null
+          },
+          "job_id": 200000372,
+          "job_status": "succeeded",
+          "reco_id": 400000367,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [518, 163, 45, 68], \"score\": 0.970111}], \"best\": {\"box\": [518, 163, 45, 68], \"score\": 0.970111}, \"filtered\": [{\"box\": [518, 163, 45, 68], \"score\": 0.970111}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "question_tpl_2",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                522,
+                163,
+                45,
+                68
+              ],
+              "score": 0.355015,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000373,
+          "job_status": "succeeded",
+          "reco_id": 400000368,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [522, 163, 45, 68], \"score\": 0.355015}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "question_tpl_3",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                506,
+                165,
+                45,
+                68
+              ],
+              "score": 0.422821,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000374,
+          "job_status": "succeeded",
+          "reco_id": 400000369,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [506, 165, 45, 68], \"score\": 0.422821}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "question_tpl_4",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                510,
+                162,
+                45,
+                68
+              ],
+              "score": 0.526756,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000375,
+          "job_status": "succeeded",
+          "reco_id": 400000370,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [510, 162, 45, 68], \"score\": 0.526756}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "question_tpl_5",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                529,
+                164,
+                45,
+                68
+              ],
+              "score": 0.288349,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000376,
+          "job_status": "succeeded",
+          "reco_id": 400000371,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [529, 164, 45, 68], \"score\": 0.288349}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "question_tpl_6",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                530,
+                165,
+                45,
+                68
+              ],
+              "score": 0.289533,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000377,
+          "job_status": "succeeded",
+          "reco_id": 400000372,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [530, 165, 45, 68], \"score\": 0.289533}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "question_tpl_7",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                513,
+                171,
+                45,
+                68
+              ],
+              "score": 0.263275,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000378,
+          "job_status": "succeeded",
+          "reco_id": 400000373,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [513, 171, 45, 68], \"score\": 0.263275}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "question_tpl_8",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                506,
+                165,
+                45,
+                68
+              ],
+              "score": 0.302612,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000379,
+          "job_status": "succeeded",
+          "reco_id": 400000374,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [506, 165, 45, 68], \"score\": 0.302612}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "question_tpl_9",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                506,
+                167,
+                45,
+                68
+              ],
+              "score": 0.329916,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000380,
+          "job_status": "succeeded",
+          "reco_id": 400000375,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [506, 167, 45, 68], \"score\": 0.329916}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_A",
+          "algorithm": "OCR",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                145,
+                374,
+                47,
+                68
+              ],
+              "score": 0.994287,
+              "text": "8"
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                145,
+                374,
+                47,
+                68
+              ],
+              "score": 0.994287,
+              "text": "8"
+            }
+          ],
+          "best": {
+            "box": [
+              145,
+              374,
+              47,
+              68
+            ],
+            "score": 0.994287,
+            "text": "8"
+          },
+          "job_id": 200000381,
+          "job_status": "succeeded",
+          "reco_id": 400000376,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [145, 374, 47, 68], \"score\": 0.994287, \"text\": \"8\"}], \"best\": {\"box\": [145, 374, 47, 68], \"score\": 0.994287, \"text\": \"8\"}, \"filtered\": [{\"box\": [145, 374, 47, 68], \"score\": 0.994287, \"text\": \"8\"}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_A_rec",
+          "algorithm": "OCR",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                123,
+                365,
+                91,
+                97
+              ],
+              "score": 0.569765,
+              "text": ":"
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                123,
+                365,
+                91,
+                97
+              ],
+              "score": 0.569765,
+              "text": ":"
+            }
+          ],
+          "best": {
+            "box": [
+              123,
+              365,
+              91,
+              97
+            ],
+            "score": 0.569765,
+            "text": ":"
+          },
+          "job_id": 200000382,
+          "job_status": "succeeded",
+          "reco_id": 400000377,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [123, 365, 91, 97], \"score\": 0.569765, \"text\": \":\"}], \"best\": {\"box\": [123, 365, 91, 97], \"score\": 0.569765, \"text\": \":\"}, \"filtered\": [{\"box\": [123, 365, 91, 97], \"score\": 0.569765, \"text\": \":\"}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_A_tpl_0",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                146,
+                373,
+                45,
+                68
+              ],
+              "score": 0.608533,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000383,
+          "job_status": "succeeded",
+          "reco_id": 400000378,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [146, 373, 45, 68], \"score\": 0.608533}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_A_tpl_1",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                158,
+                371,
+                45,
+                68
+              ],
+              "score": 0.351251,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000384,
+          "job_status": "succeeded",
+          "reco_id": 400000379,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [158, 371, 45, 68], \"score\": 0.351251}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_A_tpl_2",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                146,
+                372,
+                45,
+                68
+              ],
+              "score": 0.452182,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000385,
+          "job_status": "succeeded",
+          "reco_id": 400000380,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [146, 372, 45, 68], \"score\": 0.452182}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_A_tpl_3",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                146,
+                374,
+                45,
+                68
+              ],
+              "score": 0.737484,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000386,
+          "job_status": "succeeded",
+          "reco_id": 400000381,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [146, 374, 45, 68], \"score\": 0.737484}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_A_tpl_4",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                151,
+                387,
+                45,
+                68
+              ],
+              "score": 0.354857,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000387,
+          "job_status": "succeeded",
+          "reco_id": 400000382,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [151, 387, 45, 68], \"score\": 0.354857}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_A_tpl_5",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                146,
+                374,
+                45,
+                68
+              ],
+              "score": 0.552943,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000388,
+          "job_status": "succeeded",
+          "reco_id": 400000383,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [146, 374, 45, 68], \"score\": 0.552943}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_A_tpl_6",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                146,
+                374,
+                45,
+                68
+              ],
+              "score": 0.632676,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000389,
+          "job_status": "succeeded",
+          "reco_id": 400000384,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [146, 374, 45, 68], \"score\": 0.632676}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_A_tpl_7",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                148,
+                375,
+                45,
+                68
+              ],
+              "score": 0.29407,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000390,
+          "job_status": "succeeded",
+          "reco_id": 400000385,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [148, 375, 45, 68], \"score\": 0.29407}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_A_tpl_8",
+          "algorithm": "TemplateMatch",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                146,
+                373,
+                45,
+                68
+              ],
+              "score": 0.985304,
+              "text": null
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                146,
+                373,
+                45,
+                68
+              ],
+              "score": 0.985304,
+              "text": null
+            }
+          ],
+          "best": {
+            "box": [
+              146,
+              373,
+              45,
+              68
+            ],
+            "score": 0.985304,
+            "text": null
+          },
+          "job_id": 200000391,
+          "job_status": "succeeded",
+          "reco_id": 400000386,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [146, 373, 45, 68], \"score\": 0.985304}], \"best\": {\"box\": [146, 373, 45, 68], \"score\": 0.985304}, \"filtered\": [{\"box\": [146, 373, 45, 68], \"score\": 0.985304}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_A_tpl_9",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                147,
+                373,
+                45,
+                68
+              ],
+              "score": 0.595698,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000392,
+          "job_status": "succeeded",
+          "reco_id": 400000387,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [147, 373, 45, 68], \"score\": 0.595698}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_B",
+          "algorithm": "OCR",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                394,
+                375,
+                43,
+                63
+              ],
+              "score": 0.999946,
+              "text": "4"
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                394,
+                375,
+                43,
+                63
+              ],
+              "score": 0.999946,
+              "text": "4"
+            }
+          ],
+          "best": {
+            "box": [
+              394,
+              375,
+              43,
+              63
+            ],
+            "score": 0.999946,
+            "text": "4"
+          },
+          "job_id": 200000393,
+          "job_status": "succeeded",
+          "reco_id": 400000388,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [394, 375, 43, 63], \"score\": 0.999946, \"text\": \"4\"}], \"best\": {\"box\": [394, 375, 43, 63], \"score\": 0.999946, \"text\": \"4\"}, \"filtered\": [{\"box\": [394, 375, 43, 63], \"score\": 0.999946, \"text\": \"4\"}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_B_rec",
+          "algorithm": "OCR",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                371,
+                365,
+                91,
+                97
+              ],
+              "score": 0.998505,
+              "text": "4"
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                371,
+                365,
+                91,
+                97
+              ],
+              "score": 0.998505,
+              "text": "4"
+            }
+          ],
+          "best": {
+            "box": [
+              371,
+              365,
+              91,
+              97
+            ],
+            "score": 0.998505,
+            "text": "4"
+          },
+          "job_id": 200000394,
+          "job_status": "succeeded",
+          "reco_id": 400000389,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [371, 365, 91, 97], \"score\": 0.998505, \"text\": \"4\"}], \"best\": {\"box\": [371, 365, 91, 97], \"score\": 0.998505, \"text\": \"4\"}, \"filtered\": [{\"box\": [371, 365, 91, 97], \"score\": 0.998505, \"text\": \"4\"}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_B_tpl_0",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                414,
+                365,
+                45,
+                68
+              ],
+              "score": 0.271175,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000395,
+          "job_status": "succeeded",
+          "reco_id": 400000390,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [414, 365, 45, 68], \"score\": 0.271175}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_B_tpl_1",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                401,
+                375,
+                45,
+                68
+              ],
+              "score": 0.547875,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000396,
+          "job_status": "succeeded",
+          "reco_id": 400000391,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [401, 375, 45, 68], \"score\": 0.547875}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_B_tpl_2",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                376,
+                376,
+                45,
+                68
+              ],
+              "score": 0.206961,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000397,
+          "job_status": "succeeded",
+          "reco_id": 400000392,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [376, 376, 45, 68], \"score\": 0.206961}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_B_tpl_3",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                389,
+                385,
+                45,
+                68
+              ],
+              "score": 0.294343,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000398,
+          "job_status": "succeeded",
+          "reco_id": 400000393,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [389, 385, 45, 68], \"score\": 0.294343}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_B_tpl_4",
+          "algorithm": "TemplateMatch",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                394,
+                373,
+                45,
+                68
+              ],
+              "score": 0.992396,
+              "text": null
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                394,
+                373,
+                45,
+                68
+              ],
+              "score": 0.992396,
+              "text": null
+            }
+          ],
+          "best": {
+            "box": [
+              394,
+              373,
+              45,
+              68
+            ],
+            "score": 0.992396,
+            "text": null
+          },
+          "job_id": 200000399,
+          "job_status": "succeeded",
+          "reco_id": 400000394,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [394, 373, 45, 68], \"score\": 0.992396}], \"best\": {\"box\": [394, 373, 45, 68], \"score\": 0.992396}, \"filtered\": [{\"box\": [394, 373, 45, 68], \"score\": 0.992396}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_B_tpl_5",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                394,
+                387,
+                45,
+                68
+              ],
+              "score": 0.269807,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000400,
+          "job_status": "succeeded",
+          "reco_id": 400000395,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [394, 387, 45, 68], \"score\": 0.269807}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_B_tpl_6",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                396,
+                383,
+                45,
+                68
+              ],
+              "score": 0.309682,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000401,
+          "job_status": "succeeded",
+          "reco_id": 400000396,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [396, 383, 45, 68], \"score\": 0.309682}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_B_tpl_7",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                376,
+                386,
+                45,
+                68
+              ],
+              "score": 0.256126,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000402,
+          "job_status": "succeeded",
+          "reco_id": 400000397,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [376, 386, 45, 68], \"score\": 0.256126}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_B_tpl_8",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                389,
+                380,
+                45,
+                68
+              ],
+              "score": 0.264387,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000403,
+          "job_status": "succeeded",
+          "reco_id": 400000398,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [389, 380, 45, 68], \"score\": 0.264387}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_B_tpl_9",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                389,
+                383,
+                45,
+                68
+              ],
+              "score": 0.364449,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000404,
+          "job_status": "succeeded",
+          "reco_id": 400000399,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [389, 383, 45, 68], \"score\": 0.364449}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_C",
+          "algorithm": "OCR",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                638,
+                371,
+                52,
+                68
+              ],
+              "score": 0.999376,
+              "text": "7"
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                638,
+                371,
+                52,
+                68
+              ],
+              "score": 0.999376,
+              "text": "7"
+            }
+          ],
+          "best": {
+            "box": [
+              638,
+              371,
+              52,
+              68
+            ],
+            "score": 0.999376,
+            "text": "7"
+          },
+          "job_id": 200000405,
+          "job_status": "succeeded",
+          "reco_id": 400000400,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [638, 371, 52, 68], \"score\": 0.999376, \"text\": \"7\"}], \"best\": {\"box\": [638, 371, 52, 68], \"score\": 0.999376, \"text\": \"7\"}, \"filtered\": [{\"box\": [638, 371, 52, 68], \"score\": 0.999376, \"text\": \"7\"}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_C_rec",
+          "algorithm": "OCR",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                618,
+                365,
+                91,
+                97
+              ],
+              "score": 0.996169,
+              "text": "7"
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                618,
+                365,
+                91,
+                97
+              ],
+              "score": 0.996169,
+              "text": "7"
+            }
+          ],
+          "best": {
+            "box": [
+              618,
+              365,
+              91,
+              97
+            ],
+            "score": 0.996169,
+            "text": "7"
+          },
+          "job_id": 200000406,
+          "job_status": "succeeded",
+          "reco_id": 400000401,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [618, 365, 91, 97], \"score\": 0.996169, \"text\": \"7\"}], \"best\": {\"box\": [618, 365, 91, 97], \"score\": 0.996169, \"text\": \"7\"}, \"filtered\": [{\"box\": [618, 365, 91, 97], \"score\": 0.996169, \"text\": \"7\"}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_C_tpl_0",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                629,
+                372,
+                45,
+                68
+              ],
+              "score": 0.264363,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000407,
+          "job_status": "succeeded",
+          "reco_id": 400000402,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [629, 372, 45, 68], \"score\": 0.264363}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_C_tpl_1",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                644,
+                366,
+                45,
+                68
+              ],
+              "score": 0.250435,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000408,
+          "job_status": "succeeded",
+          "reco_id": 400000403,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [644, 366, 45, 68], \"score\": 0.250435}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_C_tpl_2",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                639,
+                371,
+                45,
+                68
+              ],
+              "score": 0.401432,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000409,
+          "job_status": "succeeded",
+          "reco_id": 400000404,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [639, 371, 45, 68], \"score\": 0.401432}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_C_tpl_3",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                640,
+                371,
+                45,
+                68
+              ],
+              "score": 0.403904,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000410,
+          "job_status": "succeeded",
+          "reco_id": 400000405,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [640, 371, 45, 68], \"score\": 0.403904}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_C_tpl_4",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                647,
+                386,
+                45,
+                68
+              ],
+              "score": 0.271403,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000411,
+          "job_status": "succeeded",
+          "reco_id": 400000406,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [647, 386, 45, 68], \"score\": 0.271403}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_C_tpl_5",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                628,
+                374,
+                45,
+                68
+              ],
+              "score": 0.278263,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000412,
+          "job_status": "succeeded",
+          "reco_id": 400000407,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [628, 374, 45, 68], \"score\": 0.278263}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_C_tpl_6",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                652,
+                393,
+                45,
+                68
+              ],
+              "score": 0.293297,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000413,
+          "job_status": "succeeded",
+          "reco_id": 400000408,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [652, 393, 45, 68], \"score\": 0.293297}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_C_tpl_7",
+          "algorithm": "TemplateMatch",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                641,
+                373,
+                45,
+                68
+              ],
+              "score": 0.976623,
+              "text": null
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                641,
+                373,
+                45,
+                68
+              ],
+              "score": 0.976623,
+              "text": null
+            }
+          ],
+          "best": {
+            "box": [
+              641,
+              373,
+              45,
+              68
+            ],
+            "score": 0.976623,
+            "text": null
+          },
+          "job_id": 200000414,
+          "job_status": "succeeded",
+          "reco_id": 400000409,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [641, 373, 45, 68], \"score\": 0.976623}], \"best\": {\"box\": [641, 373, 45, 68], \"score\": 0.976623}, \"filtered\": [{\"box\": [641, 373, 45, 68], \"score\": 0.976623}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_C_tpl_8",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                640,
+                371,
+                45,
+                68
+              ],
+              "score": 0.288641,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000415,
+          "job_status": "succeeded",
+          "reco_id": 400000410,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [640, 371, 45, 68], \"score\": 0.288641}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_C_tpl_9",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                632,
+                372,
+                45,
+                68
+              ],
+              "score": 0.29606,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000416,
+          "job_status": "succeeded",
+          "reco_id": 400000411,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [632, 372, 45, 68], \"score\": 0.29606}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_D",
+          "algorithm": "OCR",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                889,
+                371,
+                43,
+                70
+              ],
+              "score": 0.669876,
+              "text": "1"
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                889,
+                371,
+                43,
+                70
+              ],
+              "score": 0.669876,
+              "text": "1"
+            }
+          ],
+          "best": {
+            "box": [
+              889,
+              371,
+              43,
+              70
+            ],
+            "score": 0.669876,
+            "text": "1"
+          },
+          "job_id": 200000417,
+          "job_status": "succeeded",
+          "reco_id": 400000412,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [889, 371, 43, 70], \"score\": 0.669876, \"text\": \"1\"}], \"best\": {\"box\": [889, 371, 43, 70], \"score\": 0.669876, \"text\": \"1\"}, \"filtered\": [{\"box\": [889, 371, 43, 70], \"score\": 0.669876, \"text\": \"1\"}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_D_rec",
+          "algorithm": "OCR",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                866,
+                365,
+                91,
+                97
+              ],
+              "score": 0.999081,
+              "text": "1"
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                866,
+                365,
+                91,
+                97
+              ],
+              "score": 0.999081,
+              "text": "1"
+            }
+          ],
+          "best": {
+            "box": [
+              866,
+              365,
+              91,
+              97
+            ],
+            "score": 0.999081,
+            "text": "1"
+          },
+          "job_id": 200000418,
+          "job_status": "succeeded",
+          "reco_id": 400000413,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [866, 365, 91, 97], \"score\": 0.999081, \"text\": \"1\"}], \"best\": {\"box\": [866, 365, 91, 97], \"score\": 0.999081, \"text\": \"1\"}, \"filtered\": [{\"box\": [866, 365, 91, 97], \"score\": 0.999081, \"text\": \"1\"}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_D_tpl_0",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                876,
+                375,
+                45,
+                68
+              ],
+              "score": 0.39911,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000419,
+          "job_status": "succeeded",
+          "reco_id": 400000414,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [876, 375, 45, 68], \"score\": 0.39911}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_D_tpl_1",
+          "algorithm": "TemplateMatch",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                889,
+                373,
+                45,
+                68
+              ],
+              "score": 0.989011,
+              "text": null
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                889,
+                373,
+                45,
+                68
+              ],
+              "score": 0.989011,
+              "text": null
+            }
+          ],
+          "best": {
+            "box": [
+              889,
+              373,
+              45,
+              68
+            ],
+            "score": 0.989011,
+            "text": null
+          },
+          "job_id": 200000420,
+          "job_status": "succeeded",
+          "reco_id": 400000415,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [889, 373, 45, 68], \"score\": 0.989011}], \"best\": {\"box\": [889, 373, 45, 68], \"score\": 0.989011}, \"filtered\": [{\"box\": [889, 373, 45, 68], \"score\": 0.989011}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_D_tpl_2",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                893,
+                373,
+                45,
+                68
+              ],
+              "score": 0.346283,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000421,
+          "job_status": "succeeded",
+          "reco_id": 400000416,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [893, 373, 45, 68], \"score\": 0.346283}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_D_tpl_3",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                878,
+                375,
+                45,
+                68
+              ],
+              "score": 0.408595,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000422,
+          "job_status": "succeeded",
+          "reco_id": 400000417,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [878, 375, 45, 68], \"score\": 0.408595}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_D_tpl_4",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                882,
+                389,
+                45,
+                68
+              ],
+              "score": 0.548671,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000423,
+          "job_status": "succeeded",
+          "reco_id": 400000418,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [882, 389, 45, 68], \"score\": 0.548671}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_D_tpl_5",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                900,
+                374,
+                45,
+                68
+              ],
+              "score": 0.287571,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000424,
+          "job_status": "succeeded",
+          "reco_id": 400000419,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [900, 374, 45, 68], \"score\": 0.287571}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_D_tpl_6",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                901,
+                375,
+                45,
+                68
+              ],
+              "score": 0.281662,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000425,
+          "job_status": "succeeded",
+          "reco_id": 400000420,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [901, 375, 45, 68], \"score\": 0.281662}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_D_tpl_7",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                886,
+                381,
+                45,
+                68
+              ],
+              "score": 0.252161,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000426,
+          "job_status": "succeeded",
+          "reco_id": 400000421,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [886, 381, 45, 68], \"score\": 0.252161}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_D_tpl_8",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                877,
+                375,
+                45,
+                68
+              ],
+              "score": 0.29366,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000427,
+          "job_status": "succeeded",
+          "reco_id": 400000422,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [877, 375, 45, 68], \"score\": 0.29366}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "digit_D_tpl_9",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                877,
+                377,
+                45,
+                68
+              ],
+              "score": 0.322124,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000428,
+          "job_status": "succeeded",
+          "reco_id": 400000423,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [877, 377, 45, 68], \"score\": 0.322124}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "A_neutral",
+          "algorithm": "TemplateMatch",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                220,
+                434,
+                36,
+                36
+              ],
+              "score": 0.941548,
+              "text": null
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                220,
+                434,
+                36,
+                36
+              ],
+              "score": 0.941548,
+              "text": null
+            }
+          ],
+          "best": {
+            "box": [
+              220,
+              434,
+              36,
+              36
+            ],
+            "score": 0.941548,
+            "text": null
+          },
+          "job_id": 200000429,
+          "job_status": "succeeded",
+          "reco_id": 400000424,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [220, 434, 36, 36], \"score\": 0.941548}], \"best\": {\"box\": [220, 434, 36, 36], \"score\": 0.941548}, \"filtered\": [{\"box\": [220, 434, 36, 36], \"score\": 0.941548}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "A_selected",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                220,
+                434,
+                36,
+                36
+              ],
+              "score": 0.554819,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000430,
+          "job_status": "succeeded",
+          "reco_id": 400000425,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [220, 434, 36, 36], \"score\": 0.554819}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "B_neutral",
+          "algorithm": "TemplateMatch",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                468,
+                434,
+                36,
+                36
+              ],
+              "score": 0.985867,
+              "text": null
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                468,
+                434,
+                36,
+                36
+              ],
+              "score": 0.985867,
+              "text": null
+            }
+          ],
+          "best": {
+            "box": [
+              468,
+              434,
+              36,
+              36
+            ],
+            "score": 0.985867,
+            "text": null
+          },
+          "job_id": 200000431,
+          "job_status": "succeeded",
+          "reco_id": 400000426,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [468, 434, 36, 36], \"score\": 0.985867}], \"best\": {\"box\": [468, 434, 36, 36], \"score\": 0.985867}, \"filtered\": [{\"box\": [468, 434, 36, 36], \"score\": 0.985867}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "B_selected",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                468,
+                434,
+                36,
+                36
+              ],
+              "score": 0.564719,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000432,
+          "job_status": "succeeded",
+          "reco_id": 400000427,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [468, 434, 36, 36], \"score\": 0.564719}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "C_neutral",
+          "algorithm": "TemplateMatch",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                715,
+                434,
+                36,
+                36
+              ],
+              "score": 0.941548,
+              "text": null
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                715,
+                434,
+                36,
+                36
+              ],
+              "score": 0.941548,
+              "text": null
+            }
+          ],
+          "best": {
+            "box": [
+              715,
+              434,
+              36,
+              36
+            ],
+            "score": 0.941548,
+            "text": null
+          },
+          "job_id": 200000433,
+          "job_status": "succeeded",
+          "reco_id": 400000428,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [715, 434, 36, 36], \"score\": 0.941548}], \"best\": {\"box\": [715, 434, 36, 36], \"score\": 0.941548}, \"filtered\": [{\"box\": [715, 434, 36, 36], \"score\": 0.941548}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "C_selected",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                715,
+                434,
+                36,
+                36
+              ],
+              "score": 0.554819,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000434,
+          "job_status": "succeeded",
+          "reco_id": 400000429,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [715, 434, 36, 36], \"score\": 0.554819}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "D_neutral",
+          "algorithm": "TemplateMatch",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                963,
+                434,
+                36,
+                36
+              ],
+              "score": 0.985868,
+              "text": null
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                963,
+                434,
+                36,
+                36
+              ],
+              "score": 0.985868,
+              "text": null
+            }
+          ],
+          "best": {
+            "box": [
+              963,
+              434,
+              36,
+              36
+            ],
+            "score": 0.985868,
+            "text": null
+          },
+          "job_id": 200000435,
+          "job_status": "succeeded",
+          "reco_id": 400000430,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [963, 434, 36, 36], \"score\": 0.985868}], \"best\": {\"box\": [963, 434, 36, 36], \"score\": 0.985868}, \"filtered\": [{\"box\": [963, 434, 36, 36], \"score\": 0.985868}]}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "D_selected",
+          "algorithm": "TemplateMatch",
+          "status": "NOT_FOUND",
+          "candidates": [],
+          "all_candidates": [
+            {
+              "box": [
+                963,
+                434,
+                36,
+                36
+              ],
+              "score": 0.564719,
+              "text": null
+            }
+          ],
+          "best": null,
+          "job_id": 200000436,
+          "job_status": "succeeded",
+          "reco_id": 400000431,
+          "hit": false,
+          "raw_detail_json": "{\"all\": [{\"box\": [963, 434, 36, 36], \"score\": 0.564719}], \"best\": null, \"filtered\": []}",
+          "diagnostic": null
+        },
+        {
+          "request_key": "confirm",
+          "algorithm": "TemplateMatch",
+          "status": "MATCHED",
+          "candidates": [
+            {
+              "box": [
+                929,
+                626,
+                36,
+                36
+              ],
+              "score": 0.93556,
+              "text": null
+            }
+          ],
+          "all_candidates": [
+            {
+              "box": [
+                929,
+                626,
+                36,
+                36
+              ],
+              "score": 0.93556,
+              "text": null
+            }
+          ],
+          "best": {
+            "box": [
+              929,
+              626,
+              36,
+              36
+            ],
+            "score": 0.93556,
+            "text": null
+          },
+          "job_id": 200000437,
+          "job_status": "succeeded",
+          "reco_id": 400000432,
+          "hit": true,
+          "raw_detail_json": "{\"all\": [{\"box\": [929, 626, 36, 36], \"score\": 0.93556}], \"best\": {\"box\": [929, 626, 36, 36], \"score\": 0.93556}, \"filtered\": [{\"box\": [929, 626, 36, 36], \"score\": 0.93556}]}",
+          "diagnostic": null
+        }
+      ]
+    }
+  ],
+  "probe_font": null,
+  "ocr_threshold": 0.9,
+  "close": {
+    "released": true,
+    "worker_thread": 6012,
+    "destroyed": [
+      "tasker",
+      "controller",
+      "resource"
+    ],
+    "errors": [],
+    "stop_status": "succeeded"
+  },
+  "owned_targets_remaining": [],
+  "preexisting_targets_preserved": true,
+  "cleanup": {
+    "pending": 0,
+    "reader": false,
+    "connected": false
+  }
+}
