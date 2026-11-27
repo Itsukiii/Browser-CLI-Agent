@@ -1,0 +1,24 @@
+{
+  "source": "docs\\evidence\\LITE-04\\04.2-validation\\a-cross-monitor\\process.json",
+  "exit_code": 0,
+  "processes": [
+    {
+      "pid": 31428,
+      "scope": "workload",
+      "sampled_seconds": 22.72562729998026,
+      "cpu_seconds": 0.015625,
+      "mean_cores": 0.0006875497777794487,
+      "peak_rss": 4583424,
+      "peak_private": 819200
+    },
+    {
+      "pid": 17164,
+      "scope": "workload",
+      "sampled_seconds": 22.72661149990745,
+      "cpu_seconds": 145.484375,
+      "mean_cores": 6.401498745230562,
+      "peak_rss": 212201472,
+      "peak_private": 700317696
+    }
+  ]
+}

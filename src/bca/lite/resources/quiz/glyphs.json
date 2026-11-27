@@ -1,0 +1,30 @@
+{
+  "license": "CC0-1.0",
+  "source": "original coordinate paths in generate_quiz_glyphs.py",
+  "canvas": [
+    64,
+    96
+  ],
+  "sha256": {
+    "glyph-normal-0.png": "43226506c6b4f101a112d236c1ab71857c3ad6e921f45ebb55f1220675f60b5f",
+    "glyph-normal-1.png": "5c2bafceeed914d75cf055fd5e1760d0755f1191847289955d8107fef3fe4d97",
+    "glyph-normal-2.png": "f2922491bbe923b7641a131da02440ba0b99eb5a97e5f8c7fb6308f452ef537e",
+    "glyph-normal-3.png": "9abdbb2d82fa5717a88ffa70d3aa8b21e03e4b997d013707741c429f7fe6b17a",
+    "glyph-normal-4.png": "f279c5dd78290ef2d2c6fbec975766f4720930df47640263ac73ece4f683942a",
+    "glyph-normal-5.png": "4859be6316e5e006e5e320a1fea5d92753d6d0e5955db4216096b3851497a88d",
+    "glyph-normal-6.png": "8baf97c24a58272b5fd5c61d0c89d32d7731adad22b3b6d063c100fa80ec152b",
+    "glyph-normal-7.png": "b9176dd9e6a592ad00862e6a81af9f75ac1dc50844b55d95fa006255c435b101",
+    "glyph-normal-8.png": "7e021a6109d2e16ed1f4ed95ce2d9d07bb93af7c1983954f71b8cbb9d06582ba",
+    "glyph-normal-9.png": "99bf544f201ff3be090df1332444a5e504b641302b59187df46c60bfbd00934c",
+    "glyph-bold-0.png": "aa297e82712e9d6aa12c374a822927f193eaa4c04949e457755647053c05cce3",
+    "glyph-bold-1.png": "b1077f76dfd8ba20700671fa5140a036941afbd71f118a1884b9a4c4b4bbfce7",
+    "glyph-bold-2.png": "0098d501d06cfd5daed88c5f814cc7bf2fbf19b28a9711ed5b7f4a36a2f43649",
+    "glyph-bold-3.png": "0bd1ccd0e4a34c11662781103e8111f93885dc3f9eda207dac64e5e53eee6ab1",
+    "glyph-bold-4.png": "32d9d6606ecc901f889f824e41cd0d7f6b7b59a8bc897d8c44ba2e0d74706068",
+    "glyph-bold-5.png": "41fc51a1e0d77f6bacccd1d46b80404d9506bb3ebf974ac990073ec3eb6c57a3",
+    "glyph-bold-6.png": "adf1ac1cf8c0ef8e88dea1412aa5faddde2698defc9f8f53e0f3e4fba557816b",
+    "glyph-bold-7.png": "c1986f2fc005007732c4a9b1102de993d1741326f33eae1e12fe16d53c7b290a",
+    "glyph-bold-8.png": "3ae8dcdf0846ea896ceeb41dc6320d0f645e15f4327582807dabc262b97d9b3e",
+    "glyph-bold-9.png": "7ce573e654321b461ae873e9026edaac621647d31da25b77481c15833919693c"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "source": "docs\\evidence\\LITE-04\\04.2-validation\\a-monitor\\process.json",
+  "exit_code": 0,
+  "processes": [
+    {
+      "pid": 12972,
+      "scope": "workload",
+      "sampled_seconds": 21.353283500066027,
+      "cpu_seconds": 0.0,
+      "mean_cores": 0.0,
+      "peak_rss": 4579328,
+      "peak_private": 819200
+    },
+    {
+      "pid": 34580,
+      "scope": "workload",
+      "sampled_seconds": 21.355152199976146,
+      "cpu_seconds": 134.703125,
+      "mean_cores": 6.307757666093828,
+      "peak_rss": 215916544,
+      "peak_private": 702701568
+    }
+  ]
+}
