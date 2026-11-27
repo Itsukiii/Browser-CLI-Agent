@@ -3,6 +3,7 @@
 > **架构设计者：ChatGPT 架构主会话（小樱）**
 > **基线：** `lite@d773fab`（LITE-03 Accepted） · **日期：** 2026-11-26
 > **状态：** Architecture Design Approved for implementation；**不是** LITE-04 功能验收。
+> **2026-11-27 补充技术裁决：** 04.2 真实 Maa OCR 对单数字出现 6→空、1→7，原单 JOCR 参数不足以保证受控 Quiz 识别准确性。允许有限引入原生 `JTemplateMatch` 的自制数字字形与 JOCR/only_rec 进行验证；冲突必须拒绝，模板单独主判定需满足独立盲测。详见 [`LITE-04.2_ARCH_DECISION_2026-11-27.md`](LITE-04.2_ARCH_DECISION_2026-11-27.md)。**04.1 Accepted，04.2 尚未 Accepted。**
 > **职责：** 本文件决定产品行为、边界与接口；Codex 实现、测试、复现 Maa/Edge 真实约束。任何需改变产品语义的偏差提交 `DESIGN_DEVIATION.md` 给主会话批准。
 
 ## 1. 一句话方案和不变约束
