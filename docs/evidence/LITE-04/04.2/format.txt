@@ -1,0 +1,20 @@
+unformatted: File would be reformatted
+  --> docs\lite\LITE-04_DESIGN.md:33:22
+   |
+32 | class QuizSnapshot:
+   -     round_mark: str             # 从屏幕OCR读取的可见题号
+   -     question: int               # 0..9
+   -     options: tuple[int,int,int,int] # A/B/C/D
+   -     score: int                  # 可以是0、负数和多位
+   -     selected: str | None       # 必须由选中态视觉证实
+   -     time_left: float | None    # 只读可见计时线索，严禁替代精确授权
+33 +     round_mark: str  # 从屏幕OCR读取的可见题号
+34 +     question: int  # 0..9
+35 +     options: tuple[int, int, int, int]  # A/B/C/D
+36 +     score: int  # 可以是0、负数和多位
+37 +     selected: str | None  # 必须由选中态视觉证实
+38 +     time_left: float | None  # 只读可见计时线索，严禁替代精确授权
+39 |
+   |
+
+1 file would be reformatted, 296 files already formatted

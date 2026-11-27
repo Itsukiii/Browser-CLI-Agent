@@ -39,7 +39,7 @@
       submitted = false;
       started = time();
       events.push({kind: "round", reason, round: mark(), at: started, score: score.toString()});
-      if (events.length > 256) events.shift();
+      while (events.length > 256) events.shift();
       changed(snapshot()); // Synchronous DOM publication of the new question.
     }
     function tick() {

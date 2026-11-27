@@ -48,6 +48,11 @@ for(const initial of ['0','-1','-20','-305','12','345','6789','99999999999999999
 game.testSet({newRound:'999999'});clock+=10000;game.tick();
 assert.equal(game.snapshot().round,'1000000');
 assert.throws(()=>game.testSet({newRound:'1'}));
+const bounded=createQuiz({seed:7,now:()=>0});
+for(let i=0;i<500;i++) {
+  const s=bounded.snapshot();bounded.select(0,s.round);bounded.confirm(s.round);
+  assert(bounded.events.length<=256);
+}
 const repeat=createQuiz({seed:20261127,now:()=>0});
 assert.deepEqual(repeat.snapshot(),samples[0].before);
 clock--;assert.throws(()=>game.snapshot(),/monotonic/);

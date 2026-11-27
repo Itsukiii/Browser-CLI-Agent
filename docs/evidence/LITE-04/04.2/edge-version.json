@@ -1,0 +1,9 @@
+{
+  "Browser": "Edg/158.0.4370.33",
+  "File-Path-Style": "windows",
+  "Protocol-Version": "1.3",
+  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/158.0.0.0 Safari/537.36 Edg/158.0.0.0",
+  "V8-Version": "15.8.13.3",
+  "WebKit-Version": "537.36 (@56b8f691820060b6e15f702165117f203442943f)",
+  "webSocketDebuggerUrl": "ws://127.0.0.1:9341/devtools/browser/9eded680-536a-4536-a7e5-1091f7f553f4"
+}

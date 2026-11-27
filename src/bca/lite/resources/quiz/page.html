@@ -13,6 +13,7 @@ background:#eef3fa;border-radius:8px;color:#15243d;cursor:pointer}
 .option.selected{border:8px double #147342;background:#c9f4d9}
 .letter{position:absolute;left:8px;top:6px;font-size:22px}.value{font-size:56px}
 .selection{position:absolute;right:8px;top:4px;font-size:24px;font-weight:bold;color:#147342}
+.anchor{position:absolute;right:8px;bottom:8px;width:32px;height:32px;pointer-events:none}
 #score{position:absolute;left:90px;top:520px;width:360px;overflow:auto;white-space:nowrap}
 #confirm{position:absolute;left:610px;top:510px;width:260px;height:90px;font-size:32px;
 background:#243e64;color:white;border:4px solid #172d50;border-radius:8px;cursor:pointer}
@@ -39,6 +40,10 @@ button:focus-visible{outline:3px solid #e5a400;outline-offset:4px}
   const now = testing ? () => simulated : () => performance.now();
   const buttons = [...document.querySelectorAll('.option')];
   const confirm = document.getElementById('confirm');
+  for (const button of [...buttons,confirm]) {
+    const image=document.createElement('img');image.className='anchor';image.alt='';
+    image.src='image/neutral.png';button.appendChild(image);
+  }
   let engine;
   function render(state) {
     for (const name of ['round','question','score']) document.getElementById(name).textContent=state[name];
@@ -48,6 +53,7 @@ button:focus-visible{outline:3px solid #e5a400;outline-offset:4px}
       button.classList.toggle('selected',state.selected===i);
       button.querySelector('.selection').textContent=state.selected===i?'✓':'';
       button.setAttribute('aria-pressed',String(state.selected===i));
+      button.querySelector('.anchor').src=state.selected===i?'image/selected.png':'image/neutral.png';
       // Capture the visible round in the installed handler, not a hidden latest value.
       button.onclick=()=>engine.select(i,state.round);
     });

@@ -18,3 +18,10 @@ Numbers outside a legible viewport must be rejected by future visual recognition
 Engine bounded event history (256 records) is a test oracle, not an application
 event bus. Expiry is checked synchronously on every select/confirm as well as
 the timer. A stale handler carries its visible round and cannot act on a new one.
+
+04.2 adds two original 32px geometric button markers (image/neutral.png and
+image/selected.png), dedicated to CC0-1.0; no third-party imagery. Runtime resource
+preparation makes bilinear 8..128px variants from these originals, never from a
+captured screenshot. The matching candidate, not the ROI center, locates clicks.
+QuizPlugin is an unaccepted prototype: see LITE-04_DESIGN_DEVIATION.md for recorded
+OCR failures. It is deliberately not registered in the executable CLI yet.
