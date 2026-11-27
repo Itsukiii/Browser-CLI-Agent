@@ -5,6 +5,7 @@
 > **状态：** Architecture Design Approved for implementation；**不是** LITE-04 功能验收。
 > **2026-11-27 补充技术裁决：** 04.2 真实 Maa OCR 对单数字出现 6→空、1→7，原单 JOCR 参数不足以保证受控 Quiz 识别准确性。允许有限引入原生 `JTemplateMatch` 的自制数字字形与 JOCR/only_rec 进行验证；冲突必须拒绝，模板单独主判定需满足独立盲测。详见 [`LITE-04.2_ARCH_DECISION_2026-11-27.md`](LITE-04.2_ARCH_DECISION_2026-11-27.md)。**04.1 Accepted，04.2 尚未 Accepted。**
 > **职责：** 本文件决定产品行为、边界与接口；Codex 实现、测试、复现 Maa/Edge 真实约束。任何需改变产品语义的偏差提交 `DESIGN_DEVIATION.md` 给主会话批准。
+> **2026-11-27 后续性能裁决：** 04.2 独立准确性180/180与真实缩放30/30通过，但四轮持续有效频率均未达1Hz。先核对性能测试逐帧DOM oracle/PNG/完整JSON落盘的扰动，再剖析67次Maa native识别与批量模板候选完整性；正式认可安全等价且复测通过后才解锁04.3。详见 [`LITE-04.2_PERFORMANCE_DECISION_2026-11-27.md`](LITE-04.2_PERFORMANCE_DECISION_2026-11-27.md)。
 
 ## 1. 一句话方案和不变约束
 

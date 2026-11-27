@@ -23,3 +23,7 @@
 - **04.1 页面与受控资产：子阶段 Accepted**（仅涵盖页内规则、时间边界、资源与测试，不视为完整 Quiz 视觉操作）。
 - **04.2：原 OCR 实现未 Accepted。** 审核原始 `6→空` 与 `1→7` 证据，批准 Maa JTemplateMatch 自制数字字形与 JOCR/only_rec 的补充验证方案；独立准确性/有效频率通过后再复核。
 - 裁决文件：[`LITE-04.2_ARCH_DECISION_2026-11-27.md`](LITE-04.2_ARCH_DECISION_2026-11-27.md)。04.3 保持等待；LITE-04 整阶段仍未 Accepted。
+
+## 2026-11-27 主会话第二次性能裁决
+
+独立数字识别180/180、真实缩放30/30、六项负例拒绝认可；四轮真实持续观察依然未满足有效1Hz，故04.2整体仍未Accepted，04.3继续等待。主会话对性能脚本发现统计口径扰动：逐帧DOM oracle/双PNG/完整JSONL写盘影响elapsed但不计入单帧total。裁决先做lean/全证据配对，再逐请求profile、实验性合并模板（仅在完整候选归属可证时）；nonraw确认模板另做独立校准及盲测。详见 [`LITE-04.2_PERFORMANCE_DECISION_2026-11-27.md`](LITE-04.2_PERFORMANCE_DECISION_2026-11-27.md)。
