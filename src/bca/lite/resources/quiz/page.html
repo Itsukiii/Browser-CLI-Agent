@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><title>BCA Quiz</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#e9eef5}
+#board{position:absolute;width:960px;height:640px;transform-origin:top left;background:white;
+font-family:Arial,sans-serif;color:#15243d}
+.label{font-size:20px;color:#52637b;position:absolute} .number{font-size:48px;font-weight:normal}
+#round{position:absolute;left:90px;top:50px;width:400px;white-space:nowrap}
+#time{position:absolute;left:730px;top:50px;width:160px;text-align:center}
+#question{position:absolute;left:390px;top:145px;width:180px;text-align:center;font-size:72px}
+.option{position:absolute;top:300px;width:180px;height:130px;border:4px solid #243e64;
+background:#eef3fa;border-radius:8px;color:#15243d;cursor:pointer}
+.option.selected{border:8px double #147342;background:#c9f4d9}
+.letter{position:absolute;left:8px;top:6px;font-size:22px}.value{font-size:56px}
+.selection{position:absolute;right:8px;top:4px;font-size:24px;font-weight:bold;color:#147342}
+#score{position:absolute;left:90px;top:520px;width:360px;overflow:auto;white-space:nowrap}
+#confirm{position:absolute;left:610px;top:510px;width:260px;height:90px;font-size:32px;
+background:#243e64;color:white;border:4px solid #172d50;border-radius:8px;cursor:pointer}
+#confirm:disabled{background:#69798e;cursor:default}
+button:focus-visible{outline:3px solid #e5a400;outline-offset:4px}
+</style>
+<div id="board">
+  <span class="label" style="left:90px;top:18px">题号 #</span><div id="round" class="number"></div>
+  <span class="label" style="left:750px;top:18px">剩余秒数</span><div id="time" class="number"></div>
+  <span class="label" style="left:420px;top:120px">题目数字</span><div id="question"></div>
+  <button class="option" id="option_A" style="left:60px"><span class="letter">A</span><span class="value"></span><span class="selection"></span></button>
+  <button class="option" id="option_B" style="left:280px"><span class="letter">B</span><span class="value"></span><span class="selection"></span></button>
+  <button class="option" id="option_C" style="left:500px"><span class="letter">C</span><span class="value"></span><span class="selection"></span></button>
+  <button class="option" id="option_D" style="left:720px"><span class="letter">D</span><span class="value"></span><span class="selection"></span></button>
+  <span class="label" style="left:90px;top:485px">当前分数</span><div id="score" class="number"></div>
+  <button id="confirm">确认 / OK</button>
+</div>
+<script src="quiz.js"></script>
+<script>
+(() => {
+  const params = new URLSearchParams(location.hash.slice(1));
+  const testing = params.get('test') === '1';
+  let simulated = 0;
+  const now = testing ? () => simulated : () => performance.now();
+  const buttons = [...document.querySelectorAll('.option')];
+  const confirm = document.getElementById('confirm');
+  let engine;
+  function render(state) {
+    for (const name of ['round','question','score']) document.getElementById(name).textContent=state[name];
+    document.getElementById('time').textContent=state.timeLeft.toFixed(1);
+    buttons.forEach((button,i)=>{
+      button.querySelector('.value').textContent=state.options[i];
+      button.classList.toggle('selected',state.selected===i);
+      button.querySelector('.selection').textContent=state.selected===i?'✓':'';
+      button.setAttribute('aria-pressed',String(state.selected===i));
+      // Capture the visible round in the installed handler, not a hidden latest value.
+      button.onclick=()=>engine.select(i,state.round);
+    });
+    confirm.disabled=state.selected===null;
+    confirm.onclick=()=>engine.confirm(state.round);
+    const score=document.getElementById('score');
+    score.style.fontSize=Math.max(16,Math.min(48,540/state.score.length))+'px';
+  }
+  engine=window.BCAQuizEngine.createQuiz({seed:Number(params.get('seed')||1),now,changed:render});
+  function fit() {
+    const scale=Math.min(innerWidth/960,innerHeight/640);
+    const board=document.getElementById('board');
+    board.style.transform=`scale(${scale})`;
+    board.style.left=(innerWidth-960*scale)/2+'px';
+    board.style.top=(innerHeight-640*scale)/2+'px';
+  }
+  fit();addEventListener('resize',fit);
+  setInterval(()=>{engine.tick();document.getElementById('time').textContent=engine.snapshot().timeLeft.toFixed(1)},50);
+  if(testing) window.quizTest={
+    snapshot:()=>engine.snapshot(),events:engine.events,
+    advance(ms){if(!Number.isFinite(ms)||ms<0)throw Error('positive finite delta required');simulated+=ms;engine.tick();return engine.snapshot()},
+    set:values=>engine.testSet(values),
+    select:(i,round)=>engine.select(i,round),confirm:round=>engine.confirm(round)
+  };
+  delete window.BCAQuizEngine;
+})();
+</script></html>

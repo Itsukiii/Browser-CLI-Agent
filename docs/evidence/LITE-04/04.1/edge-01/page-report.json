@@ -1,0 +1,212 @@
+{
+  "cases": [
+    {
+      "correct": true,
+      "before": {
+        "round": "000001",
+        "question": 4,
+        "options": [
+          0,
+          4,
+          8,
+          9
+        ],
+        "score": "0",
+        "selected": null,
+        "selectedRound": null,
+        "submitted": false,
+        "started": 0,
+        "timeLeft": 10
+      },
+      "selected": {
+        "round": "000001",
+        "question": 4,
+        "options": [
+          0,
+          4,
+          8,
+          9
+        ],
+        "score": "0",
+        "selected": 1,
+        "selectedRound": "000001",
+        "submitted": false,
+        "started": 0,
+        "timeLeft": 10
+      },
+      "after": {
+        "round": "000002",
+        "question": 1,
+        "options": [
+          8,
+          4,
+          7,
+          1
+        ],
+        "score": "1",
+        "selected": null,
+        "selectedRound": null,
+        "submitted": false,
+        "started": 0,
+        "timeLeft": 10
+      }
+    },
+    {
+      "correct": false,
+      "before": {
+        "round": "000002",
+        "question": 1,
+        "options": [
+          8,
+          4,
+          7,
+          1
+        ],
+        "score": "1",
+        "selected": null,
+        "selectedRound": null,
+        "submitted": false,
+        "started": 0,
+        "timeLeft": 10
+      },
+      "selected": {
+        "round": "000002",
+        "question": 1,
+        "options": [
+          8,
+          4,
+          7,
+          1
+        ],
+        "score": "1",
+        "selected": 0,
+        "selectedRound": "000002",
+        "submitted": false,
+        "started": 0,
+        "timeLeft": 10
+      },
+      "after": {
+        "round": "000003",
+        "question": 8,
+        "options": [
+          7,
+          6,
+          0,
+          8
+        ],
+        "score": "0",
+        "selected": null,
+        "selectedRound": null,
+        "submitted": false,
+        "started": 0,
+        "timeLeft": 10
+      }
+    }
+  ],
+  "race": {
+    "before": {
+      "round": "000003",
+      "question": 8,
+      "options": [
+        7,
+        6,
+        0,
+        8
+      ],
+      "score": "0",
+      "selected": 0,
+      "selectedRound": "000003",
+      "submitted": false,
+      "started": 0,
+      "timeLeft": 10
+    },
+    "at9999": {
+      "round": "000003",
+      "question": 8,
+      "options": [
+        7,
+        6,
+        0,
+        8
+      ],
+      "score": "0",
+      "selected": 0,
+      "selectedRound": "000003",
+      "submitted": false,
+      "started": 0,
+      "timeLeft": 0.0009999999999994458
+    },
+    "after": {
+      "round": "000004",
+      "question": 0,
+      "options": [
+        8,
+        0,
+        1,
+        3
+      ],
+      "score": "0",
+      "selected": null,
+      "selectedRound": null,
+      "submitted": false,
+      "started": 10000,
+      "timeLeft": 10
+    }
+  },
+  "events": [
+    {
+      "kind": "round",
+      "reason": "initial",
+      "round": "000001",
+      "at": 0,
+      "score": "0"
+    },
+    {
+      "kind": "submit",
+      "round": "000001",
+      "selected": 1,
+      "correct": true,
+      "score": "1",
+      "at": 0
+    },
+    {
+      "kind": "round",
+      "reason": "submit",
+      "round": "000002",
+      "at": 0,
+      "score": "1"
+    },
+    {
+      "kind": "submit",
+      "round": "000002",
+      "selected": 0,
+      "correct": false,
+      "score": "0",
+      "at": 0
+    },
+    {
+      "kind": "round",
+      "reason": "submit",
+      "round": "000003",
+      "at": 0,
+      "score": "0"
+    },
+    {
+      "kind": "round",
+      "reason": "timeout",
+      "round": "000004",
+      "at": 10000,
+      "score": "0"
+    },
+    {
+      "kind": "round",
+      "reason": "timeout",
+      "round": "1000000",
+      "at": 20000,
+      "score": "6789"
+    }
+  ],
+  "original_preserved": true,
+  "pending": 0,
+  "reader": false
+}
